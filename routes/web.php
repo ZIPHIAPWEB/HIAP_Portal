@@ -34,3 +34,5 @@ Route::view('/senior-scholarship', 'frontview.senior-scholarship');
 Route::view('/social-stream' , 'frontview.social-stream');
 Route::view('/tesda-training', 'frontview.tesda-training');
 Route::view('/twsp', 'frontview.twsp');
+
+Route::post('/sendInquiry', 'InquiryController@sendInquiry')->name('send.inquiry');

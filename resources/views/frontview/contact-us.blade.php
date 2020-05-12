@@ -105,21 +105,22 @@
     <section class="contact-form">
         <div class="container-fluid">
             <h1 class="text-center">For more inquiries, please fill out this form:</h1>
-            <form>
+            <form action="{{ route('send.inquiry') }}" method="POST">
+                @csrf
                 <div class="form-row">
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Name (required):</label><input class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>Full Name (required):</label><input name="fullName" class="form-control form-control" type="text" required></div>
                     </div>
                     <div class="col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Mobile Number (required):</label><input class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>Mobile Number (required):</label><input name="mobileNumber" class="form-control form-control" type="number" required></div>
                     </div>
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>E-mail (required):</label><input class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>E-mail (required):</label><input name="email" class="form-control form-control" type="email" required></div>
                     </div>
                     <div class="col-12">
-                        <div class="form-group"><label>Message (required):</label><textarea class="form-control form-control" rows="10"></textarea></div>
+                        <div class="form-group"><label>Message (required):</label><textarea name="message" class="form-control form-control" rows="10" required></textarea></div>
                     </div>
-                    <div class="col-12 col-lg-2 col-xl-2"><button class="btn btn-primary btn-block" type="button" style="border: 0;">Send</button></div>
+                    <div class="col-12 col-lg-2 col-xl-2"><button class="btn btn-primary btn-block" type="submit" style="border: 0;">Send</button></div>
                 </div>
             </form>
         </div>
