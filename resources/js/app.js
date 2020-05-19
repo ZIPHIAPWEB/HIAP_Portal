@@ -1,3 +1,4 @@
+import './bootstrap';
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 

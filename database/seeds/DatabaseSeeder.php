@@ -1,6 +1,8 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        User::create([
+            'email'     =>  'superadmin@hiap.com',
+            'password'  =>  Hash::make('hiaprocks5000!'),
+            'isFilled'  =>  true,
+            'role'      =>  'superadministrator'
+        ]);
     }
 }

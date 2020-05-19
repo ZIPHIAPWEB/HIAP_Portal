@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class LoginController extends Controller
@@ -27,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/client/application-form';
 
     /**
      * Create a new controller instance.
@@ -42,5 +44,48 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return Inertia::render('Auth/Login');
+    }
+
+    public function username()
+    {
+        return 'email';
+    }
+
+    public function logout(\Illuminate\Http\Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 204)
+            : Redirect::route('home');
+    }
+
+    public function authenticated(\Illuminate\Http\Request $request, \App\User $user)
+    {
+        switch($request->user()->role) {
+            case 'client':
+                if ($request->user()->isFilled) {
+                    return redirect()->route('cl.dashboard');
+                } else {
+                    return redirect()->route('cl.application');
+                }
+            break;
+
+            case 'moderator':
+                return redirect()->route('md.dashboard');
+            break;
+
+            case 'superadministrator':
+                return redirect()->route('sa.dashboard');
+            break;
+        }
     }
 }

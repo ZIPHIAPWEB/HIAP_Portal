@@ -2,37 +2,30 @@
     <auth-layout>
         <div class="register-box">
     <div class="register-logo">
-      <a href="#"><b>Admin</b>LTE</a>
+        <a href="/">
+            <b>Hospitality Institute of America-Philippines Inc.</b>
+        </a>
     </div>
 
     <div class="card">
+        <div class="overlay" v-if="loading">
+            <i class="fas fa-spinner fa-2x fa-pulse"></i>
+        </div>
       <div class="card-body register-card-body">
         <p class="login-box-msg">Register a new membership</p>
 
-        <form @submit.prevent="register()" method="post">
-          <div class="input-group mb-3">
-            <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
+        <form @submit.prevent="register()">
+          <div class="form-group mb-3">
+            <input v-model="form.email" name="email" type="email" :class="hasEmailError" placeholder="Email">
+            <span class="error invalid-feedback">{{ errors.email }}</span>
           </div>
-          <div class="input-group mb-3">
-            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+          <div class="form-group mb-3">
+            <input v-model="form.password" name="password" type="password" :class="hasPasswordError" placeholder="Password">
+            <span class="error invalid-feedback">{{ errors.password }}</span>
           </div>
-          <div class="input-group mb-3">
-            <input name="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Retype password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+          <div class="form-group mb-3">
+            <input v-model="form.password_confirmation" name="password_confirmation" type="password" :class="hasPasswordConfirmationError" placeholder="Retype password">
+            <span class="error invalid-feedback">{{ errors.password_confirmation }}</span>
           </div>
           <div class="row">
             <div class="col-8">
@@ -46,7 +39,13 @@
             <!-- /.col -->
             <div class="col-12">
               <button type="submit" class="btn btn-primary btn-block">Register</button>
-              <inertia-link href="/login" class="btn btn-danger btn-block">I already have an account</inertia-link>
+            </div>
+             <div class="col-6 text-left">
+                <inertia-link href="/login" class="text-sm">Sign In an account</inertia-link>
+            </div>
+
+            <div class="col-6 text-right">
+                <inertia-link href="/password/reset" class="text-sm">I dont have an account</inertia-link>
             </div>
             <!-- /.col -->
           </div>
@@ -75,12 +74,57 @@
 <script>
     import AuthLayout from '../../Layouts/AuthLayout.vue';
     export default {
+        props: ['errors'],
         components: {
             AuthLayout
         },
+        data () {
+            return {
+                form: {
+                    email: '',
+                    password: '',
+                    password_confirmation: ''
+                },
+                loading: false
+            }
+        },
+        computed: {
+            hasEmailError() {
+                let errors = Object.values(this.errors);
+                if (this.errors.email) {
+                    return 'form-control is-invalid';
+                } else {
+                    return 'form-control';
+                }
+            },
+            hasPasswordError() {
+                let errors = Object.values(this.errors);
+                if (this.errors.password) {
+                    return 'form-control is-invalid';
+                } else {
+                    return 'form-control';
+                }
+            },
+            hasPasswordConfirmationError() {
+                let errors = Object.values(this.errors);
+                if (this.errors.password_confirmation) {
+                    return 'form-control is-invalid';
+                } else {
+                    return 'form-control';
+                }
+            },
+        },
         methods: {
             register () {
-                alert('Orayt!');
+                this.loading = true;
+                this.$inertia.post('/register', this.form)
+                    .then((response) => {
+                        this.loading = false;
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             }
         }
     }

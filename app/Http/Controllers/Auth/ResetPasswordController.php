@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Inertia\Inertia;
 
 class ResetPasswordController extends Controller
 {
@@ -26,5 +27,12 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/client/dashboard';
+
+    public function showResetForm(\Illuminate\Http\Request $request, $token = null)
+    {
+        return Inertia::render('Auth/PasswordResetForm')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
 }
