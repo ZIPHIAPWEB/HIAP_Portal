@@ -26,7 +26,7 @@ class InitialController extends Controller
             'description'   =>  'required',
         ]);
 
-        if ($request->has('file')) {
+        if ($request->hasFile('file')) {
             $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
             $request->file->move(public_path('initials'), $filename);
         }
@@ -35,7 +35,7 @@ class InitialController extends Controller
             'program_id'    =>  $programId,
             'name'          =>  $request->name,
             'description'   =>  $request->description,
-            'file_path'     =>  $request->has('file') ? $filename : ''
+            'file_path'     =>  $request->hasFile('file') ? $filename : ''
         ]);
     }
 

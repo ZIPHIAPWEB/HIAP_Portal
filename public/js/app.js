@@ -2007,7 +2007,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     document.body.classList.add('layout-top-nav');
@@ -2032,8 +2031,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -6730,15 +6727,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "main-footer" }, [
-      _c("div", { staticClass: "float-right d-none d-sm-inline" }, [
-        _vm._v("\n        Anything you want\n        ")
-      ]),
+      _c("div", { staticClass: "float-right d-none d-sm-inline" }),
       _vm._v(" "),
       _c("strong", [
-        _vm._v("Copyright © 2014-2019 "),
-        _c("a", { attrs: { href: "https://adminlte.io" } }, [
-          _vm._v("AdminLTE.io")
-        ]),
+        _vm._v("Copyright © 2020 "),
+        _c(
+          "a",
+          { attrs: { href: "https://hospitalityinstituteofamerica.com.ph/" } },
+          [_vm._v("HIAP Inc")]
+        ),
         _vm._v(".")
       ]),
       _vm._v(" All rights reserved.\n    ")
@@ -6954,19 +6951,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "main-footer" }, [
-      _c("div", { staticClass: "float-right d-none d-sm-block" }, [
-        _c("b", [_vm._v("Version")]),
-        _vm._v(" 3.0.4\n    ")
-      ]),
+      _c("div", { staticClass: "float-right d-none d-sm-block" }),
       _vm._v(" "),
       _c("strong", [
-        _vm._v("Copyright © 2014-2019 "),
-        _c("a", { attrs: { href: "http://adminlte.io" } }, [
-          _vm._v("AdminLTE.io")
-        ]),
+        _vm._v("Copyright © 2020 "),
+        _c(
+          "a",
+          { attrs: { href: "https://hospitalityinstituteofamerica.com.ph/" } },
+          [_vm._v("HIAP Inc")]
+        ),
         _vm._v(".")
       ]),
-      _vm._v(" All rights\n    reserved.\n  ")
+      _vm._v(" All rights reserved.\n  ")
     ])
   }
 ]
