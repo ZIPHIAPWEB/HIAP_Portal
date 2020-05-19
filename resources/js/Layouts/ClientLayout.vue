@@ -2,10 +2,10 @@
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
             <div class="container">
-                <a href="../../index3.html" class="navbar-brand">
+                <a href="/" class="navbar-brand">
                     <img src="/logo.png" alt="AdminLTE Logo" class="brand-image img-circle "
                         style="opacity: .8">
-                    <span class="brand-text font-weight-light">HIAP</span>
+                    <span class="brand-text font-weight-light">HIAP Inc.</span>
                 </a>
 
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

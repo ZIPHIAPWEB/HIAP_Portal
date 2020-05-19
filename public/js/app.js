@@ -6677,21 +6677,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "navbar-brand", attrs: { href: "../../index3.html" } },
-      [
-        _c("img", {
-          staticClass: "brand-image img-circle ",
-          staticStyle: { opacity: ".8" },
-          attrs: { src: "/logo.png", alt: "AdminLTE Logo" }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "brand-text font-weight-light" }, [
-          _vm._v("HIAP")
-        ])
-      ]
-    )
+    return _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
+      _c("img", {
+        staticClass: "brand-image img-circle ",
+        staticStyle: { opacity: ".8" },
+        attrs: { src: "/logo.png", alt: "AdminLTE Logo" }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "brand-text font-weight-light" }, [
+        _vm._v("HIAP Inc.")
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -6804,16 +6800,20 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "sidebar" }, [
           _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
-            _vm._m(2),
+            _c("div", { staticClass: "image" }),
             _vm._v(" "),
             _c("div", { staticClass: "info" }, [
-              _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-                _vm._v(
-                  _vm._s(_vm.$page.auth.first_name) +
-                    " " +
-                    _vm._s(_vm.$page.auth.last_name)
-                )
-              ])
+              _c(
+                "a",
+                { staticClass: "d-block text-bold", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    _vm._s(_vm.$page.auth.first_name) +
+                      " " +
+                      _vm._s(_vm.$page.auth.last_name)
+                  )
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
@@ -6888,7 +6888,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "content-wrapper" }, [
-      _vm._m(3),
+      _vm._m(2),
       _vm._v(" "),
       _c(
         "section",
@@ -6898,7 +6898,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(4),
+    _vm._m(3),
     _vm._v(" "),
     _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
   ])
@@ -6933,19 +6933,8 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "brand-text font-weight-light" }, [
-        _vm._v("AdminLTE 3")
+        _vm._v("HIAP Inc.")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "image" }, [
-      _c("img", {
-        staticClass: "img-circle elevation-2",
-        attrs: { src: "/adminlte/img/user2-160x160.jpg", alt: "User Image" }
-      })
     ])
   },
   function() {
@@ -7204,7 +7193,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "brand-text font-weight-light" }, [
-        _vm._v("AdminLTE 3")
+        _vm._v("HIAP Inc.")
       ])
     ])
   },
@@ -7216,13 +7205,13 @@ var staticRenderFns = [
       _c("div", { staticClass: "image" }, [
         _c("img", {
           staticClass: "img-circle elevation-2",
-          attrs: { src: "/adminlte/img/user2-160x160.jpg", alt: "User Image" }
+          attrs: { src: "/logo.png", alt: "User Image" }
         })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "info" }, [
-        _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-          _vm._v("Alexander Pierce")
+        _c("a", { staticClass: "d-block text-bold", attrs: { href: "#" } }, [
+          _vm._v("Superadmin")
         ])
       ])
     ])

@@ -29,7 +29,9 @@ class SendInquiry extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.inquiry')->with($this->inquiry);
+        return $this->markdown('emails.inquiry')
+            ->subject('Client Inquiry')
+            ->with($this->inquiry);
 
     }
 }
