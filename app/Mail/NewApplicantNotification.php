@@ -29,6 +29,8 @@ class NewApplicantNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.newApplicant')->with('data', $this->applicant);
+        return $this->markdown('emails.newApplicant')
+            ->subject('New Applicant')
+            ->with('data', $this->applicant);
     }
 }

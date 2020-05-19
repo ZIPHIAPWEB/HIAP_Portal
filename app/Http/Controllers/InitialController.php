@@ -24,16 +24,18 @@ class InitialController extends Controller
         $request->validate([
             'name'          =>  'required',
             'description'   =>  'required',
-            'file'          =>  'required'
         ]);
 
-        $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
-        $request->file->move(public_path('initials'), $filename);
+        if ($request->has('file')) {
+            $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
+            $request->file->move(public_path('initials'), $filename);
+        }
+
         return Initial::create([
             'program_id'    =>  $programId,
             'name'          =>  $request->name,
             'description'   =>  $request->description,
-            'file_path'     =>  $filename
+            'file_path'     =>  $request->has('file') ? $filename : ''
         ]);
     }
 
