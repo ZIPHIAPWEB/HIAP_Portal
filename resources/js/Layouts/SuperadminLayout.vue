@@ -39,7 +39,7 @@
           <img src="/logo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block text-bold">Superadmin</a>
+          <a href="#" class="d-block text-bold">Superadministrator</a>
         </div>
       </div>
 

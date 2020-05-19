@@ -7211,7 +7211,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "info" }, [
         _c("a", { staticClass: "d-block text-bold", attrs: { href: "#" } }, [
-          _vm._v("Superadmin")
+          _vm._v("Superadministrator")
         ])
       ])
     ])
