@@ -2,18 +2,18 @@
     <auth-layout>
         <div class="login-box">
             <div class="login-logo">
-                <a href="/">
-                    <b>Hospitality Institute of America-Philippines Inc.</b>
-                </a>
+                <a id="home-link" href="/" class="sr-only">Home Link</a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
                 <div class="overlay" v-if="loading">
                     <i class="fas fa-spinner fa-2x fa-pulse"></i>
                 </div>
-                <div class="card-body login-card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
-
+                <div class="card-header border-0 text-center">
+                    <img src="/logo.png" alt="" style="width: 150px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
+                </div>
+                <div class="card-body login-card-body pt-0">
+                    <p class="login-box-msg">Sign in to your account</p>
                     <form @submit.prevent="login">
                         <div class="form-group mb-3">
                             <input id="email" v-model="form.email" name="email" type="email" :class="hasEmailError" placeholder="Email">

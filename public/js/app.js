@@ -2725,6 +2725,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['errors'],
@@ -7290,9 +7291,11 @@ var render = function() {
   return _c("auth-layout", [
     _c("div", { staticClass: "login-box" }, [
       _c("div", { staticClass: "login-logo" }, [
-        _c("a", { attrs: { href: "/" } }, [
-          _c("b", [_vm._v("Hospitality Institute of America-Philippines Inc.")])
-        ])
+        _c(
+          "a",
+          { staticClass: "sr-only", attrs: { id: "home-link", href: "/" } },
+          [_vm._v("Home Link")]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
@@ -7302,9 +7305,20 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body login-card-body" }, [
+        _c("div", { staticClass: "card-header border-0 text-center" }, [
+          _c("img", {
+            staticStyle: { width: "150px", cursor: "pointer" },
+            attrs: {
+              src: "/logo.png",
+              alt: "",
+              onclick: "document.getElementById('home-link').click();"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body login-card-body pt-0" }, [
           _c("p", { staticClass: "login-box-msg" }, [
-            _vm._v("Sign in to start your session")
+            _vm._v("Sign in to your account")
           ]),
           _vm._v(" "),
           _c(
@@ -7735,9 +7749,11 @@ var render = function() {
   return _c("auth-layout", [
     _c("div", { staticClass: "register-box" }, [
       _c("div", { staticClass: "register-logo" }, [
-        _c("a", { attrs: { href: "/" } }, [
-          _c("b", [_vm._v("Hospitality Institute of America-Philippines Inc.")])
-        ])
+        _c(
+          "a",
+          { staticClass: "sr-only", attrs: { id: "home-link", href: "/" } },
+          [_vm._v("Home Link")]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
@@ -7747,7 +7763,18 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body register-card-body" }, [
+        _c("div", { staticClass: "card-header border-0 text-center" }, [
+          _c("img", {
+            staticStyle: { width: "150px", cursor: "pointer" },
+            attrs: {
+              src: "/logo.png",
+              alt: "",
+              onclick: "document.getElementById('home-link').click();"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body register-card-body pt-0" }, [
           _c("p", { staticClass: "login-box-msg" }, [
             _vm._v("Register a new membership")
           ]),
