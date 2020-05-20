@@ -46,7 +46,7 @@
             </div>
 
             <div class="col-6 text-right">
-                <inertia-link href="/password/reset" class="text-sm">I dont have an account</inertia-link>
+                <inertia-link href="/password/reset" class="text-sm">Forgot password?</inertia-link>
             </div>
             <!-- /.col -->
           </div>

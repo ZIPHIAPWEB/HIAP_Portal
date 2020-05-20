@@ -7446,7 +7446,7 @@ var render = function() {
                         staticClass: "text-sm",
                         attrs: { href: "/password/reset" }
                       },
-                      [_vm._v("I dont have an account")]
+                      [_vm._v("Forgot Password?")]
                     )
                   ],
                   1
@@ -7937,7 +7937,7 @@ var render = function() {
                         staticClass: "text-sm",
                         attrs: { href: "/password/reset" }
                       },
-                      [_vm._v("I dont have an account")]
+                      [_vm._v("Forgot password?")]
                     )
                   ],
                   1
