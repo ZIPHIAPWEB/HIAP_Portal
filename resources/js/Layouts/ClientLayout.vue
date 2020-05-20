@@ -17,7 +17,7 @@
                     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                         <li class="nav-item">
                             <a href="javascript:void();" @click="logout" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
+                                <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </li>
                     </ul>

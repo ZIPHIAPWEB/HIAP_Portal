@@ -15,7 +15,8 @@
                         <div class="row">
                             <div class="form-group col-12">
                                 <label for="">E-mail</label>
-                                <input v-model="form.email" type="text" placeholder="jane.doe@app.com" class="form-control">
+                                <input v-model="form.email" type="text" placeholder="jane.doe@app.com" :class="hasEmailError">
+                                <span class="error invalid-feedback" style="display: block;">{{ $page.errors.email }}</span>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
@@ -42,6 +43,11 @@
                 form: {
                     email: ''
                 }
+            }
+        },
+        computed: {
+            hasEmailError () {
+                return this.$page.errors.email ? 'form-control is-invalid' : 'form-control';
             }
         },
         methods: {

@@ -29,8 +29,8 @@ class ClientController extends Controller
             'first_name'    =>  'required',
             'last_name'     =>  'required',
             'address'       =>  'required',
-            'contact_no'    =>  'required',
-            'program_id'    =>  'required',
+            'contact_number'=>  'bail|required|numeric',
+            'program'    =>  'required',
         ]);
 
         User::find($request->user()->id)->update([
@@ -43,8 +43,8 @@ class ClientController extends Controller
             'middle_name'           =>  $request->input('middle_name'),
             'last_name'             =>  $request->input('last_name'),
             'address'               =>  $request->input('address'),
-            'contact_no'            =>  $request->input('contact_no'),
-            'program_id'            =>  $request->input('program_id'),
+            'contact_no'            =>  $request->input('contact_number'),
+            'program_id'            =>  $request->input('program'),
             'application_status'    =>  'New Applicant'
         ]);
 

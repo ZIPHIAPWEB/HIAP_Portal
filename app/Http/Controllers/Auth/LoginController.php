@@ -51,6 +51,14 @@ class LoginController extends Controller
         return 'email';
     }
 
+    public function validateLogin(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            $this->username() => 'bail|required|exists:App\User,email',
+            'password' => 'bail|required',
+        ]);
+    }
+
     public function logout(\Illuminate\Http\Request $request)
     {
         $this->guard()->logout();
