@@ -6,8 +6,8 @@
             </div>
             <!-- /.login-logo -->
             <div class="card">
-                <div class="card-header border-0 text-center">
-                    <img src="/logo.png" alt="" style="width: 150px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
+                <div class="card-header border-0 text-center pt-4">
+                    <img src="/logo.png" alt="" style="width: 120px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
                 </div>
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Please input your e-mail to where we send you a password verification.</p>

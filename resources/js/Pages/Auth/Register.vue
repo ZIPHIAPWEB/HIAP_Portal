@@ -9,8 +9,8 @@
         <div class="overlay" v-if="loading">
             <i class="fas fa-spinner fa-2x fa-pulse"></i>
         </div>
-        <div class="card-header border-0 text-center">
-            <img src="/logo.png" alt="" style="width: 150px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
+        <div class="card-header border-0 text-center pt-4">
+            <img src="/logo.png" alt="" style="width: 120px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
         </div>
       <div class="card-body register-card-body pt-0">
         <p class="login-box-msg">Register a new membership</p>

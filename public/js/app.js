@@ -7306,9 +7306,9 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "card-header border-0 text-center" }, [
+        _c("div", { staticClass: "card-header border-0 text-center pt-4" }, [
           _c("img", {
-            staticStyle: { width: "150px", cursor: "pointer" },
+            staticStyle: { width: "120px", cursor: "pointer" },
             attrs: {
               src: "/logo.png",
               alt: "",
@@ -7492,9 +7492,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header border-0 text-center" }, [
+        _c("div", { staticClass: "card-header border-0 text-center pt-4" }, [
           _c("img", {
-            staticStyle: { width: "150px", cursor: "pointer" },
+            staticStyle: { width: "120px", cursor: "pointer" },
             attrs: {
               src: "/logo.png",
               alt: "",
@@ -7777,9 +7777,9 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "card-header border-0 text-center" }, [
+        _c("div", { staticClass: "card-header border-0 text-center pt-4" }, [
           _c("img", {
-            staticStyle: { width: "150px", cursor: "pointer" },
+            staticStyle: { width: "120px", cursor: "pointer" },
             attrs: {
               src: "/logo.png",
               alt: "",
