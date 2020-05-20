@@ -2,12 +2,13 @@
     <auth-layout>
         <div class="login-box">
             <div class="login-logo">
-                <a href="/">
-                    <b>Hospitality Institute of America-Philippines Inc.</b>
-                </a>
+                <a id="home-link" href="/" class="sr-only">Home Link</a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
+                <div class="card-header border-0 text-center">
+                    <img src="/logo.png" alt="" style="width: 150px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
+                </div>
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Please input your e-mail to where we send you a password verification.</p>
 

@@ -2544,6 +2544,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -7483,12 +7484,25 @@ var render = function() {
   return _c("auth-layout", [
     _c("div", { staticClass: "login-box" }, [
       _c("div", { staticClass: "login-logo" }, [
-        _c("a", { attrs: { href: "/" } }, [
-          _c("b", [_vm._v("Hospitality Institute of America-Philippines Inc.")])
-        ])
+        _c(
+          "a",
+          { staticClass: "sr-only", attrs: { id: "home-link", href: "/" } },
+          [_vm._v("Home Link")]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header border-0 text-center" }, [
+          _c("img", {
+            staticStyle: { width: "150px", cursor: "pointer" },
+            attrs: {
+              src: "/logo.png",
+              alt: "",
+              onclick: "document.getElementById('home-link').click();"
+            }
+          })
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "card-body login-card-body" }, [
           _c("p", { staticClass: "login-box-msg" }, [
             _vm._v(
