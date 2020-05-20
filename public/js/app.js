@@ -2544,7 +2544,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -7503,7 +7502,7 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body login-card-body" }, [
+        _c("div", { staticClass: "card-body login-card-body pt-0" }, [
           _c("p", { staticClass: "login-box-msg" }, [
             _vm._v(
               "Please input your e-mail to where we send you a password verification."
@@ -7523,8 +7522,6 @@ var render = function() {
             [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "form-group col-12" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("E-mail")]),
-                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
@@ -7535,7 +7532,7 @@ var render = function() {
                       }
                     ],
                     class: _vm.hasEmailError,
-                    attrs: { type: "text", placeholder: "jane.doe@app.com" },
+                    attrs: { type: "text", placeholder: "E-mail" },
                     domProps: { value: _vm.form.email },
                     on: {
                       input: function($event) {
