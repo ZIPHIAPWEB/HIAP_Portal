@@ -89,6 +89,7 @@
                 filterName: '',
                 loading: false,
                 isCreateNew: false,
+                isDelete: false,
                 forEdit: 0
             }
         },
@@ -149,10 +150,12 @@
                 this.forEdit = req.id;
             },
             deleteProgram(req) {
-                axios.delete(`/deleteInitialRequirement/${req.id}`)
+                if (confirm('Are you sure on deleting this file?')) {
+                    axios.delete(`/deleteInitialRequirement/${req.id}`)
                     .then((response) => {
                         this.getAllInitialRequirements();
                     })
+                }
             }
         }
     }

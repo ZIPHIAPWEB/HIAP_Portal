@@ -6,6 +6,26 @@ Vue.use(InertiaApp)
 
 const app = document.getElementById('app')
 
+Vue.component('my-bar-chart', {
+  extends: VueChartJs.Line,
+  props: ['barData', 'chartOptions'],
+  mounted(){
+    this.renderChart(this.barData, this.chartOptions);
+  },
+  /*watch: {
+    barData () {
+      console.log('bar data changed')
+      this.renderChart(this.barData, this.chartOptions);
+  },
+    chartOptions () {
+      this.renderChart(this.barData, this.chartOptions);
+   }
+  }*/
+}, {
+    responsive: true, 
+    maintainAspectRatio: false
+  })
+
 new Vue({
   render: h => h(InertiaApp, {
     props: {

@@ -69,11 +69,13 @@
                     })
             },
             deleteFile (initialId) {
-                axios.delete(`/deleteClientInitialRequirement/${initialId}`)
-                    .then((response) => {
-                        this.getClientRequirements();
-                        toastr.info('File Delete!');
-                    })
+                if (confirm("Are you sure on deleting this file?")) {
+                    axios.delete(`/deleteClientInitialRequirement/${initialId}`)
+                        .then((response) => {
+                            this.getClientRequirements();
+                            toastr.info('File Delete!');
+                        })
+                }
             }
         }
     }

@@ -25,7 +25,7 @@
                                         <td>{{ log.user.role }}</td>
                                         <td>{{ log.action }}</td>
                                         <td>
-                                            <button class="btn btn-danger btn-xs">Delete</button>
+                                            <button @click="deleteLog(log.id)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -49,6 +49,15 @@
         props: ['logs'],
         components: {
             SuperadminLayout
+        },
+        methods: {
+            deleteLog(logId) {
+                var r = confirm('Delete this log?');
+
+                if(r) {
+                    this.$inertia.delete(`/logs/delete/${logId}`);
+                }
+            }
         }
     }
 </script>

@@ -46,21 +46,22 @@ class ModeratorController extends Controller
             'last_name'     =>  'required',
             'email'         =>  'required'
         ]);
+
         $user = User::create([
             'email'     =>  $request->email,
             'role'      =>  'moderator',
-            'password'  =>  Hash::make(strtolower($request->last_name)),
+            'password'  =>  Hash::make(strtolower(str_replace(' ', '', $request->last_name))),
             'isFilled'  =>  true
         ]);
 
-        Moderator::create([ 
+        Moderator::create([
             'user_id'       =>  $user->id,
             'first_name'    =>  $request->first_name,
             'middle_name'   =>  $request->middle_name,
             'last_name'     =>  $request->last_name
         ]);
 
-        return redirect()->route('sa.moderators');
+        return redirect()->back();
     }
 
     public function editModerator($userId)
@@ -75,7 +76,7 @@ class ModeratorController extends Controller
         $request->validate([
             'first_name'    =>  'required',
             'middle_name'   =>  'required',
-            'last_name'     =>  'required'
+            'last_name'     =>  'required',
         ]);
 
         Moderator::where('user_id', $request->user_id)->update([
@@ -84,7 +85,7 @@ class ModeratorController extends Controller
             'last_name'     =>  $request->last_name
         ]);
 
-        return redirect()->route('sa.moderators');
+        return redirect()->back();
     }
 
     public function deleteModerator($userId)

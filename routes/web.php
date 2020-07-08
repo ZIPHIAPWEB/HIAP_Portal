@@ -34,6 +34,9 @@ Route::view('/senior-scholarship', 'frontview.senior-scholarship');
 Route::view('/social-stream' , 'frontview.social-stream');
 Route::view('/tesda-training', 'frontview.tesda-training');
 Route::view('/twsp', 'frontview.twsp');
+Route::view('/global-e-learning', 'frontview.global-e-learning');
+Route::view('/e-learning-hub', 'frontview.e-learninghub');
+Route::view('/tesda-online', 'frontview.tesda-online');
 
 Route::post('/sendInquiry', 'InquiryController@sendInquiry')->name('send.inquiry');
 
@@ -51,7 +54,8 @@ Route::prefix('sa')->group(function () {
     Route::get('/clients', 'SuperadminController@showClients')->name('sa.clients');
     Route::get('/client/{id}', 'SuperadminController@showSelectedClient')->name('sa.selected.client');
 
-    Route::get('/programs', 'SuperadminController@showPrograms')->name('sa.programs');
+    // Route::get('/programs', 'SuperadminController@showPrograms')->name('sa.programs');
+    Route::get('/programs', 'ProgramController@showProgramEntry')->name('sa.programs');
 
     Route::get('/moderators', 'ModeratorController@showModeratorEntry')->name('sa.moderators');
     Route::get('/moderators/create', 'ModeratorController@createModerator')->name('sa.moderators.create');
@@ -76,6 +80,7 @@ Route::delete('/deleteProgramDetails/{id}', 'ProgramController@deleteProgramDeta
 Route::get('/getAllInitialRequirements/{programId}', 'InitialController@getAllInitialRequirements');
 Route::get('/getInitialRequirementsForClient', 'InitialController@getInitialRequirementsForClient');
 Route::post('/storeInitialRequirement/{programId}', 'InitialController@storeInitialRequirement');
+Route::put('/updateInitialRequirement', 'InitialController@updateInitialRequirement');
 Route::delete('/deleteInitialRequirement/{id}', 'InitialController@deleteInitialRequirement');
 
 Route::get('/getLoggedClientDetails', 'ClientController@getLoggedClientDetails');
@@ -94,3 +99,4 @@ Route::get('/moderators/edit/{userId}', 'ModeratorController@editModerator');
 Route::put('/moderators/update', 'ModeratorController@updateModerators');
 Route::delete('/moderators/delete/{userId}', 'ModeratorController@deleteModerator');
 
+Route::delete('/logs/delete/{id}', 'LogController@deleteLog');

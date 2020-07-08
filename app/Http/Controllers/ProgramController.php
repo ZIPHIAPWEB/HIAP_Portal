@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Initial;
 use App\Program;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProgramController extends Controller
 {
     public function __construct()
     {
+    }
+
+    public function showProgramEntry()
+    {
+        return Inertia::render('Superadmin/ProgramEntry', [
+            'programs'  =>  Program::orderBy('created_at', 'desc')->get()
+        ]);
     }
 
     public function storeProgramDetails(Request $request)
@@ -18,10 +27,12 @@ class ProgramController extends Controller
             'description'   =>  'required'
         ]);
 
-        return Program::create([
+        Program::create([
             'name'          =>  $request->input('name'),
             'description'   =>  $request->input('description')
         ]);
+
+        return redirect()->back();
     }
 
     public function getAllPrograms()
@@ -38,15 +49,13 @@ class ProgramController extends Controller
             'description'   =>  $request->input('description')
         ]);
 
-        return $program->first();
+        return redirect()->back();
     }
 
     public function deleteProgramDetails($id)
     {
         Program::where('id', $id)->delete();
 
-        return response()->json([
-            'message'   =>  'Program Deleted'
-        ]);
+        return redirect()->back();
     }
 }

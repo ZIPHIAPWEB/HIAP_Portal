@@ -14,4 +14,11 @@ class LogController extends Controller
             'logs'  =>  Log::orderBy('created_at', 'desc')->with('user')->get()
         ]);
     }
+
+    public function deleteLog($logId)
+    {
+        Log::where('id', $logId)->delete();
+
+        return redirect()->back();
+    }
 }

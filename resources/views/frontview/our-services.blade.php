@@ -21,54 +21,58 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-white">
-        <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="/" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+        <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
             <button
                 data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse text-center" id="navcol-1">
                     <ul class="nav navbar-nav mx-auto">
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/">HOME</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/about-us">ABOUT US</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="/our-services">our services</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="about-us">ABOUT US</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="our-services">services</a>
                             <ul class="list-unstyled nav-content">
                                 <li><a href="#">gov't training &amp; assessment</a>
                                     <ul class="list-unstyled">
-                                        <li><a href="/assessment">tesda assessment programS</a></li>
-                                        <li><a href="/tesda-training">Tesda training programS</a></li>
+                                        <li><a href="assessment">tesda assessment programS</a></li>
+                                        <li><a href="tesda-training">Tesda training programS</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">scholarship Programs</a>
                                     <ul class="list-unstyled">
-                                        <li><a href="/tswp">twsp - tesda programs</a></li>
-                                        <li><a href="/owwa">sesp - owwa programs</a></li>
-                                        <li><a href="/senior-scholarship">SHS Scholarship programs</a></li>
+                                        <li><a href="twsp">twsp - tesda programs</a></li>
+                                        <li><a href="owwa">sesp - owwa programs</a></li>
+                                        <li><a href="senior-scholarship">SHS Scholarship programs</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">customized programs</a>
                                     <ul class="list-unstyled">
-                                        <li><a href="/customized-senior-25">senior high (25 hours)</a></li>
-                                        <li><a href="/customized-senior">senior high (whole day)</a></li>
-                                        <li><a href="/customized-college">College (whole day)</a></li>
-                                        <li><a href="/customized-prof">young professionals</a></li>
+                                        <li><a href="customized-senior-25">senior high (25 hours)</a></li>
+                                        <li><a href="customized-senior">senior high (whole day)</a></li>
+                                        <li><a href="customized-college">College (whole day)</a></li>
+                                        <li><a href="customized-prof">young professionals</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">our facilities</a></li>
-                    </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="/" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
-                    <ul
-                        class="nav navbar-nav d-xl-flex mx-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/faqs">faqs</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/social-stream">social streams</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/faqs">FAQs</a></li>
-                                <li><a href="/blog">blog</a></li>
-                                <li><a href="/social-stream">social streams</a></li>
+                                <li><a href="global-e-learning">global e-learning</a></li>
+                                <li><a href="e-learning-hub">e-learning hub</a></li>
+                                <li><a href="tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/e-learning" style="border-radius: 10px;background: #031430;color: white !important;">E-learning</a></li>
+                    </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+                    <ul
+                        class="nav navbar-nav d-xl-flex mx-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="our-facilities">facilities</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="contact-us">CONTACT US</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="blog">blog</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="social-stream">social streams</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
+                            <ul class="list-unstyled nav-content">
+                                <li><a href="blog">blog</a></li>
+                                <li><a href="social-stream">social streams</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">Enroll now</a></li>
                         </ul>
                 </div>
@@ -90,10 +94,10 @@
                 set by TESDA.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col d-flex justify-content-start align-items-center justify-content-xl-end align-items-xl-center">
-                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;training&#39;).click();"><img src="assets/img/class.png"><span class="text-center">TESDA Training Programs</span><a id="training" href="/tesda-training" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;training&#39;).click();"><img src="assets/img/class.png"><span class="text-center">TESDA Training Programs</span><a id="training" href="tesda-training.html" target="_blank">Link</a></div>
                 </div>
                 <div class="col d-flex justify-content-end align-items-center justify-content-xl-start">
-                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;assessment&#39;).click();"><img src="assets/img/feedback.png"><span class="text-center">TESDA Assessment Programs</span><a id="assessment" href="/assessment" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;assessment&#39;).click();"><img src="assets/img/feedback.png"><span class="text-center">TESDA Assessment Programs</span><a id="assessment" href="assessment.html" target="_blank">Link</a></div>
                 </div>
             </div>
         </div>
@@ -104,13 +108,13 @@
             <p class="text-center">HIAP Inc., in coordination with its partners, offers training programs with scholarship benefits. Those who qualify will be entitled to a free training and/or assessment. <br></p>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 justify-content-center">
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;twsp&#39;).click();"><img src="assets/img/Academic.png"><span class="text-center">TWSP - TESDA Scholarship Programs<br><small>(Training for Work Scholarship)</small><br></span><a id="twsp" href="/twsp" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;twsp&#39;).click();"><img src="assets/img/Academic.png"><span class="text-center">TWSP - TESDA Scholarship Programs<br><small>(Training for Work Scholarship)</small><br></span><a id="twsp" href="tswp.html" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;sesp&#39;).click();"><img src="assets/img/Graduation%20Cap.png"><span class="text-center">SESP - OWWA Scholarship Programs<br><small>(Skills for Employment Scholarship Program)</small><br></span><a id="sesp" href="/owwa" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;sesp&#39;).click();"><img src="assets/img/Graduation%20Cap.png"><span class="text-center">SESP - OWWA Scholarship Programs<br><small>(Skills for Employment Scholarship Program)</small><br></span><a id="sesp" href="owwa.html" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;shs&#39;).click();"><img src="assets/img/Graduation%20Diploma.png"><span class="text-center">Senior High<br>Scholarship Programs</span><a id="shs" href="/senior-scholarship" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;shs&#39;).click();"><img src="assets/img/Graduation%20Diploma.png"><span class="text-center">Senior High<br>Scholarship Programs</span><a id="shs" href="senior-scholarship.html" target="_blank">Link</a></div>
                 </div>
             </div>
         </div>
@@ -121,16 +125,16 @@
             <p class="text-center">These programs are designed based on the needs of the clients. These programs include different courses in different areas such as hospitality, leadership, marketing, English, and other related courses.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-25&#39;).click();"><img src="assets/img/Learning.png"><span class="text-center">Senior High<br>(25 Hours)</span><a id="shs-25" href="/customized-senior-25" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-25&#39;).click();"><img src="assets/img/Learning.png"><span class="text-center">Senior High<br>(25 Hours)</span><a id="shs-25" href="customized-senior-25.html" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-whole&#39;).click();"><img src="assets/img/Seminar.png"><span class="text-center">Senior High<br>(Whole Day)</span><a id="shs-whole" href="/customized-senior" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-whole&#39;).click();"><img src="assets/img/Seminar.png"><span class="text-center">Senior High<br>(Whole Day)</span><a id="shs-whole" href="customized-senior.html" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;college-whole&#39;).click();"><img src="assets/img/present.png"><span class="text-center">College<br>(Whole Day)</span><a id="college-whole" href="/customized-college" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;college-whole&#39;).click();"><img src="assets/img/present.png"><span class="text-center">College<br>(Whole Day)</span><a id="college-whole" href="customized-college.html" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;prof-whole&#39;).click();"><img src="assets/img/Seminar%20(02).png"><span class="text-center">Young Professionals<br>(Whole Day)</span><a id="prof-whole" href="/customized-prof" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;prof-whole&#39;).click();"><img src="assets/img/Seminar%20(02).png"><span class="text-center">Young Professionals<br>(Whole Day)</span><a id="prof-whole" href="customized-prof.html" target="_blank">Link</a></div>
                 </div>
             </div>
         </div>

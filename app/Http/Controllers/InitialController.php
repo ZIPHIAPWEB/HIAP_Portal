@@ -15,7 +15,8 @@ class InitialController extends Controller
     public function showInitialRequirements($programId)
     {
         return Inertia::render('Superadmin/ProgramInitial', [
-            'program' => Program::find($programId)
+            'program'   => Program::find($programId),
+            'initials'  => Initial::where('program_id', $programId)->get()
         ]);
     }
 
@@ -31,12 +32,35 @@ class InitialController extends Controller
             $request->file->move(public_path('initials'), $filename);
         }
 
-        return Initial::create([
+        Initial::create([
             'program_id'    =>  $programId,
             'name'          =>  $request->name,
             'description'   =>  $request->description,
             'file_path'     =>  $request->hasFile('file') ? $filename : ''
         ]);
+
+        return redirect()->back();
+    }
+
+    public function updateInitialRequirement(Request $request)
+    {
+        $request->validate([
+            'name'          =>  'required',
+            'description'   =>  'required'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
+            $request->file->move(public_path('initials'), $filename);
+        }
+
+        Initial::where('id', $request->id)->update([
+            'name'          =>  $request->name,
+            'description'   =>  $request->description,
+            'file_path'     =>  $request->hasFile('file') ? $filename: ''
+        ]);
+
+        return redirect()->back()->with(['message' => 'Initial Requirement Updated!']);
     }
 
     public function deleteInitialRequirement($initialId)

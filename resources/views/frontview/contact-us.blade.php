@@ -21,14 +21,14 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-white">
-        <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="/" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+        <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
             <button
                 data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse text-center" id="navcol-1">
                     <ul class="nav navbar-nav mx-auto">
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/">HOME</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/about-us">ABOUT US</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-services">our services</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-services">services</a>
                             <ul class="list-unstyled nav-content">
                                 <li><a href="#">gov't training &amp; assessment</a>
                                     <ul class="list-unstyled">
@@ -38,7 +38,7 @@
                                 </li>
                                 <li><a href="#">scholarship Programs</a>
                                     <ul class="list-unstyled">
-                                        <li><a href="/tswp">twsp - tesda programs</a></li>
+                                        <li><a href="/twsp">twsp - tesda programs</a></li>
                                         <li><a href="/owwa">sesp - owwa programs</a></li>
                                         <li><a href="/senior-scholarship">SHS Scholarship programs</a></li>
                                     </ul>
@@ -53,22 +53,26 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">our facilities</a></li>
-                    </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="/" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
+                            <ul class="list-unstyled nav-content">
+                                <li><a href="/global-e-learning">global e-learning</a></li>
+                                <li><a href="/e-learning-hub">e-learning hub</a></li>
+                                <li><a href="/tesda-online">Tesda online programs</a></li>
+                            </ul>
+                        </li>
+                    </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
                     <ul
                         class="nav navbar-nav d-xl-flex mx-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">facilities</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/faqs">faqs</a></li>
                         <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
                         <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/social-stream">social streams</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/faqs">FAQs</a></li>
                                 <li><a href="/blog">blog</a></li>
                                 <li><a href="/social-stream">social streams</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/e-learning" style="border-radius: 10px;background: #031430;color: white !important;">E-learning</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">Enroll now</a></li>
                         </ul>
                 </div>
@@ -105,22 +109,21 @@
     <section class="contact-form">
         <div class="container-fluid">
             <h1 class="text-center">For more inquiries, please fill out this form:</h1>
-            <form action="{{ route('send.inquiry') }}" method="POST">
-                @csrf
+            <form>
                 <div class="form-row">
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Full Name (required):</label><input name="fullName" class="form-control form-control" type="text" required></div>
+                        <div class="form-group"><label>Name (required):</label><input class="form-control form-control" type="text"></div>
                     </div>
                     <div class="col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Mobile Number (required):</label><input name="mobileNumber" class="form-control form-control" type="number" required></div>
+                        <div class="form-group"><label>Mobile Number (required):</label><input class="form-control form-control" type="text"></div>
                     </div>
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>E-mail (required):</label><input name="email" class="form-control form-control" type="email" required></div>
+                        <div class="form-group"><label>E-mail (required):</label><input class="form-control form-control" type="text"></div>
                     </div>
                     <div class="col-12">
-                        <div class="form-group"><label>Message (required):</label><textarea name="message" class="form-control form-control" rows="10" required></textarea></div>
+                        <div class="form-group"><label>Message (required):</label><textarea class="form-control form-control" rows="10"></textarea></div>
                     </div>
-                    <div class="col-12 col-lg-2 col-xl-2"><button class="btn btn-primary btn-block" type="submit" style="border: 0;">Send</button></div>
+                    <div class="col-12 col-lg-2 col-xl-2"><button class="btn btn-primary btn-block" type="button" style="border: 0;">Send</button></div>
                 </div>
             </form>
         </div>

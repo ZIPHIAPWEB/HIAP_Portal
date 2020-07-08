@@ -43,60 +43,64 @@
   page_id="733393866846945"
 theme_color="#031430">
 </div>
-<nav class="navbar navbar-light navbar-expand-lg bg-white">
-    <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="/" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
-        <button
-            data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-center" id="navcol-1">
-                <ul class="nav navbar-nav mx-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/">HOME</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/about-us">ABOUT US</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="/our-services">our services</a>
-                        <ul class="list-unstyled nav-content">
-                            <li><a href="#">gov't training &amp; assessment</a>
-                                <ul class="list-unstyled">
-                                    <li><a href="/assessment">tesda assessment programS</a></li>
-                                    <li><a href="/tesda-training">Tesda training programS</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">scholarship Programs</a>
-                                <ul class="list-unstyled">
-                                    <li><a href="/tswp">twsp - tesda programs</a></li>
-                                    <li><a href="/owwa">sesp - owwa programs</a></li>
-                                    <li><a href="/senior-scholarship">SHS Scholarship programs</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">customized programs</a>
-                                <ul class="list-unstyled">
-                                    <li><a href="/customized-senior-25">senior high (25 hours)</a></li>
-                                    <li><a href="/customized-senior">senior high (whole day)</a></li>
-                                    <li><a href="/customized-college">College (whole day)</a></li>
-                                    <li><a href="/customized-prof">young professionals</a></li>
-                                </ul>
-                            </li>
+    <nav class="navbar navbar-light navbar-expand-lg bg-white">
+        <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+            <button
+                data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse text-center" id="navcol-1">
+                    <ul class="nav navbar-nav mx-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/">HOME</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="about-us">ABOUT US</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="our-services">services</a>
+                            <ul class="list-unstyled nav-content">
+                                <li><a href="#">gov't training &amp; assessment</a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="assessment">tesda assessment programS</a></li>
+                                        <li><a href="tesda-training">Tesda training programS</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">scholarship Programs</a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="twsp">twsp - tesda programs</a></li>
+                                        <li><a href="owwa">sesp - owwa programs</a></li>
+                                        <li><a href="senior-scholarship">SHS Scholarship programs</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">customized programs</a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="customized-senior-25">senior high (25 hours)</a></li>
+                                        <li><a href="customized-senior">senior high (whole day)</a></li>
+                                        <li><a href="customized-college">College (whole day)</a></li>
+                                        <li><a href="customized-prof">young professionals</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
+                            <ul class="list-unstyled nav-content">
+                                <li><a href="global-e-learning">global e-learning</a></li>
+                                <li><a href="e-learning-hub">e-learning hub</a></li>
+                                <li><a href="tesda-online">Tesda online programs</a></li>
+                            </ul>
+                        </li>
+                    </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+                    <ul
+                        class="nav navbar-nav d-xl-flex mx-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="our-facilities">facilities</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="contact-us">CONTACT US</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="blog">blog</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="social-stream">social streams</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
+                            <ul class="list-unstyled nav-content">
+                                <li><a href="blog">blog</a></li>
+                                <li><a href="social-stream">social streams</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">Enroll now</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">our facilities</a></li>
-                </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="/" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
-                <ul
-                    class="nav navbar-nav d-xl-flex mx-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
-                    <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/faqs">faqs</a></li>
-                    <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
-                    <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/social-stream">social streams</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
-                        <ul class="list-unstyled nav-content">
-                            <li><a href="/faqs">FAQs</a></li>
-                            <li><a href="/blog">blog</a></li>
-                            <li><a href="/social-stream">social streams</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/e-learning" style="border-radius: 10px;background: #031430;color: white !important;">E-learning</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">Enroll now</a></li>
-                    </ul>
-            </div>
-    </div>
-</nav>
+                </div>
+        </div>
+    </nav>
     <section class="page-header"><img src="assets/img/TWSP%20-%20HEADER%202.jpg">
         <section class="page-description">
             <div class="container-fluid">
@@ -204,7 +208,7 @@ theme_color="#031430">
                         <li>Dry Cleaner</li>
                         <li>Washer</li>
                         <li>Presser / Ironer</li>
-                        <li>Marker-Sorter</li>
+                        <li>Marker / Softer</li>
                         <li>Butler</li>
                     </ul>
                 </div>
