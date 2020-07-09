@@ -87,8 +87,7 @@
         <div class="container-fluid">
             <div>
                 <h1 class="text-center">E-learning hub</h1>
-                <p class="text-center mb-4">Our E-learning platform offers video lessons and training designed by industry leaders and award-winning hospitality professionals from the United States and Australia. Each course consists of a series of short lessons, videos, quizzes,
-                    and other tools that can help students learn more effectively.<br></p>
+                <p class="text-center mb-4">E-Learning Hub is an online learning library and resources with relevant lessons in hospitality, business, IT, and other related fields. This program consists of a variety of current topics you can learn anytime and anywhere through interactive video lessons, e-books, case studies, and more.<br></p>
             </div>
         </div>
     </section>
