@@ -13,7 +13,7 @@
             <img src="/logo.png" alt="" style="width: 120px; cursor: pointer;" onclick="document.getElementById('home-link').click();">
         </div>
       <div class="card-body register-card-body pt-0">
-        <p class="login-box-msg">Register a new membership</p>
+        <p class="login-box-msg">Register for Enrollment</p>
 
         <form @submit.prevent="register()">
           <div class="form-group mb-3">

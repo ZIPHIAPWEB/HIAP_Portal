@@ -63,6 +63,9 @@
                     </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
                     <ul
                         class="nav navbar-nav d-xl-flex mx-auto">
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="global-e-learning">Global e-learning</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="e-learning-hub">E-learning hub</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="tesda-online">Tesda online programs</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="our-facilities">facilities</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="contact-us">CONTACT US</a></li>
                         <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="blog">blog</a></li>
@@ -143,7 +146,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

@@ -63,6 +63,9 @@
                     </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
                     <ul
                         class="nav navbar-nav d-xl-flex mx-auto">
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="global-e-learning">Global e-learning</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="e-learning-hub">E-learning hub</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="tesda-online">Tesda online programs</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">facilities</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
                         <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
@@ -78,62 +81,98 @@
                 </div>
         </div>
     </nav>
-    <section class="page-header"><img src="assets/img/TRAINING%20-%20HEADER%202.jpg"></section>
+    <section class="page-header"><img src="assets/img/TESDA%20ONLINE%20-%20HEADER%202.jpg" style="background-image: url(&quot;assets/img/ELEARNING%20-%20HEADER.jpg&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;"></section>
     <section class="page-description">
         <div class="container-fluid">
             <div>
-                <h1 class="text-center">tesda training programs</h1>
-                <p class="text-center">We offer TESDA registered programs to individuals who’d like to receive a National Certificate. These programs are designed to prepare the clients in achieving global workplace standards. As the global demand for skilled workers is increasing
-                    from time to time, we’d like to help prepare the clients in achieving those standards.<br></p>
+                <h1 class="text-center">tesda online programs</h1>
+                <p class="text-center mb-4">We offer online TESDA training programs to individuals who’d like to learn and be qualified for an assessment from the comfort of their homes. Each course consists of lessons, videos, quizzes, and other interactive materials.<br></p>
             </div>
         </div>
     </section>
-    <section class="courses-offered" style="background-image: url(&quot;assets/img/TRAINING%20-%20COURSES%20OFFERED.jpg&quot;);">
+    <section class="about-vision-mission" style="background-image: url(&quot;assets/img/ONLINE%20PIC%201.jpg&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
         <div class="container-fluid">
-            <h1>courses offered:</h1>
-            <div class="row no-gutters row-cols-1 row-cols-lg-5 row-cols-xl-5 justify-content-center">
-                <div class="col">
-                    <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/TRAINING%20-%20BPP.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
-                        data-target="#bpp-modal">
-                        <div class="course-name"><span>Bread and pastry production<br>nc ii</span></div>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/video-conference.png" style="height: 100px;margin: 0 35px;">
+                    <div class="about-item">
+                        <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;">Instructural Depth</h1>
+                        <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Regular interaction with the professors through video-conferencing.<br></p>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/TRAINING%20-%20%20HOUSEKEEPING.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
-                        data-target="#hkp-modal">
-                        <div class="course-name"><span>Housekeeping<br>nc II<br></span></div>
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/training%20(1).png" style="height: 100px;margin: 0 35px;">
+                    <div class="about-item">
+                        <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;">Self-paced Learning</h1>
+                        <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Learning Experience is based on the most comfortable speed for the learner.<br></p>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/TRAINING%20-%20COOKERY.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
-                        data-target="#ck-modal">
-                        <div class="course-name"><span>Cookery<br>nc ii</span></div>
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/lesson.png" style="height: 100px;margin: 0 35px;">
+                    <div class="about-item">
+                        <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;">Flexible</h1>
+                        <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Learning revolves around materials that can be accessed any time.<br></p>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/TRAINING%20-%20F&B.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
-                        data-target="#fnb-modal">
-                        <div class="course-name"><span>food and beverage services<br>nc ii<br></span></div>
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/philippine-peso.png" style="height: 100px;margin: 0 35px;">
+                    <div class="about-item">
+                        <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;">Affordable<br></h1>
+                        <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">A learning opportunity at a low cost.<br></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="courses-requirements">
+    <section class="home-facilities">
         <div class="container-fluid">
-            <h1 class="text-left">REQUIRements:</h1>
-            <div class="row">
-                <div class="col-12 col-lg-6 col-xl-6">
-                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center requirement-item"><img src="assets/img/File.png"><span class="text-center text-lg-left text-xl-left">PSA Birth Certificate<br><small>(Original &amp; Photocopy)</small></span></div>
+            <div>
+                <h1 class="text-center">courses offered</h1>
+                <p class="text-center mb-4">This program gives everyone the opportunity to develop and gain more knowledged in the following courses:<br></p>
+            </div>
+            <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 justify-content-center">
+                <div class="col">
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/ONLINE%20-%20BPP.jpg&quot;);background-position: center;background-size: cover;">
+                        <div class="item-name"><span>bread and pastry production nc ii</span></div>
+                    </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6">
-                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center requirement-item"><img src="assets/img/id.png"><span class="text-center text-lg-left text-xl-left">Two valid ID's<br><small>(Original &amp; Photocopy)</small></span></div>
+                <div class="col">
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/ONLINE%20-%20HOUSEKEEPING.jpg&quot;);background-position: center;background-size: cover;">
+                        <div class="item-name"><span>Housekeeping <br>nc ii</span></div>
+                    </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6">
-                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center requirement-item"><img src="assets/img/medal.png"><span class="text-center text-lg-left text-xl-left">Form 137 or Diploma<br><small>(Original &amp; Photocopy)</small></span></div>
+                <div class="col">
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/ONLINE%20-%20COOKERY.jpg&quot;);background-position: center;background-size: cover;">
+                        <div class="item-name"><span>cookery<br>nc ii</span></div>
+                    </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6">
-                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center requirement-item"><img src="assets/img/Portrait.png"><span class="text-center text-lg-left text-xl-left">Passport Picture<br><small>(White Background /<br>With Collar and Nametag)</small></span></div>
+                <div class="col">
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/ONLINE%20-%20F&B.jpg&quot;);background-position: center;background-size: cover;">
+                        <div class="item-name"><span>food and beverage services nc ii</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-vision-mission" style="background-image: url(&quot;assets/img/ONLINE%20PIC%202.jpg&quot;);background-repeat: no-repeat;background-size: cover;border-bottom: 5px solid white;background-position: center;">
+        <div class="container">
+            <h1 class="text-center mb-5" style="font-family: 'Bebas Kai Regular';font-size: 60px;font-weight: normal;font-style: normal;">why take online tesda programs?</h1>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
+                <div class="col d-flex flex-column justify-content-center align-items-center justify-content-xl-center align-items-xl-center"><img src="assets/img/school.png" style="width: 90px;margin: 0 35px;">
+                    <div class="about-item">
+                        <p class="py-2" style="font-size: 15px;">Study at your own pace.</p>
+                    </div>
+                </div>
+                <div class="col d-flex flex-column justify-content-center align-items-center justify-content-xl-center align-items-xl-center"><img src="assets/img/career%20(1).png" style="width: 90px;margin: 0 35px;">
+                    <div class="about-item">
+                        <p class="py-2" style="font-size: 15px;">Excel in your chosen field.</p>
+                    </div>
+                </div>
+                <div class="col d-flex flex-column justify-content-center align-items-center justify-content-xl-center"><img src="assets/img/student.png" style="width: 90px;margin: 0 35px;">
+                    <div class="about-item">
+                        <p class="text-center py-2" style="font-size: 15px;">Gain knowledge from anywhere with no timetable to follow.<br></p>
+                    </div>
+                </div>
+                <div class="col d-flex flex-column justify-content-center align-items-center justify-content-xl-center"><img src="assets/img/Excel.png" style="width: 90px;margin: 0 35px;">
+                    <div class="about-item">
+                        <p class="text-center py-2" style="font-size: 15px;">Learn from industry experts and professionals.<br></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,7 +181,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">
@@ -160,101 +199,7 @@
             </div>
         </div>
         </div>
-    </footer>
-    <div class="modal fade" role="dialog" tabindex="-1" id="hkp-modal">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">housekeeping nc ii (436 hours)&nbsp;</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p class="text-justify">This course consists of competencies that a person must achieve to prepare guest rooms, clean public areas and equipment, provide housekeeping services, provide valet services, handle intoxicated guest, and&nbsp;laundry line and guest
-                        clothes to a range of accommodation services.<br></p>
-                    <p>Career Opportunities:</p>
-                    <ul>
-                        <li>Room / Cabin Attendant</li>
-                        <li>Houseman / Janitor / Public Area Attendant</li>
-                        <li>Valet Runner</li>
-                        <li>Dry Cleaner</li>
-                        <li>Washer</li>
-                        <li>Presser / Ironer</li>
-                        <li>Marker-Sorter</li>
-                        <li>Butler</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="ck-modal">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Cookery nc ii (316 hours)</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p class="text-justify">This course consists of competencies that a person must achieve to clean kitchen areas, prepare hot, cold meals and desserts for guests in various food and beverage service facilities.<br></p>
-                    <p>Career Opportunities as Assistant Prep Chef In:</p>
-                    <ul>
-                        <li>Restaurants</li>
-                        <li>Cargo Ships</li>
-                        <li>Catering Companies</li>
-                        <li>Other Culinary Establishments</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="fnb-modal">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">food &amp; beverage nc ii (356 hours)</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p class="text-justify">This course consists of competencies that a person must achieve to provide food and beverage service to guests in various food and beverage service facilities.<br></p>
-                    <p>Career Opportunities:</p>
-                    <ul>
-                        <li>Busboy</li>
-                        <li>Waiter</li>
-                        <li>Food Attendant</li>
-                        <li>Food Server</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="bpp-modal">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">bread and pastry production nc ii (141 hours)</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p class="text-justify">This course consists&nbsp;of competencies that person must achieve to be able to clean equipment, tools&nbsp;&amp; utensils, to prepare, portion, and plate pastries, breads &amp; other dessert items to guests in hotels, motels, restaurants,
-                        clubs, canteens, resorts, and luxury lines/cruises and other related operations.<br></p>
-                    <p>Career Opportunities:</p>
-                    <ul>
-                        <li>Baker</li>
-                        <li>Pastry Chef</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="bt-modal">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">bartending nc ii</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p class="text-justify">This course consists of competencies that a person must achieve to provide basic wine services. prepare and mix cocktails and non-alcoholic concoctions, operate bar, and clean bar areas.<br></p>
-                    <p>Career Opportunities:</p>
-                    <ul>
-                        <li>Busboy</li>
-                        <li>Bartender</li>
-                        <li>Wine Steward</li>
-                        <li>Bar Porter</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div><a id="go-back-button" href="#"><i class="fa fa-angle-up"></i></a><!-- Load Facebook SDK for JavaScript -->
+    </footer><a id="go-back-button" href="#"><i class="fa fa-angle-up"></i></a><!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {

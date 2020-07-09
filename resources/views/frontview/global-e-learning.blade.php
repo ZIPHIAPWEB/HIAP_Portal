@@ -63,6 +63,9 @@
                     </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
                     <ul
                         class="nav navbar-nav d-xl-flex mx-auto">
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="global-e-learning">Global e-learning</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="e-learning-hub">E-learning hub</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="tesda-online">Tesda online programs</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">facilities</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
                         <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
@@ -91,38 +94,38 @@
     </section>
     <section class="about-vision-mission" style="background-image: url(&quot;assets/img/GLOBAL%20PIC%201.jpg&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-lg-6 col-xl-6 d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/video-player.png" style="height: 100px;margin: 0 35px;">
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/video-player.png" style="height: 100px;margin: 0 35px;">
                     <div class="about-item">
                         <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;">Interactive Video</h1>
                         <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Learning experience with choice-based navigation through explanatory and scenario-based videos.<br></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6 d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/analysis.png" style="height: 100px;margin: 0 35px;">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/analysis.png" style="height: 100px;margin: 0 35px;">
                     <div class="about-item">
                         <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;"><strong>Visual Choice</strong><br></h1>
                         <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Challenge critical thinking skills based on real-world image examples in a choice-based lesson format<strong>.</strong><br></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6 d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/email.png" style="height: 100px;margin: 0 35px;">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/email.png" style="height: 100px;margin: 0 35px;">
                     <div class="about-item">
                         <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;"><strong>Document</strong><br></h1>
                         <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Download, read, or print lesson content designed for reference guides, group learning, or offline workbooks.<br></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6 d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/process.png" style="height: 100px;margin: 0 35px;">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/process.png" style="height: 100px;margin: 0 35px;">
                     <div class="about-item">
                         <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;"><strong>Process</strong><br></h1>
                         <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Understand sequential steps in procedural tasks through learning linear processes.<br></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6 d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/dialogue.png" style="height: 100px;margin: 0 35px;">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/dialogue.png" style="height: 100px;margin: 0 35px;">
                     <div class="about-item">
                         <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;"><strong>Dialogue</strong><br></h1>
                         <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Know what to say and how to say it through simulated conversation exercises.&nbsp;<br></p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6 d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/skills.png" style="height: 100px;margin: 0 35px;">
+                <div class="col d-flex d-xl-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start align-items-xl-center my-4"><img src="assets/img/skills.png" style="height: 100px;margin: 0 35px;">
                     <div class="about-item">
                         <h1 class="text-center text-lg-left text-xl-left" style="font-family: 'Montserrat';font-size: 18px;font-weight: bold;margin: 10px 0;"><strong>Simulation</strong><br></h1>
                         <p class="text-center text-lg-left text-xl-left p-0" style="font-size: 15px;">Bridge the gap between learning and practical application through complex procedural skills with simulations.<br></p>
@@ -143,50 +146,50 @@
         <div class="container-fluid">
             <h1 class="text-center">hallmark courses category</h1>
             <p class="text-center text-white mb-4">These are courses that cover a wide range of operational hospitality training requirements that the leading experts have developed to ensure excellence across the hospitality industry.<br></p>
-            <div class="row no-gutters row-cols-xl-4 justify-content-center">
-                <div class="col-3">
+            <div class="row no-gutters row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-FBS.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#fabs-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Food &amp; Beverage Service<br>(35 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Event.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#events-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Events<br>(15 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Front-Office.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#fo-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Front Office<br>(10 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Bar.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#bab-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Bar and Beverage<br>(57 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Housekeeping.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#house-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Housekeeping<br>(21 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Standards.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#hospitality-standards-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Hospitality Standards<br>(14 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Management.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#hospitality-management-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Hospitality Management<br>(24 Courses)<br></span></div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Information.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
                         data-target="#information-security-modal">
                         <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;font-weight: bold;">Information Security<br>(15 Courses)<br></span></div>
@@ -201,7 +204,7 @@
                 <h1 class="text-center" style="font-size: 50px;">Partner industry courses category</h1>
                 <p class="text-center mb-4">This program gives everyone the opportunity to develop and gain more knowledged in the following courses:<br></p>
             </div>
-            <div class="row no-gutters row-cols-xl-3 justify-content-center">
+            <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/P-CIA.jpg&quot;);background-position: top;background-size: cover;height: 250px;cursor: pointer;"
                         data-toggle="modal" data-target="#cia-modal">
@@ -244,7 +247,7 @@
     <section class="about-vision-mission" style="background-image: url(&quot;assets/img/GLOBAL%20PIC%203.jpg&quot;);background-repeat: no-repeat;background-size: cover;border-bottom: 5px solid white;background-position: center;">
         <div class="container-fluid">
             <h1 class="text-center mb-5" style="font-family: 'Bebas Kai Regular';font-size: 60px;font-weight: normal;font-style: normal;">why avail of our global e-learning courses?</h1>
-            <div class="row row-cols-3 justify-content-center">
+            <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col d-flex flex-column justify-content-center align-items-center my-2"><img src="assets/img/W-certificate%20(1).png" style="width: 90px;margin: 0 35px;">
                     <div class="about-item">
                         <p class="text-center py-2" style="font-size: 15px;">Get a certificate of completion from partner industries upon successful completion of the featured courses.<br></p>
@@ -277,7 +280,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">
