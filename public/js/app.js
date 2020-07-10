@@ -4431,6 +4431,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           break;
       }
     },
+    deleteInitial: function deleteInitial(initial) {
+      var r = confirm("Are you sure you want to delete this record?");
+
+      if (r == true) {
+        this.$inertia["delete"]("/deleteInitialRequirement/".concat(initial.id));
+        toastr.info('Requirement deleted');
+      }
+    },
     editDetails: function editDetails(initial) {
       this.form = _objectSpread({}, initial);
       this.method = 'edit';
@@ -7936,7 +7944,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "card-body register-card-body pt-0" }, [
           _c("p", { staticClass: "login-box-msg" }, [
-            _vm._v("Register a new membership")
+            _vm._v("Register for Enrollment")
           ]),
           _vm._v(" "),
           _c(
@@ -10881,7 +10889,14 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "button",
-                            { staticClass: "btn btn-danger btn-xs" },
+                            {
+                              staticClass: "btn btn-danger btn-xs",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteInitial(initial)
+                                }
+                              }
+                            },
                             [_vm._v("Delete")]
                           )
                         ])

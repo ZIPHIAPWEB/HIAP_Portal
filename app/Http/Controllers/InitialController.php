@@ -72,6 +72,8 @@ class InitialController extends Controller
         }
 
         $initial->delete();
+
+        return redirect()->back();
     }
 
     public function getAllInitialRequirements($programId)

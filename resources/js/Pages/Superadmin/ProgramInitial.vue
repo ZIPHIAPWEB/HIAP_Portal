@@ -56,7 +56,7 @@
                                         <td class="text-center">{{ initial.file_path }}</td>
                                         <td class="text-center">
                                             <button @click="editDetails(initial)" class="btn btn-success btn-xs">Edit</button>
-                                            <button class="btn btn-danger btn-xs">Delete</button>
+                                            <button @click="deleteInitial(initial)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -114,6 +114,13 @@
                         break;
                 }
 
+            },
+            deleteInitial(initial) {
+                var r = confirm("Are you sure you want to delete this record?");
+                if (r == true) {
+                    this.$inertia.delete(`/deleteInitialRequirement/${initial.id}`)
+                    toastr.info('Requirement deleted');
+                }
             },
             editDetails (initial) {
                 this.form = {...initial};
