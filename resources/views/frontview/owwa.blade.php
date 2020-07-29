@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>HIAP Inc.</title>
+    <title>Hospitality Institute of America-Philippines Inc.</title>
     <meta name="description" content="Hospitality Institute of America-Philippines Inc. (HIAP Inc.) is a registered corporation under Securities and Exchange Commission (SEC) since 2015. HIAP Inc. is also a trusted partner of various government agencies such as Technical Educational Skills Development Authority (TESDA), Overseas Workers Welfare Administration (OWWA), Department of Education (DepEd) and a trusted provider of various educational institutions in the Philippines.">
     <meta name="twitter:description" content="Hospitality Institute of America-Philippines Inc. (HIAP Inc.) is a registered corporation under Securities and Exchange Commission (SEC) since 2015. HIAP Inc. is also a trusted partner of various government agencies such as Technical Educational Skills Development Authority (TESDA), Overseas Workers Welfare Administration (OWWA), Department of Education (DepEd) and a trusted provider of various educational institutions in the Philippines.">
     <meta name="twitter:card" content="summary">
