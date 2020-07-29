@@ -19,7 +19,23 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('cl.dashboard');
+            switch(Auth::guard($guard)->user()->role) {
+                case 'client':
+                    return redirect()->route('cl.dashboard');
+                break;
+
+                case 'teacher':
+                    return redirect()->route('tc.dashboard');
+                break;
+
+                case 'superadministrator':
+                    return redirect()->route('sa.dashboard');
+                break;
+
+                case 'moderator':
+                    return redirect()->route('md.dashboard');
+                break;
+            }
         }
 
         return $next($request);

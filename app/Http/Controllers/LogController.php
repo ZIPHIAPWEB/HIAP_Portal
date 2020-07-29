@@ -11,7 +11,7 @@ class LogController extends Controller
     public function showLogs()
     {
         return Inertia::render('Superadmin/Logs', [
-            'logs'  =>  Log::orderBy('created_at', 'desc')->with('user')->get()
+            'logs'  =>  Log::orderBy('created_at', 'desc')->with('user')->paginate(20)
         ]);
     }
 

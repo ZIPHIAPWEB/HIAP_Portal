@@ -1,6 +1,6 @@
 <template>
     <superadmin-layout>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-3">
                     <div class="card">

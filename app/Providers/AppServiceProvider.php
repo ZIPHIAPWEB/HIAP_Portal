@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Moderator;
+use App\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Session;
@@ -48,6 +49,14 @@ class AppServiceProvider extends ServiceProvider
                     return [
                         'first_name' => $moderator->first_name,
                         'last_name' => $moderator->last_name,
+                    ];
+                }
+
+                if (Auth::user()->role == 'teacher') {
+                    $teacher = Teacher::where('user_id', Auth::user()->id)->first();
+                    return [
+                        'first_name' => $teacher->first_name,
+                        'last_name'  => $teacher->last_name
                     ];
                 }
             }

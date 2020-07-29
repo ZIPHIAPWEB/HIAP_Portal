@@ -87,6 +87,10 @@ class LoginController extends Controller
                 }
             break;
 
+            case 'teacher':
+                return redirect()->route('tc.dashboard');
+            break;
+
             case 'moderator':
                 return redirect()->route('md.dashboard');
             break;

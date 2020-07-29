@@ -4,17 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Grade extends Model
 {
     protected $fillable = [
-        'first_name',
-        'middle_name',
-        'last_name',
-        'address',
-        'contact_no',
-        'program_id',
         'user_id',
-        'application_status'
+        'lesson_id',
+        'program_id',
+        'grade'
     ];
 
     public function user()
@@ -27,13 +23,8 @@ class Client extends Model
         return $this->hasOne('App\Program', 'id', 'program_id');
     }
 
-    public function grade()
-    {
-        return $this->hasMany('App\Grade', 'user_id', 'user_id');
-    }
-
     public function lesson()
     {
-        return $this->hasMany('App\Lesson', 'program_id', 'program_id');
+        return $this->hasOne('App\Lesson', 'id', 'lesson_id');
     }
 }

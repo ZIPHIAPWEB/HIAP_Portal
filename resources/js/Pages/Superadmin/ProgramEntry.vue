@@ -47,6 +47,7 @@
                                             <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
                                                 View Requirements
                                             </inertia-link>
+                                            <inertia-link :href="`/sa/${program.id}/lessons`" class="btn btn-info btn-xs">View Gradebook</inertia-link>
                                             <button @click="editDetails(program)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="deleteDetails(program)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>

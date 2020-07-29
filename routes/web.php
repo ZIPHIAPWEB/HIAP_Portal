@@ -1,5 +1,7 @@
 <?php
 
+use App\Grade;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +65,10 @@ Route::prefix('sa')->group(function () {
     Route::get('/program/initials/{programId}', 'InitialController@showInitialRequirements')->name('sa.program.initials');
 
     Route::get('/logs', 'LogController@showLogs')->name('sa.logs');
+
+    Route::get('/teachers', 'TeacherController@showTeacherEntry')->name('sa.teachers');
+
+    Route::get('/{programId}/lessons', 'LessonController@showLessonEntry')->name('sa.program.lessons');
 });
 
 Route::prefix('md')->group(function () {
@@ -70,6 +76,14 @@ Route::prefix('md')->group(function () {
 
     Route::get('/clients', 'ModeratorController@showClients')->name('md.clients')->middleware('auth');
     Route::get('/client/{id}', 'ModeratorController@showSelectedClient')->name('md.selected.client')->middleware('auth');
+});
+
+
+Route::prefix('teacher')->group(function () {
+    Route::get('/dashboard', 'TeacherController@showTeacherDashboard')->name('tc.dashboard');
+    Route::get('/students', 'TeacherController@showStudents')->name('teacher.students');
+    Route::get('/{programId}/gradebook', 'TeacherController@showGradebook')->name('teacher.gradebook');
+    Route::get('/stud-profile/{userId}', 'TeacherController@showStudentProfile')->name('teacher.stud-profile');
 });
 
 Route::get('/getAllPrograms', 'ProgramController@getAllPrograms');
@@ -93,10 +107,50 @@ Route::get('/getInitialRequirementsWithClient', 'ClientInitialController@getClie
 Route::post('/storeClientInitialRequirements', 'ClientInitialController@storeClientInitialRequirement');
 Route::delete('/deleteClientInitialRequirement/{id}', 'ClientInitialController@deleteClientInitialRequirement');
 
+Route::post('/storeTeacher', 'TeacherController@storeTeacher');
+Route::put('/updateTeacher', 'TeacherController@updateTeacher');
+Route::delete('/deleteTeacher/{userId}', 'TeacherController@deleteTeacher');
+
+Route::post('/storeGrade', 'GradeController@storeGrade');
+Route::get('/getClientGrades', 'GradeController@getClientGrades');
+Route::delete('/deleteGrade/{gradeId}', 'GradeController@deleteGrade');
+
 Route::get('/moderators/all', 'ModeratorController@getAllModerators');
 Route::post('/moderators/store', 'ModeratorController@storeModerator');
 Route::get('/moderators/edit/{userId}', 'ModeratorController@editModerator');
 Route::put('/moderators/update', 'ModeratorController@updateModerators');
 Route::delete('/moderators/delete/{userId}', 'ModeratorController@deleteModerator');
 
+Route::post('/storeLesson', 'LessonController@storeLesson');
+Route::put('/updateLesson/{lessonId}', 'LessonController@updateLesson');
+Route::delete('/deleteLesson/{lesson}', 'LessonController@deleteLesson');
 Route::delete('/logs/delete/{id}', 'LogController@deleteLog');
+
+Route::get('/test', function () {
+    return App\Client::where('program_id', 7)->with('lesson')->get()
+        ->map(function($query) {
+            return [
+                'user_id'   =>  $query->user_id,
+                'full_name' =>  $query->first_name . ' ' . $query->last_name,
+                'lessons'    =>  $query->lesson->map(function($grade) use ($query) {
+                    return [
+                        'lesson'    =>  $grade->title,
+                        'grade'     =>  $grade->grade->where('lesson_id', $grade->id)->where('user_id', $query->user_id)->groupBy('lesson_id')->get()
+                    ];
+                })
+            ];
+        });
+
+    // return App\Lesson::where('program_id', 7)->with('grade')->get()
+    //     ->map(function ($lesson) {
+    //         return [
+    //             'lesson_id' =>  $lesson->id,
+    //             'grades'    =>  $lesson->grade->groupBy('lesson_id')->get()->map(function ($grade) {
+    //                 return [
+    //                     'user'  =>  $grade->user,
+    //                     'grade' =>  $grade->grade
+    //                 ];
+    //             })
+    //         ];
+    //     });
+});

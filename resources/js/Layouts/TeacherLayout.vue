@@ -12,7 +12,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a @click="logout" href="#" method="post" class="nav-link">
+            <a href="javascript:void();" @click="logout" class="nav-link">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
           </li>
@@ -26,7 +26,7 @@
     <a href="/" class="brand-link">
       <img src="/logo.png"
            alt="AdminLTE Logo"
-           class="brand-image img-circle elevation-3"
+           class="brand-image img-circle"
            style="opacity: .8">
       <span class="brand-text font-weight-light">HIAP Inc.</span>
     </a>
@@ -36,10 +36,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/logo.png" class="img-circle elevation-2" alt="User Image">
+          <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block text-bold">Superadministrator</a>
+          <a href="#" class="d-block text-bold">{{ $page.auth.first_name }} {{ $page.auth.last_name }}</a>
         </div>
       </div>
 
@@ -49,51 +49,20 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-                <inertia-link href="/sa/clients" class="nav-link">
-                    <i class="nav-icon fas fa-user-friends"></i>
-                    <p>
-                        Clients
-                    </p>
-                </inertia-link>
-          </li>
-          <li class="nav-item">
-                <inertia-link href="/sa/programs" class="nav-link">
-                    <i class="nav-icon fas fa-layer-group"></i>
-                    <p>
-                        Programs
-                    </p>
-                </inertia-link>
-          </li>
-          <li class="nav-item">
-                <inertia-link href="/sa/moderators" class="nav-link">
-                    <i class="nav-icon fas fa-users-cog"></i>
-                    <p>
-                        Moderators
-                    </p>
-                </inertia-link>
-          </li>
-          <li class="nav-item">
-            <inertia-link href="/sa/teachers" class="nav-link">
-              <i class="nav-icon fas fa-users-cog"></i>
-              <p>Teachers</p>
+            <inertia-link href="/teacher/dashboard" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
             </inertia-link>
           </li>
           <li class="nav-item">
-                <inertia-link href="/sa/logs" class="nav-link">
-                    <i class="nav-icon fas fa-clipboard-list"></i>
-                    <p>
-                        Logs
-                    </p>
-                </inertia-link>
+            <inertia-link href="/teacher/students" class="nav-link">
+                <i class="nav-icon fas fa-user-friends"></i>
+                <p>
+                    Students
+                </p>
+            </inertia-link>
           </li>
           <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -121,9 +90,9 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
-              </li> -->
+              </li>
             </ul>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -153,10 +122,8 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.4
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2020 <a href="https://hospitalityinstituteofamerica.com.ph/">HIAP Inc</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

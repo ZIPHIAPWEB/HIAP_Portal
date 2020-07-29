@@ -1,9 +1,11 @@
 import './bootstrap';
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
+import JsonExcel from 'vue-json-excel';
 
 Vue.use(InertiaApp)
 
+Vue.component('downloadExcel', JsonExcel);
 const app = document.getElementById('app')
 
 Vue.component('my-bar-chart', {

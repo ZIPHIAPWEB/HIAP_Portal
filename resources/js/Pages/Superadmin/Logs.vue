@@ -18,8 +18,8 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody v-if="logs.length > 0">
-                                    <tr class="text-center text-xs" v-for="log in logs" :key="log.id">
+                                <tbody v-if="logs.data.length > 0">
+                                    <tr class="text-center text-xs" v-for="log in logs.data" :key="log.id">
                                         <td class="text-left">{{ log.id }}</td>
                                         <td>{{ log.user.email }}</td>
                                         <td>{{ log.user.role }}</td>
@@ -35,6 +35,10 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
+                            <button :disabled="!this.logs.prev_page_url" @click="prevButton" class="btn btn-primary btn-xs">Prev</button>
+                            <button :disabled="!this.logs.next_page_url" @click="nextButton" class="btn btn-primary btn-xs">Next</button>
                         </div>
                     </div>
                 </div>
@@ -57,6 +61,12 @@
                 if(r) {
                     this.$inertia.delete(`/logs/delete/${logId}`);
                 }
+            },
+            prevButton() {
+                this.$inertia.visit(this.logs.prev_page_url);
+            },
+            nextButton() {
+                this.$inertia.visit(this.logs.next_page_url)
             }
         }
     }
