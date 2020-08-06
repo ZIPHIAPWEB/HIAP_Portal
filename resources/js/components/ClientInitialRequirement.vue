@@ -58,7 +58,7 @@
                         <tbody>
                             <tr v-for="item in grades" :key="item.id">
                                 <td>{{ item.title }}</td>
-                                <td class="text-center">{{ item.grade }}</td>
+                                <td class="text-center">{{ item.grade.grade }}</td>
                             </tr>
                         </tbody>
                     </table>

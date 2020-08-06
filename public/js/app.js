@@ -14255,7 +14255,7 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(item.title))]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(item.grade))
+                      _vm._v(_vm._s(item.grade.grade))
                     ])
                   ])
                 }),

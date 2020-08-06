@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Grade;
 use App\Lesson;
 use Illuminate\Http\Request;
@@ -29,7 +30,11 @@ class GradeController extends Controller
 
     public function getClientGrades()
     {
-        return Grade::where('user_id', Auth::user()->id)->get();
+        $user = Client::where('user_id', Auth::user()->id)->first();
+        // return Grade::where('user_id', Auth::user()->id)->get();
+        return Lesson::where('program_id', $user->program_id)->with(['grade' => function ($query) use ($user) {
+            $query->where('user_id', $user->user_id);
+        }])->get();
     }
 
     public function deleteGrade($gradeId)

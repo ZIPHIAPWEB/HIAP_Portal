@@ -97,10 +97,10 @@
                 set by TESDA.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col d-flex justify-content-start align-items-center justify-content-xl-end align-items-xl-center">
-                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;training&#39;).click();"><img src="assets/img/class.png"><span class="text-center">TESDA Training Programs</span><a id="training" href="tesda-training.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;training&#39;).click();"><img src="assets/img/class.png"><span class="text-center">TESDA Training Programs</span><a id="training" href="tesda-training" target="_blank">Link</a></div>
                 </div>
                 <div class="col d-flex justify-content-end align-items-center justify-content-xl-start">
-                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;assessment&#39;).click();"><img src="assets/img/feedback.png"><span class="text-center">TESDA Assessment Programs</span><a id="assessment" href="assessment.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;assessment&#39;).click();"><img src="assets/img/feedback.png"><span class="text-center">TESDA Assessment Programs</span><a id="assessment" href="assessment" target="_blank">Link</a></div>
                 </div>
             </div>
         </div>
@@ -111,13 +111,13 @@
             <p class="text-center">HIAP Inc., in coordination with its partners, offers training programs with scholarship benefits. Those who qualify will be entitled to a free training and/or assessment. <br></p>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 justify-content-center">
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;twsp&#39;).click();"><img src="assets/img/Academic.png"><span class="text-center">TWSP - TESDA Scholarship Programs<br><small>(Training for Work Scholarship)</small><br></span><a id="twsp" href="tswp.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;twsp&#39;).click();"><img src="assets/img/Academic.png"><span class="text-center">TWSP - TESDA Scholarship Programs<br><small>(Training for Work Scholarship)</small><br></span><a id="twsp" href="twsp" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;sesp&#39;).click();"><img src="assets/img/Graduation%20Cap.png"><span class="text-center">SESP - OWWA Scholarship Programs<br><small>(Skills for Employment Scholarship Program)</small><br></span><a id="sesp" href="owwa.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;sesp&#39;).click();"><img src="assets/img/Graduation%20Cap.png"><span class="text-center">SESP - OWWA Scholarship Programs<br><small>(Skills for Employment Scholarship Program)</small><br></span><a id="sesp" href="owwa" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;shs&#39;).click();"><img src="assets/img/Graduation%20Diploma.png"><span class="text-center">Senior High<br>Scholarship Programs</span><a id="shs" href="senior-scholarship.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;shs&#39;).click();"><img src="assets/img/Graduation%20Diploma.png"><span class="text-center">Senior High<br>Scholarship Programs</span><a id="shs" href="senior-scholarship" target="_blank">Link</a></div>
                 </div>
             </div>
         </div>
@@ -128,16 +128,16 @@
             <p class="text-center">These programs are designed based on the needs of the clients. These programs include different courses in different areas such as hospitality, leadership, marketing, English, and other related courses.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-25&#39;).click();"><img src="assets/img/Learning.png"><span class="text-center">Senior High<br>(25 Hours)</span><a id="shs-25" href="customized-senior-25.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-25&#39;).click();"><img src="assets/img/Learning.png"><span class="text-center">Senior High<br>(25 Hours)</span><a id="shs-25" href="customized-senior-25" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-whole&#39;).click();"><img src="assets/img/Seminar.png"><span class="text-center">Senior High<br>(Whole Day)</span><a id="shs-whole" href="customized-senior.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-whole&#39;).click();"><img src="assets/img/Seminar.png"><span class="text-center">Senior High<br>(Whole Day)</span><a id="shs-whole" href="customized-senior" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;college-whole&#39;).click();"><img src="assets/img/present.png"><span class="text-center">College<br>(Whole Day)</span><a id="college-whole" href="customized-college.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;college-whole&#39;).click();"><img src="assets/img/present.png"><span class="text-center">College<br>(Whole Day)</span><a id="college-whole" href="customized-college" target="_blank">Link</a></div>
                 </div>
                 <div class="col">
-                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;prof-whole&#39;).click();"><img src="assets/img/Seminar%20(02).png"><span class="text-center">Young Professionals<br>(Whole Day)</span><a id="prof-whole" href="customized-prof.html" target="_blank">Link</a></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;prof-whole&#39;).click();"><img src="assets/img/Seminar%20(02).png"><span class="text-center">Young Professionals<br>(Whole Day)</span><a id="prof-whole" href="customized-prof" target="_blank">Link</a></div>
                 </div>
             </div>
         </div>
