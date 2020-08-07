@@ -18,22 +18,30 @@
                         <thead>
                             <tr>
                                 <th style="width: 15%;">Full Name</th>
+                                <th style="width: 3%" class="text-center">
+                                    <button :disabled="(lessons.length -1) == step ? false : true" @click="step--" class="btn btn-default btn-xs">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                </th>
                                 <th class="text-center" v-for="h in lessons[step]" :key="h.id" :id="h.id">{{ h.title }}</th>
+                                <th style="width: 3%;" class="text-center">
+                                    <button :disabled="(lessons.length - 1) == step ? true : false" @click="step++" class="btn btn-default btn-xs">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="stud in students" :key="stud.id">
                                 <td>{{ stud.full_name }}</td>
+                                <td></td>
                                 <td class="text-center text-xs" v-for="g in stud.lessons[step]" :key="g.id">
                                     <i>{{ g.grade ? g.grade.grade : 'None' }}</i>
                                 </td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer">
-                    <button :disabled="(lessons.length - 1) == step ? false : true" class="btn btn-info btn-xs" @click="step--">Prev</button>
-                    <button :disabled="(lessons.length - 1) == step ? true : false" class="btn btn-info btn-xs" @click="step++">Next</button>
                 </div>
             </div>
         </div>

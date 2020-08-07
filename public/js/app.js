@@ -2014,7 +2014,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       axios.post('/logout').then(function (response) {
-        document.location.replace('/');
+        window.location.replace('/');
       });
     }
   }
@@ -3769,7 +3769,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.visit("/sa/client/".concat(userId));
     },
     deleteClientDetails: function deleteClientDetails(userId) {
-      this.$inertia["delete"]("/deleteClientDetails/".concat(userId));
+      var r = confirm("Are you sure to delete this record?");
+
+      if (r == true) {
+        this.$inertia["delete"]("/deleteClientDetails/".concat(userId));
+        toastr.info('Program deleted!');
+      }
     }
   }
 });
@@ -4990,6 +4995,13 @@ __webpack_require__.r(__webpack_exports__);
       step: 0
     };
   },
+  computed: {
+    filteredPrograms: function filteredPrograms() {
+      return this.programs.filter(function (e) {
+        return e.clients.length > 0;
+      });
+    }
+  },
   mounted: function mounted() {
     console.log(this.$refs.header);
   },
@@ -5016,6 +5028,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_TeacherLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/TeacherLayout.vue */ "./resources/js/Layouts/TeacherLayout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5346,6 +5366,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    filteredPrograms: function filteredPrograms() {
+      return this.programs.filter(function (e) {
+        return e.clients.length > 0;
+      });
+    },
     filteredStudents: function filteredStudents() {
       var _this = this;
 
@@ -5384,6 +5409,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UploadInitialRequirement_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/UploadInitialRequirement.vue */ "./resources/js/components/UploadInitialRequirement.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -13411,7 +13441,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "row" },
-        _vm._l(_vm.programs, function(program) {
+        _vm._l(_vm.filteredPrograms, function(program) {
           return _c(
             "div",
             { key: program.id, staticClass: "col-sm-12 col-md-4 col-12" },
@@ -13513,6 +13543,34 @@ var render = function() {
                       _vm._v("Full Name")
                     ]),
                     _vm._v(" "),
+                    _c(
+                      "th",
+                      {
+                        staticClass: "text-center",
+                        staticStyle: { width: "3%" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default btn-xs",
+                            attrs: {
+                              disabled:
+                                _vm.lessons.length - 1 == _vm.step
+                                  ? false
+                                  : true
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.step--
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-chevron-left" })]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
                     _vm._l(_vm.lessons[_vm.step], function(h) {
                       return _c(
                         "th",
@@ -13523,7 +13581,35 @@ var render = function() {
                         },
                         [_vm._v(_vm._s(h.title))]
                       )
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "th",
+                      {
+                        staticClass: "text-center",
+                        staticStyle: { width: "3%" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default btn-xs",
+                            attrs: {
+                              disabled:
+                                _vm.lessons.length - 1 == _vm.step
+                                  ? true
+                                  : false
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.step++
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-chevron-right" })]
+                        )
+                      ]
+                    )
                   ],
                   2
                 )
@@ -13538,6 +13624,8 @@ var render = function() {
                     [
                       _c("td", [_vm._v(_vm._s(stud.full_name))]),
                       _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
                       _vm._l(stud.lessons[_vm.step], function(g) {
                         return _c(
                           "td",
@@ -13548,7 +13636,9 @@ var render = function() {
                             ])
                           ]
                         )
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c("td")
                     ],
                     2
                   )
@@ -13556,40 +13646,6 @@ var render = function() {
                 0
               )
             ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-info btn-xs",
-              attrs: {
-                disabled: _vm.lessons.length - 1 == _vm.step ? false : true
-              },
-              on: {
-                click: function($event) {
-                  _vm.step--
-                }
-              }
-            },
-            [_vm._v("Prev")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-info btn-xs",
-              attrs: {
-                disabled: _vm.lessons.length - 1 == _vm.step ? true : false
-              },
-              on: {
-                click: function($event) {
-                  _vm.step++
-                }
-              }
-            },
-            [_vm._v("Next")]
           )
         ])
       ])
@@ -13978,7 +14034,7 @@ var render = function() {
                       _vm._v("All")
                     ]),
                     _vm._v(" "),
-                    _vm._l(_vm.programs, function(program) {
+                    _vm._l(_vm.filteredPrograms, function(program) {
                       return _c(
                         "option",
                         { key: program.id, domProps: { value: program.id } },
@@ -14150,7 +14206,30 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "m-0 card-title" }, [
+        _vm._v("Initial Requirements")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c("ul", { staticClass: "nav nav-pills ml-auto" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm.grades.length > 0
+            ? _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link text-sm",
+                    attrs: { href: "#gradebook", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Gradebook")]
+                )
+              ])
+            : _vm._e()
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0" }, [
       _c("div", { staticClass: "tab-content p-0" }, [
@@ -14164,78 +14243,82 @@ var render = function() {
               [
                 _vm._m(1),
                 _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.requirements, function(requirement) {
-                    return _c("tr", { key: requirement.id }, [
-                      _c("td", [_vm._v(_vm._s(requirement.name))]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-center" }, [
-                        requirement.client_initial
-                          ? _c("i", {
-                              staticClass: "fas fa-check text-success"
-                            })
-                          : _c("i", { staticClass: "fas fa-times text-danger" })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-center" }, [
-                        requirement.client_initial
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger btn-xs",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteFile(
-                                      requirement.client_initial.id
-                                    )
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete File")]
-                            )
-                          : _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "d-flex flex-row justify-content-center"
-                              },
-                              [
-                                requirement.file_path
-                                  ? _c("div", [
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass:
-                                            "mx-1 btn btn-success btn-xs",
-                                          attrs: {
-                                            href:
-                                              "/initials/" +
-                                              requirement.file_path,
-                                            download: ""
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Download " +
-                                              _vm._s(requirement.name)
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _c("upload-initial-requirement", {
-                                  attrs: { initialId: requirement.id }
+                _vm.requirements.length > 0
+                  ? _c(
+                      "tbody",
+                      _vm._l(_vm.requirements, function(requirement) {
+                        return _c("tr", { key: requirement.id }, [
+                          _c("td", [_vm._v(_vm._s(requirement.name))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            requirement.client_initial
+                              ? _c("i", {
+                                  staticClass: "fas fa-check text-success"
                                 })
-                              ],
-                              1
-                            )
-                      ])
-                    ])
-                  }),
-                  0
-                )
+                              : _c("i", {
+                                  staticClass: "fas fa-times text-danger"
+                                })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            requirement.client_initial
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger btn-xs",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteFile(
+                                          requirement.client_initial.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Delete File")]
+                                )
+                              : _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "d-flex flex-row justify-content-center"
+                                  },
+                                  [
+                                    requirement.file_path
+                                      ? _c("div", [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "mx-1 btn btn-success btn-xs",
+                                              attrs: {
+                                                href:
+                                                  "/initials/" +
+                                                  requirement.file_path,
+                                                download: ""
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Download " +
+                                                  _vm._s(requirement.name)
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c("upload-initial-requirement", {
+                                      attrs: { initialId: requirement.id }
+                                    })
+                                  ],
+                                  1
+                                )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  : _c("tbody", [_vm._m(2)])
               ]
             )
           ]
@@ -14246,7 +14329,7 @@ var render = function() {
             "table",
             { staticClass: "table table-bordered table-striped table-sm" },
             [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -14273,36 +14356,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h5", { staticClass: "m-0 card-title" }, [
-        _vm._v("Initial Requirements")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c("ul", { staticClass: "nav nav-pills ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link active text-sm",
-                attrs: { href: "#requirement", "data-toggle": "tab" }
-              },
-              [_vm._v("Requirement")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link text-sm",
-                attrs: { href: "#gradebook", "data-toggle": "tab" }
-              },
-              [_vm._v("Gradebook")]
-            )
-          ])
-        ])
-      ])
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active text-sm",
+          attrs: { href: "#requirement", "data-toggle": "tab" }
+        },
+        [_vm._v("Requirement")]
+      )
     ])
   },
   function() {
@@ -14320,6 +14382,16 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "text-center", attrs: { colspan: "3" } }, [
+        _vm._v("No Requirements")
       ])
     ])
   },

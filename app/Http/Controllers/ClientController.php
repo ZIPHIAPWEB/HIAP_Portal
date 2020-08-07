@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\ClientInitial;
+use App\Grade;
 use App\Log;
 use App\Mail\NewApplicantNotification;
 use App\User;
@@ -84,7 +85,8 @@ class ClientController extends Controller
         User::find($userId)->delete();
         Client::where('user_id', $userId)->delete();
         ClientInitial::where('user_id', $userId)->delete();
-
+        Grade::where('user_id', $userId)->delete();
+        
         return redirect()->back();
     }
 

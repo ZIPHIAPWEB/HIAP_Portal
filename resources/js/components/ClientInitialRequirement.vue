@@ -10,7 +10,7 @@
                     <li class="nav-item">
                         <a href="#requirement" class="nav-link active text-sm" data-toggle="tab">Requirement</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="grades.length > 0">
                         <a href="#gradebook" class="nav-link text-sm" data-toggle="tab">Gradebook</a>
                     </li>
                 </ul>
@@ -27,7 +27,7 @@
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-if="requirements.length > 0">
                             <tr v-for="requirement in requirements" :key="requirement.id">
                                 <td>{{ requirement.name }}</td>
                                 <td class="text-center">
@@ -43,6 +43,11 @@
                                         <upload-initial-requirement :initialId="requirement.id" />
                                     </div>
                                 </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td colspan="3" class="text-center">No Requirements</td>
                             </tr>
                         </tbody>
                     </table>

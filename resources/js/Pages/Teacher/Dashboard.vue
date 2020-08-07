@@ -2,7 +2,7 @@
     <teacher-layout>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12 col-md-4 col-12" v-for="program in programs" :key="program.id">
+                <div class="col-sm-12 col-md-4 col-12" v-for="program in filteredPrograms" :key="program.id">
                     <div class="info-box info-shadow">
                         <span @click="gotoGradebook(program)" class="info-box-icon bg-info elevation-1" style="cursor: pointer;">
                             <i class="fas fa-archive"></i>
@@ -28,6 +28,11 @@
         data () {
             return {
                 step: 0
+            }
+        },
+        computed: {
+            filteredPrograms() {
+                return this.programs.filter(e => e.clients.length > 0);
             }
         },
         mounted() {

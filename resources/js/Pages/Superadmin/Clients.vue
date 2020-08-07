@@ -70,7 +70,11 @@
                 this.$inertia.visit(`/sa/client/${userId}`);
             },
             deleteClientDetails (userId) {
-                this.$inertia.delete(`/deleteClientDetails/${userId}`);
+                let r = confirm("Are you sure to delete this record?");
+                if (r == true) {
+                    this.$inertia.delete(`/deleteClientDetails/${userId}`);
+                    toastr.info('Program deleted!');
+                }
             }
         }
     }

@@ -9,7 +9,7 @@
                             <div class="card-tools">
                                 <select v-model="program" class="form-control form-control-sm">
                                     <option value="all" selected>All</option>
-                                    <option v-for="program in programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                                    <option v-for="program in filteredPrograms" :key="program.id" :value="program.id">{{ program.name }}</option>
                                 </select>
                             </div>
                         </div>
@@ -72,6 +72,9 @@
             }
         },
         computed: {
+            filteredPrograms() {
+                return this.programs.filter(e => e.clients.length > 0)
+            },
             filteredStudents() {
                 return this.students.data.filter(e => {
                     if (this.program == 'all') {

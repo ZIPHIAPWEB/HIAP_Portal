@@ -80,7 +80,7 @@ class TeacherController extends Controller
     public function showStudents(Request $request)
     {
         return Inertia::render('Teacher/Students', [
-            'programs'  =>  Program::orderBy('id', 'asc')->get(),
+            'programs'  =>  Program::orderBy('id', 'asc')->with('clients')->get(),
             'students'  =>  Client::orderBy('created_at', 'desc')->with('user')->with('program')->paginate(12)
         ]);
     }
