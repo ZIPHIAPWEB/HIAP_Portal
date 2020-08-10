@@ -94,7 +94,7 @@ class TeacherController extends Controller
                 ->with(['grade' => function ($query) use ($userId) {
                     $query->where('user_id', $userId);
                 }])
-                ->get()
+                ->paginate(10)
         ]);
     }
 

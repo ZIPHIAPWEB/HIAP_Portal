@@ -5232,6 +5232,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['student', 'grades'],
@@ -5244,12 +5252,32 @@ __webpack_require__.r(__webpack_exports__);
         grade: ''
       },
       isEdit: false,
-      isLoading: false
+      isLoading: false,
+      searchGrade: ''
     };
   },
-  methods: {
-    submitGrade: function submitGrade(i) {
+  computed: {
+    filteredGrades: function filteredGrades() {
       var _this = this;
+
+      return this.grades.data.filter(function (e) {
+        return e.title.toLowerCase().includes(_this.searchGrade.toLowerCase());
+      });
+    }
+  },
+  methods: {
+    prevPage: function prevPage() {
+      this.$inertia.visit(this.grades.prev_page_url, {
+        preserveState: true
+      });
+    },
+    nextPage: function nextPage() {
+      this.$inertia.visit(this.grades.next_page_url, {
+        preserveState: true
+      });
+    },
+    submitGrade: function submitGrade(i) {
+      var _this2 = this;
 
       console.log(i);
       var formData = new FormData();
@@ -5259,13 +5287,13 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('grade', this.form.grade);
       this.isLoading = true;
       this.$inertia.post('/storeGrade', formData).then(function (response) {
-        _this.isLoading = false;
-        _this.form.grade = '';
-        _this.isEdit = false;
+        _this2.isLoading = false;
+        _this2.form.grade = '';
+        _this2.isEdit = false;
       });
     },
     deleteGrade: function deleteGrade(gradeId) {
-      var _this2 = this;
+      var _this3 = this;
 
       var r = confirm('Delete this grade?');
 
@@ -5274,7 +5302,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia["delete"]("/deleteGrade/".concat(gradeId), {
           preserveState: true
         }).then(function (response) {
-          _this2.isLoading = false;
+          _this3.isLoading = false;
         });
       }
     }
@@ -13815,6 +13843,32 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
+            _c("div", { staticClass: "card-header" }, [
+              _c("div", { staticClass: "card-tools" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchGrade,
+                      expression: "searchGrade"
+                    }
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: { type: "text", placeholder: "Search" },
+                  domProps: { value: _vm.searchGrade },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.searchGrade = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
               _c(
                 "table",
@@ -13834,7 +13888,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.grades, function(i) {
+                    _vm._l(_vm.filteredGrades, function(i) {
                       return _c(
                         "tr",
                         { key: i.id, staticClass: "text-center text-sm" },
@@ -13963,7 +14017,31 @@ var render = function() {
                   )
                 ]
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _vm.filteredGrades.length >= 10
+              ? _c("div", { staticClass: "card-footer p-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-xs",
+                      attrs: { disabled: !_vm.grades.prev_page_url },
+                      on: { click: _vm.prevPage }
+                    },
+                    [_vm._v("Prev")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-xs",
+                      attrs: { disabled: !_vm.grades.next_page_url },
+                      on: { click: _vm.nextPage }
+                    },
+                    [_vm._v("Next")]
+                  )
+                ])
+              : _vm._e()
           ])
         ])
       ])
@@ -14140,8 +14218,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm.students.total > _vm.students.per_page ||
-            _vm.filteredStudents.length > 0
+            _vm.students.total >= _vm.students.per_page
               ? _c("div", { staticClass: "card-footer" }, [
                   _c(
                     "button",
@@ -14149,8 +14226,7 @@ var render = function() {
                       staticClass: "btn btn-primary btn-xs",
                       attrs: {
                         disabled:
-                          _vm.students.current_page ===
-                          _vm.students.last_page - 1
+                          _vm.students.current_page === _vm.students.last_page
                       },
                       on: { click: _vm.prevPage }
                     },

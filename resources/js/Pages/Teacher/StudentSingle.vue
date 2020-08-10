@@ -54,7 +54,11 @@
                         <div class="overlay" v-if="isLoading">
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
                         </div>
-                        
+                        <div class="card-header">
+                            <div class="card-tools">
+                                <input v-model="searchGrade" type="text" placeholder="Search" class="form-control form-control-sm">
+                            </div>
+                        </div>
                         <div class="card-body p-0">
                             <table class="table table-striped table-hover table-sm">
                                 <thead>
@@ -82,7 +86,7 @@
                                             <button @click="create = true;" class="btn btn-xs btn-block">Add New</button>
                                         </td>
                                     </tr> -->
-                                    <tr class="text-center text-sm" v-for="i in grades" :key="i.id">
+                                    <tr class="text-center text-sm" v-for="i in filteredGrades" :key="i.id">
                                         <td class="text-left">{{ i.title }}</td>
                                         <td>
                                             <input v-model="form.grade" type="text" class="text-center form-control form-control-sm" v-if="isEdit == i.id">
@@ -110,6 +114,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="card-footer p-2" v-if="filteredGrades.length >= 10">
+                            <button @click="prevPage" :disabled="!grades.prev_page_url" class="btn btn-primary btn-xs">Prev</button>
+                            <button @click="nextPage" :disabled="!grades.next_page_url" class="btn btn-primary btn-xs">Next</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,10 +138,22 @@
                     grade: ''
                 },
                 isEdit: false,
-                isLoading: false
+                isLoading: false,
+                searchGrade: ''
+            }
+        },
+        computed: {
+            filteredGrades () {
+                return this.grades.data.filter(e => e.title.toLowerCase().includes(this.searchGrade.toLowerCase()));
             }
         },
         methods: {
+            prevPage() {
+                this.$inertia.visit(this.grades.prev_page_url, {preserveState: true});
+            },
+            nextPage() {
+                this.$inertia.visit(this.grades.next_page_url, {preserveState: true});
+            },
             submitGrade(i) {
                 console.log(i);
                 let formData = new FormData();

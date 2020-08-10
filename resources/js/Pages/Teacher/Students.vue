@@ -48,8 +48,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer" v-if="students.total > students.per_page || filteredStudents.length > 0">
-                            <button :disabled="students.current_page === students.last_page - 1" @click="prevPage" class="btn btn-primary btn-xs">Prev</button>
+                        <div class="card-footer" v-if="students.total >= students.per_page">
+                            <button :disabled="students.current_page === students.last_page" @click="prevPage" class="btn btn-primary btn-xs">Prev</button>
                             <button :disabled="students.current_page === students.last_page" @click="nextPage" class="btn btn-primary btn-xs">Next</button>
                         </div>
                     </div>
