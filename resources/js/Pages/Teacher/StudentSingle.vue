@@ -114,7 +114,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer p-2" v-if="filteredGrades.length >= 10">
+                        <div class="card-footer p-2">
                             <button @click="prevPage" :disabled="!grades.prev_page_url" class="btn btn-primary btn-xs">Prev</button>
                             <button @click="nextPage" :disabled="!grades.next_page_url" class="btn btn-primary btn-xs">Next</button>
                         </div>

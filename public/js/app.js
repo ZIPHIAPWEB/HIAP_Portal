@@ -14019,29 +14019,27 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm.filteredGrades.length >= 10
-              ? _c("div", { staticClass: "card-footer p-2" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary btn-xs",
-                      attrs: { disabled: !_vm.grades.prev_page_url },
-                      on: { click: _vm.prevPage }
-                    },
-                    [_vm._v("Prev")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary btn-xs",
-                      attrs: { disabled: !_vm.grades.next_page_url },
-                      on: { click: _vm.nextPage }
-                    },
-                    [_vm._v("Next")]
-                  )
-                ])
-              : _vm._e()
+            _c("div", { staticClass: "card-footer p-2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-xs",
+                  attrs: { disabled: !_vm.grades.prev_page_url },
+                  on: { click: _vm.prevPage }
+                },
+                [_vm._v("Prev")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-xs",
+                  attrs: { disabled: !_vm.grades.next_page_url },
+                  on: { click: _vm.nextPage }
+                },
+                [_vm._v("Next")]
+              )
+            ])
           ])
         ])
       ])
