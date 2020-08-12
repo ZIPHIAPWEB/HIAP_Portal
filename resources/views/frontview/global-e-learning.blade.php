@@ -264,7 +264,7 @@
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Covid.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#coronavirus-training-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">CORONA Virus Training<br>(Complimentary Course)<br></span></div>
+                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">CORONAVIRUS Training<br>(Complimentary Course)<br></span></div>
                     </div>
                 </div>
                 <div class="col">
@@ -664,7 +664,7 @@ theme_color="#031430">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-xl-center">
-                    <h2 class="modal-title">corona virus training | complimentary course</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <h2 class="modal-title">coronavirus training | complimentary course</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
                     <p class="text-justify">Developed with Ecolab, this training aims to help you to&nbsp;reduce the risk of infection through appropriate cleaning, disinfection, and hygiene procedures.<br></p>
                 </div>
