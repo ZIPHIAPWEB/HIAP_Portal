@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Http\Requests\InitialStoreRequest;
+use App\Http\Requests\InitialUpdateRequest;
 use App\Initial;
 use App\Program;
 use Illuminate\Http\Request;
@@ -12,21 +14,16 @@ use Inertia\Inertia;
 
 class InitialController extends Controller
 {
-    public function showInitialRequirements($programId)
+    public function showInitialRequirements($programId, Inertia $inertia, Program $program, Initial $initial)
     {
-        return Inertia::render('Superadmin/ProgramInitial', [
-            'program'   => Program::find($programId),
-            'initials'  => Initial::where('program_id', $programId)->get()
+        return $inertia->render('Superadmin/ProgramInitial', [
+            'program'   => $program->find($programId),
+            'initials'  => $initial->where('program_id', $programId)->get()
         ]);
     }
 
-    public function storeInitialRequirement(Request $request, $programId)
+    public function storeInitialRequirement(InitialStoreRequest $request, $programId)
     {
-        $request->validate([
-            'name'          =>  'required',
-            'description'   =>  'required',
-        ]);
-
         if ($request->hasFile('file')) {
             $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
             $request->file->move(public_path('initials'), $filename);
@@ -42,13 +39,8 @@ class InitialController extends Controller
         return redirect()->back();
     }
 
-    public function updateInitialRequirement(Request $request)
+    public function updateInitialRequirement(InitialUpdateRequest $request)
     {
-        $request->validate([
-            'name'          =>  'required',
-            'description'   =>  'required'
-        ]);
-
         if ($request->hasFile('file')) {
             $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
             $request->file->move(public_path('initials'), $filename);

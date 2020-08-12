@@ -4,20 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Grade;
+use App\Http\Requests\GradeStoreRequest;
 use App\Lesson;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
 class GradeController extends Controller
 {
-    public function storeGrade(Request $request)
+    public function storeGrade(Grade $grade, GradeStoreRequest $request)
     {
-        $request->validate([
-            'grade'     =>  'required'
-        ]);
-
-        Grade::create([
+        $grade->create([
             'program_id'=>  $request->program_id,
             'lesson_id' =>  $request->lesson_id,
             'user_id'   =>  $request->user_id,
@@ -28,18 +23,18 @@ class GradeController extends Controller
         return redirect()->back();
     }
 
-    public function getClientGrades()
+    public function getClientGrades(Lesson $lesson, Client $client)
     {
-        $user = Client::where('user_id', Auth::user()->id)->first();
-        // return Grade::where('user_id', Auth::user()->id)->get();
-        return Lesson::where('program_id', $user->program_id)->with(['grade' => function ($query) use ($user) {
+        $user = $client->where('user_id', Auth::user()->id)->first();
+
+        return $lesson->where('program_id', $user->program_id)->with(['grade' => function ($query) use ($user) {
             $query->where('user_id', $user->user_id);
         }])->get();
     }
 
-    public function deleteGrade($gradeId)
+    public function deleteGrade(Grade $grade, $gradeId)
     {
-        Grade::where('id', $gradeId)->delete();
+        $grade->where('id', $gradeId)->delete();
 
         return redirect()->back();
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClientInitial;
+use App\Http\Requests\ClientInitialStoreRequest;
 use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -16,12 +17,8 @@ class ClientInitialController extends Controller
             ->get();
     }
 
-    public function storeClientInitialRequirement(Request $request)
+    public function storeClientInitialRequirement(ClientInitialStoreRequest $request)
     {
-        $request->validate([
-            'file'  =>  'required'
-        ]);
-
         $filename = time() . '.' . $request->file->extension();
         $request->file->move(public_path('uploads'), $filename);
 

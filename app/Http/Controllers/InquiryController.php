@@ -10,13 +10,6 @@ class InquiryController extends Controller
 {
     public function sendInquiry(Request $request)
     {
-        $request->validate([
-            'fullName'      =>  'required',
-            'mobileNumber'  =>  'required',
-            'email'         =>  'required',
-            'message'       =>  'required'
-        ]);
-
         Mail::to('info@hospitalityinstituteofamerica.com.ph')->send(new SendInquiry($request->all()));
 
         return redirect()->back();
