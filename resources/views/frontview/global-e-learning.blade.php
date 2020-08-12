@@ -575,7 +575,7 @@ theme_color="#031430">
                 <div class="modal-header justify-content-xl-center">
                     <h2 class="modal-title">Professional certificate in hospitality management</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p>24 courses | 267 lessons | 6 learning paths<br></p>
+                    <p>21 courses | 267 lessons | 6 learning paths<br></p>
                     <p class="text-justify">Skilled management is the backbone of any&nbsp;successful establishment. For both newcomers and&nbsp;seasoned pros alike, knowing how to maximize&nbsp;revenue growth—while driving value for your guests—is essential. This professional
                         certificate provides&nbsp;valuable management skills and knowledge as well as&nbsp;shares insights and real-life experiences from leading&nbsp;authorities and subject matter experts, cost-saving&nbsp;practices and upselling techniques.<br></p>
                 </div>
@@ -627,7 +627,7 @@ theme_color="#031430">
                 <div class="modal-header justify-content-xl-center">
                     <h2 class="modal-title">Food safety foundation w/ servsafe certification</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p>29 courses| 96 lessons | 1 learning path<br></p>
+                    <p>29 courses | 96 lessons | 1 learning path<br></p>
                     <p class="text-justify">As our knowledge of food safety evolves, so&nbsp;should our training methods. Drawing from Ecolab’s vast&nbsp;experience, this operational training solution is&nbsp;developed to provide practical behavioral training and&nbsp;corrective
                         actions. Combined with corrective actions and&nbsp;checklists, this program aims to deliver long-term&nbsp;behavior change at scale.<br></p>
                 </div>
@@ -651,7 +651,7 @@ theme_color="#031430">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-xl-center">
-                    <h2 class="modal-title">spa management training | by resence spa</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <h2 class="modal-title">spa management training by resence spa</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
                     <p>10 courses | 88 lessons| 4 learning paths<br></p>
                     <p class="text-justify">This course was created in partnership with&nbsp;global wellness specialists, Resense, Spa Professional&nbsp;complements team’s foundation in therapy, beauty, and&nbsp;healing with expert operational knowledge and&nbsp;resources. It
