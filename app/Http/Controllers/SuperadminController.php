@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Initial;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SuperadminController extends Controller

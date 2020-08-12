@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Events\UserLogCreated;
+use App\Http\Requests\ModeratorCreateRequest;
 use App\Initial;
 use App\Moderator;
 use App\Program;
@@ -38,15 +40,8 @@ class ModeratorController extends Controller
         return Inertia::render('Superadmin/Moderator/Create');
     }
 
-    public function storeModerator(Request $request)
+    public function storeModerator(ModeratorCreateRequest $request)
     {
-        $request->validate([
-            'first_name'    =>  'required',
-            'middle_name'   =>  'required',
-            'last_name'     =>  'required',
-            'email'         =>  'required'
-        ]);
-
         $user = User::create([
             'email'     =>  $request->email,
             'role'      =>  'moderator',
@@ -61,6 +56,11 @@ class ModeratorController extends Controller
             'last_name'     =>  $request->last_name
         ]);
 
+        event(new UserLogCreated([
+            'user_id'   =>  $request->user()->id,
+            'action'    =>  $user->email . ' has been registered.'
+        ]));
+        
         return redirect()->back();
     }
 
@@ -85,13 +85,26 @@ class ModeratorController extends Controller
             'last_name'     =>  $request->last_name
         ]);
 
+        event(new UserLogCreated([
+            'user_id'   =>  $request->user()->id,
+            'action'    =>  User::find($request->user_id)->email . ' details has been updated.'
+        ]));
+
         return redirect()->back();
     }
 
-    public function deleteModerator($userId)
+    public function deleteModerator(Request $request, $userId)
     {
-        User::find($userId)->delete();
+        $user = User::find($userId);
+
         Moderator::where('user_id', $userId)->delete();
+
+        event(new UserLogCreated([
+            'user_id'   =>  $request->user()->id,
+            'action'    =>  'Account has been deleted.'
+        ]));
+        
+        $user->delete();
 
         return redirect()->back();
     }

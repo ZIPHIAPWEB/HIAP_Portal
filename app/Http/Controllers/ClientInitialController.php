@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClientInitial;
+use App\Events\UserLogCreated;
 use App\Http\Requests\ClientInitialStoreRequest;
 use App\Log;
 use Illuminate\Http\Request;
@@ -22,18 +23,20 @@ class ClientInitialController extends Controller
         $filename = time() . '.' . $request->file->extension();
         $request->file->move(public_path('uploads'), $filename);
 
-        Log::create([
-            'user_id'   =>  $request->user()->id,
-            'action'    =>  $filename . ' has been uploaded.'
-        ]);
-
-        return ClientInitial::create([
+        $initials = ClientInitial::create([
             'user_id'       =>  $request->user()->id,
             'initial_id'    =>  $request->input('initial_id'),
             'status'        =>  true,
             'file_path'     =>  $filename
         ]);
-    }
+        
+        event(new UserLogCreated([
+            'user_id'   =>  $request->user()->id,
+            'action'    =>  $filename . ' has been uploaded.'
+        ]));
+
+        return $initials;
+    }   
 
     public function deleteClientInitialRequirement($id)
     {
@@ -43,13 +46,11 @@ class ClientInitialController extends Controller
             File::delete('uploads/' . $initial->first()->file_path);
         }
 
-        Log::create([
+        event(new UserLogCreated([
             'user_id'   =>  $initial->first()->user_id,
             'action'    =>  $initial->first()->file_path . ' has been deleted.'
-        ]);
+        ]));
 
         $initial->delete();
-
-
     }
 }

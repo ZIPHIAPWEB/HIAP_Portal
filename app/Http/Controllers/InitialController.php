@@ -14,9 +14,9 @@ use Inertia\Inertia;
 
 class InitialController extends Controller
 {
-    public function showInitialRequirements($programId, Inertia $inertia, Program $program, Initial $initial)
+    public function showInitialRequirements($programId, Program $program, Initial $initial)
     {
-        return $inertia->render('Superadmin/ProgramInitial', [
+        return Inertia::render('Superadmin/ProgramInitial', [
             'program'   => $program->find($programId),
             'initials'  => $initial->where('program_id', $programId)->get()
         ]);
