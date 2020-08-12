@@ -86,9 +86,9 @@
         <div class="container-fluid">
             <div>
                 <h1 class="text-center">global e-learning</h1>
-                <p class="text-center mb-4">Our Global E-Learning program provides courses that are developed based on worldwide hospitality requirements and standards. These courses are also used by top hotel brands such as Marriot International, Hilton, and other top hotels.<br></p>
+                <p class="text-center mb-4">Our Global E-Learning program provides courses that are developed based on worldwide hospitality requirements and standards. These courses are also used by top hotel brands <br> such as  Marriot International, Hilton, and other top hotels.<br></p>
                 <p
-                    class="text-center mb-4">We have the right tool for job-blended learning with innovative instructional design techniques and the latest trends in multimedia production and methodology.<br></p>
+                    class="text-center mb-4">We have the right tool for job-blended learning with innovative instructional design techniques and the latest trends <br> in multimedia production and methodology.<br></p>
             </div>
         </div>
     </section>
@@ -278,8 +278,8 @@
     <section class="courses-offered" style="padding: 80px 0;">
         <div class="container-fluid">
             <div>
-                <h1 class="text-center" style="font-size: 50px;">flexible industry practicum</h1>
-                <p class="text-center mb-4">This program gives everyone the opportunity to develop and gain more knowledged in the following courses:<br></p>
+                <h1 class="text-center" style="color: #961a32;">flexible industry practicum</h1>
+                <p class="text-center mb-4">Training programs that provide job-relevant learning and credentials aligned with global industry requirements and standards. Prepare you to become a well-rounded hospitality professional, <br> fill the skills gap,and spread opportunity widely.</p>
             </div>
             <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col">
