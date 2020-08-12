@@ -129,7 +129,7 @@
             <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/ONLINE%20-%20BPP.jpg&quot;);background-position: center;background-size: cover;">
-                        <div class="item-name"><span>bread and pastry production nc ii</span></div>
+                        <div class="item-name"><span>bread and pastry production <br> nc ii</span></div>
                     </div>
                 </div>
                 <div class="col">
@@ -144,7 +144,7 @@
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;background-image: url(&quot;assets/img/ONLINE%20-%20F&B.jpg&quot;);background-position: center;background-size: cover;">
-                        <div class="item-name"><span>food and beverage services nc ii</span></div>
+                        <div class="item-name"><span>food and beverage services <br> nc ii</span></div>
                     </div>
                 </div>
             </div>

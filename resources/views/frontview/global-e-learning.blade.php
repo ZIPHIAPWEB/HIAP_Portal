@@ -204,72 +204,72 @@
             <div class="row no-gutters row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-F&B.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#food-and-beverage-service-management-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in <br>Food &amp; Beverage Service Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in <br>Food &amp; Beverage Service Management<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-FrontOffice.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#front-office-management-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in<br>Front Office Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in<br>Front Office Management<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Informationtech.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#information-management-training-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in <br>Information Management Training<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in <br>Information Management Training<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Housekeeping.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#houskeeping-management-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in<br>&nbsp;Housekeeping Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in<br>&nbsp;Housekeeping Management<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Bar&Beverage.jpg) center / cover no-repeat;" data-toggle="modal" data-target="#bar-and-beverage-management-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in<br>Bar &amp;&nbsp;Beverage Management</span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in<br>Bar &amp;&nbsp;Beverage Management</span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-HospitalityManagement.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#hospitality-management-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in<br>&nbsp;Hospitality Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in<br>&nbsp;Hospitality Management<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Events.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#events-management-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in<br>Events Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in<br>Events Management<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-HospitalityStandards.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#hospitality-standards-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Professional Certificate in<br>&nbsp;Hospitality Standards<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Professional Certificate in<br>&nbsp;Hospitality Standards<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-CIA.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#culinary-training-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">CIA - Accredited Online <br>Culinary Training<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">CIA - Accredited Online <br>Culinary Training<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-FORBES.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#forbes-travel-luxury-hospitality-training-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Forbes Travel Luxury<br>Hospitality Training<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Forbes Travel Luxury<br>Hospitality Training<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-FoodSafety.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#food-safety-foundation-servsafe-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Food Safety Foundation with<br>&nbsp;ServSafe Certification<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Food Safety Foundation with<br>&nbsp;ServSafe Certification<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Spa.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#spa-management-training-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Spa Management Training <br>by Resence Spa<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Spa Management Training <br>by Resence Spa<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-Covid.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#coronavirus-training-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">CORONAVIRUS Training<br>(Complimentary Course)<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">CORONAVIRUS Training<br>(Complimentary Course)<br></span></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-FoodWaste.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#fighting-food-waste-in-hotels-modal">
-                        <div class="course-name" style="font-family: montserrat;"><span style="font-size: 15px;">Fighting Food Waste in Hotels<br>(Complimentary Course)<br></span></div>
+                        <div class="course-name" style="font-family: montserrat; background: white;"><span style="font-size: 15px;">Fighting Food Waste in Hotels<br>(Complimentary Course)<br></span></div>
                     </div>
                 </div>
             </div>
@@ -664,7 +664,7 @@ theme_color="#031430">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-xl-center">
-                    <h2 class="modal-title">coronavirus training | complimentary course</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <h2 class="modal-title">coronavirus training</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
                     <p class="text-justify">Developed with Ecolab, this training aims to help you to&nbsp;reduce the risk of infection through appropriate cleaning, disinfection, and hygiene procedures.<br></p>
                 </div>
