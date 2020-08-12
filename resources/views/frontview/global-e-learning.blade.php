@@ -510,8 +510,9 @@ theme_color="#031430">
                     <h2 class="modal-title">professional certificate in food &amp; beverage service management</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
                     <p>5 course | 348 lessons | 4 learning path</p>
-                    <p class="text-justify">These are courses that will provide a thorough understanding&nbsp;and a solid foundation in hospitality. A combination of the basic&nbsp;standards and procedures in Food and Beverage Service, Bar,&nbsp;Housekeeping and Front Office
-                        Essentials Subjects, this&nbsp;hospitality starter pack covers the basics, while also focusing on&nbsp;industry standards, skills and knowledge to start your career well in hospitality.<br></p>
+                    <p class="text-justify">
+                    Master every aspect of food and beverage service and become the ultimate service professional. This professional certificate covers the skills, techniques and knowledge every Food and Beverage professional needs to provide seamless service. After completing this courses, you’ll be able to work as a Food and Beverage service professional at any establishment, anywhere in the world
+                    </p>
                 </div>
             </div>
         </div>
@@ -548,7 +549,7 @@ theme_color="#031430">
                 <div class="modal-header justify-content-xl-center">
                     <h2 class="modal-title">professional certificate in housekeeping management</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p>15 courses | 101 lessons | 3 learning&nbsp;paths<br></p>
+                    <p>21 courses| 171 lessons | 5 learning paths</p>
                     <p class="text-justify">This comprehensive training curriculum will&nbsp;train you on every aspect of housekeeping to deliver&nbsp;service of the highest international standards. Equip you&nbsp;with the practical knowledge and skills. In handling guest interaction
                         professionally, excel at line and laundry essentials and being efficient at departmental&nbsp;administrations and train you on health and safety&nbsp;standards including working with chemicals.<br></p>
                 </div>
@@ -561,7 +562,7 @@ theme_color="#031430">
                 <div class="modal-header justify-content-xl-center">
                     <h2 class="modal-title">professional certificate in bar &amp; beverage management</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p>57 Courses |450 lessons | 11 learning paths<br></p>
+                    <p>57 Courses | 450 lessons | 11 learning paths<br></p>
                     <p class="text-justify">A cornerstone of hospitality, bar and beverage service is a valuable source of revenue and an opportunity to set your business apart. The Bar and Beverage professional category takes a detailed look at&nbsp;key beverages within the
                         bar, including coffee, wine,&nbsp;spirits and cocktails. Integral to this category is the focus&nbsp;on practical skills and product knowledge.<br></p>
                 </div>
@@ -600,7 +601,7 @@ theme_color="#031430">
                 <div class="modal-header justify-content-xl-center">
                     <h2 class="modal-title">Professional certificate in hospitality standards</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p>14 courses |418 lessons | 3 learning paths<br></p>
+                    <p>14 courses | 418 lessons | 3 learning paths<br></p>
                     <p class="text-justify">Maintaining service standards is critical to&nbsp;ensure that guests always receive the best care across every&nbsp;department. This comprehensive curriculum, created in&nbsp;partnership with subject matter experts, aligns distributed&nbsp;workforces
                         on hospitality standards and ensures&nbsp;consistency in output and service.<br></p>
                 </div>
@@ -663,7 +664,7 @@ theme_color="#031430">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-xl-center">
-                    <h2 class="modal-title">coronavirus training | complimentary course</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <h2 class="modal-title">corona virus training | complimentary course</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
                     <p class="text-justify">Developed with Ecolab, this training aims to help you to&nbsp;reduce the risk of infection through appropriate cleaning, disinfection, and hygiene procedures.<br></p>
                 </div>
