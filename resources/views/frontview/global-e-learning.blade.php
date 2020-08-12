@@ -163,7 +163,7 @@
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-Housekeeping.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
-                        data-target="#houskeeping-proficient-modal">
+                        data-target="#housekeeping-proficient-modal">
                         <div class="course-name" style="font-family: montserrat;color: white;background: #031430;"><span style="font-size: 15px;">Housekeeping Proficient<br></span></div>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
             </div>
         </div>
     </section>
-    <section class="home-facilities" style="padding: 80px 0;">
+    <section class="courses-offered" style="padding: 80px 0;">
         <div class="container-fluid">
             <div>
                 <h1 class="text-center" style="font-size: 50px;">flexible industry practicum</h1>
@@ -283,21 +283,21 @@
             </div>
             <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col">
-                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;height: 250px;cursor: pointer;background: url(assets/img/CIA-1.jpg) top / cover;" data-toggle="modal"
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end course-item" style="border-radius: 15px;height: 250px;cursor: pointer;background: url(assets/img/CIA-1.jpg) top / cover;" data-toggle="modal"
                         data-target="#cia-apprenticeship-online-culinary-training">
-                        <div class="item-name" style="font-family: Montserrat;font-size: 15px;"><span>CIA Apprenticeship Online<br>Culinary Training<br></span></div>
+                        <div class="course-name" style="font-family: montserrat;color: white;background: #031430;"><span style="font-size: 15px">CIA Apprenticeship Online<br>Culinary Training<br></span></div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;height: 250px;cursor: pointer;background: url(assets/img/travel-tourism.jpg) center / cover no-repeat;"
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end course-item" style="border-radius: 15px;height: 250px;cursor: pointer;background: url(assets/img/travel-tourism.jpg) top / cover no-repeat;"
                         data-toggle="modal" data-target="#flexible-tourism-management-modal">
-                        <div class="item-name" style="font-family: Montserrat;font-size: 15px;"><span>Flexible Industry Practicum for <br>Travel and Tourism Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat;color: white;background: #031430;"><span style="font-size: 15px">Flexible Industry Practicum for <br>Travel and Tourism Management<br></span></div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end facilities-item" style="border-radius: 15px;height: 250px;cursor: pointer;background: url(assets/img/hospitality-management.jpg) center / cover no-repeat;"
+                    <div class="d-flex justify-content-center align-items-end justify-content-xl-center align-items-xl-end course-item" style="border-radius: 15px;height: 250px;cursor: pointer;background: url(assets/img/hospitality-management.jpg) center / cover no-repeat;"
                         data-toggle="modal" data-target="#flexible-hospitality-management-modal">
-                        <div class="item-name" style="font-family: Montserrat;font-size: 15px;"><span>Flexible Industry Practicum for<br>Hospitality Management<br></span></div>
+                        <div class="course-name" style="font-family: montserrat;color: white;background: #031430;"><span style="font-size: 15px">Flexible Industry Practicum for<br>Hospitality Management<br></span></div>
                     </div>
                 </div>
             </div>
@@ -457,16 +457,16 @@ theme_color="#031430">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">barista training</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <h2 class="modal-title">Leadership Foundation</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body" style="font-family: 'Montserrat';font-size: 15px;">
-                    <p class="text-justify">Dive head first into the rich and robust world of caffeine in this&nbsp;comprehensive Learning Path. Whether you’re starting out,&nbsp;wanting to improve your barista skills, or are ready to take&nbsp;command of your very own coffee
-                        station, our Coffee&nbsp;Professional Learning Path covers everything you need to know&nbsp;to succeed. Master coffee equipment and recipes, learn about&nbsp;the world’s finest coffee bean producing regions, and how to&nbsp;serve
-                        your brews like a pro.<br></p>
+                    <p class="text-justify">
+                    To lead is not always easy. But with the right foundational knowledge, anyone can lay the groundwork to become an exceptional leader. The Leadership Foundations Learning Path explores the fundamentals of leading people, how to manage service touchpoints, brand standards, time and resources, as well as ways to getting the most out of your team.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="barista-training-modal">
+    <div class="modal fade" role="dialog" tabindex="-1" id="wine-essentials-modal">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -478,7 +478,7 @@ theme_color="#031430">
             </div>
         </div>
     </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="wine-essentials-modal">
+    <div class="modal fade" role="dialog" tabindex="-1" id="barista-training-modal">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
