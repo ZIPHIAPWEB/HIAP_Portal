@@ -69,7 +69,7 @@
                             </ul>
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/e-learning" style="border-radius: 10px;background: #031430;color: white !important;">E-learning</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">Login</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link px-4" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">{{ Auth::check() ? 'Go To Profile' : 'Login' }}</a></li>
                         </ul>
                 </div>
         </div>
