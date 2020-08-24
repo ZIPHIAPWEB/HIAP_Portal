@@ -3301,6 +3301,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -11190,6 +11191,8 @@ var render = function() {
           "div",
           { staticClass: "col-md-9" },
           [
+            _c("personal-profile-component"),
+            _vm._v(" "),
             _c("client-initial-requirements", {
               attrs: { programId: _vm.programId }
             })

@@ -10,6 +10,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
+                    <personal-profile-component></personal-profile-component>
                     <client-initial-requirements :programId="programId"></client-initial-requirements>
                 </div>
             </div>
