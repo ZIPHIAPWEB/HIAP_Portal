@@ -15,6 +15,7 @@ class CreateUserProgramsTable extends Migration
     {
         Schema::create('user_programs', function (Blueprint $table) {
             $table->id();
+            $table->string('application_status');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('program_id')->unsigned();
             $table->timestamps();

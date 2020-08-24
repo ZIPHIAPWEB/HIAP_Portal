@@ -5931,13 +5931,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -15656,40 +15649,6 @@ var render = function() {
                           _vm.$set(
                             _vm.profile.user,
                             "email",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Program")]),
-              _vm._v(" "),
-              _c("td", { staticClass: "text-left" }, [
-                !_vm.isEdit
-                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.program.name))])
-                  : _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.profile.program.name,
-                          expression: "profile.program.name"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm w-100",
-                      attrs: { type: "text", disabled: "" },
-                      domProps: { value: _vm.profile.program.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.profile.program,
-                            "name",
                             $event.target.value
                           )
                         }

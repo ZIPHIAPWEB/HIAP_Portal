@@ -58,13 +58,6 @@
                             <input v-model="profile.user.email" v-else type="text" class="form-control form-control-sm w-100" disabled>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Program</td>
-                        <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.program.name }}</strong>
-                            <input v-else v-model="profile.program.name" type="text" class="form-control form-control-sm w-100" disabled>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>

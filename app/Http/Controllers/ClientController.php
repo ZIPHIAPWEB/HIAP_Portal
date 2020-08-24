@@ -79,7 +79,6 @@ class ClientController extends Controller
     {
         return Client::where('user_id', $request->user()->id)
             ->with('user')
-            ->with('program')
             ->first();
     }
 
@@ -127,6 +126,6 @@ class ClientController extends Controller
             'action'    =>  'Update personal details.'
         ]);
 
-        return $client->with('user')->with('program')->first();
+        return $client->with('user')->first();
     }
 }
