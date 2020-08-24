@@ -48,6 +48,7 @@ Route::prefix('client')->group(function () {
     Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified', 'auth']);
 
     Route::get('/dashboard', 'ClientController@showDashboard')->name('cl.dashboard')->middleware(['verified', 'auth']);
+    Route::get('/{programId}/requirements', 'ClientController@showClientRequirements');
 });
 
 
@@ -70,13 +71,16 @@ Route::prefix('sa')->group(function () {
     Route::get('/teachers', 'TeacherController@showTeacherEntry')->name('sa.teachers');
 
     Route::get('/{programId}/lessons', 'LessonController@showLessonEntry')->name('sa.program.lessons');
+
+    Route::get('/client/{userId}/program/{programId}', 'SuperadminController@showSelectedProgram')->name('sa.selected.program');
 });
 
 Route::prefix('md')->group(function () {
     Route::get('/dashboard', 'ModeratorController@showDashboard')->name('md.dashboard')->middleware('auth');
 
     Route::get('/clients', 'ModeratorController@showClients')->name('md.clients')->middleware('auth');
-    Route::get('/client/{id}', 'ModeratorController@showSelectedClient')->name('md.selected.client')->middleware('auth');
+    Route::get('/client/{userId}', 'ModeratorController@showSelectedClient')->name('md.selected.client')->middleware('auth');
+    Route::get('/client/{userId}/program/{programId}', 'ModeratorController@showSelectedProgram')->name('md.selected.program');
 });
 
 
@@ -85,6 +89,7 @@ Route::prefix('teacher')->group(function () {
     Route::get('/students', 'TeacherController@showStudents')->name('teacher.students');
     Route::get('/{programId}/gradebook', 'TeacherController@showGradebook')->name('teacher.gradebook');
     Route::get('/stud-profile/{userId}', 'TeacherController@showStudentProfile')->name('teacher.stud-profile');
+    Route::get('/student/{userId}/gradebook/{programId}', 'TeacherController@showStudentGradebook');
 });
 
 Route::get('/getAllPrograms', 'ProgramController@getAllPrograms');
@@ -93,14 +98,14 @@ Route::patch('/updateProgramDetails/{id}', 'ProgramController@updateProgramDetai
 Route::delete('/deleteProgramDetails/{id}', 'ProgramController@deleteProgramDetails');
 
 Route::get('/getAllInitialRequirements/{programId}', 'InitialController@getAllInitialRequirements');
-Route::get('/getInitialRequirementsForClient', 'InitialController@getInitialRequirementsForClient');
+Route::get('/getInitialRequirementsForClient/{programId}', 'InitialController@getInitialRequirementsForClient');
 Route::post('/storeInitialRequirement/{programId}', 'InitialController@storeInitialRequirement');
 Route::put('/updateInitialRequirement', 'InitialController@updateInitialRequirement');
 Route::delete('/deleteInitialRequirement/{id}', 'InitialController@deleteInitialRequirement');
 
 Route::get('/getLoggedClientDetails', 'ClientController@getLoggedClientDetails');
 Route::get('/getAllClientDetails', 'ClientController@getAllClients');
-Route::post('/setApplicationStatus/{id}', 'ClientController@setApplicationStatus');
+Route::post('/setApplicationStatus/{id}', 'UserProgramController@setApplicationStatus');
 Route::delete('/deleteClientDetails/{userId}', 'ClientController@deleteClientDetails');
 Route::post('/updateClientDetails', 'ClientController@updateClientDetails');
 
@@ -113,7 +118,7 @@ Route::put('/updateTeacher', 'TeacherController@updateTeacher');
 Route::delete('/deleteTeacher/{userId}', 'TeacherController@deleteTeacher');
 
 Route::post('/storeGrade', 'GradeController@storeGrade');
-Route::get('/getClientGrades', 'GradeController@getClientGrades');
+Route::get('/getClientGrades/{programId}', 'GradeController@getClientGrades');
 Route::delete('/deleteGrade/{gradeId}', 'GradeController@deleteGrade');
 
 Route::get('/moderators/all', 'ModeratorController@getAllModerators');
@@ -126,6 +131,12 @@ Route::post('/storeLesson', 'LessonController@storeLesson');
 Route::put('/updateLesson/{lessonId}', 'LessonController@updateLesson');
 Route::delete('/deleteLesson/{lesson}', 'LessonController@deleteLesson');
 Route::delete('/logs/delete/{id}', 'LogController@deleteLog');
+
+
+Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
+Route::post('/addNewProgram', 'UserProgramController@addNewProgram');
+
+
 
 Route::get('/test', function () {
     return App\Client::where('program_id', 7)->with('lesson')->get()

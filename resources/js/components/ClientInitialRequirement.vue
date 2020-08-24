@@ -76,6 +76,7 @@
 <script>
     import UploadInitialRequirement from '../components/UploadInitialRequirement.vue';
     export default {
+        props: ['programId'],
         components: {
             UploadInitialRequirement
         },
@@ -94,7 +95,7 @@
         methods: {
             getClientRequirements () {
                 this.loading = true;
-                axios.get('/getInitialRequirementsForClient')
+                axios.get(`/getInitialRequirementsForClient/${this.programId}`)
                     .then(({data}) => {
                         this.requirements = data;
                         this.loading = false;
@@ -106,7 +107,7 @@
             },
             getClientGrades() {
                 this.loading = true;
-                axios.get('/getClientGrades')
+                axios.get(`/getClientGrades/${this.programId}`)
                     .then(({data}) => {
                         this.grades = data;
                         this.loading = false;

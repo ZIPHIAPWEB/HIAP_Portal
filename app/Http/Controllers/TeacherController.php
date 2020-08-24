@@ -8,6 +8,7 @@ use App\Lesson;
 use App\Program;
 use App\Teacher;
 use App\User;
+use App\UserProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
@@ -49,23 +50,23 @@ class TeacherController extends Controller
             'program'   =>  Program::where('id', $programId)->first(),
             'exp'  => [
                 'fields' => $export->reverse(),
-                'data'   => Client::where('program_id', $programId)->with('lesson')->get()
+                'data'   => UserProgram::where('program_id', $programId)->with('client')->get()
                     ->map(function($query) {
                         return [
-                            'full_name' =>  $query->first_name . ' ' . $query->last_name,
-                            'lessons'   =>  $query->lesson->flatMap(function($lesson) use ($query) {
+                            'full_name' =>  $query->client->first_name . ' ' . $query->client->last_name,
+                            'lessons'   =>  $query->client->lesson->flatMap(function($lesson) use ($query) {
                                 return [$lesson->title => $lesson->grade ? $lesson->grade->where('user_id', $query->user_id)->where('lesson_id', $lesson->id)->first() : null];
                             })
                         ];
                     })
             ],
             'lessons'   =>  Lesson::where('program_id', $programId)->get()->chunk(10)->sortBy('id'),
-            'students'  =>  Client::where('program_id', $programId)->with('lesson')->get()
+            'students'  =>  UserProgram::where('program_id', $programId)->with('client')->get()
                 ->map(function($query) {
                     return [
                         'user_id'   =>  $query->user_id,
-                        'full_name' =>  $query->first_name . ' ' . $query->last_name,
-                        'lessons'    =>  $query->lesson->map(function($lesson) use ($query) {
+                        'full_name' =>  $query->client->first_name . ' ' . $query->client->last_name,
+                        'lessons'   =>  $query->client->lesson->map(function($lesson) use ($query) {
                             return [
                                 'lesson'    =>  $lesson->title,
                                 'grade'     =>  $lesson->grade ? $lesson->grade->where('user_id', $query->user_id)->where('lesson_id', $lesson->id)->first() : null
@@ -74,6 +75,20 @@ class TeacherController extends Controller
                         ->chunk(10)
                     ];
                 })
+            // 'students'  =>  Client::where('program_id', $programId)->with('lesson')->get()
+            //     ->map(function($query) {
+            //         return [
+            //             'user_id'   =>  $query->user_id,
+            //             'full_name' =>  $query->first_name . ' ' . $query->last_name,
+            //             'lessons'    =>  $query->lesson->map(function($lesson) use ($query) {
+            //                 return [
+            //                     'lesson'    =>  $lesson->title,
+            //                     'grade'     =>  $lesson->grade ? $lesson->grade->where('user_id', $query->user_id)->where('lesson_id', $lesson->id)->first() : null
+            //                 ];
+            //             })
+            //             ->chunk(10)
+            //         ];
+            //     })
         ]);
     }
 
@@ -81,23 +96,31 @@ class TeacherController extends Controller
     {
         return Inertia::render('Teacher/Students', [
             'programs'  =>  Program::orderBy('id', 'asc')->with('clients')->get(),
-            'students'  =>  Client::orderBy('created_at', 'desc')->with('user')->with('program')->paginate(12)
+            'students'  =>  Client::orderBy('created_at', 'desc')->with('user')->paginate(12)
         ]);
     }
 
     public function showStudentProfile($userId)
     {
-        $student = Client::where('user_id', $userId)->with('user')->with('program')->first();
+        $student = Client::where('user_id', $userId)->with('user')->first();
         return Inertia::render('Teacher/StudentSingle', [
             'student'    =>  $student,
-            'grades'     =>  Lesson::where('program_id', $student->program_id)
+            'courses'    =>  UserProgram::where('user_id', $userId)->with('program')->get(),
+            
+        ]);
+    }
+
+    public function showStudentGradebook($userId, $programId)
+    {
+        return Inertia::render('Teacher/StudentGradebook', [
+            'grades'     =>  Lesson::where('program_id', $programId)
                 ->with(['grade' => function ($query) use ($userId) {
                     $query->where('user_id', $userId);
                 }])
                 ->paginate(10)
         ]);
     }
-
+    
     public function showTeacherEntry()
     {
         return Inertia::render('Superadmin/TeachersEntry', [

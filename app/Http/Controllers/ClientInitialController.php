@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\File;
 
 class ClientInitialController extends Controller
 {
-    public function getClientInitialRequirements (Request $request)
+    public function getClientInitialRequirements (Request $request, $programId)
     {
         return ClientInitial::where('user_id', $request->user()->id)
-            ->with('initial')
+            ->with('initial', function ($query) use ($programId){
+                $query->where('program_id',$programId);
+            })
             ->get();
     }
 

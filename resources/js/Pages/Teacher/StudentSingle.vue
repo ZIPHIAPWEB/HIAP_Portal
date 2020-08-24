@@ -41,82 +41,31 @@
                                         <td class="text-bold" style="width: 25%;">E-mail Address</td>
                                         <td class="text-center">{{ student.user.email }}</td>
                                     </tr>
-                                    <tr class="text-sm">
-                                        <td class="text-bold">Program</td>
-                                        <td class="text-center">{{ student.program.name }}</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                     <div class="card">
-                        <div class="overlay" v-if="isLoading">
-                            <i class="fas fa-spinner fa-2x fa-pulse"></i>
-                        </div>
                         <div class="card-header">
-                            <div class="card-tools">
-                                <input v-model="searchGrade" type="text" placeholder="Search" class="form-control form-control-sm">
-                            </div>
+                            <h5>Enrolled Programs</h5>
                         </div>
                         <div class="card-body p-0">
-                            <table class="table table-striped table-hover table-sm">
+                            <table class="table table-striped table-bordered table-hover table-sm">
                                 <thead>
-                                    <tr class="text-center text-sm">
-                                        <th class="text-left">Quizzes</th>
-                                        <th>Grade</th>
-                                        <th>Actions</th>
+                                    <tr>
+                                        <th>Programs</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr v-if="create">
-                                        <td>
-                                            <input v-model="form.title" type="text" class="text-center form-control form-control-sm" placeholder="Quiz Title">
-                                        </td>
-                                        <td>
-                                            <input v-model="form.grade" type="text" class="text-center form-control form-control-sm" placeholder="Grade ">
-                                        </td>
-                                        <td class="text-center d-block justify-content-center">
-                                            <button @click="submitGrade()" class="btn btn-primary btn-xs">Submit</button>
-                                            <button @click="create = false;" class="btn btn-danger btn-xs">Cancel</button>
-                                        </td>
-                                    </tr>
-                                    <tr v-else>
-                                        <td colspan="3" class="text-center">
-                                            <button @click="create = true;" class="btn btn-xs btn-block">Add New</button>
-                                        </td>
-                                    </tr> -->
-                                    <tr class="text-center text-sm" v-for="i in filteredGrades" :key="i.id">
-                                        <td class="text-left">{{ i.title }}</td>
-                                        <td>
-                                            <input v-model="form.grade" type="text" class="text-center form-control form-control-sm" v-if="isEdit == i.id">
-                                            <span v-else>
-                                                {{ (i.grade) ? i.grade.grade : 'Not Yet Assigned' }}
-                                            </span>
-                                        </td>
-                                        <td v-if="isEdit !== i.id">
-                                            <button v-if="!i.grade" @click="isEdit = i.id;" class="btn btn-success btn-xs">
-                                                <i class="fas fa-pencil-alt text-xs"></i>
-                                            </button>
-                                            <button @click="deleteGrade(i.grade.id)" v-else class="btn btn-danger btn-xs">
-                                                <i class="fas fa-times text-sm"></i>
-                                            </button>
-                                        </td>
-                                        <td v-else>
-                                            <button @click="submitGrade(i)" class="btn btn-info btn-xs">
-                                                <i class="fas fa-check text-xs"></i>
-                                            </button>
-                                            <button @click="isEdit = false;" class="btn btn-danger btn-xs">
-                                                <i class="fas fa-times text-sm"></i>
-                                            </button>
+                                    <tr v-for="c in courses" :key="c.id">
+                                        <td>{{ c.program.name }}</td>
+                                        <td class="text-center">
+                                            <inertia-link :href="`/teacher/student/${c.user_id}/gradebook/${c.program_id}`" class="btn btn-xs btn-primary">View Gradebook</inertia-link>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="card-footer p-2">
-                            <button @click="prevPage" :disabled="!grades.prev_page_url" class="btn btn-primary btn-xs">Prev</button>
-                            <button @click="nextPage" :disabled="!grades.next_page_url" class="btn btn-primary btn-xs">Next</button>
                         </div>
                     </div>
                 </div>
@@ -128,61 +77,9 @@
 <script>
     import TeacherLayout from '../../Layouts/TeacherLayout.vue';
     export default {
-        props: ['student', 'grades'],
+        props: ['student', 'grades', 'courses'],
         components: {
             TeacherLayout
-        },
-        data () {
-            return {
-                form: {
-                    grade: ''
-                },
-                isEdit: false,
-                isLoading: false,
-                searchGrade: ''
-            }
-        },
-        computed: {
-            filteredGrades () {
-                return this.grades.data.filter(e => e.title.toLowerCase().includes(this.searchGrade.toLowerCase()));
-            }
-        },
-        methods: {
-            prevPage() {
-                this.$inertia.visit(this.grades.prev_page_url, {preserveState: true});
-            },
-            nextPage() {
-                this.$inertia.visit(this.grades.next_page_url, {preserveState: true});
-            },
-            submitGrade(i) {
-                console.log(i);
-                let formData = new FormData();
-                formData.append('user_id', this.student.user_id);
-                formData.append('program_id', i.program_id);
-                formData.append('lesson_id', i.id)
-                formData.append('grade', this.form.grade);
-
-                this.isLoading = true;
-
-                this.$inertia.post('/storeGrade', formData)
-                    .then((response) => {
-                        this.isLoading = false;
-                        this.form.grade = '';
-                        this.isEdit = false;               
-                    })
-
-                
-            },
-            deleteGrade(gradeId) {
-                var r = confirm('Delete this grade?');
-                if (r) {
-                    this.isLoading = true;
-                    this.$inertia.delete(`/deleteGrade/${gradeId}`, { preserveState: true })
-                        .then((response) => {
-                            this.isLoading = false;
-                        })
-                }
-            }
         }
     }
 </script>
@@ -199,4 +96,4 @@
             border-width: 3px;
         }
     }
-</style>w
+</style>

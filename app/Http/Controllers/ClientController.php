@@ -7,7 +7,9 @@ use App\ClientInitial;
 use App\Grade;
 use App\Log;
 use App\Mail\NewApplicantNotification;
+use App\Program;
 use App\User;
+use App\UserProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
@@ -19,9 +21,18 @@ class ClientController extends Controller
         return Inertia::render('Client/ApplicationForm');
     }
 
-    public function showDashboard()
+    public function showDashboard(Request $request)
     {
-        return Inertia::render('Client/Dashboard');
+        return Inertia::render('Client/Dashboard', [
+            'userPrograms'  =>  UserProgram::where('user_id', $request->user()->id)->with('program')->get()
+        ]);
+    }
+
+    public function showClientRequirements($programId)
+    {
+        return Inertia::render('Client/UserRequirements', [
+            'programId' =>  $programId
+        ]);
     }
 
     public function sendApplication(Request $request)
@@ -45,11 +56,21 @@ class ClientController extends Controller
             'last_name'             =>  $request->input('last_name'),
             'address'               =>  $request->input('address'),
             'contact_no'            =>  $request->input('contact_number'),
-            'program_id'            =>  $request->input('program'),
+        ]);
+
+        $userProgram = UserProgram::create([
+            'user_id'               =>  $request->user()->id,
+            'program_id'            =>  $request->program,
             'application_status'    =>  'New Applicant'
         ]);
 
-        Mail::to('staff@hospitalityinstituteofamerica.com.ph')->send(new NewApplicantNotification($client));
+        Mail::to('staff@hospitalityinstituteofamerica.com.ph')->send(new NewApplicantNotification([
+            'first_name'    =>  $client->first_name,
+            'middle_name'   =>  $client->middle_name,
+            'last_name'     =>  $client->last_name,
+            'contact_no'    =>  $client->contact_no,
+            'program'       =>  Program::where('id', $userProgram->program_id)->first()->name
+        ]));
 
         return redirect()->route('cl.dashboard');
     }

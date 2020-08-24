@@ -23,11 +23,11 @@ class GradeController extends Controller
         return redirect()->back();
     }
 
-    public function getClientGrades(Lesson $lesson, Client $client)
+    public function getClientGrades(Lesson $lesson, Client $client, $programId)
     {
         $user = $client->where('user_id', Auth::user()->id)->first();
 
-        return $lesson->where('program_id', $user->program_id)->with(['grade' => function ($query) use ($user) {
+        return $lesson->where('program_id', $programId)->with(['grade' => function ($query) use ($user) {
             $query->where('user_id', $user->user_id);
         }])->get();
     }

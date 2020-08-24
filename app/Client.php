@@ -12,9 +12,7 @@ class Client extends Model
         'last_name',
         'address',
         'contact_no',
-        'program_id',
         'user_id',
-        'application_status'
     ];
 
     public function user()
@@ -22,16 +20,16 @@ class Client extends Model
         return $this->hasOne('App\User', 'id', 'user_id');
     }
 
-    public function program()
-    {
-        return $this->hasOne('App\Program', 'id', 'program_id');
-    }
-
     public function grade()
     {
         return $this->hasMany('App\Grade', 'user_id', 'user_id');
     }
 
+    public function userProgram()
+    {
+        return $this->hasMany('App\UserProgram', 'user_id', 'user_id');
+    }
+    
     public function lesson()
     {
         return $this->hasMany('App\Lesson', 'program_id', 'program_id');

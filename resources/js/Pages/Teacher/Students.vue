@@ -23,7 +23,6 @@
                                         <th>Address</th>
                                         <th>Contact No.</th>
                                         <th>Email Address</th>
-                                        <th>Program</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -35,7 +34,6 @@
                                         <td>{{ student.address }}</td>
                                         <td>{{ student.contact_no }}</td>
                                         <td>{{ student.user.email }}</td>
-                                        <td>{{ student.program.name }}</td>
                                         <td>
                                             <inertia-link :href="`/teacher/stud-profile/${student.user_id}`" class="btn btn-success btn-xs">More Details</inertia-link>
                                         </td>

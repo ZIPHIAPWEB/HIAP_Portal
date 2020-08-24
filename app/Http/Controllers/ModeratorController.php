@@ -9,6 +9,7 @@ use App\Initial;
 use App\Moderator;
 use App\Program;
 use App\User;
+use App\UserProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -18,8 +19,8 @@ class ModeratorController extends Controller
     public function showDashboard()
     {
         return Inertia::render('Moderator/Dashboard', [
-            'programs'  =>  Program::orderBy('name', 'asc')->get(),
-            'clients'   =>  Client::orderBy('created_at', 'desc')->get()
+            'programs'      =>  Program::orderBy('name', 'asc')->get(),
+            'clients'       =>  UserProgram::orderBy('id', 'asc')->with('program')->get()
         ]);
     }
 
@@ -112,25 +113,36 @@ class ModeratorController extends Controller
     public function showClients()
     {
         return Inertia::render('Moderator/Clients', [
-            'clients'   =>  Client::orderBy('created_at', 'desc')->with('program')->get()
+            'clients'   =>  Client::orderBy('created_at', 'desc')->with('userProgram')->get()
         ]);
     }
 
     public function showSelectedClient($id)
     {
-        $client = Client::where('user_id', $id)->with('program')->with('user')->first();
+        $client = Client::where('user_id', $id)->with('user')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
             'client'    =>  $client,
-            'initials'   =>  Initial::where('program_id', $client->program_id)
+            'userPrograms' =>  UserProgram::where('user_id', $client->user_id)->with('program')->get()
+        ]);
+    }
+
+    public function showSelectedProgram($id, $programId)
+    {
+        return Inertia::render('Moderator/Client/SelectedProgram', [
+            'userProgram'=>  UserProgram::where('user_id', $id)
+                ->where('program_id', $programId)
+                ->first()
+            ,
+            'initials'   =>  Initial::where('program_id', $programId)
                 ->with('clientInitial')
                 ->get()
                 ->map(function ($initials) use ($id) {
                     return [
-                        'id'    =>  $initials->id,
-                        'name'  =>  $initials->name,
+                        'id'                =>  $initials->id,
+                        'name'              =>  $initials->name,
                         'client_initial'    =>  $initials->clientInitial->where('initial_id', $initials->id)->where('user_id', $id)->first()
                     ];
-                })
+            }),
         ]);
     }
 }

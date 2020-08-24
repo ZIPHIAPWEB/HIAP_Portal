@@ -73,9 +73,9 @@ class InitialController extends Controller
         return Initial::where('program_id', $programId)->get();
     }
 
-    public function getInitialRequirementsForClient(Request $request)
+    public function getInitialRequirementsForClient(Request $request, $programId)
     {
-        return Initial::where('program_id', Client::where('user_id', $request->user()->id)->first()->program_id)
+        return Initial::where('program_id', $programId)
             ->with('clientInitial')
             ->get()
             ->map(function ($initials) use ($request) {
