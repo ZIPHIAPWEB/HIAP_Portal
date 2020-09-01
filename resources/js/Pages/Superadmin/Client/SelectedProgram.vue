@@ -14,9 +14,9 @@
                                         <td>Application Status</td>
                                         <td class="text-center">
                                             <select v-model="userProgram.application_status" @change="setApplicationStatus" class="form-control form-control-sm">
-                                                <option value="New Applicant">New Applicant</option>
-                                                <option value="Requirement Submitted">Requirement Submitted</option>
-                                                <option value="Application Processing">Application Processing</option>
+                                                <option value="Newly Registered">Newly Registered</option>
+                                                <option value="Confirmed Learner">Confirmed Learner</option>
+                                                <option value="On-going Learner">On-going Learner</option>
                                                 <option value="Program Completed">Program Completed</option>
                                             </select>
                                         </td>

@@ -3,7 +3,7 @@
     <superadmin-layout>
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="m-0 card-title flex-grow-1">Clients</h5>
+                <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
                 <div>
                     <input type="text" class="form-control form-control-sm mx-auto" v-model="filterName" placeholder="Search by last name">
                 </div>

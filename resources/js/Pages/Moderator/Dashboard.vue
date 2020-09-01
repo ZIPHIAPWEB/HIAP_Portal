@@ -13,19 +13,19 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="">New Applicant: {{ newApplicant }}/{{ allClients }}</label>
+                            <label for="">Newly Registered: {{ newApplicant }}/{{ allClients }}</label>
                             <div class="progress mb-1">
                                 <div class="progress-bar bg-primary" :style="{ width: newApplicant / allClients * 100 + '%' }"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Requirement Submitted: {{ requirementSubmitted }}/{{ allClients }}</label>
+                            <label for="">Confirmed Learner: {{ requirementSubmitted }}/{{ allClients }}</label>
                             <div class="progress mb-1">
                                 <div class="progress-bar bg-success" :style="{ width: requirementSubmitted / allClients * 100 + '%' }"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Application Processing: {{ applicationProcessing }}/{{ allClients }}</label>
+                            <label for="">On-going Learner: {{ applicationProcessing }}/{{ allClients }}</label>
                             <div class="progress mb-1">
                                 <div class="progress-bar bg-warning" :style="{ width: applicationProcessing / allClients * 100 + '%' }"></div>
                             </div>
@@ -67,7 +67,7 @@
                         return e.program_id == this.filterByProgram;
                     }
                 }).filter(e => {
-                    return e.application_status == 'New Applicant';
+                    return e.application_status == 'Newly Registered';
                 }).length;
             },
             requirementSubmitted () {
@@ -78,7 +78,7 @@
                         return e.program_id == this.filterByProgram;
                     }
                 }).filter(e => {
-                    return e.application_status == 'Requirement Submitted';
+                    return e.application_status == 'Confirmed Learner';
                 }).length;
             },
             applicationProcessing () {
@@ -89,7 +89,7 @@
                         return e.program_id == this.filterByProgram;
                     }
                 }).filter(e => {
-                    return e.application_status == 'Application Processing';
+                    return e.application_status == 'On-going Learner';
                 }).length;
             },
             programCompleted () {

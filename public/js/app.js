@@ -3683,7 +3683,7 @@ __webpack_require__.r(__webpack_exports__);
           return e.program_id == _this.filterByProgram;
         }
       }).filter(function (e) {
-        return e.application_status == 'New Applicant';
+        return e.application_status == 'Newly Registered';
       }).length;
     },
     requirementSubmitted: function requirementSubmitted() {
@@ -3696,7 +3696,7 @@ __webpack_require__.r(__webpack_exports__);
           return e.program_id == _this2.filterByProgram;
         }
       }).filter(function (e) {
-        return e.application_status == 'Requirement Submitted';
+        return e.application_status == 'Confirmed Learner';
       }).length;
     },
     applicationProcessing: function applicationProcessing() {
@@ -3709,7 +3709,7 @@ __webpack_require__.r(__webpack_exports__);
           return e.program_id == _this3.filterByProgram;
         }
       }).filter(function (e) {
-        return e.application_status == 'Application Processing';
+        return e.application_status == 'On-going Learner';
       }).length;
     },
     programCompleted: function programCompleted() {
@@ -11467,20 +11467,22 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { value: "New Applicant" } }, [
-                            _vm._v("New Applicant")
-                          ]),
-                          _vm._v(" "),
                           _c(
                             "option",
-                            { attrs: { value: "Requirement Submitted" } },
-                            [_vm._v("Requirement Submitted")]
+                            { attrs: { value: "Newly Registered" } },
+                            [_vm._v("Newly Registered")]
                           ),
                           _vm._v(" "),
                           _c(
                             "option",
-                            { attrs: { value: "Application Processing" } },
-                            [_vm._v("Application Processing")]
+                            { attrs: { value: "Confirmed Learner" } },
+                            [_vm._v("Confirmed Learner")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "On-going Learner" } },
+                            [_vm._v("On-going Learner")]
                           ),
                           _vm._v(" "),
                           _c(
@@ -11598,7 +11600,7 @@ var render = function() {
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
         _c("h5", { staticClass: "m-0 card-title flex-grow-1" }, [
-          _vm._v("Clients")
+          _vm._v("Enrollees")
         ]),
         _vm._v(" "),
         _c("div", [
@@ -11790,7 +11792,7 @@ var render = function() {
             _c("div", { staticClass: "col-md-6" }, [
               _c("label", { attrs: { for: "" } }, [
                 _vm._v(
-                  "New Applicant: " +
+                  "Newly Registered: " +
                     _vm._s(_vm.newApplicant) +
                     "/" +
                     _vm._s(_vm.allClients)
@@ -11810,7 +11812,7 @@ var render = function() {
             _c("div", { staticClass: "col-md-6" }, [
               _c("label", { attrs: { for: "" } }, [
                 _vm._v(
-                  "Requirement Submitted: " +
+                  "Confirmed Learner: " +
                     _vm._s(_vm.requirementSubmitted) +
                     "/" +
                     _vm._s(_vm.allClients)
@@ -11831,7 +11833,7 @@ var render = function() {
             _c("div", { staticClass: "col-md-6" }, [
               _c("label", { attrs: { for: "" } }, [
                 _vm._v(
-                  "Application Processing: " +
+                  "On-going Learner: " +
                     _vm._s(_vm.applicationProcessing) +
                     "/" +
                     _vm._s(_vm.allClients)
@@ -12138,20 +12140,22 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { value: "New Applicant" } }, [
-                            _vm._v("New Applicant")
-                          ]),
-                          _vm._v(" "),
                           _c(
                             "option",
-                            { attrs: { value: "Requirement Submitted" } },
-                            [_vm._v("Requirement Submitted")]
+                            { attrs: { value: "Newly Registered" } },
+                            [_vm._v("Newly Registered")]
                           ),
                           _vm._v(" "),
                           _c(
                             "option",
-                            { attrs: { value: "Application Processing" } },
-                            [_vm._v("Application Processing")]
+                            { attrs: { value: "Confirmed Learner" } },
+                            [_vm._v("Confirmed Learner")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "On-going Learner" } },
+                            [_vm._v("On-going Learner")]
                           ),
                           _vm._v(" "),
                           _c(
@@ -12269,7 +12273,7 @@ var render = function() {
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
         _c("h5", { staticClass: "m-0 card-title flex-grow-1" }, [
-          _vm._v("Clients")
+          _vm._v("Enrollees")
         ]),
         _vm._v(" "),
         _c("div", [
