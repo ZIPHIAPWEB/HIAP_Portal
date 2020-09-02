@@ -60,7 +60,7 @@
                 <inertia-link href="/md/clients" class="nav-link">
                     <i class="nav-icon fas fa-user-friends"></i>
                     <p>
-                        Clients
+                        List of Enrollees
                     </p>
                 </inertia-link>
           </li>

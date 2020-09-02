@@ -3506,6 +3506,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/setApplicationStatus/".concat(this.userProgram.user_id), {
         application_status: e.target.value,
         program_id: this.userProgram.program_id
+      }).then(function (response) {
+        toastr.info('Application Status Changed!');
       });
     }
   }
@@ -3523,8 +3525,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/ModeratorLayout.vue */ "./resources/js/Layouts/ModeratorLayout.vue");
-//
-//
 //
 //
 //
@@ -3920,6 +3920,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/setApplicationStatus/".concat(this.userProgram.user_id), {
         application_status: e.target.value,
         program_id: this.userProgram.program_id
+      }).then(function (response) {
+        toastr.info('Application Status Changed!');
       });
     }
   }
@@ -9143,7 +9145,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
-                            "\n                        Clients\n                    "
+                            "\n                        List of Enrollees\n                    "
                           )
                         ])
                       ]
@@ -11632,9 +11634,7 @@ var render = function() {
         _c("table", { staticClass: "table table-hover table-sm" }, [
           _c("thead", [
             _c("tr", { staticClass: "text-xs text-center" }, [
-              _c("th", { staticClass: "text-left" }, [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("First Name")]),
+              _c("th", { staticClass: "text-left" }, [_vm._v("First Name")]),
               _vm._v(" "),
               _c("th", [_vm._v("Middle Name")]),
               _vm._v(" "),
@@ -11642,7 +11642,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("Contact Number")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Enrolled Program(s)")]),
+              _c("th", [_vm._v("E-mail Address")]),
               _vm._v(" "),
               _c("th", [_vm._v("Actions")])
             ])
@@ -11657,10 +11657,8 @@ var render = function() {
                     { key: client.id, staticClass: "text-xs text-center" },
                     [
                       _c("td", { staticClass: "text-left" }, [
-                        _vm._v(_vm._s(client.id))
+                        _vm._v(_vm._s(client.first_name))
                       ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.first_name))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.middle_name))]),
                       _vm._v(" "),
@@ -11668,7 +11666,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.contact_no))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.user_program.length))]),
+                      _c("td", [_vm._v(_vm._s(client.user.email))]),
                       _vm._v(" "),
                       _c("td", [
                         _c(
@@ -12175,7 +12173,7 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("h5", { staticClass: "card-title" }, [
-                _vm._v("Initial Requirement")
+                _vm._v("Initial Requirements")
               ])
             ]),
             _vm._v(" "),

@@ -89,7 +89,7 @@
                 <ul class="list-unstyled text-center text-lg-left text-xl-left contact-list">
                     <li><i class="fa fa-clock-o"></i><span>Monday to Friday | 8:00 AM - 5:00 PM</span></li>
                     <li><i class="fa fa-map-o"></i><span>2/F University Center Bldg., 1985 C.M. Recto Avenue Zone 041 Brgy. 395 Sampaloc Manila</span></li>
-                    <li><i class="fa fa-phone"></i><span>(02) 88064355 | 09178988213 | 09084698962</span></li>
+                    <li><i class="fa fa-phone"></i><span>(02) 88064355 | 09175228213 | 09228768213 | 09178988213 | 09084698962</span></li>
                     <li><i class="fa fa-envelope-o"></i><span>info@hospitalityinstituteofamerica.com.ph</span></li>
                     <li><i class="fa fa-facebook-official"></i><span>Hospitality Insitute of America - Philippines Inc.</span></li>
                 </ul>
@@ -141,7 +141,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

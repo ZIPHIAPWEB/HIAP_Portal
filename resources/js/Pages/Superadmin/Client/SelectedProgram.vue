@@ -27,7 +27,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Initial Requirement</h5>
+                            <h5 class="card-title">Initial Requirements</h5>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-hovered table-sm">
@@ -76,6 +76,9 @@
                     {
                         application_status: e.target.value,
                         program_id: this.userProgram.program_id
+                    })
+                    .then((response) => {
+                        toastr.info('Application Status Changed!');
                     })
             }
         }
