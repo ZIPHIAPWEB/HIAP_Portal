@@ -50,6 +50,22 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
+                                            <div class="d-flex">
+                                                <label for="">School/Organization <i class="text-danger">*</i></label>
+                                                <div class="form-check ml-auto">
+                                                    <input v-model="isOrganization" type="checkbox" name="" id="">
+                                                    <i for="">already employed</i>
+                                                </div>
+                                            </div>
+                                            <input v-model="form.school" v-if="isOrganization" type="text" class="form-control" placeholder="Enter organization">
+                                            <select v-model="form.school" v-else type="text" class="form-control" placeholder="School/Organization">
+                                                <option value="">Select School</option>
+                                                <option v-for="school in schools" :key="school.id" :value="school.name">{{ school.display_name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
                                             <label for="">Program <i class="text-danger">*</i></label>
                                             <select v-model="form.program" :class="hasProgramError">
                                                 <option value="">Select Program</option>
@@ -73,7 +89,7 @@
 
 <script>
     export default {
-        props: ['errors'],
+        props: ['errors', 'schools'],
         data() {
             return {
                 form: {
@@ -82,9 +98,11 @@
                     last_name: '',
                     address: '',
                     contact_number: '',
+                    school: '',
                     program: ''
                 },
                 programs: [],
+                isOrganization: false,
                 loading: false
             }
         },

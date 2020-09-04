@@ -38,6 +38,10 @@
                                         <td class="text-center">{{ student.contact_no }}</td>
                                     </tr>
                                     <tr class="text-sm">
+                                        <td class="text-bold" style="width: 25%;">School/Organization</td>
+                                        <td class="text-center">{{ student.school }}</td>
+                                    </tr>
+                                    <tr class="text-sm">
                                         <td class="text-bold" style="width: 25%;">E-mail Address</td>
                                         <td class="text-center">{{ student.user.email }}</td>
                                     </tr>

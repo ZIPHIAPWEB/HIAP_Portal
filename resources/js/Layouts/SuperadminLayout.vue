@@ -88,6 +88,12 @@
             </inertia-link>
           </li>
           <li class="nav-item">
+            <inertia-link href="/sa/school" class="nav-link">
+              <i class="nav-icon fas fa-users-cog"></i>
+              <p>Schools</p>
+            </inertia-link>
+          </li>
+          <li class="nav-item">
                 <inertia-link href="/sa/logs" class="nav-link">
                     <i class="nav-icon fas fa-clipboard-list"></i>
                     <p>

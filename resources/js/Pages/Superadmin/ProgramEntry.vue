@@ -26,9 +26,7 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <div class="mr-auto">
-                                <input type="text" class="form-control form-control-sm" placeholder="Search program by name">
-                            </div>
+                            <h6 class="card-title">Programs</h6>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-sm table-hover table-striped">

@@ -12,6 +12,7 @@ class Client extends Model
         'last_name',
         'address',
         'contact_no',
+        'school',
         'user_id',
     ];
 

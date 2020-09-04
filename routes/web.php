@@ -73,6 +73,8 @@ Route::prefix('sa')->group(function () {
     Route::get('/{programId}/lessons', 'LessonController@showLessonEntry')->name('sa.program.lessons');
 
     Route::get('/client/{userId}/program/{programId}', 'SuperadminController@showSelectedProgram')->name('sa.selected.program');
+
+    Route::get('/school', 'SchoolController@showSchoolEntry');
 });
 
 Route::prefix('md')->group(function () {
@@ -136,7 +138,9 @@ Route::delete('/logs/delete/{id}', 'LogController@deleteLog');
 Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
 Route::post('/addNewProgram', 'UserProgramController@addNewProgram');
 
-
+Route::post('/storeSchool', 'SchoolController@storeSchool');
+Route::put('/updateSchool', 'SchoolController@updateSchool');
+Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
 Route::get('/test', function () {
     return App\Client::where('program_id', 7)->with('lesson')->get()

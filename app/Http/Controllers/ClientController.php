@@ -8,6 +8,7 @@ use App\Grade;
 use App\Log;
 use App\Mail\NewApplicantNotification;
 use App\Program;
+use App\School;
 use App\User;
 use App\UserProgram;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class ClientController extends Controller
 {
     public function showApplicationForm()
     {
-        return Inertia::render('Client/ApplicationForm');
+        return Inertia::render('Client/ApplicationForm', [
+            'schools'   =>  School::orderBy('name')->get()
+        ]);
     }
 
     public function showDashboard(Request $request)
@@ -42,6 +45,7 @@ class ClientController extends Controller
             'last_name'     =>  'required',
             'address'       =>  'required',
             'contact_number'=>  'bail|required|numeric',
+            'school'        =>  'required',
             'program'    =>  'required',
         ]);
 
@@ -51,11 +55,12 @@ class ClientController extends Controller
 
         $client = Client::create([
             'user_id'               =>  $request->user()->id,
-            'first_name'            =>  $request->input('first_name'),
-            'middle_name'           =>  $request->input('middle_name'),
-            'last_name'             =>  $request->input('last_name'),
-            'address'               =>  $request->input('address'),
-            'contact_no'            =>  $request->input('contact_number'),
+            'first_name'            =>  $request->first_name,
+            'middle_name'           =>  $request->middle_name,
+            'last_name'             =>  $request->last_name,
+            'address'               =>  $request->address,
+            'contact_no'            =>  $request->contact_number,
+            'school'                =>  $request->school
         ]);
 
         $userProgram = UserProgram::create([
@@ -69,8 +74,8 @@ class ClientController extends Controller
             'middle_name'   =>  $client->middle_name,
             'last_name'     =>  $client->last_name,
             'contact_no'    =>  $client->contact_no,
-            'program'       =>  Program::where('id', $userProgram->program_id)->first()->name
-        ]));
+            'program'       =>  $userProgram->with('program')->first()->program->name
+        ]));    
 
         return redirect()->route('cl.dashboard');
     }
@@ -114,11 +119,12 @@ class ClientController extends Controller
     {
         $client = Client::where('user_id', $request->user()->id);
         $client->update([
-            'first_name'    =>  $request->input('first_name'),
-            'middle_name'   =>  $request->input('middle_name'),
-            'last_name'     =>  $request->input('last_name'),
-            'address'       =>  $request->input('address'),
-            'contact_no'    =>  $request->input('contact_no'),
+            'first_name'    =>  $request->first_name,
+            'middle_name'   =>  $request->middle_name,
+            'last_name'     =>  $request->last_name,
+            'address'       =>  $request->address,
+            'contact_no'    =>  $request->contact_no,
+            'school'        =>  $request->school
         ]);
 
         Log::create([

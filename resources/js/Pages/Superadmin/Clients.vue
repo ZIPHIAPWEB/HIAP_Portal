@@ -17,6 +17,7 @@
                             <th>Middle Name</th>
                             <th>Last Name</th>
                             <th>Contact Number</th>
+                            <th>School/Organization</th>
                             <th>Enrolled Program(s)</th>
                             <th>Actions</th>
                         </tr>
@@ -28,6 +29,7 @@
                             <td>{{ client.middle_name}}</td>
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
+                            <td>{{ client.school }}</td>
                             <th>{{ client.user_program.length }}</th>
                             <td>
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>

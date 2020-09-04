@@ -38,6 +38,10 @@
                                         <td class="text-center">{{ client.contact_no }}</td>
                                     </tr>
                                     <tr>
+                                        <td>School/Organization</td>
+                                        <td class="text-center">{{ client.school }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>E-mail Address</td>
                                         <td class="text-center">{{ client.user.email }}</td>
                                     </tr>
