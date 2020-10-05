@@ -7,11 +7,8 @@
                         <h3>Verification Notice</h3>
                     </div>
                     <div class="card-body">
-                        <p>Please verify your email to activate your account.</p>
-                        <button @click="resend" class="btn btn-primary btn-block btn-flat" :disabled="loading">
-                            <i v-if="loading" class="fas fa-spinner fa-pulse"></i>
-                            <span v-else>Resend Email Verification</span>
-                        </button>
+                        <p>We send you a verification on your email. Please verify to activate your account.</p>
+                        <p>If you didn't get an email. <a @click="resend" href="#">Resend email</a></p>
                     </div>
                 </div>
             </div>

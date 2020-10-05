@@ -2989,9 +2989,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -10710,22 +10707,17 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("p", [
-              _vm._v("Please verify your email to activate your account.")
+              _vm._v(
+                "We send you a verification on your email. Please verify to activate your account."
+              )
             ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-block btn-flat",
-                attrs: { disabled: _vm.loading },
-                on: { click: _vm.resend }
-              },
-              [
-                _vm.loading
-                  ? _c("i", { staticClass: "fas fa-spinner fa-pulse" })
-                  : _c("span", [_vm._v("Resend Email Verification")])
-              ]
-            )
+            _c("p", [
+              _vm._v("If you didn't get an email. "),
+              _c("a", { attrs: { href: "#" }, on: { click: _vm.resend } }, [
+                _vm._v("Resend email")
+              ])
+            ])
           ])
         ])
       ])
