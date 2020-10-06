@@ -37,7 +37,9 @@ class ProgramController extends Controller
 
     public function getAllPrograms()
     {
-        return Program::orderBy('name', 'asc')->get();
+        return Program::where('isActive', 1)
+                    ->orderBy('name', 'asc')
+                    ->get();
     }
 
     public function updateProgramDetails(Request $request, $id)
