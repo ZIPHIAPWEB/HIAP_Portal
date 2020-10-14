@@ -74,7 +74,7 @@ class ClientController extends Controller
             'middle_name'   =>  $client->middle_name,
             'last_name'     =>  $client->last_name,
             'contact_no'    =>  $client->contact_no,
-            'program'       =>  $userProgram->with('program')->first()->program->name
+            'program'       =>  Program::where('id', $userProgram->program_id)->first()->name
         ]));    
 
         return redirect()->route('cl.dashboard');

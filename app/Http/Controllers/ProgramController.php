@@ -47,7 +47,7 @@ class ProgramController extends Controller
         $program = Program::where('id', $id);
 
         $program->update([
-            'name'          =>  $request->input('name'),
+            'name'          =>  $request->input('name'),    
             'description'   =>  $request->input('description')
         ]);
 
