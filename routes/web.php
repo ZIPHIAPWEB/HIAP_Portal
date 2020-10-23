@@ -137,6 +137,7 @@ Route::delete('/logs/delete/{id}', 'LogController@deleteLog');
 
 Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
 Route::post('/addNewProgram', 'UserProgramController@addNewProgram');
+Route::delete('/deleteUserProgram/{id}', 'UserProgramController@deleteUserProgram');
 
 Route::post('/storeSchool', 'SchoolController@storeSchool');
 Route::put('/updateSchool', 'SchoolController@updateSchool');

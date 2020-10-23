@@ -3852,6 +3852,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'initials', 'userPrograms'],
@@ -12405,6 +12406,18 @@ var render = function() {
                                       }
                                     },
                                     [_vm._v("View Records")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "inertia-link",
+                                    {
+                                      staticClass: "btn btn-danger btn-xs",
+                                      attrs: {
+                                        href: "/deleteUserProgram/" + p.id,
+                                        method: "delete"
+                                      }
+                                    },
+                                    [_vm._v("Remove")]
                                   )
                                 ],
                                 1

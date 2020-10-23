@@ -66,6 +66,7 @@
                                         <td class="text-center">{{ p.application_status  }}</td>
                                         <td style="width:30%;" class="text-center">
                                             <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link>
+                                            <inertia-link :href="`/deleteUserProgram/${p.id}`" method="delete" class="btn btn-danger btn-xs">Remove</inertia-link>
                                         </td>
                                     </tr>
                                 </tbody>

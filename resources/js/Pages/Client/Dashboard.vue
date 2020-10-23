@@ -42,22 +42,22 @@
             </div>
             <div class="modal fade show" id="modal-default" aria-modal="true">
                 <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title">Choose Program</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Choose Program</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <select v-model="selectedProgram" class="form-control form-control-sm">
+                                <option v-for="program in programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button @click="addNewProgram" type="button" class="btn btn-block btn-sm btn-primary">Enroll</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <select v-model="selectedProgram" class="form-control form-control-sm">
-                            <option v-for="program in programs" :key="program.id" :value="program.id">{{ program.name }}</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button @click="addNewProgram" type="button" class="btn btn-block btn-sm btn-primary">Enroll</button>
-                    </div>
-                </div>
                 <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
