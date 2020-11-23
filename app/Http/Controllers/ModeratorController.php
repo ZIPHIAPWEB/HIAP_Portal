@@ -115,7 +115,8 @@ class ModeratorController extends Controller
         return Inertia::render('Moderator/Clients', [
             'clients'   =>  Client::orderBy('created_at', 'desc')
                 ->with('user')
-                ->with('userProgram')->get()
+                ->with('userProgram')
+                ->get()
         ]);
     }
 
@@ -124,7 +125,10 @@ class ModeratorController extends Controller
         $client = Client::where('user_id', $id)->with('user')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
             'client'    =>  $client,
-            'userPrograms' =>  UserProgram::where('user_id', $client->user_id)->with('program')->get()
+            'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
+                ->with('program')
+                ->with('course')
+                ->get()
         ]);
     }
 

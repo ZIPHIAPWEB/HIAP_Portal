@@ -5,16 +5,24 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Program Details</h5>
+                            <h5 class="card-title">Course Details</h5>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Program Name</label>
+                                <label>Course Name</label>
                                 <input v-model="form.name" type="text" placeholder="Sample Program" class="form-control form-control-sm ">
                             </div>
                             <div class="form-group">
-                                <label>Program Description</label>
+                                <label>Course Description</label>
                                 <input v-model="form.description" type="text" placeholder="Sample Description" class="form-control form-control-sm ">
+                            </div>
+                            <div class="form-group">
+                                <label>Program Category</label>
+                                <select class="form-control form-control-sm">
+                                    <option value="">Select Program</option>
+                                    <option value="">TESDA Programs</option>
+                                    <option value="">Global E-learning</option>
+                                </select>
                             </div>
                             <div class="d-flex">
                                 <button @click="submitDetails" class="btn btn-success btn-sm ml-auto mx-1">{{ buttonName }}</button>
@@ -34,6 +42,7 @@
                                     <tr class="text-center text-xs">
                                         <th class="text-left">Name</th>
                                         <th>Description</th>
+                                        <th>Program</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -41,6 +50,7 @@
                                     <tr class="text-center text-xs" v-for="program in programs" :key="program.id">
                                         <td class="text-left">{{ program.name }}</td>
                                         <td>{{ program.description }}</td>
+                                        <td>*Program*</td>
                                         <td>
                                             <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
                                                 View Requirements

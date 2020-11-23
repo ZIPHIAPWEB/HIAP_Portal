@@ -9,6 +9,10 @@ class UserProgram extends Model
     protected $fillable = [
         'user_id',
         'program_id',
+        'course_id',
+        'start_date',
+        'end_date',
+        'hours_needed',
         'application_status'
     ];
 
@@ -20,5 +24,10 @@ class UserProgram extends Model
     public function program()
     {
         return $this->hasOne('App\Program', 'id', 'program_id');
+    }
+
+    public function course()
+    {
+        return $this->hasOne('App\Course', 'id', 'course_id');
     }
 }

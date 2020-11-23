@@ -18,7 +18,7 @@
                             <th>Last Name</th>
                             <th>Contact Number</th>
                             <th>School/Organization</th>
-                            <th>Enrolled Program(s)</th>
+                            <th>Enrolled Course(s)</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

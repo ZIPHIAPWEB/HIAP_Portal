@@ -2,9 +2,10 @@ import './bootstrap';
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import JsonExcel from 'vue-json-excel';
+import vSelect from 'vue-select'
 
 Vue.use(InertiaApp)
-
+Vue.component('v-select', vSelect)
 Vue.component('downloadExcel', JsonExcel);
 const app = document.getElementById('app')
 

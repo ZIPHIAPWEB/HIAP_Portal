@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\OnlineProgram;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -54,7 +55,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'email' => ['bail', 'required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
             'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
-            'password_confirmation' =>  ['required']
+            'password_confirmation' =>  ['required'],
+            'program'   =>  ['required']
         ]);
     }
 
@@ -71,12 +73,15 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role'  =>  'client',
             'isFilled'  =>  false,
+            'program'   =>  $data['program']
         ]);
     }
 
     public function showRegistrationForm()
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register', [
+            'online_programs'   =>  OnlineProgram::orderBy('id')->get()
+        ]);
     }
 
     // public function register(\Illuminate\Http\Request $request)

@@ -2,7 +2,7 @@
     <div class="application-form">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-12 col-xs-12 col-md-3 col-lg-3 col-xl-3">
+                <div class="col-12 col-xs-12 col-md-3 col-lg-3 col-xl-6">
                     <div class="card">
                         <div class="overlay" v-if="loading">
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
@@ -11,67 +11,118 @@
                             <h3>Application Form</h3>
                         </div>
                         <div class="card-body">
-                            <form @submit.prevent="submitApplication">
+                            <form @submit.prevent="step++" v-if="step == 1">
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-4">
                                         <div class="form-group">
                                             <label for="">First Name <i class="text-danger">*</i></label>
-                                            <input v-model="form.first_name" type="text" name="" id="" :class="hasFirstNameError" placeholder="Jane">
+                                            <input v-model="form.first_name" type="text" name="" id="" :class="hasFirstNameError" placeholder="Jane" required>
                                             <span class="error invalid-feedback" v-if="errors.first_name">{{ $page.errors.first_name }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-4">
                                         <div class="form-group">
                                             <label for="">Middle Name</label>
                                             <input v-model="form.middle_name" type="text" name="" id="" class="form-control" placeholder="Doe">
                                             <span class="error invalid-feedback" v-if="errors.middle_name">{{ $page.errors.middle_name }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-4">
                                         <div class="form-group">
                                             <label for="">Last Name <i class="text-danger">*</i></label>
-                                            <input v-model="form.last_name" type="text" name="" id="" :class="hasLastNameError" placeholder="Doe">
+                                            <input v-model="form.last_name" type="text" name="" id="" :class="hasLastNameError" placeholder="Doe" required>
                                             <span class="error invalid-feedback" v-if="errors.last_name">{{ $page.errors.last_name }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Address <i class="text-danger">*</i></label>
-                                            <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx">
+                                            <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx" required>
                                             <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Contact Number <i class="text-danger">*</i></label>
-                                            <input v-model="form.contact_number" type="text" name="" id="" :class="hasContactError" placeholder="09123456789">
+                                            <input v-model="form.contact_number" type="text" name="" id="" :class="hasContactError" placeholder="09123456789" required>
                                             <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="">Year Level <i class="text-danger">*</i></label>
+                                            <select name="" id="" class="form-control" required>
+                                                <option value="">Select Year    </option>
+                                                <option value="">First Year</option>
+                                                <option value="">Second Year</option>
+                                                <option value="">Third Year</option>
+                                                <option value="">Fourth Year</option>
+                                                <option value="">Graduate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="">Course <i class="text-danger">*</i></label>
+                                            <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="d-flex">
-                                                <label for="">School/Organization <i class="text-danger">*</i></label>
-                                                <div class="form-check ml-auto">
-                                                    <input v-model="isOrganization" type="checkbox" name="" id="">
-                                                    <i for="">already employed</i>
-                                                </div>
+                                                <label for="">School <i class="text-danger">*</i></label>
                                             </div>
                                             <input v-model="form.school" v-if="isOrganization" type="text" class="form-control" placeholder="Enter organization">
-                                            <select v-model="form.school" v-else type="text" class="form-control" placeholder="School/Organization">
+                                            <select v-model="form.school" v-else type="text" class="form-control" placeholder="School/Organization" required>
                                                 <option value="">Select School</option>
                                                 <option v-for="school in schools" :key="school.id" :value="school.name">{{ school.display_name }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <button class="btn btn-primary btn-block">Next</button>
+                                    </div>
+                                    <!-- <div class="col-6">
+                                        <button class="btn btn-primary btn-block">Submit</button>
+                                    </div> -->
+                                </div>
+                            </form>
+                            <form v-if="step == 2" @submit.prevent="submitApplication()">
+                                <div class="row" >
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label for="">Program <i class="text-danger">*</i></label>
-                                            <select v-model="form.program" :class="hasProgramError">
-                                                <option value="">Select Program</option>
-                                                <option v-for="program in programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                                            <label for="">Programs <i class="text-danger">*</i></label>
+                                            <select v-model="form.program" class="form-control">
+                                                <option value="">Select something</option>
+                                                <option v-for="program in courses" :key="program.id" :value="program.id">
+                                                    {{ program.name }}
+                                                </option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">Courses <i class="text-danger">*</i></label>
+                                            <v-select v-model="form.course_id" label="name" multiple :options="filteredCourse"></v-select>
                                             <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">No. of Hours Needed <i class="text-danger">*</i></label>
+                                            <input v-model="form.hours_needed" type="number" placeholder="0" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="">Target Start Date</label>
+                                            <input v-model="form.start_date" type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="">Target Date of Completion</label>
+                                            <input v-model="form.end_date" type="date" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -89,7 +140,7 @@
 
 <script>
     export default {
-        props: ['errors', 'schools'],
+        props: ['errors', 'schools', 'courses', 'programs'],
         data() {
             return {
                 form: {
@@ -99,15 +150,17 @@
                     address: '',
                     contact_number: '',
                     school: '',
-                    program: ''
+                    program: '',
+                    course: '',
+                    course_id: [],
+                    hours_needed: '',
+                    start_date: '',
+                    end_date: '',
                 },
-                programs: [],
                 isOrganization: false,
-                loading: false
+                loading: false,
+                step: 1,
             }
-        },
-        mounted() {
-            this.getAllPrograms();
         },
         computed: {
             hasFirstNameError () {
@@ -123,7 +176,10 @@
                 return this.errors.contact_number ? 'form-control is-invalid' : 'form-control';
             },
             hasProgramError () {
-                return this.errors.program ? 'form-control is-invalid' : 'form-control';
+                return this.errors.program ? 'form-control is-invalid' : 'form-control select2 select2-hidden-accessible';
+            },
+            filteredCourse () {
+                return this.programs.filter(e => e.course_id == this.form.program);
             }
         },
         methods: {
@@ -136,12 +192,6 @@
                     })
                     .catch(error => {
                         this.loading = false;
-                    })
-            },
-            getAllPrograms() {
-                axios.get('/getAllPrograms')
-                    .then((response) => {
-                        this.programs = response.data;
                     })
             }
         }

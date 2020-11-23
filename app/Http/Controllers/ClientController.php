@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\ClientInitial;
+use App\Course;
 use App\Grade;
 use App\Log;
 use App\Mail\NewApplicantNotification;
@@ -20,14 +21,19 @@ class ClientController extends Controller
     public function showApplicationForm()
     {
         return Inertia::render('Client/ApplicationForm', [
-            'schools'   =>  School::orderBy('name')->get()
+            'schools'   =>  School::orderBy('name')->get(),
+            'courses'   =>  Course::orderBy('id')->get(),
+            'programs'  =>  Program::orderBy('id')->where('isActive', 1)->get()
         ]);
     }
 
     public function showDashboard(Request $request)
     {
         return Inertia::render('Client/Dashboard', [
-            'userPrograms'  =>  UserProgram::where('user_id', $request->user()->id)->with('program')->get()
+            'userPrograms'  =>  UserProgram::where('user_id', $request->user()->id)
+                ->with('program')
+                ->with('course')
+                ->get()
         ]);
     }
 
@@ -46,7 +52,7 @@ class ClientController extends Controller
             'address'       =>  'required',
             'contact_number'=>  'bail|required|numeric',
             'school'        =>  'required',
-            'program'    =>  'required',
+            'program'       =>  'required',
         ]);
 
         User::find($request->user()->id)->update([
@@ -60,22 +66,29 @@ class ClientController extends Controller
             'last_name'             =>  $request->last_name,
             'address'               =>  $request->address,
             'contact_no'            =>  $request->contact_number,
-            'school'                =>  $request->school
+            'school'                =>  $request->school,
+            'course'                =>  $request->course,
         ]);
+        
+        foreach($request->course_id as $course) {
+            $userProgram = UserProgram::create([
+                'user_id'               =>  $request->user()->id,
+                'program_id'            =>  $course['id'],
+                'course_id'             =>  $request->program,
+                'start_date'            =>  $request->start_date,
+                'end_date'              =>  $request->end_date,
+                'hours_needed'          =>  $request->hours_needed,
+                'application_status'    =>  'New Applicant'
+            ]);            
+        }
 
-        $userProgram = UserProgram::create([
-            'user_id'               =>  $request->user()->id,
-            'program_id'            =>  $request->program,
-            'application_status'    =>  'New Applicant'
-        ]);
-
-        Mail::to('staff@hospitalityinstituteofamerica.com.ph')->send(new NewApplicantNotification([
-            'first_name'    =>  $client->first_name,
-            'middle_name'   =>  $client->middle_name,
-            'last_name'     =>  $client->last_name,
-            'contact_no'    =>  $client->contact_no,
-            'program'       =>  Program::where('id', $userProgram->program_id)->first()->name
-        ]));    
+        // Mail::to('staff@hospitalityinstituteofamerica.com.ph')->send(new NewApplicantNotification([
+        //     'first_name'    =>  $client->first_name,
+        //     'middle_name'   =>  $client->middle_name,
+        //     'last_name'     =>  $client->last_name,
+        //     'contact_no'    =>  $client->contact_no,
+        //     'program'       =>  Program::where('id', $userProgram->program_id)->first()->name
+        // ]));    
 
         return redirect()->route('cl.dashboard');
     }
@@ -84,6 +97,7 @@ class ClientController extends Controller
     {
         return Client::where('user_id', $request->user()->id)
             ->with('user')
+            ->with('course')
             ->first();
     }
 

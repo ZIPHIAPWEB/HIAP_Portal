@@ -22,7 +22,7 @@ class SuperadminController extends Controller
     public function showClients()
     {
         return Inertia::render('Superadmin/Clients', [
-            'clients'   =>  Client::orderBy('created_at', 'desc')->with('userProgram')->get()
+            'clients'   =>  Client::orderBy('created_at', 'desc')->with('userProgram')->with('course')->get()
         ]);
     }
 
@@ -31,7 +31,10 @@ class SuperadminController extends Controller
         $client = Client::where('user_id', $id)->with('user')->first();
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'    =>  $client,
-            'userPrograms' =>  UserProgram::where('user_id', $client->user_id)->with('program')->get()
+            'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
+                ->with('program')
+                ->with('course')
+                ->get()
         ]);
     }
 

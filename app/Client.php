@@ -31,6 +31,11 @@ class Client extends Model
         return $this->hasMany('App\UserProgram', 'user_id', 'user_id');
     }
     
+    public function course()
+    {
+        return $this->hasOne('App\Course', 'id', 'course');
+    }
+    
     public function lesson()
     {
         return $this->hasMany('App\Lesson', 'program_id', 'program_id');
