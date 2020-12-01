@@ -15,9 +15,17 @@ use App\UserProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
+use App\Services\ClientApplicationService;
 
 class ClientController extends Controller
 {
+    private $clientApplicationService;
+
+    public function __construct(ClientApplicationService $clientApplicationService)
+    {
+        $this->clientApplicationService = $clientApplicationService;
+    }
+
     public function showApplicationForm()
     {
         return Inertia::render('Client/ApplicationForm', [
@@ -59,36 +67,7 @@ class ClientController extends Controller
             'isFilled'      =>  true
         ]);
 
-        $client = Client::create([
-            'user_id'               =>  $request->user()->id,
-            'first_name'            =>  $request->first_name,
-            'middle_name'           =>  $request->middle_name,
-            'last_name'             =>  $request->last_name,
-            'address'               =>  $request->address,
-            'contact_no'            =>  $request->contact_number,
-            'school'                =>  $request->school,
-            'course'                =>  $request->course,
-        ]);
-        
-        foreach($request->course_id as $course) {
-            $userProgram = UserProgram::create([
-                'user_id'               =>  $request->user()->id,
-                'program_id'            =>  $course['id'],
-                'course_id'             =>  $request->program,
-                'start_date'            =>  $request->start_date,
-                'end_date'              =>  $request->end_date,
-                'hours_needed'          =>  $request->hours_needed,
-                'application_status'    =>  'New Applicant'
-            ]);            
-        }
-
-        // Mail::to('staff@hospitalityinstituteofamerica.com.ph')->send(new NewApplicantNotification([
-        //     'first_name'    =>  $client->first_name,
-        //     'middle_name'   =>  $client->middle_name,
-        //     'last_name'     =>  $client->last_name,
-        //     'contact_no'    =>  $client->contact_no,
-        //     'program'       =>  Program::where('id', $userProgram->program_id)->first()->name
-        // ]));    
+        $this->clientApplicationService->createClientApplication($request);  
 
         return redirect()->route('cl.dashboard');
     }
@@ -103,16 +82,12 @@ class ClientController extends Controller
 
     public function getAllClientDetails()
     {
-        return Client::orderBy('created_at', 'desc')
-            ->with('programs')
-            ->get();
+        return $this->clientApplicationService->getClientRecords();
     }
 
     public function setApplicationStatus(Request $request, $id)
     {
-        Client::where('user_id', $id)->update([
-            'application_status'    =>  $request->application_status
-        ]);
+        $this->clientApplicationService->updateApplicationStatus($request->application_status, $id);
 
         return redirect()->back()->with([
             'message'   =>  'Application Status Updated.'
@@ -131,21 +106,6 @@ class ClientController extends Controller
 
     public function updateClientDetails(Request $request)
     {
-        $client = Client::where('user_id', $request->user()->id);
-        $client->update([
-            'first_name'    =>  $request->first_name,
-            'middle_name'   =>  $request->middle_name,
-            'last_name'     =>  $request->last_name,
-            'address'       =>  $request->address,
-            'contact_no'    =>  $request->contact_no,
-            'school'        =>  $request->school
-        ]);
-
-        Log::create([
-            'user_id'   =>  $request->user()->id,
-            'action'    =>  'Update personal details.'
-        ]);
-
-        return $client->with('user')->first();
+        return $this->clientApplicationService->updateDetails($request);
     }
 }

@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\ClientInitial;
-use App\Events\UserLogCreated;
 use App\Http\Requests\ClientInitialStoreRequest;
-use App\Log;
+use App\Services\InitialClientRequirementService;
+use App\Services\InitialRequirementService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 
 class ClientInitialController extends Controller
 {
+    private $initialRequirement;
+
+    public function __construct(InitialClientRequirementService $initialRequirementService)
+    {
+        $this->initialRequirement = $initialRequirementService;
+    }
+
     public function getClientInitialRequirements (Request $request, $programId)
     {
         return ClientInitial::where('user_id', $request->user()->id)
@@ -22,37 +28,11 @@ class ClientInitialController extends Controller
 
     public function storeClientInitialRequirement(ClientInitialStoreRequest $request)
     {
-        $filename = time() . '.' . $request->file->extension();
-        $request->file->move(public_path('uploads'), $filename);
-
-        $initials = ClientInitial::create([
-            'user_id'       =>  $request->user()->id,
-            'initial_id'    =>  $request->input('initial_id'),
-            'status'        =>  true,
-            'file_path'     =>  $filename
-        ]);
-        
-        event(new UserLogCreated([
-            'user_id'   =>  $request->user()->id,
-            'action'    =>  $filename . ' has been uploaded.'
-        ]));
-
-        return $initials;
+        return $this->initialRequirement->uploadRequirement($request);
     }   
 
     public function deleteClientInitialRequirement($id)
     {
-        $initial = ClientInitial::where('id', $id);
-
-        if (File::exists('uploads/' . $initial->first()->file_path)) {
-            File::delete('uploads/' . $initial->first()->file_path);
-        }
-
-        event(new UserLogCreated([
-            'user_id'   =>  $initial->first()->user_id,
-            'action'    =>  $initial->first()->file_path . ' has been deleted.'
-        ]));
-
-        $initial->delete();
+        $this->initialRequirement->removeUploadedRequirement($id);
     }
 }

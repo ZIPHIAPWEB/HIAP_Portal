@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
 use App\Http\Requests\InitialStoreRequest;
 use App\Http\Requests\InitialUpdateRequest;
 use App\Initial;
 use App\Program;
+use App\Services\InitialRequirementService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class InitialController extends Controller
 {
+    private $initialRequirementService;
+
+    public function __construct(InitialRequirementService $initialRequirementService)
+    {
+        $this->initialRequirementService = $initialRequirementService;    
+    }
+
     public function showInitialRequirements($programId, Program $program, Initial $initial)
     {
         return Inertia::render('Superadmin/ProgramInitial', [
@@ -23,47 +29,22 @@ class InitialController extends Controller
     }
 
     public function storeInitialRequirement(InitialStoreRequest $request, $programId)
-    {
-        if ($request->hasFile('file')) {
-            $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
-            $request->file->move(public_path('initials'), $filename);
-        }
-
-        Initial::create([
-            'program_id'    =>  $programId,
-            'name'          =>  $request->name,
-            'description'   =>  $request->description,
-            'file_path'     =>  $request->hasFile('file') ? $filename : ''
-        ]);
+    {   
+        $this->initialRequirementService->addRequirement($request, $programId);
 
         return redirect()->back();
     }
 
     public function updateInitialRequirement(InitialUpdateRequest $request)
     {
-        if ($request->hasFile('file')) {
-            $filename = Str::snake($request->name) . '-' . time() . '.' . $request->file->extension();
-            $request->file->move(public_path('initials'), $filename);
-        }
-
-        Initial::where('id', $request->id)->update([
-            'name'          =>  $request->name,
-            'description'   =>  $request->description,
-            'file_path'     =>  $request->hasFile('file') ? $filename: ''
-        ]);
+        $this->initialRequirementService->updateRequirement($request);
 
         return redirect()->back()->with(['message' => 'Initial Requirement Updated!']);
     }
 
     public function deleteInitialRequirement($initialId)
     {
-        $initial = Initial::where('id', $initialId);
-
-        if(File::exists('initials/' . $initial->first()->file_path)) {
-            File::delete('initials/' . $initial->first()->file_path);
-        }
-
-        $initial->delete();
+        $this->initialRequirementService->removeRequirement($initialId);
 
         return redirect()->back();
     }

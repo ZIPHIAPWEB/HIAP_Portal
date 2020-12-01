@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Initial;
+use App\Course;
 use App\Program;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProgramController extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function showProgramEntry()
     {
         return Inertia::render('Superadmin/ProgramEntry', [
-            'programs'  =>  Program::orderBy('created_at', 'desc')->get()
+            'programs'  =>  Course::orderBy('created_at', 'desc')->get()
         ]);
     }
 

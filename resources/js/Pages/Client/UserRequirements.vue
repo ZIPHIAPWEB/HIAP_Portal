@@ -1,6 +1,6 @@
 <template>
     <client-layout>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
                     <div class="card">

@@ -8,6 +8,7 @@ use App\Http\Requests\ModeratorCreateRequest;
 use App\Initial;
 use App\Moderator;
 use App\Program;
+use App\Services\ModeratorService;
 use App\User;
 use App\UserProgram;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ use Inertia\Inertia;
 
 class ModeratorController extends Controller
 {
+    private $moderatorService;
+
+    public function __construct(ModeratorService $moderatorService)
+    {
+        $this->moderatorService = $moderatorService;    
+    }
+
     public function showDashboard()
     {
         return Inertia::render('Moderator/Dashboard', [
@@ -43,19 +51,7 @@ class ModeratorController extends Controller
 
     public function storeModerator(ModeratorCreateRequest $request)
     {
-        $user = User::create([
-            'email'     =>  $request->email,
-            'role'      =>  'moderator',
-            'password'  =>  Hash::make(strtolower(str_replace(' ', '', $request->last_name))),
-            'isFilled'  =>  true
-        ]);
-
-        Moderator::create([
-            'user_id'       =>  $user->id,
-            'first_name'    =>  $request->first_name,
-            'middle_name'   =>  $request->middle_name,
-            'last_name'     =>  $request->last_name
-        ]);
+        $user = $this->moderatorService->registerNewModerator($request);
 
         event(new UserLogCreated([
             'user_id'   =>  $request->user()->id,
