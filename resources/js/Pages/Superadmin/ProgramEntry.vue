@@ -18,10 +18,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Program Category</label>
-                                <select class="form-control form-control-sm">
-                                    <option value="">Select Program</option>
-                                    <option value="">TESDA Programs</option>
-                                    <option value="">Global E-learning</option>
+                                <select v-model="form.course" class="form-control form-control-sm">
+                                    <option selected value="">Select Program</option>
+                                    <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
                                 </select>
                             </div>
                             <div class="d-flex">
@@ -50,7 +49,7 @@
                                     <tr class="text-center text-xs" v-for="program in programs" :key="program.id">
                                         <td class="text-left">{{ program.name }}</td>
                                         <td>{{ program.description }}</td>
-                                        <td>*Program*</td>
+                                        <td>{{ program.course.name }}</td>
                                         <td>
                                             <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
                                                 View Requirements
@@ -74,7 +73,7 @@
 import ProgramEntryComponent from '../../components/ProgramEntryComponent.vue';
 import SuperadminLayout from '../../Layouts/SuperadminLayout.vue';
 export default {
-    props: ['programs'],
+    props: ['programs', 'courses'],
     components: {
         SuperadminLayout
     },
@@ -82,7 +81,8 @@ export default {
         return {
             form: {
                 name: '',
-                description: ''
+                description: '',
+                course: ''
             },
             loading: false,
             method: 'create',

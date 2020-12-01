@@ -12,7 +12,8 @@ class ProgramController extends Controller
     public function showProgramEntry()
     {
         return Inertia::render('Superadmin/ProgramEntry', [
-            'programs'  =>  Course::orderBy('created_at', 'desc')->get()
+            'programs'  =>  Program::orderBy('created_at', 'desc')->with('course')->get(),
+            'courses'   =>  Course::orderBy('created_at', 'asc')->get()
         ]);
     }
 
@@ -25,7 +26,8 @@ class ProgramController extends Controller
 
         Program::create([
             'name'          =>  $request->input('name'),
-            'description'   =>  $request->input('description')
+            'description'   =>  $request->input('description'),
+            'course_id'     =>  $request->course
         ]);
 
         return redirect()->back();

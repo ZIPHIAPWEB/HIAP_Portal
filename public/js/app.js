@@ -4922,11 +4922,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['programs'],
+  props: ['programs', 'courses'],
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -4934,7 +4933,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       form: {
         name: '',
-        description: ''
+        description: '',
+        course: ''
       },
       loading: false,
       method: 'create',
@@ -14426,19 +14426,53 @@ var render = function() {
               _c("div", { staticClass: "form-group" }, [
                 _c("label", [_vm._v("Program Category")]),
                 _vm._v(" "),
-                _c("select", { staticClass: "form-control form-control-sm" }, [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Select Program")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("TESDA Programs")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Global E-learning")
-                  ])
-                ])
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.course,
+                        expression: "form.course"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.form,
+                          "course",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { selected: "", value: "" } }, [
+                      _vm._v("Select Program")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.courses, function(course) {
+                      return _c(
+                        "option",
+                        { key: course.id, domProps: { value: course.id } },
+                        [_vm._v(_vm._s(course.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "d-flex" }, [
@@ -14502,7 +14536,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(program.description))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v("*Program*")]),
+                          _c("td", [_vm._v(_vm._s(program.course.name))]),
                           _vm._v(" "),
                           _c(
                             "td",
