@@ -46,7 +46,8 @@ class ProgramController extends Controller
 
         $program->update([
             'name'          =>  $request->input('name'),    
-            'description'   =>  $request->input('description')
+            'description'   =>  $request->input('description'),
+            'course_id'     =>  $request->course
         ]);
 
         return redirect()->back();
