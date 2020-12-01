@@ -3674,6 +3674,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -12434,6 +12436,8 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("School/Organization")]),
               _vm._v(" "),
+              _c("th", [_vm._v("Enrolled Course(s)")]),
+              _vm._v(" "),
               _c("th", [_vm._v("E-mail Address")]),
               _vm._v(" "),
               _c("th", [_vm._v("Actions")])
@@ -12459,6 +12463,16 @@ var render = function() {
                       _c("td", [_vm._v(_vm._s(client.contact_no))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.school))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            client.user_program.length == 1
+                              ? client.user_program[0]["program"].name
+                              : client.user_program.length + " Courses"
+                          )
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.user.email))]),
                       _vm._v(" "),
@@ -13181,7 +13195,15 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.school))]),
                       _vm._v(" "),
-                      _c("th", [_vm._v(_vm._s(client.user_program.length))]),
+                      _c("th", [
+                        _vm._v(
+                          _vm._s(
+                            client.user_program.length == 1
+                              ? client.user_program[0]["program"].name
+                              : client.user_program.length + " Courses"
+                          )
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [
                         _c(

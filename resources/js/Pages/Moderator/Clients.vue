@@ -17,6 +17,7 @@
                             <th>Last Name</th>
                             <th>Contact Number</th>
                             <th>School/Organization</th>
+                            <th>Enrolled Course(s)</th>
                             <th>E-mail Address</th>
                             <th>Actions</th>
                         </tr>
@@ -28,6 +29,7 @@
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
                             <td>{{ client.school }}</td>
+                            <td>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</td>
                             <td>{{ client.user.email }}</td>
                             <td>
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>

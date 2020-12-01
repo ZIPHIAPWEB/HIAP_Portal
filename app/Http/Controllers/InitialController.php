@@ -20,11 +20,11 @@ class InitialController extends Controller
         $this->initialRequirementService = $initialRequirementService;    
     }
 
-    public function showInitialRequirements($programId, Program $program, Initial $initial)
+    public function showInitialRequirements($programId)
     {
         return Inertia::render('Superadmin/ProgramInitial', [
-            'program'   => $program->find($programId),
-            'initials'  => $initial->where('program_id', $programId)->get()
+            'program'   => Program::find($programId),
+            'initials'  => Initial::where('program_id', $programId)->get()
         ]);
     }
 

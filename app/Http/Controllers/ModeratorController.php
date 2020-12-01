@@ -111,7 +111,9 @@ class ModeratorController extends Controller
         return Inertia::render('Moderator/Clients', [
             'clients'   =>  Client::orderBy('created_at', 'desc')
                 ->with('user')
-                ->with('userProgram')
+                ->with(['userProgram' => function($query) {
+                    return $query->with('program');
+                }])
                 ->get()
         ]);
     }

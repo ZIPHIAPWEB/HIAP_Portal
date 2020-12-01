@@ -57,7 +57,7 @@
                                         <td class="text-center">
                                             <button @click="editDetails(initial)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="deleteInitial(initial)" class="btn btn-danger btn-xs">Delete</button>
-                                        </td>
+                                        </td>           
                                     </tr>
                                 </tbody>
                             </table>

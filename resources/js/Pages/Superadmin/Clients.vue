@@ -30,7 +30,7 @@
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
                             <td>{{ client.school }}</td>
-                            <th>{{ client.user_program.length }}</th>
+                            <th>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</th>
                             <td>
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>
                                 <button @click="deleteClientDetails(client.user_id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
