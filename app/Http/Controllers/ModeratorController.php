@@ -7,6 +7,7 @@ use App\Events\UserLogCreated;
 use App\Http\Requests\ModeratorCreateRequest;
 use App\Initial;
 use App\Moderator;
+use App\Payment;
 use App\Program;
 use App\Services\ModeratorService;
 use App\User;
@@ -123,6 +124,7 @@ class ModeratorController extends Controller
         $client = Client::where('user_id', $id)->with('user')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
             'client'    =>  $client,
+            'payments'  =>  Payment::where('user_id', $id)->get(),
             'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
                 ->with('program')
                 ->with('course')

@@ -31,13 +31,23 @@ class ClientApplicationService {
 
     public function createClientApplication(object $request) : void
     {
-        $client = $this->createClient->execute($request);
+        $client = $this->createClient->execute([
+            'user_id'               =>  $request->user()->id,
+            'first_name'            =>  $request->first_name,
+            'middle_name'           =>  $request->middle_name,
+            'last_name'             =>  $request->last_name,
+            'address'               =>  $request->address,
+            'contact_no'            =>  $request->contact_number,
+            'school'                =>  $request->school,
+            'course'                =>  $request->course,
+            'fb_link'               =>  $request->fb_link
+        ]);
         
         foreach($request->course_id as $course) {
             $this->createClientProgram->execute([
                 'user_id'               =>  $request->user()->id,
                 'program_id'            =>  $course['id'],
-                'course_id'             =>  $request->program,
+                'course_id'             =>  $request->user()->program_id,
                 'start_date'            =>  $request->start_date,
                 'end_date'              =>  $request->end_date,
                 'hours_needed'          =>  $request->hours_needed,

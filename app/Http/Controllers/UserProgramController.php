@@ -17,11 +17,9 @@ class UserProgramController extends Controller
 
     public function addNewProgram(Request $request)
     {
-        if($this->userProgramService->saveUserProgram($request)) {
-            return redirect()->back();
-        } else {
-            return redirect()->back()->with('Program already enrolled.');
-        }
+        $this->userProgramService->saveUserProgram($request);
+
+        return redirect()->back();
     }
 
     public function getUserPrograms(Request $request)
@@ -33,11 +31,7 @@ class UserProgramController extends Controller
 
     public function setApplicationStatus(Request $request, $id)
     {
-        UserProgram::where('user_id', $id)
-            ->where('program_id', $request->program_id)
-            ->update([
-                'application_status'    =>  $request->application_status
-            ]);
+        $this->userProgramService->updateStatus($request, $id);
 
         return redirect()->back()->with([
             'message'   =>  'Application Status Updated.'
@@ -46,7 +40,7 @@ class UserProgramController extends Controller
 
     public function deleteUserProgram($id)
     {
-        UserProgram::where('id', $id)->delete();
+        $this->userProgramService->removeProgram($id);
 
         return redirect()->back()->with([
             'message'   =>  'Program deleted'

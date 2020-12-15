@@ -28,6 +28,11 @@ class UserProgram extends Model
 
     public function course()
     {
-        return $this->hasOne('App\Course', 'id', 'course_id');
+        return $this->hasOne('App\OnlineProgram', 'id', 'course_id');
+    }
+
+    public function payment()
+    {
+        return $this->hasMany('App\Payment', 'user_id', 'user_id');
     }
 }

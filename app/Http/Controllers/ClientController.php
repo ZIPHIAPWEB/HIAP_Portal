@@ -8,6 +8,8 @@ use App\Course;
 use App\Grade;
 use App\Log;
 use App\Mail\NewApplicantNotification;
+use App\OnlineProgram;
+use App\Payment;
 use App\Program;
 use App\School;
 use App\User;
@@ -38,7 +40,16 @@ class ClientController extends Controller
     public function showDashboard(Request $request)
     {
         return Inertia::render('Client/Dashboard', [
-            'userPrograms'  =>  UserProgram::where('user_id', $request->user()->id)
+            'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
+            'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
+                return [
+                    'id'            =>  $payment->id,
+                    'purpose'       =>  $payment->purpose,
+                    'isVerified'    =>  $payment->isVerified,
+                    'created_at'    =>  $payment->created_at->toDayDateTimeString()
+                ];
+            }),
+            'userPrograms'      =>  UserProgram::where('user_id', $request->user()->id)
                 ->with('program')
                 ->with('course')
                 ->get()
@@ -60,7 +71,6 @@ class ClientController extends Controller
             'address'       =>  'required',
             'contact_number'=>  'bail|required|numeric',
             'school'        =>  'required',
-            'program'       =>  'required',
         ]);
 
         User::find($request->user()->id)->update([

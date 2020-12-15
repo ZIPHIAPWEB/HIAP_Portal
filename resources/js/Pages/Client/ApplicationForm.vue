@@ -67,7 +67,7 @@
                                             <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <div class="d-flex">
                                                 <label for="">School <i class="text-danger">*</i></label>
@@ -77,6 +77,12 @@
                                                 <option value="">Select School</option>
                                                 <option v-for="school in schools" :key="school.id" :value="school.name">{{ school.display_name }}</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="">Facebook Profile Link <i class="text-danger">*</i></label>
+                                            <input v-model="form.fb_link" type="text" class="form-control" placeholder="https://facebook.com/jane.doe">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -89,7 +95,7 @@
                             </form>
                             <form v-if="step == 2" @submit.prevent="submitApplication()">
                                 <div class="row" >
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         <div class="form-group">
                                             <label for="">Programs <i class="text-danger">*</i></label>
                                             <select v-model="form.program" class="form-control">
@@ -99,11 +105,11 @@
                                                 </option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="">Courses <i class="text-danger">*</i></label>
-                                            <v-select v-model="form.course_id" label="name" multiple :options="filteredCourse"></v-select>
+                                            <v-select v-model="form.course_id" label="name" multiple :options="programs"></v-select>
                                             <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span>
                                         </div>
                                     </div>
@@ -156,6 +162,7 @@
                     hours_needed: '',
                     start_date: '',
                     end_date: '',
+                    fb_link: ''
                 },
                 isOrganization: false,
                 loading: false,

@@ -2,12 +2,12 @@
 
 namespace App\Actions;
 
-use App\UserProgram;
+use App\Payment;
 
-class CreateUserProgram 
+class CreatePayment
 {
     public function execute($data)
     {
-        UserProgram::create($data);
+        Payment::create($data);
     }
 }

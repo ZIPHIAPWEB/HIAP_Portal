@@ -48,8 +48,10 @@ class InitialClientRequirementService
     {
         $deletedRequirement = $this->removeRequirement->execute($data);
         
-        if (File::exists('uploads/' . $deletedRequirement->first()->file_path)) {
-            File::delete('uploads/' . $deletedRequirement->first()->file_path);
+        if (File::exists(public_path('uploads/' . $deletedRequirement->first()->file_path))) {
+            File::delete(public_path('uploads/' . $deletedRequirement->first()->file_path));
+        } else {
+            dd('File not exist');
         }
 
         $this->createLog->execute([

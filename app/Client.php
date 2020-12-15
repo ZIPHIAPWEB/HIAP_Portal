@@ -14,6 +14,7 @@ class Client extends Model
         'contact_no',
         'school',
         'user_id',
+        'fb_link'
     ];
 
     public function user()

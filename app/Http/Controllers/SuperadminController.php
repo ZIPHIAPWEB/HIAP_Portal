@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Initial;
+use App\Payment;
 use App\UserProgram;
 use Inertia\Inertia;
 
@@ -33,6 +34,7 @@ class SuperadminController extends Controller
         $client = Client::where('user_id', $id)->with('user')->first();
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'    =>  $client,
+            'payments'  =>  Payment::where('user_id', $id)->get(),
             'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
                 ->with('program')
                 ->with('course')

@@ -49,7 +49,7 @@
                                     <tr class="text-center text-xs" v-for="program in programs" :key="program.id">
                                         <td class="text-left">{{ program.name }}</td>
                                         <td>{{ program.description }}</td>
-                                        <td>{{ program.course.name }}</td>
+                                        <td>{{ program.course }}</td>
                                         <td>
                                             <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
                                                 View Requirements

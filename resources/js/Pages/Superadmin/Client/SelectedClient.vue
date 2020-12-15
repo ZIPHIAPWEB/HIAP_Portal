@@ -38,8 +38,16 @@
                                         <td class="text-center">{{ client.contact_no }}</td>
                                     </tr>
                                     <tr>
+                                        <td>School/Organization</td>
+                                        <td class="text-center">{{ client.school }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>E-mail Address</td>
                                         <td class="text-center">{{ client.user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Facebook Profile</td>
+                                        <td class="text-center"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -86,6 +94,43 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Payment</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-sm table-bordered table-striped">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th class="text-left">Type</th>
+                                        <th>Date Uploaded</th>
+                                        <th>Verified</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-if="payments.length > 0">
+                                    <tr v-for="payment in payments" :key="payment.id" class="text-center">
+                                        <td class="text-left text-sm">{{ payment.purpose }}</td>
+                                        <td class="text-sm">{{ payment.created_at }}</td>
+                                        <td class="text-sm">
+                                            <i v-if="payment.isVerified" class="fas fa-check text-green"></i>
+                                            <i v-else class="fas fa-times text-red"></i>
+                                        </td>
+                                        <td>
+                                            <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
+                                            <i v-else>Not Applicable</i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr class="text-center">
+                                        <td class="text-sm text-center" colspan="4">No Payment Registered</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,10 +143,23 @@
         props: [
             'client',
             'initials',
-            'userPrograms'
+            'userPrograms',
+            'payments'
         ],
         components: {
             SuperadminLayout
+        },
+        methods: {
+            removeDepositSlip (id) {
+                let r = confirm('Remove deposit slip?');
+
+                if(r == true) {
+                    this.$inertia.delete(`/removeDepositSlip/${id}`)
+                    .then((response) => {
+                        tostr.info('Deposit slip deleted.');
+                    })
+                }
+            },
         }
     }
 </script>

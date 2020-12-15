@@ -4,6 +4,7 @@ use App\Grade;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,6 +135,8 @@ Route::put('/updateLesson/{lessonId}', 'LessonController@updateLesson');
 Route::delete('/deleteLesson/{lesson}', 'LessonController@deleteLesson');
 Route::delete('/logs/delete/{id}', 'LogController@deleteLog');
 
+Route::post('/addDepositSlip', 'PaymentController@addDepositSlip');
+Route::delete('/removeDepositSlip/{slipId}', 'PaymentController@removeDepositSlip');
 
 Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
 Route::post('/addNewProgram', 'UserProgramController@addNewProgram');
@@ -144,30 +147,5 @@ Route::put('/updateSchool', 'SchoolController@updateSchool');
 Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
 Route::get('/test', function () {
-    return App\Client::where('program_id', 7)->with('lesson')->get()
-        ->map(function($query) {
-            return [
-                'user_id'   =>  $query->user_id,
-                'full_name' =>  $query->first_name . ' ' . $query->last_name,
-                'lessons'    =>  $query->lesson->map(function($grade) use ($query) {
-                    return [
-                        'lesson'    =>  $grade->title,
-                        'grade'     =>  $grade->grade->where('lesson_id', $grade->id)->where('user_id', $query->user_id)->groupBy('lesson_id')->get()
-                    ];
-                })
-            ];
-        });
-
-    // return App\Lesson::where('program_id', 7)->with('grade')->get()
-    //     ->map(function ($lesson) {
-    //         return [
-    //             'lesson_id' =>  $lesson->id,
-    //             'grades'    =>  $lesson->grade->groupBy('lesson_id')->get()->map(function ($grade) {
-    //                 return [
-    //                     'user'  =>  $grade->user,
-    //                     'grade' =>  $grade->grade
-    //                 ];
-    //             })
-    //         ];
-    //     });
+    dd(Str::of('0912-247-5516')->replaceMatches('/[^A-Za-z0-9]++/', ''));
 });

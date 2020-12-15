@@ -3170,6 +3170,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['errors', 'schools', 'courses', 'programs'],
   data: function data() {
@@ -3186,7 +3192,8 @@ __webpack_require__.r(__webpack_exports__);
         course_id: [],
         hours_needed: '',
         start_date: '',
-        end_date: ''
+        end_date: '',
+        fb_link: ''
       },
       isOrganization: false,
       loading: false,
@@ -3322,11 +3329,111 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user', 'client', 'userPrograms'],
+  props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments'],
   components: {
     ClientLayout: _Layouts_ClientLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ClientInitialRequirements: _components_ClientInitialRequirement_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -3335,24 +3442,73 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       programs: [],
-      selectedProgram: ''
+      form: {
+        program_id: 0,
+        courses: [],
+        hours_needed: 0,
+        start_date: '',
+        end_date: ''
+      },
+      payment: {
+        purpose: '',
+        file: '',
+        filename: ''
+      },
+      isUploading: false
     };
+  },
+  computed: {
+    filteredCourse: function filteredCourse() {
+      var _this = this;
+
+      return this.programs.filter(function (e) {
+        return e.course_id == _this.form.program_id;
+      });
+    }
   },
   mounted: function mounted() {
     this.getAllPrograms();
   },
   methods: {
+    fileHandler: function fileHandler() {
+      this.payment.file = this.$refs.slip.files[0];
+      this.payment.filename = this.payment.file.name;
+    },
     getAllPrograms: function getAllPrograms() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/getAllPrograms').then(function (response) {
-        _this.programs = response.data;
+        _this2.programs = response.data;
       });
     },
     addNewProgram: function addNewProgram() {
+      this.$inertia.post('/addNewProgram', this.form).then(function (response) {
+        $('#modal-default').modal('hide');
+      });
+    },
+    addDepositSlip: function addDepositSlip() {
+      var _this3 = this;
+
+      this.isUploading = true;
       var formData = new FormData();
-      formData.append('program_id', this.selectedProgram);
-      this.$inertia.post('/addNewProgram', formData).then(function (response) {});
+      formData.append('purpose', this.payment.purpose);
+      formData.append('file', this.payment.file);
+      this.$inertia.post('/addDepositSlip', formData).then(function (response) {
+        _this3.isUploading = false;
+        $('#modal-payment').modal('hide');
+      });
+    },
+    removeDepositSlip: function removeDepositSlip(id) {
+      var r = confirm('Remove deposit slip?');
+
+      if (r == true) {
+        this.$inertia["delete"]("/removeDepositSlip/".concat(id)).then(function (response) {
+          tostr.info('Deposit slip deleted.');
+        });
+      }
+    },
+    browseFile: function browseFile() {
+      document.getElementById('deposit-form').click();
     }
   }
 });
@@ -3512,11 +3668,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['client', 'initials', 'userPrograms'],
+  props: ['client', 'initials', 'userPrograms', 'payments'],
   components: {
     ModeratorLayout: _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    UpdateStatus: function UpdateStatus(data) {
+      var r = confirm('Set application status?');
+
+      if (r) {
+        this.$inertia.post("/setApplicationStatus/".concat(data.id), data);
+      }
+    }
   }
 });
 
@@ -3626,7 +3833,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/ModeratorLayout.vue */ "./resources/js/Layouts/ModeratorLayout.vue");
-//
 //
 //
 //
@@ -3939,11 +4145,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['client', 'initials', 'userPrograms'],
+  props: ['client', 'initials', 'userPrograms', 'payments'],
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    removeDepositSlip: function removeDepositSlip(id) {
+      var r = confirm('Remove deposit slip?');
+
+      if (r == true) {
+        this.$inertia["delete"]("/removeDepositSlip/".concat(id)).then(function (response) {
+          tostr.info('Deposit slip deleted.');
+        });
+      }
+    }
   }
 });
 
@@ -6149,6 +6411,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11205,7 +11474,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-12" }, [
+                          _c("div", { staticClass: "col-6" }, [
                             _c("div", { staticClass: "form-group" }, [
                               _vm._m(7),
                               _vm._v(" "),
@@ -11302,7 +11571,42 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(8)
+                          _c("div", { staticClass: "col-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(8),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.fb_link,
+                                    expression: "form.fb_link"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "https://facebook.com/jane.doe"
+                                },
+                                domProps: { value: _vm.form.fb_link },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "fb_link",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(9)
                         ])
                       ]
                     )
@@ -11322,72 +11626,6 @@ var render = function() {
                       [
                         _c("div", { staticClass: "row" }, [
                           _c("div", { staticClass: "col-12" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _vm._m(9),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.program,
-                                      expression: "form.program"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.form,
-                                        "program",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("Select something")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.courses, function(program) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: program.id,
-                                        domProps: { value: program.id }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                                " +
-                                            _vm._s(program.name) +
-                                            "\n                                            "
-                                        )
-                                      ]
-                                    )
-                                  })
-                                ],
-                                2
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-12" }, [
                             _c(
                               "div",
                               { staticClass: "form-group" },
@@ -11398,7 +11636,7 @@ var render = function() {
                                   attrs: {
                                     label: "name",
                                     multiple: "",
-                                    options: _vm.filteredCourse
+                                    options: _vm.programs
                                   },
                                   model: {
                                     value: _vm.form.course_id,
@@ -11637,19 +11875,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("button", { staticClass: "btn btn-primary btn-block" }, [
-        _vm._v("Next")
-      ])
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("Facebook Profile Link "),
+      _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "" } }, [
-      _vm._v("Programs "),
-      _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
+    return _c("div", { staticClass: "col-12" }, [
+      _c("button", { staticClass: "btn btn-primary btn-block" }, [
+        _vm._v("Next")
+      ])
     ])
   },
   function() {
@@ -11724,11 +11962,21 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Enrolled Courses")
-                ]),
+                _c("h5", { staticClass: "card-title" }, [_vm._v("My Courses")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" })
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-xs btn-primary",
+                      attrs: {
+                        "data-target": "#modal-default",
+                        "data-toggle": "modal"
+                      }
+                    },
+                    [_vm._v("Enroll New Course")]
+                  )
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body p-0" }, [
@@ -11741,20 +11989,16 @@ var render = function() {
                     _c("thead", { staticClass: "text-center" }, [
                       _c("tr", [
                         _c("th", { staticClass: "text-left" }, [
-                          _vm._v("Course")
+                          _vm._v("Program")
                         ]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Program")]),
+                        _c("th", [_vm._v("Course")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Application Status")]),
+                        _c("th", [_vm._v("Status")]),
                         _vm._v(" "),
                         _c("th", [_vm._v("Start Date")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("End Date")]),
-                        _vm._v(" "),
-                        _c("th", { staticStyle: { width: "30%" } }, [
-                          _vm._v("Action")
-                        ])
+                        _c("th", [_vm._v("End Date")])
                       ])
                     ]),
                     _vm._v(" "),
@@ -11763,16 +12007,26 @@ var render = function() {
                       _vm._l(_vm.userPrograms, function(p) {
                         return _c("tr", { key: p.id }, [
                           _c("td", { staticClass: "text-sm" }, [
-                            _vm._v(_vm._s(p.program.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center text-sm" }, [
                             _vm._v(_vm._s(p.course.name))
                           ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center text-sm" }, [
-                            _vm._v(_vm._s(p.application_status))
+                            _vm._v(_vm._s(p.program.name))
                           ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "text-center text-sm text-bold" },
+                            [
+                              p.application_status
+                                ? _c("i", { staticClass: "text-danger" }, [
+                                    _vm._v("Newly Enrolled")
+                                  ])
+                                : _c("i", { staticClass: "text-success" }, [
+                                    _vm._v("Complete")
+                                  ])
+                            ]
+                          ),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center text-sm" }, [
                             _vm._v(_vm._s(p.start_date))
@@ -11780,32 +12034,119 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center text-sm" }, [
                             _vm._v(_vm._s(p.end_date))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            { staticClass: "text-center" },
-                            [
-                              _c(
-                                "inertia-link",
-                                {
-                                  staticClass: "btn btn-xs btn-success",
-                                  attrs: {
-                                    href:
-                                      "/client/" +
-                                      p.program.id +
-                                      "/requirements"
-                                  }
-                                },
-                                [_vm._v("View Requirements")]
-                              )
-                            ],
-                            1
-                          )
+                          ])
                         ])
                       }),
                       0
                     )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v("My Payments")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-xs btn-primary",
+                      attrs: {
+                        "data-target": "#modal-payment",
+                        "data-toggle": "modal"
+                      }
+                    },
+                    [_vm._v("Upload Deposit Slip")]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body p-0" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-sm table-bordered table-striped"
+                  },
+                  [
+                    _c("thead", { staticClass: "text-center" }, [
+                      _c("tr", [
+                        _c("th", { staticClass: "text-left" }, [
+                          _vm._v("Type")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Date Uploaded")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Verified")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Actions")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.payments.length > 0
+                      ? _c(
+                          "tbody",
+                          _vm._l(_vm.payments, function(payment) {
+                            return _c(
+                              "tr",
+                              { key: payment.id, staticClass: "text-center" },
+                              [
+                                _c("td", { staticClass: "text-left text-sm" }, [
+                                  _vm._v(_vm._s(payment.purpose))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-sm" }, [
+                                  _vm._v(_vm._s(payment.created_at))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-sm" }, [
+                                  payment.isVerified
+                                    ? _c("i", {
+                                        staticClass: "fas fa-check text-green"
+                                      })
+                                    : _c("i", {
+                                        staticClass: "fas fa-times text-red"
+                                      })
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  !payment.isVerified
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-danger btn-xs",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.removeDepositSlip(
+                                                payment.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Remove")]
+                                      )
+                                    : _c("i", [_vm._v("Not Applicable")])
+                                ])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      : _c("tbody", [
+                          _c("tr", { staticClass: "text-center" }, [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-sm text-center",
+                                attrs: { colspan: "4" }
+                              },
+                              [_vm._v("No Payment Registered")]
+                            )
+                          ])
+                        ])
                   ]
                 )
               ])
@@ -11822,84 +12163,399 @@ var render = function() {
           attrs: { id: "modal-default", "aria-modal": "true" }
         },
         [
-          _c("div", { staticClass: "modal-dialog modal-sm" }, [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _vm._v("Choose Program")
+          _c(
+            "div",
+            { staticClass: "modal-dialog modal-dialog-centered modal-md" },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Enroll Program(s)")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Program")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.selectedProgram,
-                        expression: "selectedProgram"
-                      }
-                    ],
-                    staticClass: "form-control form-control-sm",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.selectedProgram = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  _vm._l(_vm.programs, function(program) {
-                    return _c(
-                      "option",
-                      { key: program.id, domProps: { value: program.id } },
-                      [_vm._v(_vm._s(program.name))]
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.program_id,
+                            expression: "form.program_id"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "program_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { selected: "", value: "" } }, [
+                          _vm._v("Select program")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.onlinePrograms, function(program) {
+                          return _c(
+                            "option",
+                            {
+                              key: program.id,
+                              domProps: { value: program.id }
+                            },
+                            [_vm._v(_vm._s(program.name))]
+                          )
+                        })
+                      ],
+                      2
                     )
-                  }),
-                  0
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-block btn-sm btn-primary",
-                    attrs: { type: "button" },
-                    on: { click: _vm.addNewProgram }
-                  },
-                  [_vm._v("Enroll")]
-                )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("Course")]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          label: "name",
+                          multiple: "",
+                          options: _vm.filteredCourse
+                        },
+                        model: {
+                          value: _vm.form.courses,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "courses", $$v)
+                          },
+                          expression: "form.courses"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Hours Needed")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.hours_needed,
+                          expression: "form.hours_needed"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "text", placeholder: "0" },
+                      domProps: { value: _vm.form.hours_needed },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "hours_needed",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Start Date")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.start_date,
+                          expression: "form.start_date"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.form.start_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "start_date", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("End Date")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.end_date,
+                          expression: "form.end_date"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.form.end_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "end_date", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-block btn-sm btn-primary",
+                      attrs: { type: "button" },
+                      on: { click: _vm.addNewProgram }
+                    },
+                    [_vm._v("Enroll")]
+                  )
+                ])
               ])
-            ])
-          ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade show",
+          attrs: { id: "modal-payment", "aria-modal": "true" }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog modal-dialog-centered modal-sm" },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm.isUploading
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "overlay d-flex justify-content-center align-items-center"
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-spinner fa-2x fa-pulse"
+                        })
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Upload Deposit Slip")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("x")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Type")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.payment.purpose,
+                            expression: "payment.purpose"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.payment,
+                              "purpose",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { selected: "" } }, [
+                          _vm._v("Select purpose")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Initial Payment (60%)" } },
+                          [_vm._v("Initial Payment (60%)")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Second Payment (40%)" } },
+                          [_vm._v("Second Payment (40%)")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Deposit Slip")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group input-group-sm" }, [
+                      _c("input", {
+                        ref: "slip",
+                        staticStyle: { display: "none" },
+                        attrs: { type: "file", id: "deposit-form" },
+                        on: {
+                          change: function($event) {
+                            return _vm.fileHandler()
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.payment.filename,
+                            expression: "payment.filename"
+                          }
+                        ],
+                        attrs: { type: "text", disabled: "" },
+                        domProps: { value: _vm.payment.filename },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.payment,
+                              "filename",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "input-group-append" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info btn-flat",
+                            on: {
+                              click: function($event) {
+                                return _vm.browseFile()
+                              }
+                            }
+                          },
+                          [_vm._v("Browse")]
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-sm btn-block",
+                      on: {
+                        click: function($event) {
+                          return _vm.addDepositSlip()
+                        }
+                      }
+                    },
+                    [_vm._v("Submit")]
+                  )
+                ])
+              ])
+            ]
+          )
         ]
       )
     ])
@@ -12058,6 +12714,12 @@ var render = function() {
                     _c("td", { staticClass: "text-center" }, [
                       _vm._v(_vm._s(_vm.client.user.email))
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Facebook Profile")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" })
                   ])
                 ])
               ])
@@ -12081,14 +12743,18 @@ var render = function() {
                 [
                   _c("thead", [
                     _c("tr", [
-                      _c("th", [_vm._v("Courses")]),
+                      _c("th", [_vm._v("Program")]),
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Application Status")
+                        _vm._v("Courses")
                       ]),
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Program")
+                        _vm._v("Status")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Hours Needed")
                       ]),
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
@@ -12097,10 +12763,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v("End Date")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Hours Needed (hrs)")
                       ]),
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
@@ -12117,14 +12779,24 @@ var render = function() {
                             "tr",
                             { key: p.id, staticClass: "text-xs" },
                             [
-                              _c("td", [_vm._v(_vm._s(p.program.name))]),
+                              _c("td", [_vm._v(_vm._s(p.course.name))]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
-                                _vm._v(_vm._s(p.application_status))
+                                _vm._v(_vm._s(p.program.name))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
-                                _vm._v(_vm._s(p.course.name))
+                                p.application_status == 0
+                                  ? _c("i", { staticClass: "text-red" }, [
+                                      _vm._v("Newly Enrolled")
+                                    ])
+                                  : _c("i", { staticClass: "text-green" }, [
+                                      _vm._v("Completed")
+                                    ])
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-center" }, [
+                                _vm._v(_vm._s(p.hours_needed))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
@@ -12135,10 +12807,6 @@ var render = function() {
                                 _vm._v(_vm._s(p.end_date))
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "text-center" }, [
-                                _vm._v(_vm._s(p.hours_needed))
-                              ]),
-                              _vm._v(" "),
                               _c(
                                 "td",
                                 {
@@ -12147,21 +12815,26 @@ var render = function() {
                                 },
                                 [
                                   _c(
-                                    "inertia-link",
+                                    "button",
                                     {
-                                      staticClass: "btn btn-primary btn-xs",
-                                      attrs: {
-                                        href:
-                                          "/md/client/" +
-                                          _vm.client.user_id +
-                                          "/program/" +
-                                          p.program.id
+                                      staticClass: "btn btn-xs btn-success",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.UpdateStatus(p)
+                                        }
                                       }
                                     },
-                                    [_vm._v("View Records")]
+                                    [
+                                      p.application_status == 0
+                                        ? _c("i", {
+                                            staticClass: "fas fa-check"
+                                          })
+                                        : _c("i", {
+                                            staticClass: "fas fa-redo-alt"
+                                          })
+                                    ]
                                   )
-                                ],
-                                1
+                                ]
                               )
                             ]
                           )
@@ -12177,6 +12850,73 @@ var render = function() {
                               attrs: { colspan: "3" }
                             },
                             [_vm._v("Not enrolled in any program")]
+                          )
+                        ])
+                      ])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c("h5", { staticClass: "card-title" }, [_vm._v("Payment")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body p-0" }, [
+              _c(
+                "table",
+                { staticClass: "table table-sm table-bordered table-striped" },
+                [
+                  _c("thead", { staticClass: "text-center" }, [
+                    _c("tr", [
+                      _c("th", { staticClass: "text-left" }, [_vm._v("Type")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Date Uploaded")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Verified")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.payments.length > 0
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.payments, function(payment) {
+                          return _c(
+                            "tr",
+                            { key: payment.id, staticClass: "text-center" },
+                            [
+                              _c("td", { staticClass: "text-left text-sm" }, [
+                                _vm._v(_vm._s(payment.purpose))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.created_at))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                payment.isVerified
+                                  ? _c("i", {
+                                      staticClass: "fas fa-check text-green"
+                                    })
+                                  : _c("i", {
+                                      staticClass: "fas fa-times text-red"
+                                    })
+                              ])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    : _c("tbody", [
+                        _c("tr", { staticClass: "text-center" }, [
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-sm text-center",
+                              attrs: { colspan: "4" }
+                            },
+                            [_vm._v("No Payment Registered")]
                           )
                         ])
                       ])
@@ -12488,19 +13228,6 @@ var render = function() {
                             }
                           },
                           [_vm._v("View")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger btn-xs btn-flat",
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteClientDetails(client.user_id)
-                              }
-                            }
-                          },
-                          [_vm._v("Delete")]
                         )
                       ])
                     ]
@@ -12770,11 +13497,25 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("tr", [
+                    _c("td", [_vm._v("School/Organization")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.school))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
                     _c("td", [_vm._v("E-mail Address")]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
                       _vm._v(_vm._s(_vm.client.user.email))
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Facebook Profile")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" })
                   ])
                 ])
               ])
@@ -12906,6 +13647,94 @@ var render = function() {
                               attrs: { colspan: "3" }
                             },
                             [_vm._v("Not enrolled in any program")]
+                          )
+                        ])
+                      ])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c("h5", { staticClass: "card-title" }, [_vm._v("Payment")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body p-0" }, [
+              _c(
+                "table",
+                { staticClass: "table table-sm table-bordered table-striped" },
+                [
+                  _c("thead", { staticClass: "text-center" }, [
+                    _c("tr", [
+                      _c("th", { staticClass: "text-left" }, [_vm._v("Type")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Date Uploaded")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Verified")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Actions")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.payments.length > 0
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.payments, function(payment) {
+                          return _c(
+                            "tr",
+                            { key: payment.id, staticClass: "text-center" },
+                            [
+                              _c("td", { staticClass: "text-left text-sm" }, [
+                                _vm._v(_vm._s(payment.purpose))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.created_at))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                payment.isVerified
+                                  ? _c("i", {
+                                      staticClass: "fas fa-check text-green"
+                                    })
+                                  : _c("i", {
+                                      staticClass: "fas fa-times text-red"
+                                    })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                !payment.isVerified
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger btn-xs",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeDepositSlip(
+                                              payment.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Remove")]
+                                    )
+                                  : _c("i", [_vm._v("Not Applicable")])
+                              ])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    : _c("tbody", [
+                        _c("tr", { staticClass: "text-center" }, [
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-sm text-center",
+                              attrs: { colspan: "4" }
+                            },
+                            [_vm._v("No Payment Registered")]
                           )
                         ])
                       ])
@@ -14558,7 +15387,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(program.description))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(program.course.name))]),
+                          _c("td", [_vm._v(_vm._s(program.course))]),
                           _vm._v(" "),
                           _c(
                             "td",
@@ -16532,7 +17361,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
-      _c("h5", { staticClass: "m-0 flex-fill" }, [_vm._v("Personal Profile")]),
+      _c("h5", { staticClass: "m-0 flex-fill" }, [_vm._v("My Profile")]),
       _vm._v(" "),
       !_vm.isEdit
         ? _c("div", [
@@ -16742,6 +17571,36 @@ var render = function() {
                             "contact_no",
                             $event.target.value
                           )
+                        }
+                      }
+                    })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("FB Profile Link")]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-left" }, [
+                !_vm.isEdit
+                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.fb_link))])
+                  : _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.profile.fb_link,
+                          expression: "profile.fb_link"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm w-100",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.profile.fb_link },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.profile, "fb_link", $event.target.value)
                         }
                       }
                     })

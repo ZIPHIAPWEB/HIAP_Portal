@@ -33,7 +33,6 @@
                             <td>{{ client.user.email }}</td>
                             <td>
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>
-                                <button @click="deleteClientDetails(client.user_id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
                             </td>
                         </tr>
                     </tbody>

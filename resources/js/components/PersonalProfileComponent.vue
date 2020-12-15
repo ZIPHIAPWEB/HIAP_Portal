@@ -4,7 +4,7 @@
             <i class="fas fa-2x fa-spinner fa-pulse"></i>
         </div>
         <div class="card-header d-flex justify-content-between">
-            <h5 class="m-0 flex-fill">Personal Profile</h5>
+            <h5 class="m-0 flex-fill">My Profile</h5>
             <div v-if="!isEdit" >
                 <button @click="isEdit = true" class="btn btn-primary btn-xs">Edit</button>
             </div>
@@ -49,6 +49,13 @@
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ profile.contact_no }}</strong>
                             <input v-model="profile.contact_no" v-else type="text" class="form-control form-control-sm w-100">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FB Profile Link</td>
+                        <td class="text-left">
+                            <strong v-if="!isEdit">{{ profile.fb_link }}</strong>
+                            <input v-model="profile.fb_link" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>

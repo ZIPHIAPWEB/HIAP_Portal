@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role'  =>  'client',
             'isFilled'  =>  false,
-            'program'   =>  $data['program']
+            'program_id'   =>  $data['program']
         ]);
     }
 
