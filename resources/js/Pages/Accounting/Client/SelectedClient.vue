@@ -1,5 +1,5 @@
 <template>
-    <superadmin-layout>
+    <accounting-layout>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-3">
@@ -53,8 +53,6 @@
                             </table>
                         </div>
                     </div>
-
-                    
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Enrolled Programs</h5>
@@ -63,30 +61,25 @@
                             <table class="table table-hovered table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Course</th>
-                                        <th class="text-center">Program</th>
-                                        <th class="text-center">Application Status</th>
+                                        <th>Program</th>
+                                        <th class="text-center">Courses</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
-                                        <th class="text-center">Hours Needed</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="userPrograms.length > 0">
                                     <tr v-for="p in userPrograms" :key="p.id" class="text-xs">
-                                        <td>{{ p.program.name }}</td>
-                                        <th class="text-center">{{ p.course.name }}</th>
+                                        <td>{{ p.course.name }}</td>
+                                        <td class="text-center">{{ p.program.name }}</td>
                                         <td class="text-center">
                                             <i class="text-red" v-if="p.application_status == 0">Newly Enrolled</i>
                                             <i class="text-green" v-else>Completed</i>
                                         </td>
+                                        <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
-                                        <td class="text-center">{{ p.hours_needed }}</td>
-                                        <td style="width:30%;" class="text-center">
-                                            <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link>
-                                            <inertia-link :href="`/deleteUserProgram/${p.id}`" method="deletes" class="btn btn-danger btn-xs">Remove</inertia-link>
-                                        </td>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
@@ -97,7 +90,6 @@
                             </table>
                         </div>
                     </div>
-
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Payment</h5>
@@ -109,7 +101,7 @@
                                         <th class="text-left">Type</th>
                                         <th>Date Uploaded</th>
                                         <th>Verified</th>
-                                        <th>Actions</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="payments.length > 0">
@@ -120,9 +112,16 @@
                                             <i v-if="payment.isVerified" class="fas fa-check text-green"></i>
                                             <i v-else class="fas fa-times text-red"></i>
                                         </td>
-                                        <td>
-                                            <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
-                                            <i v-else>Not Applicable</i>
+                                        <td class="text-sm">
+                                            <button v-if="!payment.isVerified" @click="verifyPayment(payment.id)" class="btn btn-xs btn-success">
+                                                <i class="fas fa-check fa-xs"></i>
+                                            </button>
+                                            <a :href="payment.path" class="btn btn-xs btn-primary" target="_blank">
+                                                <i class="fas fa-eye fa-xs"></i>
+                                            </a>
+                                            <a :href="payment.path" class="btn btn-xs btn-warning" download>
+                                                <i class="fas fa-download fa-xs"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -137,32 +136,31 @@
                 </div>
             </div>
         </div>
-    </superadmin-layout>
+    </accounting-layout>
 </template>
 
 <script>
-    import SuperadminLayout from '../../../Layouts/SuperadminLayout.vue';
+    import AccountingLayout from '../../../Layouts/AccountingLayout.vue';
     export default {
         props: [
             'client',
-            'initials',
             'userPrograms',
             'payments'
         ],
         components: {
-            SuperadminLayout
+            AccountingLayout
         },
         methods: {
-            removeDepositSlip (id) {
-                let r = confirm('Remove deposit slip?');
+            verifyPayment(id) {
+                let r = confirm('Verify this payment?');
 
-                if(r == true) {
-                    this.$inertia.delete(`/removeDepositSlip/${id}`)
-                    .then((response) => {
-                        tostr.info('Deposit slip deleted.');
-                    })
+                if (r) {
+                    this.$inertia.post('/ac/verifyPayment', { id: id });
                 }
             },
+            downloadPayment(path) {
+
+            }
         }
     }
 </script>

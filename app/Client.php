@@ -41,4 +41,9 @@ class Client extends Model
     {
         return $this->hasMany('App\Lesson', 'program_id', 'program_id');
     }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Payment', 'user_id', 'user_id');
+    }
 }

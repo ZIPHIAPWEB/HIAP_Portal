@@ -1,8 +1,10 @@
 <?php
 
 use App\Grade;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -52,6 +54,12 @@ Route::prefix('client')->group(function () {
     Route::get('/{programId}/requirements', 'ClientController@showClientRequirements');
 });
 
+Route::prefix('ac')->group(function() {
+    Route::get('/clients', 'AccountingController@showAccountingClients')->name('ac.clients')->middleware('auth');
+    Route::get('/client/{id}', 'AccountingController@showAccountingSelectedClient')->name('ac.client');
+    Route::post('/verifyPayment', 'AccountingController@paymentVerified')->name('ac.verify');
+    Route::get('/dashboard', 'AccountingController@showAccountingDashboard')->name('ac.dashboard');
+});
 
 Route::prefix('sa')->group(function () {
     Route::get('/dashboard', 'SuperadminController@showDashboard')->name('sa.dashboard')->middleware('auth');
@@ -147,5 +155,10 @@ Route::put('/updateSchool', 'SchoolController@updateSchool');
 Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
 Route::get('/test', function () {
-    dd(Str::of('0912-247-5516')->replaceMatches('/[^A-Za-z0-9]++/', ''));
+    User::create([
+        'email'     =>  'accounting@hiap.com',
+        'password'  =>  Hash::make('accountingrocks5000!'),
+        'role'      =>  'accounting',
+        'isFilled'  =>  1
+    ]);
 });

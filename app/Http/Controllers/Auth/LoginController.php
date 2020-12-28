@@ -98,6 +98,10 @@ class LoginController extends Controller
             case 'superadministrator':
                 return redirect()->route('sa.dashboard');
             break;
+
+            case 'accounting':
+                return redirect()->route('ac.dashboard');
+            break;
         }
     }
 }

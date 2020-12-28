@@ -4,21 +4,30 @@ namespace App\Services;
 
 use App\Actions\CreatePayment;
 use App\Actions\RemovePayment;
+use App\Actions\SendMailNotification;
+use App\Actions\UpdatePayment;
+use App\Client;
+use App\Mail\PaymentUploaded;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class PaymentService
 {
     private $createPayment;
+    private $updatePayment;
     private $removePayment;
+    private $mail;
 
     public function __construct(
         CreatePayment $createPayment,
-        RemovePayment $removePayment
+        UpdatePayment $updatePayment,
+        RemovePayment $removePayment,
+        SendMailNotification $sendMailNotification
     )
     {
-        $this->createPayment = $createPayment;    
+        $this->createPayment = $createPayment;   
+        $this->updatePayment = $updatePayment; 
         $this->removePayment = $removePayment;
+        $this->mail = $sendMailNotification;
     }
 
     public function uploadDepositSlip($data)
@@ -32,6 +41,11 @@ class PaymentService
             'isVerified'    =>  false,
             'path'          =>  $filename
         ]);
+
+        $this->mail->execute('accounting@ziptravel.com.ph', new PaymentUploaded([
+            'client'    =>  Client::where('user_id', $data->user()->id)->first(),
+            'purpose'   =>  $data->purpose
+        ]));
     }
 
     public function deleteDepositSlip($data)
@@ -48,5 +62,12 @@ class PaymentService
         
           }
 
+    }
+
+    public function verify($paymentId)
+    {
+        $this->updatePayment->execute(['id' => $paymentId], [
+            'isVerified'    =>  1
+        ]);
     }
 }
