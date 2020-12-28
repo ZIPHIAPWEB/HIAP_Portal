@@ -100,7 +100,7 @@ class LoginController extends Controller
             break;
 
             case 'accounting':
-                return redirect()->route('ac.dashboard');
+                return redirect()->route('ac.clients');
             break;
         }
     }
