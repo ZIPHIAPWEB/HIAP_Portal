@@ -94,6 +94,12 @@
             </inertia-link>
           </li>
           <li class="nav-item">
+            <inertia-link href="/sa/certs" class="nav-link">
+              <i class="nav-icon fas fa-users-cog"></i>
+              <p>Certificates</p>
+            </inertia-link>
+          </li>
+          <li class="nav-item">
                 <inertia-link href="/sa/logs" class="nav-link">
                     <i class="nav-icon fas fa-clipboard-list"></i>
                     <p>
@@ -128,8 +134,8 @@
                   <p>Dashboard v3</p>
                 </a>
               </li> -->
-            </ul>
-          </li>
+            <!-- </ul>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

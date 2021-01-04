@@ -46,6 +46,10 @@ Route::view('/tesda-online', 'frontview.tesda-online');
 
 Route::post('/sendInquiry', 'InquiryController@sendInquiry')->name('send.inquiry');
 
+Route::prefix('cert')->group(function () {
+    Route::get('/search', 'CertificateController@showSearchCertificate');
+});
+
 Route::prefix('client')->group(function () {
     Route::get('/application-form', 'ClientController@showApplicationForm')->name('cl.application')->middleware(['verified', 'auth']);
     Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified', 'auth']);
@@ -84,6 +88,8 @@ Route::prefix('sa')->group(function () {
     Route::get('/client/{userId}/program/{programId}', 'SuperadminController@showSelectedProgram')->name('sa.selected.program');
 
     Route::get('/school', 'SchoolController@showSchoolEntry');
+
+    Route::get('/certs', 'CertificateController@showCertificateEntry');
 });
 
 Route::prefix('md')->group(function () {
