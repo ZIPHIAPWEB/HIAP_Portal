@@ -13116,7 +13116,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "cert-grade" }, [
-              _vm._v(_vm._s(_vm.cert_details.total_grade))
+              _vm._v(_vm._s(_vm.cert_details.total_grade) + " ")
             ])
           ]
         ),

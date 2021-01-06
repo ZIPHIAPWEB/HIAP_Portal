@@ -38,18 +38,20 @@ class CertificateController extends Controller
 
         foreach($data as $cert) {
             $arr = explode(',', $cert);
-            
-            Certificate::create([
-                'cert_no'       =>  $arr[0],
-                'name'          =>  $arr[1],
-                'school'        =>  $arr[5],
-                'program'       =>  $arr[6],
-                'total_grade'   =>  $arr[7],
-                'gold_medal'    =>  $arr[8],
-                'silver_medal'  =>  $arr[9],
-                'bronze_medal'  =>  $arr[10],
-                'total_medal'   =>  $arr[11]
-            ]);
+        
+            if($arr[0] != '') {
+                Certificate::create([
+                    'cert_no'       =>  $arr[0],
+                    'name'          =>  $arr[1],
+                    'school'        =>  $arr[5],
+                    'program'       =>  $arr[6],
+                    'total_grade'   =>  $arr[7],
+                    'gold_medal'    =>  $arr[8],
+                    'silver_medal'  =>  $arr[9],
+                    'bronze_medal'  =>  $arr[10],
+                    'total_medal'   =>  $arr[11]
+                ]);
+            } 
         }
 
         return redirect()->back();
