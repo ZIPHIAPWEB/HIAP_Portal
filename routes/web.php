@@ -161,6 +161,7 @@ Route::post('/storeSchool', 'SchoolController@storeSchool');
 Route::put('/updateSchool', 'SchoolController@updateSchool');
 Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
+Route::post('/uploadCertificate', 'CertificateController@uploadCertificate');
 Route::get('/test', function () {
     User::create([
         'email'     =>  'accounting@hiap.com',

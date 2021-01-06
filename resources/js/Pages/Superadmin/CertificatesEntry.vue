@@ -8,7 +8,8 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            
+                            <input @change="fileHandler" type="file" ref="cert" name="" id="">
+                            <button @click="saveFile">Save</button>
                         </div>
                     </div>
                 </div>
@@ -59,9 +60,26 @@
 <script>
     import SuperadminLayout from '../../Layouts/SuperadminLayout.vue';
     export default {
+        props: ['certs'],
         components: {
             SuperadminLayout
         },
-        props: ['certs']
+        data () {
+            return {
+                form: {
+                    file: ''
+                }
+            }
+        },
+        methods : {
+            fileHandler () {
+                this.form.file = this.$refs.cert.files[0];
+            },
+            saveFile () {
+                let formData = new FormData();
+                formData.append('file', this.form.file);
+                this.$inertia.post('/uploadCertificate', formData);
+            }
+        }
     }
 </script>

@@ -4840,12 +4840,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['certs'],
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['certs']
+  data: function data() {
+    return {
+      form: {
+        file: ''
+      }
+    };
+  },
+  methods: {
+    fileHandler: function fileHandler() {
+      this.form.file = this.$refs.cert.files[0];
+    },
+    saveFile: function saveFile() {
+      var formData = new FormData();
+      formData.append('file', this.form.file);
+      this.$inertia.post('/uploadCertificate', formData);
+    }
+  }
 });
 
 /***/ }),
@@ -13098,7 +13116,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "cert-grade" }, [
-              _vm._v(_vm._s(_vm.cert_details.total_grade) + " %")
+              _vm._v(_vm._s(_vm.cert_details.total_grade))
             ])
           ]
         ),
@@ -15544,7 +15562,15 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "form-group" })
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                ref: "cert",
+                attrs: { type: "file", name: "", id: "" },
+                on: { change: _vm.fileHandler }
+              }),
+              _vm._v(" "),
+              _c("button", { on: { click: _vm.saveFile } }, [_vm._v("Save")])
+            ])
           ])
         ])
       ]),
