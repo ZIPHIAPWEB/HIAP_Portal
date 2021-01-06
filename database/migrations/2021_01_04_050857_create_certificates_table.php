@@ -15,6 +15,15 @@ class CreateCertificatesTable extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
+            $table->string('cert_no');
+            $table->string('name');
+            $table->string('school');
+            $table->string('program');
+            $table->string('total_grade');
+            $table->integer('gold_medal');
+            $table->integer('silver_medal');
+            $table->integer('bronze_medal');
+            $table->integer('total_medal');
             $table->timestamps();
         });
     }

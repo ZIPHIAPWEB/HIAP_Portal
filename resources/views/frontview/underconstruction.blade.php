@@ -26,9 +26,18 @@
         background-size: cover;
         height: 100vh;
     }
+
+    .under-sm {
+        background: url(/assets/img/underconstruction-sm.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100vh;
+    }
 </style>
 <body>
-    <div class="under"></div>
+    <div class="under d-none d-lg-block"></div>
+    <div class="under-sm"></div>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/script.min.js"></script>

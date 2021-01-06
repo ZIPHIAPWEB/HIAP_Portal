@@ -48,6 +48,7 @@ Route::post('/sendInquiry', 'InquiryController@sendInquiry')->name('send.inquiry
 
 Route::prefix('cert')->group(function () {
     Route::get('/search', 'CertificateController@showSearchCertificate');
+    Route::get('/{certId}', 'CertificateController@showCertificate');
 });
 
 Route::prefix('client')->group(function () {

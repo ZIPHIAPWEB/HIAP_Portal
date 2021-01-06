@@ -32,6 +32,22 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr class="text-xs text-center" v-for="cert in certs" :key="cert.id">
+                                    <td class="text-left">{{ cert.cert_no }}</td>
+                                    <td>{{ cert.name }}</td>
+                                    <td>{{ cert.program }}</td>
+                                    <td>{{ cert.gold_medal }}</td>
+                                    <td>{{ cert.silver_medal }}</td>
+                                    <td>{{ cert.bronze_medal }}</td>
+                                    <td class="text-bold">{{ cert.total_grade }}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-xs">
+                                            <span class="fas fa-trash"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -45,6 +61,7 @@
     export default {
         components: {
             SuperadminLayout
-        }
+        },
+        props: ['certs']
     }
 </script>

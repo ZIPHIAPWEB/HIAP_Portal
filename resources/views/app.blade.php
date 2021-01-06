@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/toastr/toastr.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/logo_small.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/logo_large.png">
 
