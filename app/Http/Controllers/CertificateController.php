@@ -15,9 +15,15 @@ class CertificateController extends Controller
 
     public function showCertificate($certId)
     {
-        return Inertia::render('Certificate/ViewCertificate', [
-            'cert_details' => Certificate::where('cert_no', $certId)->first()
-        ]);
+        $cert = Certificate::where('cert_no', $certId)->first();
+
+        if ($cert) {
+            return Inertia::render('Certificate/ViewCertificate', [
+                'cert_details' => $cert
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     public function showCertificateEntry()
