@@ -120,12 +120,15 @@
                 border: solid 2px black;
                 border-radius: 10px;
                 margin: 0 2px;
-                span {
-                    font-size: 22px;
-                }
+                
+                @media (min-width: 576px) {
+                    span {
+                        font-size: 22px;
+                    }
 
-                h5 {
-                    font-size: 15px;
+                    h5 {
+                        font-size: 15px;
+                    }
                 }
             }
         }
