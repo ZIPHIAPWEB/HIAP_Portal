@@ -37,7 +37,7 @@
 </style>
 <body>
     <div class="under d-none d-lg-block"></div>
-    <div class="under-sm"></div>
+    <div class="under-sm d-block d-lg-none"></div>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/script.min.js"></script>

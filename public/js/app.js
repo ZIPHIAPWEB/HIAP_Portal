@@ -3742,6 +3742,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cert_details'],
@@ -7629,7 +7660,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cert-bg[data-v-726229fe] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-726229fe] {\n  height: 200px;\n  margin: 1em;\n}\n.cert-bg .cert-basic[data-v-726229fe] {\n  margin: 50px 0;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n  width: 50vw;\n  border-bottom: solid #910824 4px;\n  text-align: center;\n  padding-bottom: 15px;\n  margin-bottom: 15px;\n  font-family: \"Bebas Kai\";\n  font-size: 80px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n  font-weight: bold;\n  font-size: 25px;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n  font-size: 20px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n  font-size: 25px;\n  font-weight: bolder;\n}", ""]);
+exports.push([module.i, ".cert-bg[data-v-726229fe] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-726229fe] {\n  height: 150px;\n  margin: 0.5em;\n}\n@media (min-width: 576px) {\n.cert-bg img[data-v-726229fe] {\n    height: 200px;\n    margin: 1em;\n}\n}\n.cert-bg .medal-wrapper[data-v-726229fe] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.cert-bg .medal-wrapper div[data-v-726229fe] {\n  display: flex;\n  align-items: center;\n  padding: 15px;\n  border: solid 2px black;\n  border-radius: 10px;\n  margin: 0 2px;\n}\n.cert-bg .cert-basic[data-v-726229fe] {\n  margin: 20px 0;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n  width: 80vw;\n  border-bottom: solid #910824 4px;\n  text-align: center;\n  padding-bottom: 15px;\n  margin-bottom: 15px;\n  font-family: \"Bebas Kai\";\n  font-size: 35px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bolder;\n}\n@media (min-width: 576px) {\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    width: 50vw;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    font-size: 80px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n    font-size: 25px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n    font-size: 20px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n    font-size: 25px;\n}\n}", ""]);
 
 // exports
 
@@ -13121,20 +13152,10 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row my-2" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center p-3",
-                staticStyle: {
-                  border: "solid black 2px",
-                  "border-top-left-radius": "10px",
-                  "border-bottom-left-radius": "10px"
-                }
-              },
-              [
+        _c("div", { staticClass: "container d-block d-md-none" }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "medal-wrapper" }, [
+              _c("div", [
                 _c("span", {
                   staticClass: "fas fa-medal fa-2x",
                   staticStyle: { color: "#D4AF37" }
@@ -13143,21 +13164,15 @@ var render = function() {
                 _c("h5", { staticClass: "mx-2 text-bold" }, [
                   _vm._v("GOLD MEDALS")
                 ])
-              ]
-            ),
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.gold_medal))
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center p-3",
-                staticStyle: {
-                  border: "solid black 2px",
-                  "border-left": "0",
-                  "border-right": "0"
-                }
-              },
-              [
+            _c("div", { staticClass: "medal-wrapper " }, [
+              _c("div", [
                 _c("span", {
                   staticClass: "fas fa-medal fa-2x",
                   staticStyle: { color: "#C0C0C0" }
@@ -13166,17 +13181,15 @@ var render = function() {
                 _c("h5", { staticClass: "mx-2 text-bold" }, [
                   _vm._v("SILVER MEDALS")
                 ])
-              ]
-            ),
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.silver_medal))
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center p-3",
-                staticStyle: { border: "solid black 2px", "border-right": "0" }
-              },
-              [
+            _c("div", { staticClass: "medal-wrapper " }, [
+              _c("div", [
                 _c("span", {
                   staticClass: "fas fa-medal fa-2x",
                   staticStyle: { color: "#cd7f32" }
@@ -13185,78 +13198,124 @@ var render = function() {
                 _c("h5", { staticClass: "mx-2 text-bold" }, [
                   _vm._v("BRONZE MEDALS")
                 ])
-              ]
-            ),
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.bronze_medal))
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center p-3",
-                staticStyle: {
-                  border: "solid black 2px",
-                  "border-top-right-radius": "10px",
-                  "border-bottom-right-radius": "10px"
-                }
-              },
-              [
+            _c("div", { staticClass: "medal-wrapper" }, [
+              _c("div", [
                 _c("h5", { staticClass: "mx-2 text-bold" }, [
                   _vm._v("TOTAL MEDALS")
                 ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center"
-              },
-              [
-                _c("h5", { staticClass: "mx-2 text-bold" }, [
-                  _vm._v(_vm._s(_vm.cert_details.gold_medal))
-                ])
-              ]
-            ),
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.total_medal))
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container d-none d-md-block" }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "medal-wrapper" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "m-0",
+                  staticStyle: {
+                    "border-right": "0",
+                    "border-top-right-radius": "0",
+                    "border-bottom-right-radius": "0"
+                  }
+                },
+                [
+                  _c("span", {
+                    staticClass: "fas fa-medal fa-2x",
+                    staticStyle: { color: "#D4AF37" }
+                  }),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "mx-2 text-bold" }, [
+                    _vm._v("GOLD MEDALS")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.gold_medal))
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center"
-              },
-              [
-                _c("h5", { staticClass: "mx-2 text-bold" }, [
-                  _vm._v(_vm._s(_vm.cert_details.silver_medal))
-                ])
-              ]
-            ),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center"
-              },
-              [
-                _c("h5", { staticClass: "mx-2 text-bold" }, [
-                  _vm._v(_vm._s(_vm.cert_details.bronze_medal))
-                ])
-              ]
-            ),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-md-3 d-flex flex-row align-items-center justify-content-center"
-              },
-              [
-                _c("h5", { staticClass: "mx-2 text-bold" }, [
-                  _vm._v(_vm._s(_vm.cert_details.total_medal))
-                ])
-              ]
-            )
+            _c("div", { staticClass: "medal-wrapper " }, [
+              _c(
+                "div",
+                { staticClass: "m-0", staticStyle: { "border-radius": "0" } },
+                [
+                  _c("span", {
+                    staticClass: "fas fa-medal fa-2x",
+                    staticStyle: { color: "#C0C0C0" }
+                  }),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "mx-2 text-bold" }, [
+                    _vm._v("SILVER MEDALS")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.silver_medal))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "medal-wrapper " }, [
+              _c(
+                "div",
+                {
+                  staticClass: "m-0",
+                  staticStyle: { "border-radius": "0", "border-left": "0" }
+                },
+                [
+                  _c("span", {
+                    staticClass: "fas fa-medal fa-2x",
+                    staticStyle: { color: "#cd7f32" }
+                  }),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "mx-2 text-bold" }, [
+                    _vm._v("BRONZE MEDALS")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.bronze_medal))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "medal-wrapper" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "m-0",
+                  staticStyle: {
+                    "border-left": "0",
+                    "border-top-left-radius": "0",
+                    "border-bottom-left-radius": "0"
+                  }
+                },
+                [
+                  _c("h5", { staticClass: "mx-2 text-bold" }, [
+                    _vm._v("TOTAL MEDALS")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h5", { staticClass: "my-2 text-bold" }, [
+                _vm._v(_vm._s(_vm.cert_details.total_medal))
+              ])
+            ])
           ])
         ])
       ]

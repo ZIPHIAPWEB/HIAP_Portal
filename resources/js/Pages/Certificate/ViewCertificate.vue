@@ -9,38 +9,69 @@
                 <span class="cert-grade">{{ cert_details.total_grade }} </span>
             </div>
 
-            <div class="container">
-                <div class="row my-2">
-                    <div class="col-md-3 d-flex flex-row align-items-center justify-content-center p-3" style="border: solid black 2px; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-                        <span class="fas fa-medal fa-2x" style="color: #D4AF37"></span>
-                        <h5 class="mx-2 text-bold">GOLD MEDALS</h5>
+            <div class="container d-block d-md-none">
+                <div class="row justify-content-center">
+                    <div class="medal-wrapper">
+                        <div>
+                            <span class="fas fa-medal fa-2x" style="color: #D4AF37"></span>
+                            <h5 class="mx-2 text-bold">GOLD MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.gold_medal }}</h5>
                     </div>
-                    <div class="col-md-3 d-flex flex-row align-items-center justify-content-center p-3" style="border: solid black 2px; border-left: 0; border-right: 0;">
-                        <span class="fas fa-medal fa-2x" style="color: #C0C0C0"></span>
-                        <h5 class="mx-2 text-bold">SILVER MEDALS</h5>
+                    <div class="medal-wrapper ">
+                        <div >
+                            <span class="fas fa-medal fa-2x" style="color: #C0C0C0"></span>
+                            <h5 class="mx-2 text-bold">SILVER MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.silver_medal }}</h5>
                     </div>
-                    <div class="col-md-3 d-flex flex-row align-items-center justify-content-center p-3" style="border: solid black 2px; border-right: 0;">
-                        <span class="fas fa-medal fa-2x" style="color: #cd7f32"></span>
-                        <h5 class="mx-2 text-bold">BRONZE MEDALS</h5>
+                    <div class="medal-wrapper ">
+                        <div >
+                            <span class="fas fa-medal fa-2x" style="color: #cd7f32"></span>
+                            <h5 class="mx-2 text-bold">BRONZE MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.bronze_medal }}</h5>
                     </div>
-                    <div class="col-md-3 d-flex flex-row align-items-center justify-content-center p-3" style="border: solid black 2px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
-                        <h5 class="mx-2 text-bold">TOTAL MEDALS</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 d-flex flex-row align-items-center justify-content-center">
-                        <h5 class="mx-2 text-bold">{{ cert_details.gold_medal }}</h5>
-                    </div>
-                    <div class="col-md-3 d-flex flex-row align-items-center justify-content-center">
-                        <h5 class="mx-2 text-bold">{{ cert_details.silver_medal }}</h5>
-                    </div><div class="col-md-3 d-flex flex-row align-items-center justify-content-center">
-                        <h5 class="mx-2 text-bold">{{ cert_details.bronze_medal }}</h5>
-                    </div><div class="col-md-3 d-flex flex-row align-items-center justify-content-center">
-                        <h5 class="mx-2 text-bold">{{ cert_details.total_medal }}</h5>
+                    <div class="medal-wrapper">
+                        <div >
+                            <h5 class="mx-2 text-bold">TOTAL MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.total_medal }}</h5>
                     </div>
                 </div>
             </div>
 
+            <div class="container d-none d-md-block">
+                <div class="row justify-content-center">
+                    <div class="medal-wrapper">
+                        <div class="m-0" style="border-right: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <span class="fas fa-medal fa-2x" style="color: #D4AF37"></span>
+                            <h5 class="mx-2 text-bold">GOLD MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.gold_medal }}</h5>
+                    </div>
+                    <div class="medal-wrapper ">
+                        <div class="m-0" style="border-radius: 0;">
+                            <span class="fas fa-medal fa-2x" style="color: #C0C0C0"></span>
+                            <h5 class="mx-2 text-bold">SILVER MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.silver_medal }}</h5>
+                    </div>
+                    <div class="medal-wrapper ">
+                        <div class="m-0" style="border-radius: 0; border-left: 0;">
+                            <span class="fas fa-medal fa-2x" style="color: #cd7f32"></span>
+                            <h5 class="mx-2 text-bold">BRONZE MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.bronze_medal }}</h5>
+                    </div>
+                    <div class="medal-wrapper">
+                        <div class="m-0" style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                            <h5 class="mx-2 text-bold">TOTAL MEDALS</h5>
+                        </div>
+                        <h5 class="my-2 text-bold">{{ cert_details.total_medal }}</h5>
+                    </div>
+                </div>
+            </div>
         </div>
     </certificate-layout>    
 </template>
@@ -64,38 +95,81 @@
         font-family: Montserrat;
 
         img {
-            height: 200px;
-            margin: 1em;
+            height: 150px;
+            margin: 0.5em;
+        }
+
+        @media (min-width: 576px) {
+            img {
+                height: 200px;
+                margin: 1em;
+            }
+        }
+        
+        .medal-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            div {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                border: solid 2px black;
+                border-radius: 10px;
+                margin: 0 2px;
+            }
         }
 
         .cert-basic {
-        margin: 50px 0;
-
+            margin: 20px 0;
             .cert-name {
-                width: 50vw;
+                width: 80vw;
                 border-bottom: solid #910824 4px;
                 text-align: center;
-                padding-bottom: 15px;
+                padding-bottom: 15px;   
                 margin-bottom: 15px;
                 font-family: 'Bebas Kai';
-                font-size: 80px;
+                font-size: 35px;
             }
 
             .cert-school {
                 font-weight: bold;
-                font-size: 25px;
+                font-size: 18px;
                 margin-bottom: 15px;
             }
 
             .cert-track {
-                font-size: 20px;
+                font-size: 18px;
                 font-weight: bold;
                 margin-bottom: 15px;
             }
 
             .cert-grade {
-                font-size: 25px;
+                font-size: 18px;
                 font-weight: bolder;
+            }
+
+            @media (min-width: 576px) {
+                .cert-name {
+                    width:50vw;
+                }
+                .cert-name {
+                    font-size: 80px;
+                }
+
+                .cert-school {
+                    font-size: 25px;
+                }
+
+                .cert-track {
+                    font-size: 20px;
+                }
+
+                .cert-grade {
+                    font-size: 25px;
+                }
             }
         }
     }
