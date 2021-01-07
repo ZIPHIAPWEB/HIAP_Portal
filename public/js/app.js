@@ -4872,6 +4872,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['certs'],
@@ -7641,7 +7643,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cert-bg[data-v-258962ae] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-258962ae] {\n  height: 240px;\n  margin: 2em;\n}\n.cert-bg input[data-v-258962ae] {\n  width: 40vw;\n  padding: 20px;\n  background: #cacaca;\n  color: #424242;\n  font-weight: bold;\n  text-transform: uppercase;\n  border: 0;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.cert-bg button[data-v-258962ae] {\n  background: #910824;\n  color: white;\n  font-weight: bold;\n}\n[data-v-258962ae]::-moz-placeholder {\n  color: #424242;\n  font-weight: bold;\n  opacity: 1;\n}\n[data-v-258962ae]:-ms-input-placeholder {\n  color: #424242;\n  font-weight: bold;\n  opacity: 1;\n}\n[data-v-258962ae]::placeholder {\n  color: #424242;\n  font-weight: bold;\n  opacity: 1;\n}\n[data-v-258962ae]:-ms-input-placeholder {\n  color: #424242;\n  font-weight: bold;\n}\n[data-v-258962ae]::-ms-input-placeholder {\n  color: #424242;\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".cert-bg[data-v-258962ae] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-258962ae] {\n  height: 200px;\n  margin: 2em;\n}\n.cert-bg input[data-v-258962ae] {\n  width: 50vw;\n  padding: 20px;\n  background: #cacaca;\n  color: #424242;\n  font-weight: bold;\n  text-transform: uppercase;\n  border: 0;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.cert-bg button[data-v-258962ae] {\n  background: #910824;\n  color: white;\n  font-weight: bold;\n}\n@media (min-width: 576px) {\n.cert-bg input[data-v-258962ae] {\n    width: 40vw;\n}\n.cert-bg img[data-v-258962ae] {\n    height: 240px;\n}\n.cert-bg button[data-v-258962ae] {\n    font-size: 5px;\n}\n}\n[data-v-258962ae]::-moz-placeholder {\n  color: #424242;\n  font-weight: bold;\n  opacity: 1;\n}\n[data-v-258962ae]:-ms-input-placeholder {\n  color: #424242;\n  font-weight: bold;\n  opacity: 1;\n}\n[data-v-258962ae]::placeholder {\n  color: #424242;\n  font-weight: bold;\n  opacity: 1;\n}\n[data-v-258962ae]:-ms-input-placeholder {\n  color: #424242;\n  font-weight: bold;\n}\n[data-v-258962ae]::-ms-input-placeholder {\n  color: #424242;\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -7660,7 +7662,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cert-bg[data-v-726229fe] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-726229fe] {\n  height: 150px;\n  margin: 0.5em;\n}\n@media (min-width: 576px) {\n.cert-bg img[data-v-726229fe] {\n    height: 200px;\n    margin: 1em;\n}\n}\n.cert-bg .medal-wrapper[data-v-726229fe] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.cert-bg .medal-wrapper div[data-v-726229fe] {\n  display: flex;\n  align-items: center;\n  padding: 15px;\n  border: solid 2px black;\n  border-radius: 10px;\n  margin: 0 2px;\n}\n.cert-bg .cert-basic[data-v-726229fe] {\n  margin: 20px 0;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n  width: 80vw;\n  border-bottom: solid #910824 4px;\n  text-align: center;\n  padding-bottom: 15px;\n  margin-bottom: 15px;\n  font-family: \"Bebas Kai\";\n  font-size: 35px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bolder;\n}\n@media (min-width: 576px) {\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    width: 50vw;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    font-size: 80px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n    font-size: 25px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n    font-size: 20px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n    font-size: 25px;\n}\n}", ""]);
+exports.push([module.i, ".cert-bg[data-v-726229fe] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-726229fe] {\n  height: 150px;\n  margin: 0.5em;\n}\n@media (min-width: 576px) {\n.cert-bg img[data-v-726229fe] {\n    height: 200px;\n    margin: 1em;\n}\n}\n.cert-bg .medal-wrapper[data-v-726229fe] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.cert-bg .medal-wrapper div[data-v-726229fe] {\n  display: flex;\n  align-items: center;\n  padding: 15px;\n  border: solid 2px black;\n  border-radius: 10px;\n  margin: 0 2px;\n}\n.cert-bg .cert-basic[data-v-726229fe] {\n  margin: 20px 0;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n  width: 80vw;\n  border-bottom: solid #910824 4px;\n  text-align: center;\n  padding-bottom: 15px;\n  margin-bottom: 15px;\n  font-family: \"Bebas Kai\";\n  font-size: 35px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bolder;\n}\n@media (min-width: 576px) {\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    width: 50vw;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    font-size: 80px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n    font-size: 25px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n    font-size: 20px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n    font-size: 25px;\n}\n}", ""]);
 
 // exports
 
@@ -13069,7 +13071,7 @@ var render = function() {
                   expression: "certId"
                 }
               ],
-              staticClass: "form-control-lg",
+              staticClass: "form-control-lg text-sm",
               attrs: { type: "text", placeholder: "ENTER CERTIFICATE NO." },
               domProps: { value: _vm.certId },
               on: {
@@ -13085,7 +13087,10 @@ var render = function() {
             _c("div", { staticClass: "input-group-append" }, [
               _c(
                 "button",
-                { staticClass: "btn btn-flat", on: { click: _vm.search } },
+                {
+                  staticClass: "btn btn-flat text-sm",
+                  on: { click: _vm.search }
+                },
                 [_vm._v("SEARCH")]
               )
             ])
@@ -15648,6 +15653,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [_vm._v("Name")]),
                   _vm._v(" "),
+                  _c("th", [_vm._v("School")]),
+                  _vm._v(" "),
                   _c("th", [_vm._v("Program/Track")]),
                   _vm._v(" "),
                   _c("th", [_vm._v("Gold Medals")]),
@@ -15674,6 +15681,8 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(cert.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(cert.school))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(cert.program))]),
                       _vm._v(" "),

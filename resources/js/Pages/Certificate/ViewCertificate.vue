@@ -92,6 +92,7 @@
         background: url('/assets/img/cert-background.jpg');
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
         font-family: Montserrat;
 
         img {

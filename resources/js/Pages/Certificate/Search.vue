@@ -3,9 +3,9 @@
         <div class="container-fluid d-flex flex-column align-items-center justify-content-center cert-bg">
             <img src="/logo2.png" alt="HIAP Logo">
             <div class="input-group input-group-lg justify-content-center">
-                <input v-model="certId" type="text" class="form-control-lg" placeholder="ENTER CERTIFICATE NO.">
+                <input v-model="certId" type="text" class="form-control-lg text-sm" placeholder="ENTER CERTIFICATE NO.">
                 <div class="input-group-append">
-                    <button @click="search" class="btn btn-flat">SEARCH</button>
+                    <button @click="search" class="btn btn-flat text-sm">SEARCH</button>
                 </div>
             </div>
         </div>
@@ -40,12 +40,12 @@
         font-family: Montserrat;
 
         img {
-            height: 240px;
+            height: 200px;
             margin: 2em;
         }
 
         input {
-            width: 40vw;
+            width: 50vw;
             padding: 20px;
             background: #cacaca;
             color: #424242;
@@ -60,6 +60,20 @@
             background: #910824;
             color: white;
             font-weight: bold;
+        }
+
+        @media (min-width: 576px) {
+            input {
+                width: 40vw;
+            }
+
+            img {
+                height: 240px;
+            }
+
+            button {
+                font-size: 5px;
+            }
         }
     }
 

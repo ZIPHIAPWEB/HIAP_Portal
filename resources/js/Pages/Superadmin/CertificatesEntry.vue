@@ -25,6 +25,7 @@
                                 <tr class="text-xs text-center">
                                     <th class="text-left">Cert. ID</th>
                                     <th>Name</th>
+                                    <th>School</th>
                                     <th>Program/Track</th>
                                     <th>Gold Medals</th>
                                     <th>Silver Medals</th>
@@ -37,6 +38,7 @@
                                 <tr class="text-xs text-center" v-for="cert in certs" :key="cert.id">
                                     <td class="text-left">{{ cert.cert_no }}</td>
                                     <td>{{ cert.name }}</td>
+                                    <td>{{ cert.school }}</td>
                                     <td>{{ cert.program }}</td>
                                     <td>{{ cert.gold_medal }}</td>
                                     <td>{{ cert.silver_medal }}</td>
