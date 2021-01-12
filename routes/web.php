@@ -51,6 +51,10 @@ Route::prefix('cert')->group(function () {
     Route::get('/{certId}', 'CertificateController@showCertificate');
 });
 
+Route::prefix('staff')->group(function () {
+    Route::get('/registration', 'StaffController@showRegistration')->name('s.registration');
+});
+
 Route::prefix('client')->group(function () {
     Route::get('/application-form', 'ClientController@showApplicationForm')->name('cl.application')->middleware(['verified', 'auth']);
     Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified', 'auth']);
@@ -162,6 +166,8 @@ Route::put('/updateSchool', 'SchoolController@updateSchool');
 Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
 Route::post('/uploadCertificate', 'CertificateController@uploadCertificate');
+Route::delete('/deleteCertificate/{id}', 'CertificateController@deleteCert');  
+
 Route::get('/test', function () {
     User::create([
         'email'     =>  'accounting@hiap.com',

@@ -80,38 +80,20 @@
 
 <script>
     export default {
+        props: ['profile'],
         data () {
             return {
-                profile: {},
                 isEdit: false,
                 loading: false
             }
         },
-        mounted () {
-            this.getPersonalDetails();
-        },
         methods: {
-            getPersonalDetails () {
-                this.loading = true;
-                axios.get('/getLoggedClientDetails')
-                    .then(({data}) => {
-                        this.profile = {...data};
-                        this.loading = false;
-                    })
-            },
             updateProfileDetails () {
                 this.loading = true;
-                axios.post('/updateClientDetails', this.profile)
-                    .then(({data}) => {
-                        console.log(data);
-                        this.profile = {...data};
-                        this.isEdit = false;
-                        this.loading = false;
-                        toastr.info('Profile Updated!');
-                    })
-                    .catch(error => {
-                        toastr.error('An error occured.')
-                    })
+                this.$inertia.post('/updateClientDetails', this.profile);
+                this.isEdit = false;
+                this.loading = false;
+                toastr.info('Profile Updated!');
             }
         }
     }

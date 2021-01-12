@@ -45,7 +45,7 @@
                                     <td>{{ cert.bronze_medal }}</td>
                                     <td class="text-bold">{{ cert.total_grade }}</td>
                                     <td>
-                                        <button class="btn btn-danger btn-xs">
+                                        <button @click="deleteFile(cert.id)" class="btn btn-danger btn-xs">
                                             <span class="fas fa-trash"></span>
                                         </button>
                                     </td>
@@ -81,6 +81,13 @@
                 let formData = new FormData();
                 formData.append('file', this.form.file);
                 this.$inertia.post('/uploadCertificate', formData);
+            },
+            deleteFile (id) {
+                let q = confirm('Delete this certificate?');
+                
+                if (q) {
+                    this.$inertia.delete(`/deleteCertificate/${id}`);
+                }
             }
         }
     }

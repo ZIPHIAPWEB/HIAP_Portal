@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Certificate;
+use App\Services\CertificateService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CertificateController extends Controller
 {
+    private $certificate;
+
+    public function __construct(CertificateService $certificateService)
+    {
+        $this->certificate = $certificateService;       
+    }
+
     public function showSearchCertificate()
     {
         return Inertia::render('Certificate/Search');
@@ -42,23 +50,14 @@ class CertificateController extends Controller
         $file = file($request->file->getRealPath());
         $data = array_slice($file, 1);
 
-        foreach($data as $cert) {
-            $arr = explode(',', $cert);
-        
-            if($arr[0] != '') {
-                Certificate::create([
-                    'cert_no'       =>  $arr[0],
-                    'name'          =>  $arr[1],
-                    'school'        =>  $arr[5],
-                    'program'       =>  $arr[6],
-                    'total_grade'   =>  $arr[7],
-                    'gold_medal'    =>  $arr[8],
-                    'silver_medal'  =>  $arr[9],
-                    'bronze_medal'  =>  $arr[10],
-                    'total_medal'   =>  $arr[11]
-                ]);
-            } 
-        }
+        $this->certificate->addCert($data);
+
+        return redirect()->back();
+    }
+
+    public function deleteCert($id)
+    {
+        $this->certificate->remove($id);
 
         return redirect()->back();
     }

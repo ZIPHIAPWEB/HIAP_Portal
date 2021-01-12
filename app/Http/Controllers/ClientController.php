@@ -40,6 +40,10 @@ class ClientController extends Controller
     public function showDashboard(Request $request)
     {
         return Inertia::render('Client/Dashboard', [
+            'client'             =>  Client::where('user_id', $request->user()->id)
+                ->with('user')
+                ->with('course')
+                ->first(),
             'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
             'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
                 return [
@@ -116,6 +120,8 @@ class ClientController extends Controller
 
     public function updateClientDetails(Request $request)
     {
-        return $this->clientApplicationService->updateDetails($request);
+        $this->clientApplicationService->updateDetails($request);
+
+        return redirect()->back();
     }
 }

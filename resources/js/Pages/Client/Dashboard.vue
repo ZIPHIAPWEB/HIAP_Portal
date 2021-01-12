@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <personal-profile-component></personal-profile-component>
+                    <personal-profile-component :profile="client"></personal-profile-component>
                     <!-- <client-initial-requirements></client-initial-requirements> -->
                     <div class="card">
                         <div class="card-header">
