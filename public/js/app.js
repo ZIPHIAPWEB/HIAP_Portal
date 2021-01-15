@@ -14643,7 +14643,7 @@ var render = function() {
                                   attrs: {
                                     label: "name",
                                     multiple: "",
-                                    options: _vm.programs
+                                    options: _vm.filteredCourse
                                   },
                                   model: {
                                     value: _vm.form.course_id,
