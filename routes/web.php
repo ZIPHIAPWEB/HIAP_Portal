@@ -53,6 +53,8 @@ Route::prefix('cert')->group(function () {
 
 Route::prefix('staff')->group(function () {
     Route::get('/registration', 'StaffController@showRegistration')->name('s.registration');
+    Route::post('/register', 'StaffController@register')->name('s.register');
+    Route::get('/dashboard', 'StaffController@showDashboard')->name('s.dashboard')->middleware(['verified']);
 });
 
 Route::prefix('client')->group(function () {
@@ -95,6 +97,8 @@ Route::prefix('sa')->group(function () {
     Route::get('/school', 'SchoolController@showSchoolEntry');
 
     Route::get('/certs', 'CertificateController@showCertificateEntry');
+
+    Route::get('/staffs', 'SuperadminController@showStaffEntry');
 });
 
 Route::prefix('md')->group(function () {
@@ -167,6 +171,9 @@ Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
 Route::post('/uploadCertificate', 'CertificateController@uploadCertificate');
 Route::delete('/deleteCertificate/{id}', 'CertificateController@deleteCert');  
+
+Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
+Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::get('/test', function () {
     User::create([

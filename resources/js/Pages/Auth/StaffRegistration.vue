@@ -29,16 +29,19 @@
             <span class="error invalid-feedback">{{ errors.password_confirmation }}</span>
           </div>
           <div class="form-group mb-3">
-              <input type="text" class="form-control" placeholder="Full Name">
+              <input v-model="form.name" type="text" class="form-control" placeholder="Full Name">
           </div>
           <div class="form-group mb-3">
-              <input type="text" class="form-control" placeholder="Position">
+              <input v-model="form.position" type="text" class="form-control" placeholder="Position">
           </div>
           <div class="form-group mb-3">
-              <input type="text" class="form-control" placeholder="School">
+              <select v-model="form.school" class="form-control">
+                <option value="" selected>Select School</option>
+                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+              </select>
           </div>
           <div class="form-group mb-3">
-              <input type="text" class="form-control" placeholder="Contact No.">
+              <input v-model="form.contact_no" type="text" class="form-control" placeholder="Contact No.">
           </div>
           <div class="row">
             <div class="col-8">
@@ -85,7 +88,7 @@
 <script>
     import AuthLayout from '../../Layouts/AuthLayout.vue';
     export default {
-        props: ['errors'],
+        props: ['errors', 'schools'],
         components: {
             AuthLayout
         },
@@ -95,6 +98,7 @@
                 form: {
                     email: '',
                     password: '',
+                    password_confirmation: '',
                     name: '',
                     position: '',
                     school: '',
@@ -128,5 +132,10 @@
                 }
             },
         },
+        methods: {
+            register () {
+              this.$inertia.post('/staff/register', this.form);
+            }
+        }
     }
 </script>

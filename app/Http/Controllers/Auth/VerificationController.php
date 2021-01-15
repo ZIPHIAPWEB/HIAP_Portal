@@ -43,8 +43,18 @@ class VerificationController extends Controller
 
     public function show(\Illuminate\Http\Request $request)
     {
-        return $request->user()->hasVerifiedEmail()
+        switch($request->user()->role) {
+            case 'client': 
+                return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
                         : Inertia::render('Auth/Verification');
+                break;
+
+            case 'staff':
+                return $request->user()->hasVerifiedEmail()
+                        ? redirect('s.dashboard')
+                        : Inertia::render('Auth/VerificationStaff');
+                break;
+        }
     }
 }

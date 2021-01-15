@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\Initial;
 use App\Payment;
+use App\Staff;
 use App\UserProgram;
 use Inertia\Inertia;
 
@@ -62,6 +63,16 @@ class SuperadminController extends Controller
                             ->first()
                     ];
             }),
+        ]);
+    }
+
+    public function showStaffEntry()
+    {
+        return Inertia::render('Superadmin/StaffEntry', [
+            'staffs'    =>  Staff::orderBy('created_at', 'desc')
+                ->with('user')
+                ->with('school')
+                ->get()
         ]);
     }
 }

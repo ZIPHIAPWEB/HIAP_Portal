@@ -51,7 +51,7 @@ class ClientApplicationService {
                 'start_date'            =>  $request->start_date,
                 'end_date'              =>  $request->end_date,
                 'hours_needed'          =>  $request->hours_needed,
-                'application_status'    =>  'New Applicant'
+                'application_status'    =>  false
             ]);
         }
 

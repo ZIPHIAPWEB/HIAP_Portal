@@ -75,7 +75,7 @@
                                             <input v-model="form.school" v-if="isOrganization" type="text" class="form-control" placeholder="Enter organization">
                                             <select v-model="form.school" v-else type="text" class="form-control" placeholder="School/Organization" required>
                                                 <option value="">Select School</option>
-                                                <option v-for="school in schools" :key="school.id" :value="school.name">{{ school.display_name }}</option>
+                                                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.display_name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
 
 <script>
     export default {
-        props: ['errors', 'schools', 'courses', 'programs'],
+        props: ['errors', 'schools', 'courses', 'programs', 'program_id'],
         data() {
             return {
                 form: {
@@ -186,7 +186,7 @@
                 return this.errors.program ? 'form-control is-invalid' : 'form-control select2 select2-hidden-accessible';
             },
             filteredCourse () {
-                return this.programs.filter(e => e.course_id == this.form.program);
+                return this.programs.filter(e => e.course_id == this.program_id);
             }
         },
         methods: {

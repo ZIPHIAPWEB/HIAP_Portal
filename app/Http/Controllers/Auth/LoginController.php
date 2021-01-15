@@ -102,6 +102,10 @@ class LoginController extends Controller
             case 'accounting':
                 return redirect()->route('ac.clients');
             break;
+
+            case 'staff':
+                return redirect()->route('s.dashboard');
+            break;
         }
     }
 }

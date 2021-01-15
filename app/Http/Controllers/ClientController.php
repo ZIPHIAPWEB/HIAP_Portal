@@ -28,9 +28,10 @@ class ClientController extends Controller
         $this->clientApplicationService = $clientApplicationService;
     }
 
-    public function showApplicationForm()
+    public function showApplicationForm(Request $request)
     {
         return Inertia::render('Client/ApplicationForm', [
+            'program_id'=>  $request->user()->program_id,
             'schools'   =>  School::orderBy('name')->get(),
             'courses'   =>  Course::orderBy('id')->get(),
             'programs'  =>  Program::orderBy('id')->where('isActive', 1)->get()
@@ -42,7 +43,6 @@ class ClientController extends Controller
         return Inertia::render('Client/Dashboard', [
             'client'             =>  Client::where('user_id', $request->user()->id)
                 ->with('user')
-                ->with('course')
                 ->first(),
             'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
             'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
