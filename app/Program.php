@@ -19,4 +19,9 @@ class Program extends Model
     {
         return $this->hasOne('App\Course', 'id', 'course_id');
     }
+
+    public function onlineProgram()
+    {
+        return $this->belongsTo('App\OnlineProgram', 'course_id', 'id');
+    }
 }

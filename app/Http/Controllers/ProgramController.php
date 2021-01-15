@@ -13,7 +13,7 @@ class ProgramController extends Controller
     public function showProgramEntry()
     {
         return Inertia::render('Superadmin/ProgramEntry', [
-            'programs'  =>  Program::orderBy('created_at', 'desc')->with('course')->get(),
+            'programs'  =>  Program::orderBy('created_at', 'desc')->with('onlineProgram')->get(),
             'courses'   =>  OnlineProgram::orderBy('created_at', 'asc')->get()
         ]);
     }

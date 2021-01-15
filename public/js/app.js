@@ -18759,7 +18759,9 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(program.description))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(program.course))]),
+                          _c("td", [
+                            _vm._v(_vm._s(program.online_program.name))
+                          ]),
                           _vm._v(" "),
                           _c(
                             "td",
