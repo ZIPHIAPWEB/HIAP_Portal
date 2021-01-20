@@ -109,7 +109,6 @@ Route::prefix('md')->group(function () {
     Route::get('/client/{userId}/program/{programId}', 'ModeratorController@showSelectedProgram')->name('md.selected.program');
 });
 
-
 Route::prefix('teacher')->group(function () {
     Route::get('/dashboard', 'TeacherController@showTeacherDashboard')->name('tc.dashboard');
     Route::get('/students', 'TeacherController@showStudents')->name('teacher.students');
@@ -152,6 +151,7 @@ Route::post('/moderators/store', 'ModeratorController@storeModerator');
 Route::get('/moderators/edit/{userId}', 'ModeratorController@editModerator');
 Route::put('/moderators/update', 'ModeratorController@updateModerators');
 Route::delete('/moderators/delete/{userId}', 'ModeratorController@deleteModerator');
+Route::post('/searchStudentByLastName', 'ModeratorController@searchStudentByLastName');
 
 Route::post('/storeLesson', 'LessonController@storeLesson');
 Route::put('/updateLesson/{lessonId}', 'LessonController@updateLesson');

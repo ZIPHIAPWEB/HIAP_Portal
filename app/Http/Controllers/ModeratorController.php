@@ -112,10 +112,11 @@ class ModeratorController extends Controller
         return Inertia::render('Moderator/Clients', [
             'clients'   =>  Client::orderBy('created_at', 'desc')
                 ->with('user')
+                ->with('school')
                 ->with(['userProgram' => function($query) {
                     return $query->with('program');
                 }])
-                ->get()
+                ->paginate(15)
         ]);
     }
 
@@ -150,5 +151,15 @@ class ModeratorController extends Controller
                     ];
             }),
         ]);
+    }
+
+    public function searchStudentByLastName(Request $request)
+    {
+        return Client::where('last_name', $request->last_name)
+            ->with('user')
+            ->with(['userProgram' => function($query) {
+                return $query->with('program');
+            }])
+            ->paginate(15);
     }
 }

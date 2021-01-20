@@ -34,8 +34,10 @@ class StaffController extends Controller
         return Inertia::render('Staff/Dashboard', [
             'user'      =>  $user,
             'students'  =>  Client::where('school', $user->school)
-                ->with('userProgram')
-                ->get()
+                ->with(['userProgram' => function ($query) {
+                    return $query->with('course', 'program');
+                }])
+                ->paginate(8)
         ]);
     }
 

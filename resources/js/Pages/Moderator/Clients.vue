@@ -4,8 +4,13 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
-                <div>
-                    <input type="text" class="form-control form-control-sm mx-auto" v-model="filterName" placeholder="Search by last name">
+                <div class="input-group input-group-sm" style="width: 300px">
+                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by last name">
+                    <span class="input-group-append">
+                        <button @click="searchClientByLastName" class="btn btn-info btn-flat">
+                            <span class="fas fa-search"></span>
+                        </button>
+                    </span>
                 </div>
             </div>
             <div class="card-body p-0">
@@ -22,13 +27,13 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody v-if="filteredClients.length > 0">
-                        <tr class="text-xs text-center" v-for="client in filteredClients" :key="client.id">
+                    <tbody v-if="clients.data.length > 0">
+                        <tr class="text-xs text-center" v-for="client in clients.data" :key="client.id">
                             <td class="text-left">{{ client.first_name }}</td>
                             <td>{{ client.middle_name}}</td>
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
-                            <td>{{ client.school }}</td>
+                            <td>{{ client.school ? client.school.name : '' }}</td>
                             <td>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</td>
                             <td>{{ client.user.email }}</td>
                             <td>
@@ -42,6 +47,10 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer p-2">
+                <button :disabled="!clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                <button :disabled="!clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
             </div>
         </div>
     </moderator-layout>
@@ -59,19 +68,26 @@
                 filterName: ''
             }
         },
-        computed: {
-            filteredClients () {
-                    return this.clients.filter(e => {
-                        return e.last_name.toLowerCase().includes(this.filterName.toLowerCase());
-                    })
-                },
-        },
         methods: {
             viewClientDetails (userId) {
                 this.$inertia.visit(`/md/client/${userId}`);
             },
             deleteClientDetails (userId) {
                 this.$inertia.delete(`/deleteClientDetails/${userId}`);
+            },
+            prevPage() {
+                this.$inertia.visit(this.clients.prev_page_url);
+            },
+            nextPage() {
+                this.$inertia.visit(this.clients.next_page_url);
+            },
+            searchClientByLastName() {
+                let formData = new FormData();
+                formData.append('last_name', this.filterName);
+                axios.post('/searchStudentByLastName', formData)
+                    .then((response) => {
+                        this.clients = response.data;
+                    })
             }
         }
     }
