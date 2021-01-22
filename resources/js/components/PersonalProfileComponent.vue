@@ -61,8 +61,8 @@
                     <tr>
                         <td>School/Organization</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.school }}</strong>
-                            <input v-model="profile.school" type="text" v-else class="form-control form-control-sm w-100" disabled>
+                            <strong v-if="!isEdit">{{ profile.school.name }}</strong>
+                            <input v-model="profile.school.name" type="text" v-else class="form-control form-control-sm w-100" disabled>
                         </td>
                     </tr>
                     <tr>

@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h6 class="card-title">My Profile</h6>
                         </div>
                         <div class="card-body p-0">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h6 class="card-title">Enrolled Students</h6>
                         </div>
                         <div class="card-body p-0">

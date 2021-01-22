@@ -27,7 +27,7 @@ class Client extends Model
         return $this->hasMany('App\Grade', 'user_id', 'user_id');
     }
 
-    public function school()
+    public function mySchool()
     {
         return $this->hasOne('App\School', 'id', 'school');
     }

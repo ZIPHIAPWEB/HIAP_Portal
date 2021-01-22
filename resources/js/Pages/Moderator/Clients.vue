@@ -82,12 +82,16 @@
                 this.$inertia.visit(this.clients.next_page_url);
             },
             searchClientByLastName() {
-                let formData = new FormData();
-                formData.append('last_name', this.filterName);
-                axios.post('/searchStudentByLastName', formData)
-                    .then((response) => {
-                        this.clients = response.data;
-                    })
+                if (this.filterName !== '') {
+                    let formData = new FormData();
+                    formData.append('last_name', this.filterName);
+                    axios.post('/searchStudentByLastName', formData)
+                        .then((response) => {
+                            this.clients = response.data;
+                        })
+                } else {
+                    toastr.error('Cannot search empty field.');
+                }
             }
         }
     }

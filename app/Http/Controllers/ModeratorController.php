@@ -9,6 +9,7 @@ use App\Initial;
 use App\Moderator;
 use App\Payment;
 use App\Program;
+use App\School;
 use App\Services\ModeratorService;
 use App\User;
 use App\UserProgram;
@@ -29,7 +30,12 @@ class ModeratorController extends Controller
     {
         return Inertia::render('Moderator/Dashboard', [
             'programs'      =>  Program::orderBy('name', 'asc')->get(),
-            'clients'       =>  UserProgram::orderBy('id', 'asc')->with('program')->get()
+            'clients'       =>  UserProgram::orderBy('id', 'asc')->with('program')->get(),
+            'schools'        =>  School::orderBy('name', 'desc')
+                ->with(['clients' => function($query) {
+                    return $query->with('userProgram');
+                }])
+                ->get()
         ]);
     }
 
@@ -122,7 +128,7 @@ class ModeratorController extends Controller
 
     public function showSelectedClient($id)
     {
-        $client = Client::where('user_id', $id)->with('user')->first();
+        $client = Client::where('user_id', $id)->with('user')->with('school')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
             'client'    =>  $client,
             'payments'  =>  Payment::where('user_id', $id)->get(),

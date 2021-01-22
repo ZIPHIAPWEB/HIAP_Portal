@@ -43,6 +43,7 @@ class ClientController extends Controller
         return Inertia::render('Client/Dashboard', [
             'client'             =>  Client::where('user_id', $request->user()->id)
                 ->with('user')
+                ->with('school')
                 ->first(),
             'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
             'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {

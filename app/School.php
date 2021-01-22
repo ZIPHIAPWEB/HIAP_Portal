@@ -10,4 +10,9 @@ class School extends Model
         'name',
         'display_name'
     ];
+
+    public function clients()
+    {
+        return $this->hasMany('App\Client', 'school', 'id');
+    }
 }

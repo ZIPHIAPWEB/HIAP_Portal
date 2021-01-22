@@ -9,6 +9,7 @@ use App\Actions\SendMailNotification;
 use App\Actions\UpdateClient;
 use App\Client;
 use App\Mail\NewApplicantNotification;
+use App\School;
 
 class ClientApplicationService {
 
@@ -60,7 +61,8 @@ class ClientApplicationService {
             'middle_name'   =>  $client->middle_name,
             'last_name'     =>  $client->last_name,
             'contact_no'    =>  $client->contact_no,
-            'program'       =>  ''
+            'program'       =>  '',
+            'school'        =>  School::where('id', $client->school)->first()->name
         ]));
     }
 

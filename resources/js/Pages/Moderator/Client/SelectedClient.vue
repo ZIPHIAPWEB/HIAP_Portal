@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Personal Profile</h5>
                         </div>
                         <div class="card-body p-0">
@@ -39,7 +39,7 @@
                                     </tr>
                                     <tr>
                                         <td>School/Organization</td>
-                                        <td class="text-center">{{ client.school }}</td>
+                                        <td class="text-center">{{ client.school.name }}</td>
                                     </tr>
                                     <tr>
                                         <td>E-mail Address</td>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Enrolled Programs</h5>
                         </div>
                         <div class="card-body p-0">
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Payment</h5>
                         </div>
                         <div class="card-body p-0">

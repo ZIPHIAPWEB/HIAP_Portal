@@ -4877,11 +4877,15 @@ __webpack_require__.r(__webpack_exports__);
     searchClientByLastName: function searchClientByLastName() {
       var _this = this;
 
-      var formData = new FormData();
-      formData.append('last_name', this.filterName);
-      axios.post('/searchStudentByLastName', formData).then(function (response) {
-        _this.clients = response.data;
-      });
+      if (this.filterName !== '') {
+        var formData = new FormData();
+        formData.append('last_name', this.filterName);
+        axios.post('/searchStudentByLastName', formData).then(function (response) {
+          _this.clients = response.data;
+        });
+      } else {
+        toastr.error('Cannot search empty field.');
+      }
     }
   }
 });
@@ -4934,18 +4938,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['programs', 'clients'],
+  props: ['programs', 'clients', 'schools'],
   components: {
     ModeratorLayout: _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -15781,7 +15776,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v("Personal Profile")
               ])
@@ -15834,7 +15829,7 @@ var render = function() {
                     _c("td", [_vm._v("School/Organization")]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.school))
+                      _vm._v(_vm._s(_vm.client.school.name))
                     ])
                   ]),
                   _vm._v(" "),
@@ -15857,7 +15852,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v("Enrolled Programs")
               ])
@@ -15989,7 +15984,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [_vm._v("Payment")])
             ]),
             _vm._v(" "),
@@ -16451,139 +16446,63 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("moderator-layout", [
     _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header d-flex " }, [
-        _c("div", [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.filterByProgram,
-                  expression: "filterByProgram"
-                }
-              ],
-              staticClass: "form-control form-control-sm",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.filterByProgram = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "All", selected: "" } }, [
-                _vm._v("All")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.programs, function(program) {
-                return _c(
-                  "option",
-                  { key: program.id, domProps: { value: program.id } },
-                  [_vm._v(_vm._s(program.name))]
-                )
-              })
-            ],
-            2
-          )
-        ])
+      _c("div", { staticClass: "card-header bg-info" }, [
+        _c("h6", { staticClass: "card-title" }, [_vm._v("School Overview")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v(
-                  "Newly Registered: " +
-                    _vm._s(_vm.newApplicant) +
-                    "/" +
-                    _vm._s(_vm.allClients)
-                )
-              ]),
+      _c("div", { staticClass: "card-body p-0" }, [
+        _c("table", { staticClass: "table table-striped table-border" }, [
+          _c("thead", [
+            _c("tr", { staticClass: "text-center" }, [
+              _c("th", { staticClass: "text-left" }, [_vm._v("School")]),
               _vm._v(" "),
-              _c("div", { staticClass: "progress mb-1" }, [
-                _c("div", {
-                  staticClass: "progress-bar bg-primary",
-                  style: {
-                    width: (_vm.newApplicant / _vm.allClients) * 100 + "%"
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v(
-                  "Confirmed Learner: " +
-                    _vm._s(_vm.requirementSubmitted) +
-                    "/" +
-                    _vm._s(_vm.allClients)
-                )
-              ]),
+              _c("th", [_vm._v("Students Newly Enrolled")]),
               _vm._v(" "),
-              _c("div", { staticClass: "progress mb-1" }, [
-                _c("div", {
-                  staticClass: "progress-bar bg-success",
-                  style: {
-                    width:
-                      (_vm.requirementSubmitted / _vm.allClients) * 100 + "%"
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v(
-                  "On-going Learner: " +
-                    _vm._s(_vm.applicationProcessing) +
-                    "/" +
-                    _vm._s(_vm.allClients)
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "progress mb-1" }, [
-                _c("div", {
-                  staticClass: "progress-bar bg-warning",
-                  style: {
-                    width:
-                      (_vm.applicationProcessing / _vm.allClients) * 100 + "%"
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v(
-                  "Program Completed: " +
-                    _vm._s(_vm.programCompleted) +
-                    "/" +
-                    _vm._s(_vm.allClients)
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "progress mb-1" }, [
-                _c("div", {
-                  staticClass: "progress-bar bg-danger",
-                  style: {
-                    width: (_vm.programCompleted / _vm.allClients) * 100 + "%"
-                  }
-                })
-              ])
+              _c("th", [_vm._v("Students Complete")])
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.schools, function(school) {
+              return _c(
+                "tr",
+                { key: school.id, staticClass: "text-center text-sm" },
+                [
+                  _c("td", { staticClass: "text-left" }, [
+                    _vm._v(_vm._s(school.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "progress-bar bg-primary",
+                          staticStyle: { width: "100%" }
+                        },
+                        [_vm._v("10/" + _vm._s(_vm.clients.length))]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "progress-bar bg-success",
+                          staticStyle: { width: "100%" }
+                        },
+                        [_vm._v("10/" + _vm._s(school.clients))]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            }),
+            0
+          )
         ])
       ])
     ])
@@ -16627,7 +16546,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h6", { staticClass: "card-title" }, [_vm._v("My Profile")])
             ]),
             _vm._v(" "),
@@ -16675,7 +16594,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h6", { staticClass: "card-title" }, [
                 _vm._v("Enrolled Students")
               ])
@@ -21446,25 +21365,29 @@ var render = function() {
               _vm._v(" "),
               _c("td", { staticClass: "text-left" }, [
                 !_vm.isEdit
-                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.school))])
+                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.school.name))])
                   : _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.profile.school,
-                          expression: "profile.school"
+                          value: _vm.profile.school.name,
+                          expression: "profile.school.name"
                         }
                       ],
                       staticClass: "form-control form-control-sm w-100",
                       attrs: { type: "text", disabled: "" },
-                      domProps: { value: _vm.profile.school },
+                      domProps: { value: _vm.profile.school.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.profile, "school", $event.target.value)
+                          _vm.$set(
+                            _vm.profile.school,
+                            "name",
+                            $event.target.value
+                          )
                         }
                       }
                     })

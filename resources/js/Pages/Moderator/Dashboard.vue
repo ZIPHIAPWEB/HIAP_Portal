@@ -1,43 +1,34 @@
 <template>
     <moderator-layout>
         <div class="card">
-            <div class="card-header d-flex ">
-                <div>
-                    <select v-model="filterByProgram" class="form-control form-control-sm">
-                        <option value="All" selected>All</option>
-                        <option v-for="program in programs" :value="program.id" :key="program.id">{{ program.name }}</option>
-                    </select>
-                </div>
+            <div class="card-header bg-info">
+                <h6 class="card-title">School Overview</h6>
             </div>
-            <div class="card-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="">Newly Registered: {{ newApplicant }}/{{ allClients }}</label>
-                            <div class="progress mb-1">
-                                <div class="progress-bar bg-primary" :style="{ width: newApplicant / allClients * 100 + '%' }"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Confirmed Learner: {{ requirementSubmitted }}/{{ allClients }}</label>
-                            <div class="progress mb-1">
-                                <div class="progress-bar bg-success" :style="{ width: requirementSubmitted / allClients * 100 + '%' }"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">On-going Learner: {{ applicationProcessing }}/{{ allClients }}</label>
-                            <div class="progress mb-1">
-                                <div class="progress-bar bg-warning" :style="{ width: applicationProcessing / allClients * 100 + '%' }"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Program Completed: {{ programCompleted }}/{{ allClients }}</label>
-                            <div class="progress mb-1">
-                                <div class="progress-bar bg-danger" :style="{ width: programCompleted / allClients * 100 + '%' }"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body p-0">
+                <table class="table table-striped table-border">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="text-left">School</th>
+                            <th>Students Newly Enrolled</th>
+                            <th>Students Complete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="school in schools" :key="school.id" class="text-center text-sm">
+                            <td class="text-left">{{ school.name }}</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" style="width: 100%">10/{{ clients.length }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width: 100%">10/{{ school.clients }}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </moderator-layout>
@@ -46,7 +37,7 @@
 <script>
     import ModeratorLayout from '../../Layouts/ModeratorLayout.vue';
     export default {
-        props: ['programs', 'clients'],
+        props: ['programs', 'clients', 'schools'],
         components: {
             ModeratorLayout
         },

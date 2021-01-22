@@ -1,7 +1,5 @@
 <?php
 
-use App\Grade;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -176,10 +174,5 @@ Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
 Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::get('/test', function () {
-    User::create([
-        'email'     =>  'accounting@hiap.com',
-        'password'  =>  Hash::make('accountingrocks5000!'),
-        'role'      =>  'accounting',
-        'isFilled'  =>  1
-    ]);
+
 });
