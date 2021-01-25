@@ -72,8 +72,7 @@
                                             <div class="d-flex">
                                                 <label for="">School <i class="text-danger">*</i></label>
                                             </div>
-                                            <input v-model="form.school" v-if="isOrganization" type="text" class="form-control" placeholder="Enter organization">
-                                            <select v-model="form.school" v-else type="text" class="form-control" placeholder="School/Organization" required>
+                                            <select v-model="form.school" type="text" class="form-control" placeholder="School/Organization" required>
                                                 <option value="">Select School</option>
                                                 <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.display_name }}</option>
                                             </select>
