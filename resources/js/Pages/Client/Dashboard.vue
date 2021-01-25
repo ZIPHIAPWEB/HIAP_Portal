@@ -149,8 +149,8 @@
                                 <label for="">Type</label>
                                 <select v-model="payment.purpose" class="form-control form-control-sm">
                                     <option selected>Select purpose</option>
-                                    <option value="Initial Payment (60%)">Initial Payment (60%)</option>
-                                    <option value="Second Payment (40%)">Second Payment (40%)</option>
+                                    <option value="Initial Payment">Initial Payment</option>
+                                    <option value="Final Payment">Final Payment</option>
                                 </select>
                             </div>
                             <div class="form-group">

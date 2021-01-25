@@ -16973,17 +16973,13 @@ var render = function() {
                           _vm._v("Select purpose")
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "option",
-                          { attrs: { value: "Initial Payment (60%)" } },
-                          [_vm._v("Initial Payment (60%)")]
-                        ),
+                        _c("option", { attrs: { value: "Initial Payment" } }, [
+                          _vm._v("Initial Payment")
+                        ]),
                         _vm._v(" "),
-                        _c(
-                          "option",
-                          { attrs: { value: "Second Payment (40%)" } },
-                          [_vm._v("Second Payment (40%)")]
-                        )
+                        _c("option", { attrs: { value: "Final Payment" } }, [
+                          _vm._v("Final Payment")
+                        ])
                       ]
                     )
                   ]),
