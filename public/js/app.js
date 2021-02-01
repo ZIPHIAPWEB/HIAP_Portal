@@ -6274,6 +6274,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10071,7 +10094,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".avatar[data-v-2e24ced9] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  border: solid 0px gray;\n  transition: border-width ease-out 250ms;\n  cursor: pointer;\n}\n.avatar[data-v-2e24ced9]:hover {\n  border-width: 3px;\n}", ""]);
+exports.push([module.i, ".avatar[data-v-2e24ced9] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  border: solid 0px gray;\n  transition: border-width ease-out 250ms;\n  cursor: pointer;\n}\n.avatar[data-v-2e24ced9]:hover {\n  border-width: 3px;\n}\n.choices[data-v-2e24ced9] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
 
 // exports
 
@@ -16364,7 +16387,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v("Course "),
+      _vm._v("Course (Can select multiple courses)"),
       _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -16566,7 +16589,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-xs btn-primary",
                       attrs: {
-                        "data-target": "#modal-payment",
+                        "data-target": "#modal-choices",
                         "data-toggle": "modal"
                       }
                     },
@@ -17058,6 +17081,45 @@ var render = function() {
                     },
                     [_vm._v("Submit")]
                   )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade show",
+          attrs: { id: "modal-choices", "aria-modal": "true" }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog modal-dialog-centered modal-md" },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "row choices" }, [
+                  _c("div", { staticClass: "col-6" }, [
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "card-body" }, [
+                        _vm._v(
+                          "\n                                    Test\n                                "
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-6" }, [
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "card-body" }, [
+                        _vm._v(
+                          "\n                                    Test\n                                "
+                        )
+                      ])
+                    ])
+                  ])
                 ])
               ])
             ]

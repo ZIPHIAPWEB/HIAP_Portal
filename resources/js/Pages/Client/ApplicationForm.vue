@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="">Course <i class="text-danger">*</i></label>
+                                            <label for="">Course (Can select multiple courses)<i class="text-danger">*</i></label>
                                             <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
                                         </div>
                                     </div>

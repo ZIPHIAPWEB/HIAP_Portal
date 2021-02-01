@@ -53,7 +53,7 @@
                         <div class="card-header">
                             <h5 class="card-title">My Payments</h5>
                             <div class="card-tools">
-                                <button class="btn btn-xs btn-primary" data-target="#modal-payment" data-toggle="modal">Upload Deposit Slip</button>
+                                <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Deposit Slip</button>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -170,6 +170,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade show" id="modal-choices" aria-modal="true">
+                <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                        <div class="row choices">
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        Test
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        Test
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </client-layout>
 </template>
@@ -267,5 +290,11 @@
         &:hover {
             border-width: 3px;
         }
+    }
+
+    .choices {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>

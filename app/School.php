@@ -13,6 +13,6 @@ class School extends Model
 
     public function clients()
     {
-        return $this->hasMany('App\Client', 'school', 'id');
+        return $this->hasMany('App\Client', 'school_id', 'id');
     }
 }
