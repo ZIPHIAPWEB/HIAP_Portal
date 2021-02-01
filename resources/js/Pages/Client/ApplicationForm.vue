@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="">Course (Can select multiple courses)<i class="text-danger">*</i></label>
+                                            <label for="">Course <i class="text-danger">*</i></label>
                                             <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                     </div> -->
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="">Courses <i class="text-danger">*</i></label>
+                                            <label for="">Courses (Can select multiple courses)<i class="text-danger">*</i></label>
                                             <v-select v-model="form.course_id" label="name" multiple :options="filteredCourse"></v-select>
                                             <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span>
                                         </div>

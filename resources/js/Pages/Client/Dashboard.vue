@@ -174,19 +174,22 @@
             <div class="modal fade show" id="modal-choices" aria-modal="true">
                 <div class="modal-dialog modal-dialog-centered modal-md">
                     <div class="modal-content">
-                        <div class="row choices">
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        Test
-                                    </div>
+                        <div v-if="isLoading" class="overlay d-flex justify-content-center align-items-center">
+                            <i class="fas fa-spinner fa-2x fa-pulse"></i>
+                        </div>
+                        <div class="modal-header">
+                            <h5>Select Mode</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary btn-block btn-lg" @click="payBy('student')">Pay By Student</button>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        Test
-                                    </div>
+                                <div class="col-6">
+                                    <button class="btn btn-success btn-block btn-lg" @click="payBy('school')">Pay By School</button>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +205,7 @@
     import PersonalProfileComponent from '../../components/PersonalProfileComponent.vue';
     import ClientInitialRequirements from '../../components/ClientInitialRequirement.vue';
     export default {
-        props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments'],
+        props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash'],
         components: {
             ClientLayout,
             ClientInitialRequirements,
@@ -223,7 +226,13 @@
                     file: '',
                     filename: ''
                 },
-                isUploading: false
+                isUploading: false,
+                isLoading: false
+            }
+        },
+        watch: {
+            flash: function (value) {
+                toastr.info(value.message);
             }
         },
         computed: {
@@ -246,34 +255,53 @@
                     })
             },
             addNewProgram () {
-                this.$inertia.post('/addNewProgram', this.form)
-                    .then((response) => {
+                this.$inertia.post('/addNewProgram', this.form, {
+                    onSuccess: () => {
                         $('#modal-default').modal('hide');
-                    })
+                    }
+                })
             },
             addDepositSlip () {
                 this.isUploading = true;
                 let formData = new FormData();
                 formData.append('purpose', this.payment.purpose);
                 formData.append('file', this.payment.file);
-                this.$inertia.post('/addDepositSlip', formData)
-                    .then((response) => {
+                this.$inertia.post('/addDepositSlip', formData, {
+                    onSuccess: () => {
                         this.isUploading = false;
                         $('#modal-payment').modal('hide');
-                    })
+                    },
+                    onError: () => {
+                        this.isUploading = false;
+                    }
+                })
             },
             removeDepositSlip (id) {
-                let r = confirm('Remove deposit slip?');
-
-                if(r == true) {
-                    this.$inertia.delete(`/removeDepositSlip/${id}`)
-                    .then((response) => {
-                        tostr.info('Deposit slip deleted.');
-                    })
-                }
+                this.$inertia.delete(`/removeDepositSlip/${id}`, {
+                    onBefore: () => confirm('Remove deposit slip?'),
+                })
             },
             browseFile () {
                 document.getElementById('deposit-form').click();
+            },
+            payBy (mode) {
+                switch(mode) {
+                    case 'student':
+                        $('#modal-choices').modal('hide');
+                        $('#modal-payment').modal('show');
+                    break;
+
+                    case 'school':
+                        this.isLoading = true;
+                        this.$inertia.post('/payBySchool', {}, {
+                            onSuccess: () => {
+                                this.isLoading = false;
+                                $('#modal-choices').modal('hide');
+                            }
+                        })
+                        
+                    break;
+                }
             }
         }
     }
@@ -290,11 +318,5 @@
         &:hover {
             border-width: 3px;
         }
-    }
-
-    .choices {
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 </style>

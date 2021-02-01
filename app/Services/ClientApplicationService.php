@@ -42,7 +42,8 @@ class ClientApplicationService {
             'contact_no'            =>  $request->contact_number,
             'school_id'             =>  $request->school,
             'course'                =>  $request->course,
-            'fb_link'               =>  $request->fb_link
+            'fb_link'               =>  $request->fb_link,
+            'program_id'            =>  $request->user()->program_id
         ]);
         
         foreach($request->course_id as $course) {

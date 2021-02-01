@@ -50,6 +50,23 @@ class PaymentService
         ));
     }
 
+    public function payBySchool($data)
+    {
+        $this->createPayment->execute([
+            'user_id'   =>  $data->user()->id,
+            'purpose'   =>  'Paid by School',
+            'isVerified'=>  false,
+            'path'      =>  ''
+        ]);
+
+        $this->mail->execute('accounting@ziptravel.com.ph', new PaymentUploaded(
+            Client::where('user_id', $data->user()->id)
+                ->with('school')
+                ->with('onlineProgram')
+                ->first()
+        ));
+    }
+    
     public function deleteDepositSlip($data)
     {
         $deletedSlip = $this->removePayment->execute(['id' => $data]);

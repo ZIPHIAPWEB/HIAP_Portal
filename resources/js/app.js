@@ -1,13 +1,25 @@
 import './bootstrap';
-import { InertiaApp } from '@inertiajs/inertia-vue'
-import Vue from 'vue'
 import JsonExcel from 'vue-json-excel';
 import vSelect from 'vue-select'
 
-Vue.use(InertiaApp)
 Vue.component('v-select', vSelect)
 Vue.component('downloadExcel', JsonExcel);
-const app = document.getElementById('app')
+
+import { App, plugin } from '@inertiajs/inertia-vue'
+import Vue from 'vue'
+
+Vue.use(plugin)
+
+const el = document.getElementById('app')
+
+new Vue({
+  render: h => h(App, {
+    props: {
+      initialPage: JSON.parse(el.dataset.page),
+      resolveComponent: name => require(`./Pages/${name}`).default,
+    },
+  }),
+}).$mount(el)
 
 Vue.component('my-bar-chart', {
   extends: VueChartJs.Line,
@@ -29,11 +41,3 @@ Vue.component('my-bar-chart', {
     maintainAspectRatio: false
   })
 
-new Vue({
-  render: h => h(InertiaApp, {
-    props: {
-      initialPage: JSON.parse(app.dataset.page),
-      resolveComponent: name => require(`./Pages/${name}`).default,
-    },
-  }),
-}).$mount(app)

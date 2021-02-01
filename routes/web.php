@@ -159,6 +159,7 @@ Route::delete('/deleteLesson/{lesson}', 'LessonController@deleteLesson');
 Route::delete('/logs/delete/{id}', 'LogController@deleteLog');
 
 Route::post('/addDepositSlip', 'PaymentController@addDepositSlip');
+Route::post('/payBySchool', 'PaymentController@payBySchool');
 Route::delete('/removeDepositSlip/{slipId}', 'PaymentController@removeDepositSlip');
 
 Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
