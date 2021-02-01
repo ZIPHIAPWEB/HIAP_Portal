@@ -16094,7 +16094,8 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  placeholder: "https://facebook.com/jane.doe"
+                                  placeholder: "https://facebook.com/jane.doe",
+                                  required: ""
                                 },
                                 domProps: { value: _vm.form.fb_link },
                                 on: {

@@ -42,10 +42,12 @@ class PaymentService
             'path'          =>  $filename
         ]);
 
-        $this->mail->execute('accounting@ziptravel.com.ph', new PaymentUploaded([
-            'client'    =>  Client::where('user_id', $data->user()->id)->first(),
-            'purpose'   =>  $data->purpose
-        ]));
+        $this->mail->execute('accounting@ziptravel.com.ph', new PaymentUploaded(
+            Client::where('user_id', $data->user()->id)
+                ->with('school')
+                ->with('onlineProgram')
+                ->first()
+        ));
     }
 
     public function deleteDepositSlip($data)

@@ -9,6 +9,7 @@ use App\Actions\SendMailNotification;
 use App\Actions\UpdateClient;
 use App\Client;
 use App\Mail\NewApplicantNotification;
+use App\OnlineProgram;
 use App\School;
 
 class ClientApplicationService {
@@ -39,7 +40,7 @@ class ClientApplicationService {
             'last_name'             =>  $request->last_name,
             'address'               =>  $request->address,
             'contact_no'            =>  $request->contact_number,
-            'school'                =>  $request->school,
+            'school_id'             =>  $request->school,
             'course'                =>  $request->course,
             'fb_link'               =>  $request->fb_link
         ]);
@@ -61,8 +62,8 @@ class ClientApplicationService {
             'middle_name'   =>  $client->middle_name,
             'last_name'     =>  $client->last_name,
             'contact_no'    =>  $client->contact_no,
-            'program'       =>  '',
-            'school'        =>  School::where('id', $client->school)->first()->name
+            'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
+            'school'        =>  School::where('id', $client->school_id)->first()->name
         ]));
     }
 

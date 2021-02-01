@@ -1,8 +1,10 @@
 <?php
 
+use App\Mail\SendInquiry;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -174,5 +176,10 @@ Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
 Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::get('/test', function () {
-
+    Mail::to('zner.mergenio@gmail.com')->send(new SendInquiry([
+        'fullName'      =>  'Test',
+        'email'         =>  'test@app.com',
+        'mobileNumber'  =>  'test',
+        'message'       =>  'Hi'
+    ]));
 });

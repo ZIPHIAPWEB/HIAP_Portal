@@ -12,7 +12,7 @@ class Client extends Model
         'last_name',
         'address',
         'contact_no',
-        'school',
+        'school_id',
         'user_id',
         'fb_link'
     ];
@@ -29,7 +29,7 @@ class Client extends Model
 
     public function school()
     {
-        return $this->hasOne('App\School', 'id', 'school');
+        return $this->hasOne('App\School', 'id', 'school_id');
     }
 
     public function userProgram()
@@ -50,5 +50,10 @@ class Client extends Model
     public function payments()
     {
         return $this->hasMany('App\Payment', 'user_id', 'user_id');
+    }
+
+    public function onlineProgram()
+    {
+        return $this->hasOne('App\OnlineProgram', 'id', 'program_id');
     }
 }
