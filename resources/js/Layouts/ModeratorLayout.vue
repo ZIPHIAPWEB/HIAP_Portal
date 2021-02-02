@@ -39,7 +39,7 @@
           <!-- <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
         </div>
         <div class="info">
-          <a href="#" class="d-block text-bold">{{ $page.auth.first_name }} {{ $page.auth.last_name }}</a>
+          <a href="#" class="d-block text-bold">Moderator</a>
         </div>
       </div>
 
