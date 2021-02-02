@@ -43,7 +43,7 @@
                     </tbody>
                     <tbody v-else>
                         <tr class="text-xs text-center">
-                            <td colspan="7">No Client Registered</td>
+                            <td colspan="8">No Client Registered</td>
                         </tr>
                     </tbody>
                 </table>

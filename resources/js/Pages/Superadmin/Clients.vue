@@ -67,16 +67,19 @@
                     })
                 },
         },
+        watch: {
+            flash: function (value) {
+                toastr.info(value.message)
+            }
+        },
         methods: {
             viewClientDetails (userId) {
                 this.$inertia.visit(`/sa/client/${userId}`);
             },
             deleteClientDetails (userId) {
-                let r = confirm("Are you sure to delete this record?");
-                if (r == true) {
-                    this.$inertia.delete(`/deleteClientDetails/${userId}`);
-                    toastr.info('Program deleted!');
-                }
+                this.$inertia.delete(`/deleteClientDetails/${userId}`, {
+                    onBefore: () => confirm("Are you sure to delete this record?")
+                });
             }
         }
     }

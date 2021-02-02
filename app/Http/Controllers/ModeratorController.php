@@ -14,6 +14,7 @@ use App\Services\ModeratorService;
 use App\User;
 use App\UserProgram;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -131,7 +132,16 @@ class ModeratorController extends Controller
         $client = Client::where('user_id', $id)->with('user')->with('school')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
             'client'    =>  $client,
-            'payments'  =>  Payment::where('user_id', $id)->get(),
+            'payments'  =>  Payment::where('user_id', $id)->get()->map(function($payment) {
+                return [
+                    'id'        =>  $payment->id,
+                    'user_id'   =>  $payment->user_id,
+                    'purpose'   =>  $payment->purpose,
+                    'isVerified'=>  $payment->isVerified,
+                    'path'      =>  (Auth::check()) ? '/slips/' . $payment->path : 'Auth required.',
+                    'created_at'=>  $payment->created_at->toDayDateTimeString()
+                ];
+            }),
             'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
                 ->with('program')
                 ->with('course')

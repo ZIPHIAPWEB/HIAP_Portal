@@ -191,14 +191,14 @@
         methods: {
             submitApplication () {
                 this.loading = true;
-                this.$inertia.post('/client/sendApplication', this.form)
-                    .then((response) => {
+                this.$inertia.post('/client/sendApplication', this.form, {
+                    onSuccess: () => {
                         this.loading = false;
-                        console.log(response);
-                    })
-                    .catch(error => {
+                    },
+                    onError: () => {
                         this.loading = false;
-                    })
+                    }
+                })
             }
         }
     }

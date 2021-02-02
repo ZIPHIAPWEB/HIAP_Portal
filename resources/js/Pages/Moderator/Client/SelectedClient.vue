@@ -67,29 +67,24 @@
                                         <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="userPrograms.length > 0">
-                                    <tr v-for="p in userPrograms" :key="p.id" class="text-xs">
+                                    <tr v-for="p in userPrograms" :key="p.id" class="text-sm">
                                         <td>{{ p.course.name }}</td>
                                         <td class="text-center">{{ p.program.name }}</td>
                                         <td class="text-center">
-                                            <i class="text-red" v-if="p.application_status == 0">Newly Enrolled</i>
-                                            <i class="text-green" v-else>Completed</i>
+                                            <select @click="UpdateStatus" v-model="p.application_status" name="" id="" class="form-control form-control-sm">
+                                                <option value="New Learner">New Learner</option>
+                                                <option value="Confirmed Learner">Confirmed Learner</option>
+                                                <option value="Complete Learner">Complete Learner</option>
+                                            </select>
+                                            <!-- <i class="text-red" v-if="p.application_status == 0">Newly Enrolled</i>
+                                            <i class="text-green" v-else>Completed</i> -->
                                         </td>
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
-                                        <td style="width:30%;" class="text-center">
-                                            <button @click="UpdateStatus(p)" class="btn btn-xs btn-success">
-                                                <i v-if="p.application_status == 0" class="fas fa-check"></i>
-                                                <i v-else class="fas fa-redo-alt"></i>
-                                            </button>
-                                            <!-- <inertia-link :href="`/md/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">
-                                                <i class="fas fa-eye"></i>
-                                            </inertia-link> -->
-                                        </td>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
@@ -111,6 +106,7 @@
                                         <th class="text-left">Type</th>
                                         <th>Date Uploaded</th>
                                         <th>Verified</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="payments.length > 0">
@@ -120,6 +116,10 @@
                                         <td class="text-sm">
                                             <i v-if="payment.isVerified" class="fas fa-check text-green"></i>
                                             <i v-else class="fas fa-times text-red"></i>
+                                        </td>
+                                        <td class="text-sm">
+                                            <a :href="payment.path" v-if="payment.isVerified" class="btn btn-primary btn-xs" target="_blank">View</a>
+                                            <span v-else>Not Applicable</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -150,13 +150,11 @@
             ModeratorLayout
         },
         methods: {
-            UpdateStatus(data) {
-                let r = confirm('Set application status?');
-                
-                if(r) {
-                    this.$inertia.post(`/setApplicationStatus/${data.id}`, data);
-                }
-            }
+            UpdateStatus(e, data) {
+                this.$inertia.post(`/setApplicationStatus/${data.id}`, data), {
+                    onBefore: () => confirm('Set application status?')
+                };
+            },
         }
     }
 </script>

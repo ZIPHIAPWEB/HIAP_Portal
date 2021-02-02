@@ -116,13 +116,17 @@ class ClientController extends Controller
         ClientInitial::where('user_id', $userId)->delete();
         Grade::where('user_id', $userId)->delete();
         
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('message', 'Client deleted.');
     }
 
     public function updateClientDetails(Request $request)
     {
         $this->clientApplicationService->updateDetails($request);
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('message', 'Client details updated.');
     }
 }

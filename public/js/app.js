@@ -5259,11 +5259,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.loading = true;
-      this.$inertia.post('/client/sendApplication', this.form).then(function (response) {
-        _this2.loading = false;
-        console.log(response);
-      })["catch"](function (error) {
-        _this2.loading = false;
+      this.$inertia.post('/client/sendApplication', this.form, {
+        onSuccess: function onSuccess() {
+          _this2.loading = false;
+        },
+        onError: function onError() {
+          _this2.loading = false;
+        }
       });
     }
   }
@@ -5804,12 +5806,12 @@ __webpack_require__.r(__webpack_exports__);
     ModeratorLayout: _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    UpdateStatus: function UpdateStatus(data) {
-      var r = confirm('Set application status?');
-
-      if (r) {
-        this.$inertia.post("/setApplicationStatus/".concat(data.id), data);
-      }
+    UpdateStatus: function UpdateStatus(e, data) {
+      this.$inertia.post("/setApplicationStatus/".concat(data.id), data), {
+        onBefore: function onBefore() {
+          return confirm('Set application status?');
+        }
+      };
     }
   }
 });
@@ -6811,17 +6813,21 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  watch: {
+    flash: function flash(value) {
+      toastr.info(value.message);
+    }
+  },
   methods: {
     viewClientDetails: function viewClientDetails(userId) {
       this.$inertia.visit("/sa/client/".concat(userId));
     },
     deleteClientDetails: function deleteClientDetails(userId) {
-      var r = confirm("Are you sure to delete this record?");
-
-      if (r == true) {
-        this.$inertia["delete"]("/deleteClientDetails/".concat(userId));
-        toastr.info('Program deleted!');
-      }
+      this.$inertia["delete"]("/deleteClientDetails/".concat(userId), {
+        onBefore: function onBefore() {
+          return confirm("Are you sure to delete this record?");
+        }
+      });
     }
   }
 });
@@ -16596,10 +16602,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v("End Date")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Action")
                       ])
                     ])
                   ]),
@@ -16610,7 +16612,7 @@ var render = function() {
                         _vm._l(_vm.userPrograms, function(p) {
                           return _c(
                             "tr",
-                            { key: p.id, staticClass: "text-xs" },
+                            { key: p.id, staticClass: "text-sm" },
                             [
                               _c("td", [_vm._v(_vm._s(p.course.name))]),
                               _vm._v(" "),
@@ -16619,13 +16621,63 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
-                                p.application_status == 0
-                                  ? _c("i", { staticClass: "text-red" }, [
-                                      _vm._v("Newly Enrolled")
-                                    ])
-                                  : _c("i", { staticClass: "text-green" }, [
-                                      _vm._v("Completed")
-                                    ])
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: p.application_status,
+                                        expression: "p.application_status"
+                                      }
+                                    ],
+                                    staticClass: "form-control form-control-sm",
+                                    attrs: { name: "", id: "" },
+                                    on: {
+                                      click: _vm.UpdateStatus,
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          p,
+                                          "application_status",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "New Learner" } },
+                                      [_vm._v("New Learner")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "Confirmed Learner" } },
+                                      [_vm._v("Confirmed Learner")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "Complete Learner" } },
+                                      [_vm._v("Complete Learner")]
+                                    )
+                                  ]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
@@ -16638,37 +16690,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
                                 _vm._v(_vm._s(p.end_date))
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "text-center",
-                                  staticStyle: { width: "30%" }
-                                },
-                                [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-xs btn-success",
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.UpdateStatus(p)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      p.application_status == 0
-                                        ? _c("i", {
-                                            staticClass: "fas fa-check"
-                                          })
-                                        : _c("i", {
-                                            staticClass: "fas fa-redo-alt"
-                                          })
-                                    ]
-                                  )
-                                ]
-                              )
+                              ])
                             ]
                           )
                         }),
@@ -16707,7 +16729,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", [_vm._v("Date Uploaded")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Verified")])
+                      _c("th", [_vm._v("Verified")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Action")])
                     ])
                   ]),
                   _vm._v(" "),
@@ -16735,6 +16759,22 @@ var render = function() {
                                   : _c("i", {
                                       staticClass: "fas fa-times text-red"
                                     })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                payment.isVerified
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-primary btn-xs",
+                                        attrs: {
+                                          href: payment.path,
+                                          target: "_blank"
+                                        }
+                                      },
+                                      [_vm._v("View")]
+                                    )
+                                  : _c("span", [_vm._v("Not Applicable")])
                               ])
                             ]
                           )
@@ -17090,7 +17130,7 @@ var render = function() {
               )
             : _c("tbody", [
                 _c("tr", { staticClass: "text-xs text-center" }, [
-                  _c("td", { attrs: { colspan: "7" } }, [
+                  _c("td", { attrs: { colspan: "8" } }, [
                     _vm._v("No Client Registered")
                   ])
                 ])
