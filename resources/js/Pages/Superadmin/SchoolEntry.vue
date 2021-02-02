@@ -88,21 +88,23 @@
                 formData.append('display_name', this.form.display_name);
                 switch(this.action) {
                     case 'add':
-                        this.$inertia.post('/storeSchool', formData)
-                            .then((response) => {
+                        this.$inertia.post('/storeSchool', formData, {
+                            onSuccess: () => {
                                 this.cancelActions();
                                 toastr.info('School added.');
-                            });
+                            }
+                        })
                     break;
 
                     case 'edit':
                         formData.append('id', this.form.id);
                         formData.append('_method', 'PUT');
-                        this.$inertia.post('/updateSchool', formData)
-                            .then((response) => {
-                                this.cancelActions();
+                        this.$inertia.post('/updateSchool', formData, {
+                            onSuccess: () => {
+                                 this.cancelActions();
                                 toastr.info('School updated.');
-                            })
+                            }
+                        })
                         break;
                 }
             },
@@ -112,14 +114,13 @@
                 this.form = {...school};
             },
             deleteSchool(school) {
-                let prompt = confirm('Delete this record?');
-                if(prompt) {
-                    this.$inertia.delete(`/deleteSchool/${school.id}`)
-                        .then((response) => {
-                            toastr.info(`${school.name} deleted.`);
-                            this.cancelActions();
-                        })
-                }
+                this.$inertia.delete(`/deleteSchool/${school.id}`, {
+                    onBefore: () => confirm('Delete this record?'),
+                    onSuccess: () => {
+                        toastr.info(`${school.name} deleted.`);
+                        this.cancelActions();
+                    }
+                })
             },
             cancelActions() {
                 this.buttonName = 'Add';

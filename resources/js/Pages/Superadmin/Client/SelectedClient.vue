@@ -157,9 +157,10 @@
                 let r = confirm('Remove deposit slip?');
 
                 if(r == true) {
-                    this.$inertia.delete(`/removeDepositSlip/${id}`)
-                    .then((response) => {
-                        tostr.info('Deposit slip deleted.');
+                    this.$inertia.delete(`/removeDepositSlip/${id}`, {
+                        onSuccess: () => {
+                            tostr.info('Deposit slip deleted.');
+                        }
                     })
                 }
             },

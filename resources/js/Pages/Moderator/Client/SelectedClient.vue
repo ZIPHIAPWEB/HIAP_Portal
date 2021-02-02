@@ -74,7 +74,7 @@
                                         <td>{{ p.course.name }}</td>
                                         <td class="text-center">{{ p.program.name }}</td>
                                         <td class="text-center">
-                                            <select @click="UpdateStatus" v-model="p.application_status" name="" id="" class="form-control form-control-sm">
+                                            <select @change="UpdateStatus" v-model="p.application_status" :dataid="p.id" class="form-control form-control-sm">
                                                 <option value="New Learner">New Learner</option>
                                                 <option value="Confirmed Learner">Confirmed Learner</option>
                                                 <option value="Complete Learner">Complete Learner</option>
@@ -149,11 +149,19 @@
         components: {
             ModeratorLayout
         },
+        watch: {
+            flash: function (value) {
+                toastr.info(value.message);
+            }
+        },
         methods: {
-            UpdateStatus(e, data) {
-                this.$inertia.post(`/setApplicationStatus/${data.id}`, data), {
-                    onBefore: () => confirm('Set application status?')
-                };
+            UpdateStatus(e) {
+                this.$inertia.post(`/setApplicationStatus/${e.target.getAttribute('dataid')}`, { status : e.target.value}, {
+                    onBefore: () => confirm('Set application status?'),
+                    onSuccess: () => {
+                        toastr.info(`Application status set to ${e.target.value}`);
+                    }
+                })
             },
         }
     }

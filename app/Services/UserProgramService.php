@@ -59,13 +59,11 @@ class UserProgramService
         // }
     }
 
-    public function updateStatus($data, $userProgramId)
+    public function updateStatus($status, $userProgramId)
     {
-        if($data['application_status'] == 0) {
-            $this->setStatusToComplete($userProgramId);
-        } else {
-            $this->setStatusToUncomplete($userProgramId);
-        }
+        $this->updateUserProgram->execute(['id' => $userProgramId], [
+            'application_status' => $status
+        ]);
     }
 
     private function setStatusToComplete($userProgramId)

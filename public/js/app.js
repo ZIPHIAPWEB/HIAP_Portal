@@ -5805,13 +5805,23 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ModeratorLayout: _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  watch: {
+    flash: function flash(value) {
+      toastr.info(value.message);
+    }
+  },
   methods: {
-    UpdateStatus: function UpdateStatus(e, data) {
-      this.$inertia.post("/setApplicationStatus/".concat(data.id), data), {
+    UpdateStatus: function UpdateStatus(e) {
+      this.$inertia.post("/setApplicationStatus/".concat(e.target.getAttribute('dataid')), {
+        status: e.target.value
+      }, {
         onBefore: function onBefore() {
           return confirm('Set application status?');
+        },
+        onSuccess: function onSuccess() {
+          toastr.info("Application status set to ".concat(e.target.value));
         }
-      };
+      });
     }
   }
 });
@@ -6629,8 +6639,10 @@ __webpack_require__.r(__webpack_exports__);
       var r = confirm('Remove deposit slip?');
 
       if (r == true) {
-        this.$inertia["delete"]("/removeDepositSlip/".concat(id)).then(function (response) {
-          tostr.info('Deposit slip deleted.');
+        this.$inertia["delete"]("/removeDepositSlip/".concat(id), {
+          onSuccess: function onSuccess() {
+            tostr.info('Deposit slip deleted.');
+          }
         });
       }
     }
@@ -6826,6 +6838,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia["delete"]("/deleteClientDetails/".concat(userId), {
         onBefore: function onBefore() {
           return confirm("Are you sure to delete this record?");
+        },
+        onSuccess: function onSuccess() {
+          tostr.info('Client details deleted.');
         }
       });
     }
@@ -7944,20 +7959,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       switch (this.action) {
         case 'add':
-          this.$inertia.post('/storeSchool', formData).then(function (response) {
-            _this.cancelActions();
+          this.$inertia.post('/storeSchool', formData, {
+            onSuccess: function onSuccess() {
+              _this.cancelActions();
 
-            toastr.info('School added.');
+              toastr.info('School added.');
+            }
           });
           break;
 
         case 'edit':
           formData.append('id', this.form.id);
           formData.append('_method', 'PUT');
-          this.$inertia.post('/updateSchool', formData).then(function (response) {
-            _this.cancelActions();
+          this.$inertia.post('/updateSchool', formData, {
+            onSuccess: function onSuccess() {
+              _this.cancelActions();
 
-            toastr.info('School updated.');
+              toastr.info('School updated.');
+            }
           });
           break;
       }
@@ -7970,15 +7989,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     deleteSchool: function deleteSchool(school) {
       var _this2 = this;
 
-      var prompt = confirm('Delete this record?');
-
-      if (prompt) {
-        this.$inertia["delete"]("/deleteSchool/".concat(school.id)).then(function (response) {
+      this.$inertia["delete"]("/deleteSchool/".concat(school.id), {
+        onBefore: function onBefore() {
+          return confirm('Delete this record?');
+        },
+        onSuccess: function onSuccess() {
           toastr.info("".concat(school.name, " deleted."));
 
           _this2.cancelActions();
-        });
-      }
+        }
+      });
     },
     cancelActions: function cancelActions() {
       this.buttonName = 'Add';
@@ -16633,29 +16653,34 @@ var render = function() {
                                       }
                                     ],
                                     staticClass: "form-control form-control-sm",
-                                    attrs: { name: "", id: "" },
+                                    attrs: { dataid: p.id },
                                     on: {
-                                      click: _vm.UpdateStatus,
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          p,
-                                          "application_status",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      }
+                                      change: [
+                                        function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            p,
+                                            "application_status",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        _vm.UpdateStatus
+                                      ]
                                     }
                                   },
                                   [

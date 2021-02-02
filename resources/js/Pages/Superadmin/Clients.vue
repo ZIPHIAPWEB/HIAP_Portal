@@ -78,7 +78,10 @@
             },
             deleteClientDetails (userId) {
                 this.$inertia.delete(`/deleteClientDetails/${userId}`, {
-                    onBefore: () => confirm("Are you sure to delete this record?")
+                    onBefore: () => confirm("Are you sure to delete this record?"),
+                    onSuccess: () => {
+                        tostr.info('Client details deleted.');
+                    }
                 });
             }
         }
