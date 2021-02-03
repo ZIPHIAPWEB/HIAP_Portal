@@ -81,7 +81,7 @@ class ClientApplicationService {
             'last_name'     =>  $data->last_name,
             'address'       =>  $data->address,
             'contact_no'    =>  $data->contact_no,
-            'school'        =>  $data->school
+            'school_id'     =>  $data->school_id
         ]);
 
         (new CreateLog)->execute([

@@ -62,7 +62,9 @@
                         <td>School/Organization</td>
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ profile.school.name }}</strong>
-                            <input v-model="profile.school.name" type="text" v-else class="form-control form-control-sm w-100" disabled>
+                            <select v-model="profile.school_id" v-else class="form-control form-control sm w-100">
+                                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -80,7 +82,7 @@
 
 <script>
     export default {
-        props: ['profile'],
+        props: ['profile', 'schools'],
         data () {
             return {
                 isEdit: false,
@@ -90,10 +92,18 @@
         methods: {
             updateProfileDetails () {
                 this.loading = true;
-                this.$inertia.post('/updateClientDetails', this.profile);
-                this.isEdit = false;
-                this.loading = false;
-                toastr.info('Profile Updated!');
+                this.$inertia.post('/updateClientDetails', this.profile, {
+                    onBefore: () => confirm('Update this details?'),
+                    onSuccess: () => {
+                        this.isEdit = false;
+                        this.loading = false;
+                    },
+                    onError: () => {
+                        this.isEdit = false;
+                        this.loading = false;
+                        toastr.error('An error has occured.');
+                    }
+                });  
             }
         }
     }

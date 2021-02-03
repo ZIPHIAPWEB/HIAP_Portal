@@ -85,7 +85,7 @@
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td style="width:30%;" class="text-center">
                                             <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link>
-                                            <inertia-link :href="`/deleteUserProgram/${p.id}`" method="deletes" class="btn btn-danger btn-xs">Remove</inertia-link>
+                                            <button @click="removeProgram(p.id)" class="btn btn-danger btn-xs">Remove</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -153,6 +153,11 @@
             SuperadminLayout
         },
         methods: {
+            removeProgram (id) {
+                this.$inertia.delete(`/deleteUserProgram/${id}`, {
+                    onBefore: () => confirm('Remove this program?')
+                })
+            } ,
             removeDepositSlip (id) {
                 let r = confirm('Remove deposit slip?');
 

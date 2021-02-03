@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <personal-profile-component :profile="client"></personal-profile-component>
+                    <personal-profile-component :profile="client" :schools="schools"></personal-profile-component>
                     <!-- <client-initial-requirements></client-initial-requirements> -->
                     <div class="card">
                         <div class="card-header">
@@ -205,7 +205,7 @@
     import PersonalProfileComponent from '../../components/PersonalProfileComponent.vue';
     import ClientInitialRequirements from '../../components/ClientInitialRequirement.vue';
     export default {
-        props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash'],
+        props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash', 'schools'],
         components: {
             ClientLayout,
             ClientInitialRequirements,

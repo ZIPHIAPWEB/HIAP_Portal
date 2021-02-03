@@ -45,6 +45,7 @@ class ClientController extends Controller
                 ->with('user')
                 ->with('school')
                 ->first(),
+            'schools'           =>  School::orderBy('name', 'desc')->get(),
             'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
             'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
                 return [

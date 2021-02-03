@@ -5491,7 +5491,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash'],
+  props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash', 'schools'],
   components: {
     ClientLayout: _Layouts_ClientLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ClientInitialRequirements: _components_ClientInitialRequirement_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -6635,6 +6635,13 @@ __webpack_require__.r(__webpack_exports__);
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
+    removeProgram: function removeProgram(id) {
+      this.$inertia["delete"]("/deleteUserProgram/".concat(id), {
+        onBefore: function onBefore() {
+          return confirm('Remove this program?');
+        }
+      });
+    },
     removeDepositSlip: function removeDepositSlip(id) {
       var r = confirm('Remove deposit slip?');
 
@@ -9014,8 +9021,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['profile'],
+  props: ['profile', 'schools'],
   data: function data() {
     return {
       isEdit: false,
@@ -9024,11 +9033,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updateProfileDetails: function updateProfileDetails() {
+      var _this = this;
+
       this.loading = true;
-      this.$inertia.post('/updateClientDetails', this.profile);
-      this.isEdit = false;
-      this.loading = false;
-      toastr.info('Profile Updated!');
+      this.$inertia.post('/updateClientDetails', this.profile, {
+        onBefore: function onBefore() {
+          return confirm('Update this details?');
+        },
+        onSuccess: function onSuccess() {
+          _this.isEdit = false;
+          _this.loading = false;
+        },
+        onError: function onError() {
+          _this.isEdit = false;
+          _this.loading = false;
+          toastr.error('An error has occured.');
+        }
+      });
     }
   }
 });
@@ -15733,7 +15754,7 @@ var render = function() {
           { staticClass: "col-md-9" },
           [
             _c("personal-profile-component", {
-              attrs: { profile: _vm.client }
+              attrs: { profile: _vm.client, schools: _vm.schools }
             }),
             _vm._v(" "),
             _c("div", { staticClass: "card" }, [
@@ -18032,12 +18053,13 @@ var render = function() {
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "inertia-link",
+                                    "button",
                                     {
                                       staticClass: "btn btn-danger btn-xs",
-                                      attrs: {
-                                        href: "/deleteUserProgram/" + p.id,
-                                        method: "deletes"
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.removeProgram(p.id)
+                                        }
                                       }
                                     },
                                     [_vm._v("Remove")]
@@ -22139,31 +22161,47 @@ var render = function() {
               _c("td", { staticClass: "text-left" }, [
                 !_vm.isEdit
                   ? _c("strong", [_vm._v(_vm._s(_vm.profile.school.name))])
-                  : _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.profile.school.name,
-                          expression: "profile.school.name"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm w-100",
-                      attrs: { type: "text", disabled: "" },
-                      domProps: { value: _vm.profile.school.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  : _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.profile.school_id,
+                            expression: "profile.school_id"
                           }
-                          _vm.$set(
-                            _vm.profile.school,
-                            "name",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control form-control sm w-100",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.profile,
+                              "school_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      _vm._l(_vm.schools, function(school) {
+                        return _c(
+                          "option",
+                          { key: school.id, domProps: { value: school.id } },
+                          [_vm._v(_vm._s(school.name))]
+                        )
+                      }),
+                      0
+                    )
               ])
             ]),
             _vm._v(" "),
