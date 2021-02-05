@@ -17279,7 +17279,15 @@ var render = function() {
                         _vm._v(_vm._s(client.school ? client.school.name : ""))
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.online_program.name))]),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            client.online_program
+                              ? client.online_program.name
+                              : ""
+                          )
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
