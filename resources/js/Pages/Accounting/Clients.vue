@@ -63,7 +63,14 @@
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
                 <div>
-                    <input type="text" class="form-control form-control-sm mx-auto" v-model="filterName" placeholder="Search by last name">
+                    <div class="input-group input-group-sm" style="width: 300px">
+                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by last name">
+                        <span class="input-group-append">
+                            <button @click="searchClientByLastName" class="btn btn-info btn-flat">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="card-body p-0">
@@ -80,13 +87,13 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody v-if="filteredClients.length > 0">
-                        <tr class="text-xs text-center" v-for="client in filteredClients" :key="client.id">
+                    <tbody v-if="clients.data.length > 0">
+                        <tr class="text-xs text-center" v-for="client in clients.data" :key="client.id">
                             <td class="text-left">{{ client.first_name }}</td>
                             <td>{{ client.middle_name}}</td>
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
-                            <td>{{ client.school }}</td>
+                            <td>{{ client.school.name }}</td>
                             <td>{{ client.user.email }}</td>
                             <td class="text-bold text-red">{{ (client.payments.length > 0) ? paymentCount(client.payments) : 0 }}</td>
                             <td>
@@ -100,6 +107,10 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer">
+                <button :disabled="!clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                <button :disabled="!clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
             </div>
         </div>
     </accounting-layout>
@@ -119,13 +130,13 @@
         },
         computed: {
             filteredClients () {
-                return this.clients.filter(e => {
+                return this.clients.data.filter(e => {
                     return e.last_name.toLowerCase().includes(this.filterName.toLowerCase());
                 })
             },
             totalCourseEnrolled () {
                 let total = 0;
-                this.clients.forEach(e => {
+                this.clients.data.forEach(e => {
                     total += e.user_program.length;
                 });
 
@@ -134,7 +145,7 @@
             totalVerified () {
                 let total = 0;
 
-                this.clients.forEach(e => {
+                this.clients.data.forEach(e => {
                     total += e.payments.filter(e => e.isVerified == 1).length;
                 })
 
@@ -143,7 +154,7 @@
             totalUnverified () {
                 let total = 0;
 
-                this.clients.forEach(e => {
+                this.clients.data.forEach(e => {
                     total += e.payments.filter(e => e.isVerified == 0).length;
                 })
 
@@ -159,6 +170,24 @@
             },
             paymentCount (payments) {
                 return payments.filter(e => e.isVerified == 0).length;
+            },
+            prevPage() {
+                this.$inertia.visit(this.clients.prev_page_url);
+            },
+            nextPage() {
+                this.$inertia.visit(this.clients.next_page_url);
+            },
+            searchClientByLastName() {
+                if (this.filterName !== '') {
+                    let formData = new FormData();
+                    formData.append('last_name', this.filterName);
+                    axios.post('/searchStudentByLastName', formData)
+                        .then((response) => {
+                            this.clients = response.data;
+                        })
+                } else {
+                    toastr.error('Cannot search empty field.');
+                }
             }
         }
     }

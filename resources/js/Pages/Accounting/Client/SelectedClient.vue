@@ -74,8 +74,7 @@
                                         <td>{{ p.course.name }}</td>
                                         <td class="text-center">{{ p.program.name }}</td>
                                         <td class="text-center">
-                                            <i class="text-red" v-if="p.application_status == 0">Newly Enrolled</i>
-                                            <i class="text-green" v-else>Completed</i>
+                                            <i class="text-green text-bold">{{ p.application_status }}</i>
                                         </td>
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>

@@ -121,6 +121,9 @@ Route::get('/getAllPrograms', 'ProgramController@getAllPrograms');
 Route::post('/storeProgramDetails', 'ProgramController@storeProgramDetails');
 Route::patch('/updateProgramDetails/{id}', 'ProgramController@updateProgramDetails');
 Route::delete('/deleteProgramDetails/{id}', 'ProgramController@deleteProgramDetails');
+Route::post('/activateProgram/{id}', 'ProgramController@activateProgram');
+Route::post('/deactivateProgram/{id}', 'ProgramController@deactivateProgram');
+
 
 Route::get('/getAllInitialRequirements/{programId}', 'InitialController@getAllInitialRequirements');
 Route::get('/getInitialRequirementsForClient/{programId}', 'InitialController@getInitialRequirementsForClient');
@@ -177,10 +180,12 @@ Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
 Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::get('/test', function () {
-    Mail::to('zner.mergenio@gmail.com')->send(new SendInquiry([
-        'fullName'      =>  'Test',
-        'email'         =>  'test@app.com',
-        'mobileNumber'  =>  'test',
-        'message'       =>  'Hi'
-    ]));
+    App\User::create([
+        'email'     =>  'accounting@hiap.com',
+        'email_verified_at' =>  'Ready',
+        'password'          =>  Hash::make('accountingrocks5000!'),
+        'role'              =>  'accounting',
+        'isFilled'          =>  1,
+        'program_id'        =>  0
+    ]);
 });

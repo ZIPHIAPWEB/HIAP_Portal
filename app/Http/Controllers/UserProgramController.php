@@ -19,7 +19,8 @@ class UserProgramController extends Controller
     {
         $this->userProgramService->saveUserProgram($request);
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('message', 'New course added.');
     }
 
     public function getUserPrograms(Request $request)

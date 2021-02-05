@@ -28,10 +28,12 @@ class ProgramController extends Controller
         Program::create([
             'name'          =>  $request->input('name'),
             'description'   =>  $request->input('description'),
-            'course_id'     =>  $request->course
+            'course_id'     =>  $request->course,
+            'isActive'      =>  true
         ]);
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('message', 'Program Added');
     }
 
     public function getAllPrograms()
@@ -48,16 +50,39 @@ class ProgramController extends Controller
         $program->update([
             'name'          =>  $request->input('name'),    
             'description'   =>  $request->input('description'),
-            'course_id'     =>  $request->course
+            'course_id'     =>  $request->course,
+            'isActive'      =>  $request->isActive
         ]);
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('Program Updated');
     }
 
     public function deleteProgramDetails($id)
     {
         Program::where('id', $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('message', 'Program deleted.');
+    }
+
+    public function activateProgram($id)
+    {
+        Program::where('id', $id)->update([
+            'isActive'  =>  true
+        ]);
+
+        return redirect()->back()
+            ->with('message', 'Program activated.');
+    }
+
+    public function deactivateProgram($id)
+    {
+        Program::where('id', $id)->update([
+            'isActive'  =>  false
+        ]);
+
+        return redirect()->back()
+            ->with('message', 'Program deactivated.');
     }
 }

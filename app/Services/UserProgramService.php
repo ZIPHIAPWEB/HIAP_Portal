@@ -39,7 +39,7 @@ class UserProgramService
                 'start_date'            =>  $data->start_date,
                 'end_date'              =>  $data->end_date,
                 'hours_needed'          =>  $data->hours_needed,
-                'application_status'    => false
+                'application_status'    =>  'New Learner'
             ]);
         }
         // if($this->createUserProgram->execute($data)) {

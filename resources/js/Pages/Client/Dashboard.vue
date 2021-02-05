@@ -48,12 +48,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        
+                        <div class="card-footer">
+                            <i class="text-xs">For any request to delete or edit courses, please send an email to <a href="mailto:jmatibag@hospitalityinstituteofamerica.com.ph" style="text-decoration: underline">jmatibag@hospitalityinstituteofamerica.com.ph</a> with the complete details of the request.</i>
+                        </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">My Payments</h5>
                             <div class="card-tools">
-                                <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Deposit Slip</button>
+                                <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Proof of Payment</button>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -139,7 +143,7 @@
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
                         </div>
                         <div class="modal-header">
-                            <h5 class="modal-title">Upload Deposit Slip</h5>
+                            <h5 class="modal-title">Upload Proof of payment</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">x</span>
                             </button>
@@ -154,7 +158,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Deposit Slip</label>
+                                <label for="">Proof of Payment</label>
                                 <div class="input-group input-group-sm">
                                     <input @change="fileHandler()" type="file" ref="slip" id="deposit-form" style="display:none">
                                     <input v-model="payment.filename" type="text" disabled>
@@ -186,10 +190,10 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <button class="btn btn-primary btn-block btn-lg" @click="payBy('student')">Pay By Student</button>
+                                    <button class="btn btn-primary btn-block btn-lg" @click="payBy('student')">Paid By Student</button>
                                 </div>
                                 <div class="col-6">
-                                    <button class="btn btn-success btn-block btn-lg" @click="payBy('school')">Pay By School</button>
+                                    <button class="btn btn-success btn-block btn-lg" @click="payBy('school')">Paid By School</button>
                                 </div>
                             </div>
                         </div>

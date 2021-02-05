@@ -26,10 +26,11 @@ class AccountingController extends Controller
             'clients'   =>  Client::orderBy('created_at', 'desc')
                 ->with('user')
                 ->with('payments')
+                ->with('school')
                 ->with(['userProgram' => function($query) {
                     return $query->with('program');
                 }])
-                ->get()
+                ->paginate(20)
         ]);
     }
 

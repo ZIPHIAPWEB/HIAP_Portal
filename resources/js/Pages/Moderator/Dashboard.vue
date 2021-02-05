@@ -23,7 +23,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" style="width: 100%">10/{{ school.clients }}</div>
+                                    <div class="progress-bar bg-success" style="width: 100%">{{ school.clients.filter(e => e.user_program.application_status == 'Complete Learner') }}/{{ school.clients.length }}</div>
                                 </div>
                             </td>
                         </tr>
@@ -58,7 +58,7 @@
                         return e.program_id == this.filterByProgram;
                     }
                 }).filter(e => {
-                    return e.application_status == 'Newly Registered';
+                    return e.application_status == 'New Learner';
                 }).length;
             },
             requirementSubmitted () {

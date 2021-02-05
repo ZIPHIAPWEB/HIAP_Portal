@@ -22,6 +22,7 @@
                             <th>Last Name</th>
                             <th>Contact Number</th>
                             <th>School/Organization</th>
+                            <th>Program</th>
                             <th>Enrolled Course(s)</th>
                             <th>E-mail Address</th>
                             <th>Actions</th>
@@ -34,6 +35,7 @@
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
                             <td>{{ client.school ? client.school.name : '' }}</td>
+                            <td>{{ client.online_program.name }}</td>
                             <td>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</td>
                             <td>{{ client.user.email }}</td>
                             <td>

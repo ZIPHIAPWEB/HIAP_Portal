@@ -118,8 +118,8 @@
                                             <i v-else class="fas fa-times text-red"></i>
                                         </td>
                                         <td class="text-sm">
-                                            <a :href="payment.path" v-if="payment.isVerified" class="btn btn-primary btn-xs" target="_blank">View</a>
-                                            <span v-else>Not Applicable</span>
+                                            <a :href="payment.path" class="btn btn-primary btn-xs" target="_blank">View</a>
+                                            <!-- <span v-else>Not Applicable</span> -->
                                         </td>
                                     </tr>
                                 </tbody>

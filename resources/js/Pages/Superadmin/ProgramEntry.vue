@@ -42,6 +42,7 @@
                                         <th class="text-left">Name</th>
                                         <th>Description</th>
                                         <th>Program</th>
+                                        <th>isActive</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -51,10 +52,16 @@
                                         <td>{{ program.description }}</td>
                                         <td>{{ program.online_program }}</td>
                                         <td>
-                                            <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
+                                            <i v-if="program.isActive" class="text-bold text-green">Active</i>
+                                            <i v-else class="class text-bold text-red">Inactive</i>
+                                        </td>
+                                        <td>
+                                            <!-- <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
                                                 View Requirements
-                                            </inertia-link>
-                                            <inertia-link :href="`/sa/${program.id}/lessons`" class="btn btn-info btn-xs">View Gradebook</inertia-link>
+                                            </inertia-link> -->
+                                            <!-- <inertia-link :href="`/sa/${program.id}/lessons`" class="btn btn-info btn-xs">View Gradebook</inertia-link> -->
+                                            <button v-if="!program.isActive" @click="activateProgram(program.id)" class="btn btn-info btn-xs">Activate</button>
+                                            <button v-else @click="deactivateProgram(program.id)" class="btn btn-warning btn-xs">Deactivate</button>
                                             <button @click="editDetails(program)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="deleteDetails(program)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>
@@ -73,7 +80,7 @@
 import ProgramEntryComponent from '../../components/ProgramEntryComponent.vue';
 import SuperadminLayout from '../../Layouts/SuperadminLayout.vue';
 export default {
-    props: ['programs', 'courses'],
+    props: ['programs', 'courses', 'flash'],
     components: {
         SuperadminLayout
     },
@@ -89,30 +96,38 @@ export default {
             buttonName: 'Add'
         }
     },
+    watch: {
+        flash: function (value) {
+            toastr.info(value.message);
+        }
+    },
     methods: {
         deleteDetails(program) {
-            var r = confirm("Are you sure to delete this record?");
-            if (r == true) {
-                this.$inertia.delete(`/deleteProgramDetails/${program.id}`);
-                toastr.info('Program deleted!');
-            }
+            this.$inertia.delete(`/deleteProgramDetails/${program.id}`, {
+                onBefore: () => confirm('Delete this program?')
+            });
         },
         submitDetails() {
             switch(this.method) {
                 case 'create':
-                    this.$inertia.post('/storeProgramDetails', this.form)
-                        .then((response) => {
+                    this.$inertia.post('/storeProgramDetails', this.form, {
+                        onSuccess: () => {
                             this.method = 'create';
                             this.cancelRecord();
-                        })
+                        },
+                        onBefore: () => confirm('Add this program?')
+                    })
                     break;
 
                 case 'edit':
-                    this.$inertia.patch(`/updateProgramDetails/${this.form.id}`, this.form)
-                        .then((response) => {
-                            this.method = 'edit';
+                    this.$inertia.patch(`/updateProgramDetails/${this.form.id}`, this.form, {
+                        onSuccess: () => {
+                            this.method = 'edit',
                             this.cancelRecord();
-                        })
+                        },
+                        onBefore: () => confirm('Update this program?')
+                    })
+                        
                     break;
             }
         },
@@ -124,6 +139,16 @@ export default {
         cancelRecord () {
             this.form = {};
             this.buttonName = 'Add';
+        },
+        activateProgram(id) {
+            this.$inertia.post(`/activateProgram/${id}`, {}, {
+                onBefore: () => confirm('Activate?')
+            });
+        },
+        deactivateProgram(id) {
+            this.$inertia.post(`/deactivateProgram/${id}`, {}, {
+                onBefore: () => confirm('Deactivate?')
+            });
         }
     }
 }

@@ -120,6 +120,7 @@ class ModeratorController extends Controller
             'clients'   =>  Client::orderBy('created_at', 'desc')
                 ->with('user')
                 ->with('school')
+                ->with('onlineProgram')
                 ->with(['userProgram' => function($query) {
                     return $query->with('program');
                 }])
@@ -173,9 +174,11 @@ class ModeratorController extends Controller
     {
         return Client::where('last_name', $request->last_name)
             ->with('user')
+            ->with('payments')
+            ->with('school')
             ->with(['userProgram' => function($query) {
                 return $query->with('program');
             }])
-            ->paginate(15);
+            ->paginate(20);
     }
 }

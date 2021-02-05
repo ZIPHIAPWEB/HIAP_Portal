@@ -3985,7 +3985,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'userPrograms', 'payments'],
@@ -4125,6 +4124,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -4140,20 +4150,20 @@ __webpack_require__.r(__webpack_exports__);
     filteredClients: function filteredClients() {
       var _this = this;
 
-      return this.clients.filter(function (e) {
+      return this.clients.data.filter(function (e) {
         return e.last_name.toLowerCase().includes(_this.filterName.toLowerCase());
       });
     },
     totalCourseEnrolled: function totalCourseEnrolled() {
       var total = 0;
-      this.clients.forEach(function (e) {
+      this.clients.data.forEach(function (e) {
         total += e.user_program.length;
       });
       return total;
     },
     totalVerified: function totalVerified() {
       var total = 0;
-      this.clients.forEach(function (e) {
+      this.clients.data.forEach(function (e) {
         total += e.payments.filter(function (e) {
           return e.isVerified == 1;
         }).length;
@@ -4162,7 +4172,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     totalUnverified: function totalUnverified() {
       var total = 0;
-      this.clients.forEach(function (e) {
+      this.clients.data.forEach(function (e) {
         total += e.payments.filter(function (e) {
           return e.isVerified == 0;
         }).length;
@@ -4181,6 +4191,25 @@ __webpack_require__.r(__webpack_exports__);
       return payments.filter(function (e) {
         return e.isVerified == 0;
       }).length;
+    },
+    prevPage: function prevPage() {
+      this.$inertia.visit(this.clients.prev_page_url);
+    },
+    nextPage: function nextPage() {
+      this.$inertia.visit(this.clients.next_page_url);
+    },
+    searchClientByLastName: function searchClientByLastName() {
+      var _this2 = this;
+
+      if (this.filterName !== '') {
+        var formData = new FormData();
+        formData.append('last_name', this.filterName);
+        axios.post('/searchStudentByLastName', formData).then(function (response) {
+          _this2.clients = response.data;
+        });
+      } else {
+        toastr.error('Cannot search empty field.');
+      }
     }
   }
 });
@@ -5487,6 +5516,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5990,6 +6023,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -6103,7 +6138,7 @@ __webpack_require__.r(__webpack_exports__);
           return e.program_id == _this.filterByProgram;
         }
       }).filter(function (e) {
-        return e.application_status == 'Newly Registered';
+        return e.application_status == 'New Learner';
       }).length;
     },
     requirementSubmitted: function requirementSubmitted() {
@@ -7640,10 +7675,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['programs', 'courses'],
+  props: ['programs', 'courses', 'flash'],
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -7659,32 +7701,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       buttonName: 'Add'
     };
   },
+  watch: {
+    flash: function flash(value) {
+      toastr.info(value.message);
+    }
+  },
   methods: {
     deleteDetails: function deleteDetails(program) {
-      var r = confirm("Are you sure to delete this record?");
-
-      if (r == true) {
-        this.$inertia["delete"]("/deleteProgramDetails/".concat(program.id));
-        toastr.info('Program deleted!');
-      }
+      this.$inertia["delete"]("/deleteProgramDetails/".concat(program.id), {
+        onBefore: function onBefore() {
+          return confirm('Delete this program?');
+        }
+      });
     },
     submitDetails: function submitDetails() {
       var _this = this;
 
       switch (this.method) {
         case 'create':
-          this.$inertia.post('/storeProgramDetails', this.form).then(function (response) {
-            _this.method = 'create';
+          this.$inertia.post('/storeProgramDetails', this.form, {
+            onSuccess: function onSuccess() {
+              _this.method = 'create';
 
-            _this.cancelRecord();
+              _this.cancelRecord();
+            },
+            onBefore: function onBefore() {
+              return confirm('Add this program?');
+            }
           });
           break;
 
         case 'edit':
-          this.$inertia.patch("/updateProgramDetails/".concat(this.form.id), this.form).then(function (response) {
-            _this.method = 'edit';
-
-            _this.cancelRecord();
+          this.$inertia.patch("/updateProgramDetails/".concat(this.form.id), this.form, {
+            onSuccess: function onSuccess() {
+              _this.method = 'edit', _this.cancelRecord();
+            },
+            onBefore: function onBefore() {
+              return confirm('Update this program?');
+            }
           });
           break;
       }
@@ -7697,6 +7751,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cancelRecord: function cancelRecord() {
       this.form = {};
       this.buttonName = 'Add';
+    },
+    activateProgram: function activateProgram(id) {
+      this.$inertia.post("/activateProgram/".concat(id), {}, {
+        onBefore: function onBefore() {
+          return confirm('Activate?');
+        }
+      });
+    },
+    deactivateProgram: function deactivateProgram(id) {
+      this.$inertia.post("/deactivateProgram/".concat(id), {}, {
+        onBefore: function onBefore() {
+          return confirm('Deactivate?');
+        }
+      });
     }
   }
 });
@@ -12005,7 +12073,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "brand-text font-weight-light" }, [
-        _vm._v("HIAP Inc.")
+        _vm._v("Hospitality Institute of America-Philippines")
       ])
     ])
   },
@@ -13054,13 +13122,11 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
-                                p.application_status == 0
-                                  ? _c("i", { staticClass: "text-red" }, [
-                                      _vm._v("Newly Enrolled")
-                                    ])
-                                  : _c("i", { staticClass: "text-green" }, [
-                                      _vm._v("Completed")
-                                    ])
+                                _c(
+                                  "i",
+                                  { staticClass: "text-green text-bold" },
+                                  [_vm._v(_vm._s(p.application_status))]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
@@ -13326,27 +13392,47 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filterName,
-                expression: "filterName"
-              }
-            ],
-            staticClass: "form-control form-control-sm mx-auto",
-            attrs: { type: "text", placeholder: "Search by last name" },
-            domProps: { value: _vm.filterName },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c(
+            "div",
+            {
+              staticClass: "input-group input-group-sm",
+              staticStyle: { width: "300px" }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filterName,
+                    expression: "filterName"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Search by last name" },
+                domProps: { value: _vm.filterName },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.filterName = $event.target.value
+                  }
                 }
-                _vm.filterName = $event.target.value
-              }
-            }
-          })
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btn-flat",
+                    on: { click: _vm.searchClientByLastName }
+                  },
+                  [_c("span", { staticClass: "fas fa-search" })]
+                )
+              ])
+            ]
+          )
         ])
       ]),
       _vm._v(" "),
@@ -13372,10 +13458,10 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.filteredClients.length > 0
+          _vm.clients.data.length > 0
             ? _c(
                 "tbody",
-                _vm._l(_vm.filteredClients, function(client) {
+                _vm._l(_vm.clients.data, function(client) {
                   return _c(
                     "tr",
                     { key: client.id, staticClass: "text-xs text-center" },
@@ -13390,7 +13476,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.contact_no))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.school))]),
+                      _c("td", [_vm._v(_vm._s(client.school.name))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.user.email))]),
                       _vm._v(" "),
@@ -13431,6 +13517,36 @@ var render = function() {
                 ])
               ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-xs",
+            attrs: { disabled: !_vm.clients.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.prevPage()
+              }
+            }
+          },
+          [_vm._v("Prev")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-xs",
+            attrs: { disabled: !_vm.clients.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.nextPage()
+              }
+            }
+          },
+          [_vm._v("Next")]
+        )
       ])
     ])
   ])
@@ -15838,6 +15954,26 @@ var render = function() {
                     )
                   ]
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer" }, [
+                _c("i", { staticClass: "text-xs" }, [
+                  _vm._v(
+                    "For any request to delete or edit courses, please send an email to "
+                  ),
+                  _c(
+                    "a",
+                    {
+                      staticStyle: { "text-decoration": "underline" },
+                      attrs: {
+                        href:
+                          "mailto:jmatibag@hospitalityinstituteofamerica.com.ph"
+                      }
+                    },
+                    [_vm._v("jmatibag@hospitalityinstituteofamerica.com.ph")]
+                  ),
+                  _vm._v(" with the complete details of the request.")
+                ])
               ])
             ]),
             _vm._v(" "),
@@ -15857,7 +15993,7 @@ var render = function() {
                         "data-toggle": "modal"
                       }
                     },
-                    [_vm._v("Upload Deposit Slip")]
+                    [_vm._v("Upload Proof of Payment")]
                   )
                 ])
               ]),
@@ -16199,7 +16335,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-header" }, [
                   _c("h5", { staticClass: "modal-title" }, [
-                    _vm._v("Upload Deposit Slip")
+                    _vm._v("Upload Proof of payment")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -16274,7 +16410,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "" } }, [
-                      _vm._v("Deposit Slip")
+                      _vm._v("Proof of Payment")
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "input-group input-group-sm" }, [
@@ -16413,7 +16549,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Pay By Student")]
+                        [_vm._v("Paid By Student")]
                       )
                     ]),
                     _vm._v(" "),
@@ -16428,7 +16564,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Pay By School")]
+                        [_vm._v("Paid By School")]
                       )
                     ])
                   ])
@@ -16808,19 +16944,17 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-sm" }, [
-                                payment.isVerified
-                                  ? _c(
-                                      "a",
-                                      {
-                                        staticClass: "btn btn-primary btn-xs",
-                                        attrs: {
-                                          href: payment.path,
-                                          target: "_blank"
-                                        }
-                                      },
-                                      [_vm._v("View")]
-                                    )
-                                  : _c("span", [_vm._v("Not Applicable")])
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary btn-xs",
+                                    attrs: {
+                                      href: payment.path,
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [_vm._v("View")]
+                                )
                               ])
                             ]
                           )
@@ -17113,6 +17247,8 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("School/Organization")]),
               _vm._v(" "),
+              _c("th", [_vm._v("Program")]),
+              _vm._v(" "),
               _c("th", [_vm._v("Enrolled Course(s)")]),
               _vm._v(" "),
               _c("th", [_vm._v("E-mail Address")]),
@@ -17142,6 +17278,8 @@ var render = function() {
                       _c("td", [
                         _vm._v(_vm._s(client.school ? client.school.name : ""))
                       ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(client.online_program.name))]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
@@ -17288,7 +17426,20 @@ var render = function() {
                           staticClass: "progress-bar bg-success",
                           staticStyle: { width: "100%" }
                         },
-                        [_vm._v("10/" + _vm._s(school.clients))]
+                        [
+                          _vm._v(
+                            _vm._s(
+                              school.clients.filter(function(e) {
+                                return (
+                                  e.user_program.application_status ==
+                                  "Complete Learner"
+                                )
+                              })
+                            ) +
+                              "/" +
+                              _vm._s(school.clients.length)
+                          )
+                        ]
                       )
                     ])
                   ])
@@ -17874,7 +18025,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v("Personal Profile")
               ])
@@ -17950,7 +18101,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v("Enrolled Programs")
               ])
@@ -18090,7 +18241,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [_vm._v("Payment")])
             ]),
             _vm._v(" "),
@@ -19806,6 +19957,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", [_vm._v("Program")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("isActive")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("Actions")])
                     ])
                   ]),
@@ -19825,63 +19978,73 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(program.online_program))]),
                           _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c(
-                                "inertia-link",
-                                {
-                                  staticClass: "btn btn-warning btn-xs",
-                                  attrs: {
-                                    href: "/sa/program/initials/" + program.id
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                            View Requirements\n                                        "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "inertia-link",
-                                {
-                                  staticClass: "btn btn-info btn-xs",
-                                  attrs: {
-                                    href: "/sa/" + program.id + "/lessons"
-                                  }
-                                },
-                                [_vm._v("View Gradebook")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-success btn-xs",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editDetails(program)
+                          _c("td", [
+                            program.isActive
+                              ? _c(
+                                  "i",
+                                  { staticClass: "text-bold text-green" },
+                                  [_vm._v("Active")]
+                                )
+                              : _c(
+                                  "i",
+                                  { staticClass: "class text-bold text-red" },
+                                  [_vm._v("Inactive")]
+                                )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            !program.isActive
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-info btn-xs",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.activateProgram(program.id)
+                                      }
                                     }
-                                  }
-                                },
-                                [_vm._v("Edit")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger btn-xs",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.deleteDetails(program)
+                                  },
+                                  [_vm._v("Activate")]
+                                )
+                              : _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-warning btn-xs",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deactivateProgram(program.id)
+                                      }
                                     }
+                                  },
+                                  [_vm._v("Deactivate")]
+                                ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success btn-xs",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editDetails(program)
                                   }
-                                },
-                                [_vm._v("Delete")]
-                              )
-                            ],
-                            1
-                          )
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-xs",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteDetails(program)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ])
                         ]
                       )
                     }),

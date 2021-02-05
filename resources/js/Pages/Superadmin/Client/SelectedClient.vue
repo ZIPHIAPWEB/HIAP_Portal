@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Personal Profile</h5>
                         </div>
                         <div class="card-body p-0">
@@ -56,7 +56,7 @@
 
                     
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Enrolled Programs</h5>
                         </div>
                         <div class="card-body p-0">
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Payment</h5>
                         </div>
                         <div class="card-body p-0">

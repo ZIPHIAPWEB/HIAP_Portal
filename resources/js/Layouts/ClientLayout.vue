@@ -5,7 +5,7 @@
                 <a href="/" class="navbar-brand">
                     <img src="/logo.png" alt="AdminLTE Logo" class="brand-image img-circle "
                         style="opacity: .8">
-                    <span class="brand-text font-weight-light">HIAP Inc.</span>
+                    <span class="brand-text font-weight-light">Hospitality Institute of America-Philippines</span>
                 </a>
 
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
