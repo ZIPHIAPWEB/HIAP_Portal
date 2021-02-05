@@ -8,7 +8,7 @@
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
                         </div>
                         <div class="card-header text-center">
-                            <h3>Application Form</h3>
+                            <h3>Registration Form</h3>
                         </div>
                         <div class="card-body">
                             <form @submit.prevent="step++" v-if="step == 1">
