@@ -42,7 +42,7 @@ class PaymentService
             'path'          =>  $filename
         ]);
 
-        $this->mail->execute('accounting@ziptravel.com.ph', new PaymentUploaded(
+        $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
             Client::where('user_id', $data->user()->id)
                 ->with('school')
                 ->with('onlineProgram')
@@ -59,7 +59,7 @@ class PaymentService
             'path'      =>  ''
         ]);
 
-        $this->mail->execute('accounting@ziptravel.com.ph', new PaymentUploaded(
+        $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
             Client::where('user_id', $data->user()->id)
                 ->with('school')
                 ->with('onlineProgram')
