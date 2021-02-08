@@ -66,7 +66,6 @@
                                     <tr>
                                         <th class="text-left">Type</th>
                                         <th>Date Uploaded</th>
-                                        <th>Verified</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -74,10 +73,6 @@
                                     <tr v-for="payment in payments" :key="payment.id" class="text-center">
                                         <td class="text-left text-sm">{{ payment.purpose }}</td>
                                         <td class="text-sm">{{ payment.created_at }}</td>
-                                        <td class="text-sm">
-                                            <i v-if="payment.isVerified" class="fas fa-check text-green"></i>
-                                            <i v-else class="fas fa-times text-red"></i>
-                                        </td>
                                         <td>
                                             <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
                                             <i v-else>Not Applicable</i>

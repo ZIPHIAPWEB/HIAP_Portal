@@ -5515,11 +5515,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -16093,8 +16088,6 @@ var render = function() {
                         _vm._v(" "),
                         _c("th", [_vm._v("Date Uploaded")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Verified")]),
-                        _vm._v(" "),
                         _c("th", [_vm._v("Actions")])
                       ])
                     ]),
@@ -16113,16 +16106,6 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-sm" }, [
                                   _vm._v(_vm._s(payment.created_at))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-sm" }, [
-                                  payment.isVerified
-                                    ? _c("i", {
-                                        staticClass: "fas fa-check text-green"
-                                      })
-                                    : _c("i", {
-                                        staticClass: "fas fa-times text-red"
-                                      })
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
