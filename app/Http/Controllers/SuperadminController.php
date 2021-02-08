@@ -41,7 +41,7 @@ class SuperadminController extends Controller
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'    =>  $client,
             'online_programs'    =>  OnlineProgram::orderBy('name', 'asc')->get(),
-            'courses'           =>  Program::orderBy('name', 'asc')->get(),
+            'courses'           =>  Program::where('isActive', 1)->orderBy('name', 'asc')->get(),
             'payments'  =>  Payment::where('user_id', $id)->get()->map(function($payment) {
                 return [
                     'id'        =>  $payment->id,
