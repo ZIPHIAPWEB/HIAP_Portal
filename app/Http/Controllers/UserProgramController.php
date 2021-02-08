@@ -23,6 +23,14 @@ class UserProgramController extends Controller
             ->with('message', 'New course added.');
     }
 
+    public function updateUserProgram(Request $request)
+    {
+        $this->userProgramService->update($request);
+
+        return redirect()->back()
+            ->with('message', 'Selected Course Updated.');
+    }
+
     public function getUserPrograms(Request $request)
     {
         $user = UserProgram::where('user_id', $request->user()->id)->get();

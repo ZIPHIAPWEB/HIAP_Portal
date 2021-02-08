@@ -6663,13 +6663,93 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['client', 'initials', 'userPrograms', 'payments'],
+  props: ['client', 'initials', 'userPrograms', 'payments', 'courses', 'online_programs'],
+  data: function data() {
+    return {
+      selectedProgram: [],
+      loadingProgram: false
+    };
+  },
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
+    editProgram: function editProgram(data) {
+      this.selectedProgram = data;
+      $('#modal-default').modal('show');
+      console.log(data);
+    },
+    updateUserProgram: function updateUserProgram() {
+      var _this = this;
+
+      this.loadingProgram = true;
+      this.$inertia.put('/updateUserProgram', this.selectedProgram, {
+        onBefore: function onBefore() {
+          return confirm('Update this program?');
+        },
+        onSuccess: function onSuccess() {
+          _this.loadingProgram = false;
+          $('#modal-default').modal('hide');
+          toastr.info('Selected program updated.');
+        }
+      });
+    },
     removeProgram: function removeProgram(id) {
       this.$inertia["delete"]("/deleteUserProgram/".concat(id), {
         onBefore: function onBefore() {
@@ -18168,13 +18248,9 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
-                                p.application_status == 0
-                                  ? _c("i", { staticClass: "text-red" }, [
-                                      _vm._v("Newly Enrolled")
-                                    ])
-                                  : _c("i", { staticClass: "text-green" }, [
-                                      _vm._v("Completed")
-                                    ])
+                                _c("i", { staticClass: "text-green" }, [
+                                  _vm._v(_vm._s(p.application_status))
+                                ])
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
@@ -18197,18 +18273,16 @@ var render = function() {
                                 },
                                 [
                                   _c(
-                                    "inertia-link",
+                                    "button",
                                     {
-                                      staticClass: "btn btn-primary btn-xs",
-                                      attrs: {
-                                        href:
-                                          "/sa/client/" +
-                                          _vm.client.user_id +
-                                          "/program/" +
-                                          p.program.id
+                                      staticClass: "btn btn-success btn-xs",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editProgram(p)
+                                        }
                                       }
                                     },
-                                    [_vm._v("View Records")]
+                                    [_vm._v("Edit")]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -18223,8 +18297,7 @@ var render = function() {
                                     },
                                     [_vm._v("Remove")]
                                   )
-                                ],
-                                1
+                                ]
                               )
                             ]
                           )
@@ -18297,22 +18370,30 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", [
-                                !payment.isVerified
-                                  ? _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-danger btn-xs",
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.removeDepositSlip(
-                                              payment.id
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Remove")]
-                                    )
-                                  : _c("i", [_vm._v("Not Applicable")])
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary btn-xs",
+                                    attrs: {
+                                      href: payment.path,
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [_vm._v("View")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger btn-xs",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.removeDepositSlip(payment.id)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Remove")]
+                                )
                               ])
                             ]
                           )
@@ -18337,7 +18418,318 @@ var render = function() {
           ])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade show",
+        attrs: { id: "modal-default", "aria-modal": "true" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-dialog-centered modal-md" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm._v("Selected Program")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Program")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selectedProgram.course_id,
+                          expression: "selectedProgram.course_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-xs",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.selectedProgram,
+                            "course_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.online_programs, function(program) {
+                        return _c(
+                          "option",
+                          { key: program.id, domProps: { value: program.id } },
+                          [_vm._v(_vm._s(program.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Course")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selectedProgram.program_id,
+                          expression: "selectedProgram.program_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-xs",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.selectedProgram,
+                            "program_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.courses, function(course) {
+                        return _c(
+                          "option",
+                          { key: course.id, domProps: { value: course.id } },
+                          [_vm._v(_vm._s(course.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Application Status")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selectedProgram.application_status,
+                          expression: "selectedProgram.application_status"
+                        }
+                      ],
+                      staticClass: "form-control form-control-xs",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.selectedProgram,
+                            "application_status",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "New Learner" } }, [
+                        _vm._v("New Learner")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Confirmed Learner" } }, [
+                        _vm._v("Confirmed Learner")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Complete Learner" } }, [
+                        _vm._v("Complete Learner")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Start Date")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedProgram.start_date,
+                        expression: "selectedProgram.start_date"
+                      }
+                    ],
+                    staticClass: "form-control form-control-xs",
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.selectedProgram.start_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.selectedProgram,
+                          "start_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("End Date")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedProgram.end_date,
+                        expression: "selectedProgram.end_date"
+                      }
+                    ],
+                    staticClass: "form-control form-control-xs",
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.selectedProgram.end_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.selectedProgram,
+                          "end_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("No. of Hours")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedProgram.hours_needed,
+                        expression: "selectedProgram.hours_needed"
+                      }
+                    ],
+                    staticClass: "form-control form-control-xs",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.selectedProgram.hours_needed },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.selectedProgram,
+                          "hours_needed",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.updateUserProgram()
+                      }
+                    }
+                  },
+                  [_vm._v("Update")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []

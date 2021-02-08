@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Initial;
+use App\OnlineProgram;
 use App\Payment;
+use App\Program;
 use App\Staff;
 use App\UserProgram;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class SuperadminController extends Controller
@@ -37,7 +40,18 @@ class SuperadminController extends Controller
         $client = Client::where('user_id', $id)->with('user')->first();
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'    =>  $client,
-            'payments'  =>  Payment::where('user_id', $id)->get(),
+            'online_programs'    =>  OnlineProgram::orderBy('name', 'asc')->get(),
+            'courses'           =>  Program::orderBy('name', 'asc')->get(),
+            'payments'  =>  Payment::where('user_id', $id)->get()->map(function($payment) {
+                return [
+                    'id'        =>  $payment->id,
+                    'user_id'   =>  $payment->user_id,
+                    'purpose'   =>  $payment->purpose,
+                    'isVerified'=>  $payment->isVerified,
+                    'path'      =>  (Auth::check()) ? '/slips/' . $payment->path : 'Auth required.',
+                    'created_at'=>  $payment->created_at->toDayDateTimeString()
+                ];
+            }),
             'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
                 ->with('program')
                 ->with('course')

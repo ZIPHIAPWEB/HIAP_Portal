@@ -167,6 +167,7 @@ Route::delete('/removeDepositSlip/{slipId}', 'PaymentController@removeDepositSli
 
 Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
 Route::post('/addNewProgram', 'UserProgramController@addNewProgram');
+Route::put('/updateUserProgram', 'UserProgramController@updateUserProgram');
 Route::delete('/deleteUserProgram/{id}', 'UserProgramController@deleteUserProgram');
 
 Route::post('/storeSchool', 'SchoolController@storeSchool');

@@ -59,24 +59,23 @@ class UserProgramService
         // }
     }
 
+    public function update($data)
+    {
+        $this->updateUserProgram->execute(['id' => $data->id], [
+            'user_id'               => $data->user_id,
+            'program_id'            => $data->program_id,
+            'course_id'             => $data->course_id,
+            'start_date'            => $data->start_date,
+            'end_date'              => $data->end_date,
+            'hours_needed'          => $data->hours_needed,
+            'application_status'    => $data->application_status
+        ]);
+    }
+
     public function updateStatus($status, $userProgramId)
     {
         $this->updateUserProgram->execute(['id' => $userProgramId], [
             'application_status' => $status
-        ]);
-    }
-
-    private function setStatusToComplete($userProgramId)
-    {
-        $this->updateUserProgram->execute(['id' => $userProgramId], [
-            'application_status'    =>  true
-        ]);
-    }
-
-    private function setStatusToUncomplete($userProgramId)
-    {
-        $this->updateUserProgram->execute(['id' => $userProgramId], [
-            'application_status'    =>  false
         ]);
     }
 

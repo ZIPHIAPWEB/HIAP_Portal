@@ -77,14 +77,14 @@
                                         <td>{{ p.program.name }}</td>
                                         <th class="text-center">{{ p.course.name }}</th>
                                         <td class="text-center">
-                                            <i class="text-red" v-if="p.application_status == 0">Newly Enrolled</i>
-                                            <i class="text-green" v-else>Completed</i>
+                                            <i class="text-green">{{ p.application_status }}</i>
                                         </td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td style="width:30%;" class="text-center">
-                                            <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link>
+                                            <!-- <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link> -->
+                                            <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="removeProgram(p.id)" class="btn btn-danger btn-xs">Remove</button>
                                         </td>
                                     </tr>
@@ -121,8 +121,8 @@
                                             <i v-else class="fas fa-times text-red"></i>
                                         </td>
                                         <td>
-                                            <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
-                                            <i v-else>Not Applicable</i>
+                                            <a :href="payment.path" class="btn btn-primary btn-xs" target="_blank">View</a>
+                                            <button @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -137,6 +137,60 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="modal-default" aria-modal="true">
+                <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Selected Program</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="">Program</label>
+                                <select v-model="selectedProgram.course_id" name="" id="" class="form-control form-control-xs">
+                                    <option value="">Select</option>
+                                    <option v-for="program in online_programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Course</label>
+                                <select v-model="selectedProgram.program_id" name="" id="" class="form-control form-control-xs">
+                                    <option value="">Select</option>
+                                    <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Application Status</label>
+                                <select v-model="selectedProgram.application_status" name="" id="" class="form-control form-control-xs">
+                                    <option value="">Select</option>
+                                    <option value="New Learner">New Learner</option>
+                                    <option value="Confirmed Learner">Confirmed Learner</option>
+                                    <option value="Complete Learner">Complete Learner</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Start Date</label>
+                                <input v-model="selectedProgram.start_date" type="date" class="form-control form-control-xs">
+                            </div>
+                            <div class="form-group">
+                                <label for="">End Date</label>
+                                <input v-model="selectedProgram.end_date" type="date" class="form-control form-control-xs">
+                            </div>
+                            <div class="form-group">
+                                <label for="">No. of Hours</label>
+                                <input v-model="selectedProgram.hours_needed" type="number" class="form-control form-control-xs">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button @click="updateUserProgram()" class="btn btn-primary btn-block">Update</button>
+                        </div>
+                    </div>
+                <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
     </superadmin-layout>
 </template>
 
@@ -147,12 +201,37 @@
             'client',
             'initials',
             'userPrograms',
-            'payments'
+            'payments',
+            'courses',
+            'online_programs'
         ],
+        data () {
+            return {
+                selectedProgram: [],
+                loadingProgram: false
+            }
+        },
         components: {
             SuperadminLayout
         },
         methods: {
+            editProgram(data) {
+                this.selectedProgram = data;
+                $('#modal-default').modal('show');
+                console.log(data)
+            },
+            updateUserProgram()
+            {
+                this.loadingProgram = true;
+                this.$inertia.put('/updateUserProgram', this.selectedProgram, {
+                    onBefore: () => confirm('Update this program?'),
+                    onSuccess: () => {
+                        this.loadingProgram = false;
+                        $('#modal-default').modal('hide');
+                        toastr.info('Selected program updated.');
+                    }
+                })
+            },
             removeProgram (id) {
                 this.$inertia.delete(`/deleteUserProgram/${id}`, {
                     onBefore: () => confirm('Remove this program?')
