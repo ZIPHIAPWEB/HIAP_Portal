@@ -5235,6 +5235,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['errors', 'schools', 'courses', 'programs', 'program_id'],
   data: function data() {
@@ -5252,7 +5258,8 @@ __webpack_require__.r(__webpack_exports__);
         hours_needed: '',
         start_date: '',
         end_date: '',
-        fb_link: ''
+        fb_link: '',
+        alternate_email: ''
       },
       isOrganization: false,
       loading: false,
@@ -9084,6 +9091,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15491,7 +15505,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-6" }, [
+                          _c("div", { staticClass: "col-12" }, [
                             _c("div", { staticClass: "form-group" }, [
                               _vm._m(7),
                               _vm._v(" "),
@@ -15592,7 +15606,42 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(9)
+                          _c("div", { staticClass: "col-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(9),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.alternate_email,
+                                    expression: "form.alternate_email"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "jane.doe@app.com"
+                                },
+                                domProps: { value: _vm.form.alternate_email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "alternate_email",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(10)
                         ])
                       ]
                     )
@@ -15616,7 +15665,7 @@ var render = function() {
                               "div",
                               { staticClass: "form-group" },
                               [
-                                _vm._m(10),
+                                _vm._m(11),
                                 _vm._v(" "),
                                 _c("v-select", {
                                   attrs: {
@@ -15647,7 +15696,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "col-12" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _vm._m(11),
+                              _vm._m(12),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -15745,7 +15794,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(12)
+                          _vm._m(13)
                         ])
                       ]
                     )
@@ -15863,6 +15912,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
       _vm._v("Facebook Profile Link "),
+      _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("Personal/Alternate Email "),
       _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -22777,6 +22835,40 @@ var render = function() {
                           _vm.$set(
                             _vm.profile.user,
                             "email",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Alternate E-mail")]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-left" }, [
+                !_vm.isEdit
+                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.alternate_email))])
+                  : _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.profile.alternate_email,
+                          expression: "profile.alternate_email"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm w-100",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.profile.alternate_email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.profile,
+                            "alternate_email",
                             $event.target.value
                           )
                         }

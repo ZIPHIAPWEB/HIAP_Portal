@@ -74,6 +74,13 @@
                             <input v-model="profile.user.email" v-else type="text" class="form-control form-control-sm w-100" disabled>
                         </td>
                     </tr>
+                    <tr>
+                        <td>Alternate E-mail</td>
+                        <td class="text-left">
+                            <strong v-if="!isEdit">{{ profile.alternate_email }}</strong>
+                            <input v-else v-model="profile.alternate_email" type="text" class="form-control form-control-sm w-100">
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

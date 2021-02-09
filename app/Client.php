@@ -15,7 +15,8 @@ class Client extends Model
         'school_id',
         'user_id',
         'fb_link',
-        'program_id'
+        'program_id',
+        'alternate_email'
     ];
 
     public function user()

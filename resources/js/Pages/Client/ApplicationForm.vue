@@ -67,7 +67,7 @@
                                             <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <div class="d-flex">
                                                 <label for="">School <i class="text-danger">*</i></label>
@@ -82,6 +82,12 @@
                                         <div class="form-group">
                                             <label for="">Facebook Profile Link <i class="text-danger">*</i></label>
                                             <input v-model="form.fb_link" type="text" class="form-control" placeholder="https://facebook.com/jane.doe" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="">Personal/Alternate Email <i class="text-danger">*</i></label>
+                                            <input v-model="form.alternate_email" type="text" class="form-control" placeholder="jane.doe@app.com">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -161,7 +167,8 @@
                     hours_needed: '',
                     start_date: '',
                     end_date: '',
-                    fb_link: ''
+                    fb_link: '',
+                    alternate_email: ''
                 },
                 isOrganization: false,
                 loading: false,

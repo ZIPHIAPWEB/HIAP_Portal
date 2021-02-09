@@ -43,7 +43,8 @@ class ClientApplicationService {
             'school_id'             =>  $request->school,
             'course'                =>  $request->course,
             'fb_link'               =>  $request->fb_link,
-            'program_id'            =>  $request->user()->program_id
+            'program_id'            =>  $request->user()->program_id,
+            'alternate_email'       =>  $request->alternate_email
         ]);
         
         foreach($request->course_id as $course) {
@@ -76,12 +77,13 @@ class ClientApplicationService {
     public function updateDetails($data)
     {
         $updateClient = $this->updateClient->execute(['user_id' => $data->user()->id], [
-            'first_name'    =>  $data->first_name,
-            'middle_name'   =>  $data->middle_name,
-            'last_name'     =>  $data->last_name,
-            'address'       =>  $data->address,
-            'contact_no'    =>  $data->contact_no,
-            'school_id'     =>  $data->school_id
+            'first_name'        =>  $data->first_name,
+            'middle_name'       =>  $data->middle_name,
+            'last_name'         =>  $data->last_name,
+            'address'           =>  $data->address,
+            'contact_no'        =>  $data->contact_no,
+            'school_id'         =>  $data->school_id,
+            'alternate_email'   =>  $data->alternate_email
         ]);
 
         (new CreateLog)->execute([
