@@ -47,7 +47,9 @@
                                     </tr>
                                     <tr>
                                         <td>Facebook Profile</td>
-                                        <td class="text-center">{{ client.fb_link }}</td>
+                                        <td class="text-center">
+                                            <a :href="client.fb_link">{{ client.fb_link }}</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

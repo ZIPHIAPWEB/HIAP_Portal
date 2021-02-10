@@ -6719,6 +6719,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'initials', 'userPrograms', 'payments', 'courses', 'online_programs'],
@@ -18225,7 +18227,9 @@ var render = function() {
                     _c("td", [_vm._v("Facebook Profile")]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.fb_link))
+                      _c("a", { attrs: { href: _vm.client.fb_link } }, [
+                        _vm._v(_vm._s(_vm.client.fb_link))
+                      ])
                     ])
                   ])
                 ])
