@@ -39,7 +39,7 @@
                                     </tr>
                                     <tr>
                                         <td>School/Organization</td>
-                                        <td class="text-center">{{ client.school }}</td>
+                                        <td class="text-center">{{ client.school ? client.school.name : '' }}</td>
                                     </tr>
                                     <tr>
                                         <td>E-mail Address</td>
@@ -47,7 +47,7 @@
                                     </tr>
                                     <tr>
                                         <td>Facebook Profile</td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">{{ client.fb_link }}</td>
                                     </tr>
                                 </tbody>
                             </table>

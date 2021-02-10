@@ -37,7 +37,11 @@ class SuperadminController extends Controller
 
     public function showSelectedClient($id)
     {
-        $client = Client::where('user_id', $id)->with('user')->first();
+        $client = Client::where('user_id', $id)
+            ->with('user')
+            ->with('school')
+            ->first();
+            
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'    =>  $client,
             'online_programs'    =>  OnlineProgram::orderBy('name', 'asc')->get(),

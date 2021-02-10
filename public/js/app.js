@@ -18207,7 +18207,9 @@ var render = function() {
                     _c("td", [_vm._v("School/Organization")]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.school))
+                      _vm._v(
+                        _vm._s(_vm.client.school ? _vm.client.school.name : "")
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -18222,7 +18224,9 @@ var render = function() {
                   _c("tr", [
                     _c("td", [_vm._v("Facebook Profile")]),
                     _vm._v(" "),
-                    _c("td", { staticClass: "text-center" })
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.fb_link))
+                    ])
                   ])
                 ])
               ])
