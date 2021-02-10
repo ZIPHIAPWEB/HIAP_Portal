@@ -34,7 +34,7 @@ class ClientController extends Controller
             'program_id'=>  $request->user()->program_id,
             'schools'   =>  School::orderBy('name')->get(),
             'courses'   =>  Course::orderBy('id')->get(),
-            'programs'  =>  Program::orderBy('id')->where('isActive', 1)->get()
+            'programs'  =>  Program::orderBy('name')->where('isActive', 1)->get()
         ]);
     }
 
