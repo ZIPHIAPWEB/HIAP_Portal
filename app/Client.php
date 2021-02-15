@@ -11,6 +11,8 @@ class Client extends Model
         'middle_name',
         'last_name',
         'address',
+        'course',
+        'school_year',
         'contact_no',
         'school_id',
         'user_id',

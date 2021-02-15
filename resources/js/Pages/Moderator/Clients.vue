@@ -12,6 +12,13 @@
                         </button>
                     </span>
                 </div>
+                <download-excel 
+                    class="mx-1 btn btn-success btn-sm btn-flat"
+                    :data="clients.data"
+                    :fields="fields"
+                    name="HIAP Export"
+                    title="HIAP Clients"
+                >Export</download-excel>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover table-sm">
@@ -55,6 +62,23 @@
                 <button :disabled="!clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
             </div>
         </div>
+        <div class="modal fade show" id="modal-export" aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Selected Program</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                </div>
+            <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </moderator-layout>
 </template>
 
@@ -67,7 +91,46 @@
         },
         data () {
             return {
-                filterName: ''
+                filterName: '',
+                fields: {
+                    "First Name": "first_name",
+                    "Middle Name": "middle_name",
+                    "Last Name": "last_name",
+                    "E-mail Address": "user.email",
+                    "Contact No.": "contact_no",
+                    "Program": "online_program.name",
+                    "Program Track": {
+                        field: "user_program",
+                        callback: (value) => {
+                            if (value.length > 1) {
+                                return 'Multiple Courses'
+                            } else {
+                                return value[0]['program'].name;
+                            }
+                        }
+                    },
+                     "Required Hours": {
+                        field: "user_program",
+                        callback: (value) => {
+                            return value[0]['hours_needed'];
+                        }
+                    },
+                    
+                     "Start Date": {
+                        field: "user_program",
+                        callback: (value) => {
+                            return value[0]['start_date'];
+                        }
+                    },
+                    
+                     "End Date": {
+                        field: "user_program",
+                        callback: (value) => {
+                            return value[0]['end_date'];
+                        }
+                    },
+                    "Remarks": "''"
+                }
             }
         },
         methods: {

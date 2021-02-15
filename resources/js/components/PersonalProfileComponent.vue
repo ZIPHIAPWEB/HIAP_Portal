@@ -38,6 +38,27 @@
                         </td>
                     </tr>
                     <tr>
+                        <td >Course</td>
+                        <td class="text-left">
+                            <strong v-if="!isEdit">{{ profile.course }}</strong>
+                            <input v-model="profile.course" v-else type="text" class="form-control form-control-sm w-100">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Year</td>
+                        <td class="text-left">
+                            <strong v-if="!isEdit">{{ profile.school_year }}</strong>
+                            <select v-model="profile.school_year" v-else class="form-control form-control sm w-100">
+                                <option value="">Select</option>
+                                <option value="First Year">First Year</option>
+                                <option value="Second Year">Second Year</option>
+                                <option value="Third Year">Third Year</option>
+                                <option value="Fourth Year">Fourth Year</option>
+                                <option value="Graduate">Graduate</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Address</td>
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ profile.address }}</strong>

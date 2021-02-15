@@ -30,6 +30,14 @@
                                         <td class="text-center">{{ client.last_name }}</td>
                                     </tr>
                                     <tr>
+                                        <td>Course</td>
+                                        <td class="text-center">{{ client.course }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Year</td>
+                                        <td class="text-center">{{ client.school_year }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Address</td>
                                         <td class="text-center">{{ client.address }}</td>
                                     </tr>
@@ -47,7 +55,7 @@
                                     </tr>
                                     <tr>
                                         <td>Facebook Profile</td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">{{ client.fb_link }}</td>
                                     </tr>
                                 </tbody>
                             </table>

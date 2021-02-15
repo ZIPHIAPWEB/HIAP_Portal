@@ -5254,6 +5254,7 @@ __webpack_require__.r(__webpack_exports__);
         school: '',
         program: '',
         course: '',
+        school_year: '',
         course_id: [],
         hours_needed: '',
         start_date: '',
@@ -5834,6 +5835,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'initials', 'userPrograms', 'payments'],
@@ -6027,6 +6036,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -6035,7 +6068,44 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      filterName: ''
+      filterName: '',
+      fields: {
+        "First Name": "first_name",
+        "Middle Name": "middle_name",
+        "Last Name": "last_name",
+        "E-mail Address": "user.email",
+        "Contact No.": "contact_no",
+        "Program": "online_program.name",
+        "Program Track": {
+          field: "user_program",
+          callback: function callback(value) {
+            if (value.length > 1) {
+              return 'Multiple Courses';
+            } else {
+              return value[0]['program'].name;
+            }
+          }
+        },
+        "Required Hours": {
+          field: "user_program",
+          callback: function callback(value) {
+            return value[0]['hours_needed'];
+          }
+        },
+        "Start Date": {
+          field: "user_program",
+          callback: function callback(value) {
+            return value[0]['start_date'];
+          }
+        },
+        "End Date": {
+          field: "user_program",
+          callback: function callback(value) {
+            return value[0]['end_date'];
+          }
+        },
+        "Remarks": "''"
+      }
     };
   },
   methods: {
@@ -6523,6 +6593,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Layouts/SuperadminLayout.vue */ "./resources/js/Layouts/SuperadminLayout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9093,6 +9171,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15434,7 +15533,7 @@ var render = function() {
                                 ],
                                 class: _vm.hasContactError,
                                 attrs: {
-                                  type: "text",
+                                  type: "number",
                                   name: "",
                                   id: "",
                                   placeholder: "09123456789",
@@ -15469,7 +15568,84 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(5),
+                          _c("div", { staticClass: "col-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(5),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.school_year,
+                                      expression: "form.school_year"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { name: "", id: "", required: "" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "school_year",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Select Year    ")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "First Year" } },
+                                    [_vm._v("First Year")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Second Year" } },
+                                    [_vm._v("Second Year")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Third Year" } },
+                                    [_vm._v("Third Year")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Fourth Year" } },
+                                    [_vm._v("Fourth Year")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Graduate" } },
+                                    [_vm._v("Graduate")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-6" }, [
                             _c("div", { staticClass: "form-group" }, [
@@ -15858,34 +16034,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [
-          _vm._v("Year Level "),
-          _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { name: "", id: "", required: "" }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [_vm._v("Select Year    ")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } }, [_vm._v("First Year")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } }, [_vm._v("Second Year")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } }, [_vm._v("Third Year")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } }, [_vm._v("Fourth Year")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } }, [_vm._v("Graduate")])
-          ]
-        )
-      ])
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("Year Level "),
+      _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {
@@ -16824,6 +16975,22 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("tr", [
+                    _c("td", [_vm._v("Course")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.course))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Year")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.school_year))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
                     _c("td", [_vm._v("Address")]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
@@ -16858,7 +17025,9 @@ var render = function() {
                   _c("tr", [
                     _c("td", [_vm._v("Facebook Profile")]),
                     _vm._v(" "),
-                    _c("td", { staticClass: "text-center" })
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.fb_link))
+                    ])
                   ])
                 ])
               ])
@@ -17308,53 +17477,72 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("moderator-layout", [
     _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
-        _c("h5", { staticClass: "m-0 card-title flex-grow-1" }, [
-          _vm._v("Enrollees")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "input-group input-group-sm",
-            staticStyle: { width: "300px" }
-          },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.filterName,
-                  expression: "filterName"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Search by last name" },
-              domProps: { value: _vm.filterName },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+      _c(
+        "div",
+        { staticClass: "card-header d-flex justify-content-between" },
+        [
+          _c("h5", { staticClass: "m-0 card-title flex-grow-1" }, [
+            _vm._v("Enrollees")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "input-group input-group-sm",
+              staticStyle: { width: "300px" }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filterName,
+                    expression: "filterName"
                   }
-                  _vm.filterName = $event.target.value
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Search by last name" },
+                domProps: { value: _vm.filterName },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.filterName = $event.target.value
+                  }
                 }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btn-flat",
+                    on: { click: _vm.searchClientByLastName }
+                  },
+                  [_c("span", { staticClass: "fas fa-search" })]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "download-excel",
+            {
+              staticClass: "mx-1 btn btn-success btn-sm btn-flat",
+              attrs: {
+                data: _vm.clients.data,
+                fields: _vm.fields,
+                name: "HIAP Export",
+                title: "HIAP Clients"
               }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "input-group-append" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-info btn-flat",
-                  on: { click: _vm.searchClientByLastName }
-                },
-                [_c("span", { staticClass: "fas fa-search" })]
-              )
-            ])
-          ]
-        )
-      ]),
+            },
+            [_vm._v("Export")]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body p-0" }, [
         _c("table", { staticClass: "table table-hover table-sm" }, [
@@ -17482,7 +17670,49 @@ var render = function() {
           [_vm._v("Next")]
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade show",
+        attrs: { id: "modal-export", "aria-modal": "true" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-dialog-centered modal-md" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm._v("Selected Program")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" })
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -18186,6 +18416,22 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
                       _vm._v(_vm._s(_vm.client.last_name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Course")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.course))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Year")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.client.school_year))
                     ])
                   ]),
                   _vm._v(" "),
@@ -22670,6 +22916,103 @@ var render = function() {
                         }
                       }
                     })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Course")]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-left" }, [
+                !_vm.isEdit
+                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.course))])
+                  : _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.profile.course,
+                          expression: "profile.course"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm w-100",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.profile.course },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.profile, "course", $event.target.value)
+                        }
+                      }
+                    })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Year")]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-left" }, [
+                !_vm.isEdit
+                  ? _c("strong", [_vm._v(_vm._s(_vm.profile.school_year))])
+                  : _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.profile.school_year,
+                            expression: "profile.school_year"
+                          }
+                        ],
+                        staticClass: "form-control form-control sm w-100",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.profile,
+                              "school_year",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "First Year" } }, [
+                          _vm._v("First Year")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Second Year" } }, [
+                          _vm._v("Second Year")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Third Year" } }, [
+                          _vm._v("Third Year")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Fourth Year" } }, [
+                          _vm._v("Fourth Year")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Graduate" } }, [
+                          _vm._v("Graduate")
+                        ])
+                      ]
+                    )
               ])
             ]),
             _vm._v(" "),

@@ -39,6 +39,8 @@ class ClientApplicationService {
             'middle_name'           =>  $request->middle_name,
             'last_name'             =>  $request->last_name,
             'address'               =>  $request->address,
+            'course'                =>  $request->course,
+            'school_year'           =>  $request->school_year,
             'contact_no'            =>  $request->contact_number,
             'school_id'             =>  $request->school,
             'course'                =>  $request->course,
@@ -59,7 +61,7 @@ class ClientApplicationService {
             ]);
         }
 
-        (new SendMailNotification)->execute('staff@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
+        (new SendMailNotification)->execute('info@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
             'first_name'    =>  $client->first_name,
             'middle_name'   =>  $client->middle_name,
             'last_name'     =>  $client->last_name,
@@ -74,20 +76,25 @@ class ClientApplicationService {
         $this->updateClient->execute(['user_id' => $userId], ['application_status' => $status]);
     }
 
-    public function updateDetails($data)
+    public function updateDetails($request)
     {
-        $updateClient = $this->updateClient->execute(['user_id' => $data->user()->id], [
-            'first_name'        =>  $data->first_name,
-            'middle_name'       =>  $data->middle_name,
-            'last_name'         =>  $data->last_name,
-            'address'           =>  $data->address,
-            'contact_no'        =>  $data->contact_no,
-            'school_id'         =>  $data->school_id,
-            'alternate_email'   =>  $data->alternate_email
+        $updateClient = $this->updateClient->execute(['user_id' => $request->user()->id], [
+            'first_name'            =>  $request->first_name,
+            'middle_name'           =>  $request->middle_name,
+            'last_name'             =>  $request->last_name,
+            'address'               =>  $request->address,
+            'course'                =>  $request->course,
+            'school_year'           =>  $request->school_year,
+            'contact_no'            =>  $request->contact_no,
+            'school_id'             =>  $request->school_id,
+            'course'                =>  $request->course,
+            'fb_link'               =>  $request->fb_link,
+            'program_id'            =>  $request->user()->program_id,
+            'alternate_email'       =>  $request->alternate_email
         ]);
 
         (new CreateLog)->execute([
-            'user_id' => $data->user()->id,
+            'user_id' => $request->user()->id,
             'action'  => 'Update personal details'
         ]);
 

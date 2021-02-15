@@ -44,20 +44,20 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Contact Number <i class="text-danger">*</i></label>
-                                            <input v-model="form.contact_number" type="text" name="" id="" :class="hasContactError" placeholder="09123456789" required>
+                                            <input v-model="form.contact_number" type="number" name="" id="" :class="hasContactError" placeholder="09123456789" required>
                                             <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Year Level <i class="text-danger">*</i></label>
-                                            <select name="" id="" class="form-control" required>
+                                            <select v-model="form.school_year" name="" id="" class="form-control" required>
                                                 <option value="">Select Year    </option>
-                                                <option value="">First Year</option>
-                                                <option value="">Second Year</option>
-                                                <option value="">Third Year</option>
-                                                <option value="">Fourth Year</option>
-                                                <option value="">Graduate</option>
+                                                <option value="First Year">First Year</option>
+                                                <option value="Second Year">Second Year</option>
+                                                <option value="Third Year">Third Year</option>
+                                                <option value="Fourth Year">Fourth Year</option>
+                                                <option value="Graduate">Graduate</option>
                                             </select>
                                         </div>
                                     </div>
@@ -163,6 +163,7 @@
                     school: '',
                     program: '',
                     course: '',
+                    school_year: '',
                     course_id: [],
                     hours_needed: '',
                     start_date: '',
