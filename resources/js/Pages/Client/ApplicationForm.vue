@@ -121,19 +121,19 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="">No. of Hours Needed <i class="text-danger">*</i></label>
-                                            <input v-model="form.hours_needed" type="number" placeholder="0" class="form-control">
+                                            <input v-model="form.hours_needed" type="number" placeholder="0" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Target Start Date</label>
-                                            <input v-model="form.start_date" type="date" class="form-control">
+                                            <input v-model="form.start_date" type="date" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Target Date of Completion</label>
-                                            <input v-model="form.end_date" type="date" class="form-control">
+                                            <input v-model="form.end_date" type="date" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-12">

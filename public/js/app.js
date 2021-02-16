@@ -15886,7 +15886,11 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "number", placeholder: "0" },
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "0",
+                                  required: ""
+                                },
                                 domProps: { value: _vm.form.hours_needed },
                                 on: {
                                   input: function($event) {
@@ -15920,7 +15924,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "date" },
+                                attrs: { type: "date", required: "" },
                                 domProps: { value: _vm.form.start_date },
                                 on: {
                                   input: function($event) {
@@ -15954,7 +15958,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "date" },
+                                attrs: { type: "date", required: "" },
                                 domProps: { value: _vm.form.end_date },
                                 on: {
                                   input: function($event) {
