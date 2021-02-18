@@ -78,7 +78,7 @@ class ClientApplicationService {
 
     public function updateDetails($request)
     {
-        $updateClient = $this->updateClient->execute(['user_id' => $request->user()->id], [
+        $updateClient = $this->updateClient->execute(['user_id' => $request->user_id], [
             'first_name'            =>  $request->first_name,
             'middle_name'           =>  $request->middle_name,
             'last_name'             =>  $request->last_name,
@@ -89,15 +89,25 @@ class ClientApplicationService {
             'school_id'             =>  $request->school_id,
             'course'                =>  $request->course,
             'fb_link'               =>  $request->fb_link,
-            'program_id'            =>  $request->user()->program_id,
+            'program_id'            =>  $request->program_id,
             'alternate_email'       =>  $request->alternate_email
         ]);
 
-        (new CreateLog)->execute([
-            'user_id' => $request->user()->id,
-            'action'  => 'Update personal details'
-        ]);
+        switch($request->user()->role) {
+            case 'client':
+                (new CreateLog)->execute([
+                    'user_id' => $request->user()->id,
+                    'action'  => 'Update personal details'
+                ]);        
+            break;
 
+            case 'superadministrator':
+                (new CreateLog)->execute([
+                    'user_id' => $request->user()->id,
+                    'action'  => 'Update\'s client ' . $request->user_id .  ' details.'
+                ]);        
+            break;
+        }
         return $updateClient->with('user')->first();
     }
 

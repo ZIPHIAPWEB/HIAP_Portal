@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Actions\CreateLog;
 use App\Actions\CreateUserProgram;
 use App\Actions\RemoveUserProgram;
 use App\Actions\SendMailNotification;
@@ -12,18 +13,21 @@ use App\Mail\NewApplicantNotification;
 class UserProgramService 
 {
     private $createUserProgram;
+    private $createLog;
     private $sendMailNotification;
     private $removeUserProgram;
     private $updateUserProgram;
 
     public function __construct(
         CreateUserProgram $createUserProgram,
+        CreateLog $createLog,
         UpdateUserProgram $updateUserProgram, 
         RemoveUserProgram $removeUserProgram,
         SendMailNotification $sendMailNotification
     )
     {
         $this->createUserProgram = $createUserProgram;
+        $this->createLog = $createLog;
         $this->sendMailNotification = $sendMailNotification;
         $this->removeUserProgram = $removeUserProgram;
         $this->updateUserProgram = $updateUserProgram;
@@ -31,6 +35,8 @@ class UserProgramService
 
     public function saveUserProgram($data) 
     {
+        $count = 0;
+        
         foreach($data->courses as $course) {
             $this->createUserProgram->execute([
                 'user_id'               =>  $data->user()->id,
@@ -41,7 +47,15 @@ class UserProgramService
                 'hours_needed'          =>  $data->hours_needed,
                 'application_status'    =>  'New Learner'
             ]);
+
+            $count += 1;
         }
+
+        $this->createLog->execute([
+            'user_id'   =>  $data->user()->id,
+            'action'    =>  'Enrolled ' . $count . ' course(s).'
+        ]);
+
         // if($this->createUserProgram->execute($data)) {
         //     $client = Client::where('user_id', $data->user()->id)->first();
 
@@ -70,12 +84,22 @@ class UserProgramService
             'hours_needed'          => $data->hours_needed,
             'application_status'    => $data->application_status
         ]);
+
+        $this->createLog->execute([
+            'user_id'   =>  $data->user()->id,
+            'action'    =>  'User program id ' . $data->id . ' has been updated.'
+        ]);
     }
 
-    public function updateStatus($status, $userProgramId)
+    public function updateStatus($data, $userProgramId)
     {
         $this->updateUserProgram->execute(['id' => $userProgramId], [
-            'application_status' => $status
+            'application_status' => $data->status
+        ]);
+
+        $this->createLog->execute([
+            'user_id'   =>  $data->user()->id,
+            'action'    =>  'User program id ' . $userProgramId . ' set status to ' . $data->status .'.' 
         ]);
     }
 

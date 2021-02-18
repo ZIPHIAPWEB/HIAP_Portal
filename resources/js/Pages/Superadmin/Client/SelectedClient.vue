@@ -11,52 +11,104 @@
                 </div>
                 <div class="col-9">
                     <div class="card">
-                        <div class="card-header bg-info">
-                            <h5 class="card-title">Personal Profile</h5>
+                        <div class="card-header bg-info d-flex justify-content-between">
+                            <h5 class="m-0 flex-fill">Profile</h5>
+                            <div v-if="!isEdit" >
+                                <button @click="isEdit = true" class="btn btn-primary btn-xs">Edit</button>
+                            </div>
+                            <div v-else>
+                                <button @click="updateProfileDetails" class="btn btn-success btn-xs">Update</button>
+                                <button @click="isEdit = false;" class="btn btn-danger btn-xs">Cancel</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
-                            <table class="table table-hover table-sm">
+                            <table class="table table-hover table-sm table-bordered">
                                 <tbody class="text-sm">
                                     <tr>
                                         <td>First name</td>
-                                        <td class="text-center">{{ client.first_name }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.first_name }}</span>
+                                            <input v-else type="text" v-model="client.first_name" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Middle name</td>
-                                        <td class="text-center">{{ client.middle_name }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.middle_name }}</span>
+                                            <input v-else type="text" v-model="client.middle_name" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Last name</td>
-                                        <td class="text-center">{{ client.last_name }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.last_name }}</span>
+                                            <input v-else type="text" v-model="client.last_name" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Course</td>
-                                        <td class="text-center">{{ client.course }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.course }}</span>
+                                            <input v-else type="text" v-model="client.course" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Year</td>
-                                        <td class="text-center">{{ client.school_year }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.school_year }}</span>
+                                            <select v-else v-model="client.school_year" class="form-control form-control-sm">
+                                                <option value="">Select Year</option>
+                                                <option value="First Year">First Year</option>
+                                                <option value="Second Year">Second Year</option>
+                                                <option value="Third Year">Third Year</option>
+                                                <option value="Fourth Year">Fourth Year</option>
+                                                <option value="Graduate">Graduate</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Address</td>
-                                        <td class="text-center">{{ client.address }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.address }}</span>
+                                            <input v-else type="text" v-model="client.address" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Contact No.</td>
-                                        <td class="text-center">{{ client.contact_no }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.contact_no }}</span>
+                                            <input v-else type="text" v-model="client.contact_no" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>School/Organization</td>
-                                        <td class="text-center">{{ client.school ? client.school.name : '' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail Address</td>
-                                        <td class="text-center">{{ client.user.email }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.school ? client.school.name : '' }}</span>
+                                            <select v-else v-model="client.school_id" class="form-control form-control-sm text-sm">
+                                                <option value="">Select School</option>
+                                                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Facebook Profile</td>
                                         <td class="text-center">
-                                            <a :href="client.fb_link">{{ client.fb_link }}</a>
+                                            <a v-if="!isEdit" :href="client.fb_link">{{ client.fb_link }}</a>
+                                            <input v-else v-model="client.fb_link" type="text" class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail Address</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.user.email }}</span>
+                                            <input v-else type="text" v-model="client.user.email" disabled class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alternate E-mail Address</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.alternate_email }}</span>
+                                            <input v-else type="text" v-model="client.alternate_email" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -213,18 +265,36 @@
             'userPrograms',
             'payments',
             'courses',
-            'online_programs'
+            'online_programs',
+            'schools'
         ],
         data () {
             return {
                 selectedProgram: [],
-                loadingProgram: false
+                loadingProgram: false,
+                isEdit: false,
+                loading: false
             }
         },
         components: {
             SuperadminLayout
         },
         methods: {
+            updateProfileDetails () {
+                this.loading = true;
+                this.$inertia.post('/updateClientDetails', this.client, {
+                    onBefore: () => confirm('Update this details?'),
+                    onSuccess: () => {
+                        this.isEdit = false;
+                        this.loading = false;
+                    },
+                    onError: () => {
+                        this.isEdit = false;
+                        this.loading = false;
+                        toastr.error('An error has occured.');
+                    }
+                });  
+            },
             editProgram(data) {
                 this.selectedProgram = data;
                 $('#modal-default').modal('show');

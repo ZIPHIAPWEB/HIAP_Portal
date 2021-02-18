@@ -6799,26 +6799,99 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['client', 'initials', 'userPrograms', 'payments', 'courses', 'online_programs'],
+  props: ['client', 'initials', 'userPrograms', 'payments', 'courses', 'online_programs', 'schools'],
   data: function data() {
     return {
       selectedProgram: [],
-      loadingProgram: false
+      loadingProgram: false,
+      isEdit: false,
+      loading: false
     };
   },
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
+    updateProfileDetails: function updateProfileDetails() {
+      var _this = this;
+
+      this.loading = true;
+      this.$inertia.post('/updateClientDetails', this.client, {
+        onBefore: function onBefore() {
+          return confirm('Update this details?');
+        },
+        onSuccess: function onSuccess() {
+          _this.isEdit = false;
+          _this.loading = false;
+        },
+        onError: function onError() {
+          _this.isEdit = false;
+          _this.loading = false;
+          toastr.error('An error has occured.');
+        }
+      });
+    },
     editProgram: function editProgram(data) {
       this.selectedProgram = data;
       $('#modal-default').modal('show');
       console.log(data);
     },
     updateUserProgram: function updateUserProgram() {
-      var _this = this;
+      var _this2 = this;
 
       this.loadingProgram = true;
       this.$inertia.put('/updateUserProgram', this.selectedProgram, {
@@ -6826,7 +6899,7 @@ __webpack_require__.r(__webpack_exports__);
           return confirm('Update this program?');
         },
         onSuccess: function onSuccess() {
-          _this.loadingProgram = false;
+          _this2.loadingProgram = false;
           $('#modal-default').modal('hide');
           toastr.info('Selected program updated.');
         }
@@ -7372,6 +7445,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['logs'],
@@ -7579,7 +7654,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/SuperadminLayout.vue */ "./resources/js/Layouts/SuperadminLayout.vue");
-//
 //
 //
 //
@@ -18390,100 +18464,535 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header bg-info" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v("Personal Profile")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body p-0" }, [
-              _c("table", { staticClass: "table table-hover table-sm" }, [
-                _c("tbody", { staticClass: "text-sm" }, [
-                  _c("tr", [
-                    _c("td", [_vm._v("First name")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.first_name))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Middle name")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.middle_name))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Last name")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.last_name))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Course")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.course))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Year")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.school_year))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Address")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.address))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Contact No.")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.contact_no))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("School/Organization")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(
-                        _vm._s(_vm.client.school ? _vm.client.school.name : "")
+            _c(
+              "div",
+              {
+                staticClass:
+                  "card-header bg-info d-flex justify-content-between"
+              },
+              [
+                _c("h5", { staticClass: "m-0 flex-fill" }, [_vm._v("Profile")]),
+                _vm._v(" "),
+                !_vm.isEdit
+                  ? _c("div", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-xs",
+                          on: {
+                            click: function($event) {
+                              _vm.isEdit = true
+                            }
+                          }
+                        },
+                        [_vm._v("Edit")]
                       )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("E-mail Address")]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(_vm._s(_vm.client.user.email))
+                  : _c("div", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-xs",
+                          on: { click: _vm.updateProfileDetails }
+                        },
+                        [_vm._v("Update")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-xs",
+                          on: {
+                            click: function($event) {
+                              _vm.isEdit = false
+                            }
+                          }
+                        },
+                        [_vm._v("Cancel")]
+                      )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Facebook Profile")]),
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body p-0" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover table-sm table-bordered" },
+                [
+                  _c("tbody", { staticClass: "text-sm" }, [
+                    _c("tr", [
+                      _c("td", [_vm._v("First name")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.first_name))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.first_name,
+                                  expression: "client.first_name"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.first_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "first_name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
                     _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _c("a", { attrs: { href: _vm.client.fb_link } }, [
-                        _vm._v(_vm._s(_vm.client.fb_link))
+                    _c("tr", [
+                      _c("td", [_vm._v("Middle name")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.middle_name))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.middle_name,
+                                  expression: "client.middle_name"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.middle_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "middle_name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Last name")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.last_name))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.last_name,
+                                  expression: "client.last_name"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.last_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "last_name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Course")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.course))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.course,
+                                  expression: "client.course"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.course },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "course",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Year")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.school_year))
+                            ])
+                          : _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.client.school_year,
+                                    expression: "client.school_year"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-sm",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.client,
+                                      "school_year",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select Year")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  { attrs: { value: "First Year" } },
+                                  [_vm._v("First Year")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  { attrs: { value: "Second Year" } },
+                                  [_vm._v("Second Year")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  { attrs: { value: "Third Year" } },
+                                  [_vm._v("Third Year")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  { attrs: { value: "Fourth Year" } },
+                                  [_vm._v("Fourth Year")]
+                                ),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Graduate" } }, [
+                                  _vm._v("Graduate")
+                                ])
+                              ]
+                            )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Address")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.address))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.address,
+                                  expression: "client.address"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.address },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "address",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Contact No.")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.contact_no))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.contact_no,
+                                  expression: "client.contact_no"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.contact_no },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "contact_no",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("School/Organization")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.client.school
+                                    ? _vm.client.school.name
+                                    : ""
+                                )
+                              )
+                            ])
+                          : _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.client.school_id,
+                                    expression: "client.school_id"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control form-control-sm text-sm",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.client,
+                                      "school_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select School")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.schools, function(school) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: school.id,
+                                      domProps: { value: school.id }
+                                    },
+                                    [_vm._v(_vm._s(school.name))]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Facebook Profile")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("a", { attrs: { href: _vm.client.fb_link } }, [
+                              _vm._v(_vm._s(_vm.client.fb_link))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.fb_link,
+                                  expression: "client.fb_link"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.fb_link },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "fb_link",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("E-mail Address")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.user.email))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.user.email,
+                                  expression: "client.user.email"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text", disabled: "" },
+                              domProps: { value: _vm.client.user.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client.user,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Alternate E-mail Address")]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        !_vm.isEdit
+                          ? _c("span", { staticClass: "text-bold" }, [
+                              _vm._v(_vm._s(_vm.client.alternate_email))
+                            ])
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.client.alternate_email,
+                                  expression: "client.alternate_email"
+                                }
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.client.alternate_email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.client,
+                                    "alternate_email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
                       ])
                     ])
                   ])
-                ])
-              ])
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
@@ -19700,6 +20209,8 @@ var render = function() {
                     _vm._v(" "),
                     _c("th", [_vm._v("Log")]),
                     _vm._v(" "),
+                    _c("th", [_vm._v("Created At")]),
+                    _vm._v(" "),
                     _c("th", [_vm._v("Actions")])
                   ])
                 ]),
@@ -19721,6 +20232,8 @@ var render = function() {
                             _c("td", [_vm._v(_vm._s(log.user.role))]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(log.action))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(log.created_at))]),
                             _vm._v(" "),
                             _c("td", [
                               _c(
@@ -20420,12 +20933,6 @@ var render = function() {
                             _c("td", [_vm._v("Nothing")]),
                             _vm._v(" "),
                             _c("td", [
-                              _c(
-                                "button",
-                                { staticClass: "btn btn-primary btn-xs" },
-                                [_vm._v("Logs")]
-                              ),
-                              _vm._v(" "),
                               _c(
                                 "button",
                                 {

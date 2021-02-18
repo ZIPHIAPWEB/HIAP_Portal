@@ -7,6 +7,7 @@ use App\Initial;
 use App\OnlineProgram;
 use App\Payment;
 use App\Program;
+use App\School;
 use App\Staff;
 use App\UserProgram;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,7 @@ class SuperadminController extends Controller
             
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'    =>  $client,
+            'schools'   =>  School::orderBy('name', 'asc')->get(),
             'online_programs'    =>  OnlineProgram::orderBy('name', 'asc')->get(),
             'courses'           =>  Program::where('isActive', 1)->orderBy('name', 'asc')->get(),
             'payments'  =>  Payment::where('user_id', $id)->get()->map(function($payment) {

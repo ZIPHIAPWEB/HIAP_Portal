@@ -38,7 +38,7 @@ class Client extends Model
 
     public function userProgram()
     {
-        return $this->hasMany('App\UserProgram', 'user_id', 'user_id');
+        return $this->hasMany('App\UserProgram', 'user_id', 'user_id')->orderBy('created_at', 'desc');
     }
     
     public function course()

@@ -15,6 +15,7 @@
                                         <th>User</th>
                                         <th>Role</th>
                                         <th>Log</th>
+                                        <th>Created At</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -24,6 +25,7 @@
                                         <td>{{ log.user.email }}</td>
                                         <td>{{ log.user.role }}</td>
                                         <td>{{ log.action }}</td>
+                                        <td>{{ log.created_at }}</td>
                                         <td>
                                             <button @click="deleteLog(log.id)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>

@@ -40,7 +40,7 @@ class UserProgramController extends Controller
 
     public function setApplicationStatus(Request $request, $id)
     {
-        $this->userProgramService->updateStatus($request->status, $id);
+        $this->userProgramService->updateStatus($request, $id);
 
         return redirect()->back()->with([
             'message'   =>  'Application Status Updated.'

@@ -63,7 +63,6 @@
                                         <td>{{ moderator.user.email }}</td>
                                         <td>Nothing</td>
                                         <td>
-                                            <button class="btn btn-primary btn-xs">Logs</button>
                                             <button @click="editModerator(moderator)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="deleteModerator(moderator.user.id)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>
