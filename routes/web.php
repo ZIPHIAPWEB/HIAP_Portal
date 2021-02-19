@@ -174,7 +174,8 @@ Route::post('/storeSchool', 'SchoolController@storeSchool');
 Route::put('/updateSchool', 'SchoolController@updateSchool');
 Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
-Route::post('/uploadCertificate', 'CertificateController@uploadCertificate');
+Route::post('/uploadCertificate', 'CertificateController@uploadCertificates');
+Route::post('/addCertificate', 'CertificateController@addCertificate');
 Route::delete('/deleteCertificate/{id}', 'CertificateController@deleteCert');  
 
 Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');

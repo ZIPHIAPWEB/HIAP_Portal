@@ -41,7 +41,25 @@ class CertificateController extends Controller
         ]);
     }
 
-    public function uploadCertificate(Request $request)
+    public function addCertificate(Request $request)
+    {
+        $request->validate([
+            'cert_id'       =>  'required',
+            'full_name'     =>  'required',
+            'school'        =>  'required',
+            'program'       =>  'required',
+            'gold_medals'   =>  'required',
+            'silver_medals' =>  'required',
+            'bronze_medals' =>  'required',
+            'total_grade'   =>  'required'
+        ]);
+
+        $this->certificate->addSingleCert($request);
+
+        return redirect()->back();
+    }
+
+    public function uploadCertificates(Request $request)
     {
         $request->validate([
             'file'  =>  'required'
@@ -50,7 +68,7 @@ class CertificateController extends Controller
         $file = file($request->file->getRealPath());
         $data = array_slice($file, 1);
 
-        $this->certificate->addCert($data);
+        $this->certificate->addBulkCert($data);
 
         return redirect()->back();
     }

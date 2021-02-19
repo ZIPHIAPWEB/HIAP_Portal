@@ -19,7 +19,7 @@ class CertificateService
         $this->removeCertificate = $removeCertificate;   
     }
 
-    public function addCert($data)
+    public function addBulkCert($data)
     {
         foreach($data as $cert) {
             $arr = explode(',', $cert);
@@ -31,13 +31,28 @@ class CertificateService
                     'school'        =>  $arr[5],
                     'program'       =>  $arr[6],
                     'total_grade'   =>  $arr[7],
-                    'gold_medal'    =>  $arr[8],
-                    'silver_medal'  =>  $arr[9],
-                    'bronze_medal'  =>  $arr[10],
+                    'gold_medals'    =>  $arr[8],
+                    'silver_medals'  =>  $arr[9],
+                    'bronze_medals'  =>  $arr[10],
                     'total_medal'   =>  $arr[11]
                 ]);
             } 
         }
+    }
+
+    public function addSingleCert($data)
+    {
+        $this->createCertificate->execute([
+            'cert_no'       =>  $data->cert_id,
+            'name'          =>  $data->full_name,
+            'school'        =>  $data->school,
+            'program'       =>  $data->program,
+            'total_grade'   =>  $data->total_grade,
+            'gold_medal'   =>  $data->gold_medals,
+            'silver_medal' =>  $data->silver_medals,
+            'bronze_medal' =>  $data->bronze_medals,
+            'total_medal'  =>  $data->total_medals   
+        ]);
     }
 
     public function remove($id)

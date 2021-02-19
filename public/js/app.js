@@ -6549,6 +6549,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['certs'],
@@ -6558,7 +6614,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        file: ''
+        file: '',
+        cert_id: '',
+        full_name: '',
+        school: '',
+        program: '',
+        gold_medals: '',
+        silver_medals: '',
+        bronze_medals: '',
+        total_grade: '',
+        total_medals: ''
       }
     };
   },
@@ -6570,6 +6635,20 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('file', this.form.file);
       this.$inertia.post('/uploadCertificate', formData);
+    },
+    addCert: function addCert() {
+      this.$inertia.post('/addCertificate', this.form, {
+        onBefore: function onBefore() {
+          return confirm('Add this cert?');
+        },
+        onSuccess: function onSuccess() {
+          document.getElementById('cert-form').reset();
+          toastr.info('Cert Added');
+        },
+        onError: function onError() {
+          toastr.error('Error Occurs.');
+        }
+      });
     },
     deleteFile: function deleteFile(id) {
       var q = confirm('Delete this certificate?');
@@ -18324,20 +18403,339 @@ var render = function() {
   return _c("superadmin-layout", [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-3" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h6", [_vm._v("Insert Data")])
+        _c("div", { staticClass: "card card-outline card-outline-tabs" }, [
+          _c("div", { staticClass: "card-header p-0 border-bottom-0" }, [
+            _c(
+              "ul",
+              { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+              [
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link active",
+                      attrs: { href: "#single", "data-toggle": "pill" }
+                    },
+                    [_vm._v("Single")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "#bulk", "data-toggle": "pill" }
+                    },
+                    [_vm._v("Bulk")]
+                  )
+                ])
+              ]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                ref: "cert",
-                attrs: { type: "file", name: "", id: "" },
-                on: { change: _vm.fileHandler }
-              }),
+            _c("div", { staticClass: "tab-content" }, [
+              _c(
+                "div",
+                { staticClass: "tab-pane active", attrs: { id: "single" } },
+                [
+                  _c("form", { attrs: { id: "cert-form" } }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("Cert ID")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.cert_id,
+                            expression: "form.cert_id"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.cert_id },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "cert_id", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Full Name")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.full_name,
+                            expression: "form.full_name"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.full_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "full_name", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("School")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.school,
+                            expression: "form.school"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.school },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "school", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Program/Track")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.program,
+                            expression: "form.program"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.program },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "program", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Gold Medals")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.gold_medals,
+                            expression: "form.gold_medals"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.gold_medals },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "gold_medals",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Silver Medals")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.silver_medals,
+                            expression: "form.silver_medals"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.silver_medals },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "silver_medals",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Bronze Medals")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.bronze_medals,
+                            expression: "form.bronze_medals"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.bronze_medals },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "bronze_medals",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Total Grade")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.total_grade,
+                            expression: "form.total_grade"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.total_grade },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "total_grade",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Total Medals")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.total_medals,
+                            expression: "form.total_medals"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.total_medals },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "total_medals",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          on: { click: _vm.addCert }
+                        },
+                        [_vm._v("Add Cert")]
+                      )
+                    ])
+                  ])
+                ]
+              ),
               _vm._v(" "),
-              _c("button", { on: { click: _vm.saveFile } }, [_vm._v("Save")])
+              _c("div", { staticClass: "tab-pane", attrs: { id: "bulk" } }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    ref: "cert",
+                    attrs: { type: "file", name: "", id: "" },
+                    on: { change: _vm.fileHandler }
+                  }),
+                  _vm._v(" "),
+                  _c("button", { on: { click: _vm.saveFile } }, [
+                    _vm._v("Save")
+                  ])
+                ])
+              ])
             ])
           ])
         ])
@@ -18369,6 +18767,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [_vm._v("Total Grade")]),
                   _vm._v(" "),
+                  _c("th", [_vm._v("Total Medals")]),
+                  _vm._v(" "),
                   _c("th", [_vm._v("Actions")])
                 ])
               ]),
@@ -18398,6 +18798,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", { staticClass: "text-bold" }, [
                         _vm._v(_vm._s(cert.total_grade))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-bold" }, [
+                        _vm._v(_vm._s(cert.total_medal))
                       ]),
                       _vm._v(" "),
                       _c("td", [
