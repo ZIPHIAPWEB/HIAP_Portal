@@ -23,7 +23,7 @@ class CertificateService
     {
         foreach($data as $cert) {
             $arr = explode(',', $cert);
-        
+
             if($arr[0] != '') {
                 $this->createCertificate->execute([
                     'cert_no'       =>  $arr[0],
@@ -31,9 +31,9 @@ class CertificateService
                     'school'        =>  $arr[5],
                     'program'       =>  $arr[6],
                     'total_grade'   =>  $arr[7],
-                    'gold_medals'    =>  $arr[8],
-                    'silver_medals'  =>  $arr[9],
-                    'bronze_medals'  =>  $arr[10],
+                    'gold_medal'    => intval($arr[8]),
+                    'silver_medal'  => intval($arr[9]),
+                    'bronze_medal'  => intval($arr[10]),
                     'total_medal'   =>  $arr[11]
                 ]);
             } 
