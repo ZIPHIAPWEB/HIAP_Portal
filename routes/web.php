@@ -137,6 +137,8 @@ Route::post('/setApplicationStatus/{id}', 'UserProgramController@setApplicationS
 Route::delete('/deleteClientDetails/{userId}', 'ClientController@deleteClientDetails');
 Route::post('/updateClientDetails', 'ClientController@updateClientDetails');
 Route::post('/setToVerified/{userId}', 'ClientController@manualVerification');
+Route::post('/setToUnfilled/{userId}', 'ClientController@setToUnfilled');
+Route::post('/setToFilled/{userId}', 'ClientController@setToFilled');
 
 Route::get('/getInitialRequirementsWithClient', 'ClientInitialController@getClientInitialRequirements');
 Route::post('/storeClientInitialRequirements', 'ClientInitialController@storeClientInitialRequirement');

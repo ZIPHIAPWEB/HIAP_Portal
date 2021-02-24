@@ -39,8 +39,10 @@
                             </td>
                             <th>{{ client.created_at }}</th>
                             <td>
-                                <button v-if="!client.email_verified_at" @click="verifyNow(client.id)" class="btn btn-warning btn-xs btn-flat">Verify Now</button>
+                                <button v-if="!client.email_verified_at" @click="verifyNow(client.id)" class="btn btn-warning btn-xs btn-flat">Verify</button>
                                 <button v-if="client.client" @click="viewClientDetails(client.id)" class="btn btn-success btn-xs btn-flat">View</button>
+                                <button v-if="client.isFilled == false" @click="setToFilled(client.id)" class="btn btn-info btn-xs btn-flat">Filled</button>
+                                <button v-if="client.isFilled == true" @click="setToUnfilled(client.id)" class="btn btn-info btn-xs btn-flat">Unfilled</button>
                                 <button @click="deleteClientDetails(client.id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
                             </td>
                         </tr>
@@ -86,7 +88,25 @@
                 this.$inertia.post(`/setToVerified/${userId}`, {}, {
                     onBefore: () => confirm('Verify this account?'),
                     onSuccess: () => {
-                        toastr.info('Account Verified');
+                        toastr.info('Account Verified.');
+                    }
+                })
+            },
+            setToFilled (userId)
+            {
+                this.$inertia.post(`/setToFilled/${userId}`, {}, {
+                    onBefore: () => confirm('Filled this account?'),
+                    onSuccess: () => {
+                        toastr.info('Account filled.');
+                    }
+                })
+            },
+            setToUnfilled (userId)
+            {
+                this.$inertia.post(`/setToUnfilled/${userId}`, {}, {
+                    onBefore: () => confirm('Unfilled this account?'),
+                    onSuccess: () => {
+                        toastr.info('Account unfilled.');
                     }
                 })
             },

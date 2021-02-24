@@ -7232,6 +7232,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -7264,7 +7266,27 @@ __webpack_require__.r(__webpack_exports__);
           return confirm('Verify this account?');
         },
         onSuccess: function onSuccess() {
-          toastr.info('Account Verified');
+          toastr.info('Account Verified.');
+        }
+      });
+    },
+    setToFilled: function setToFilled(userId) {
+      this.$inertia.post("/setToFilled/".concat(userId), {}, {
+        onBefore: function onBefore() {
+          return confirm('Filled this account?');
+        },
+        onSuccess: function onSuccess() {
+          toastr.info('Account filled.');
+        }
+      });
+    },
+    setToUnfilled: function setToUnfilled(userId) {
+      this.$inertia.post("/setToUnfilled/".concat(userId), {}, {
+        onBefore: function onBefore() {
+          return confirm('Unfilled this account?');
+        },
+        onSuccess: function onSuccess() {
+          toastr.info('Account unfilled.');
         }
       });
     },
@@ -20610,7 +20632,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Verify Now")]
+                              [_vm._v("Verify")]
                             )
                           : _vm._e(),
                         _vm._v(" "),
@@ -20626,6 +20648,36 @@ var render = function() {
                                 }
                               },
                               [_vm._v("View")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        client.isFilled == false
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info btn-xs btn-flat",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.setToFilled(client.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Filled")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        client.isFilled == true
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info btn-xs btn-flat",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.setToUnfilled(client.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Unfilled")]
                             )
                           : _vm._e(),
                         _vm._v(" "),

@@ -131,6 +131,24 @@ class ClientController extends Controller
         return redirect()->back();
     }
 
+    public function setToFilled($userId)
+    {
+        User::where('id', $userId)->update([
+            'isFilled' =>  true
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function setToUnfilled($userId)
+    {
+        User::where('id', $userId)->update([
+           'isFilled'   =>  false
+        ]);
+
+        return redirect()->back();
+    }
+
     public function updateClientDetails(Request $request)
     {
         $this->clientApplicationService->updateDetails($request);
