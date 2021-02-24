@@ -122,6 +122,15 @@ class ClientController extends Controller
             ->with('message', 'Client deleted.');
     }
 
+    public function manualVerification($userId)
+    {
+        User::where('id', $userId)->update([
+            'email_verified_at' =>  now()
+        ]);
+
+        return redirect()->back();
+    }
+
     public function updateClientDetails(Request $request)
     {
         $this->clientApplicationService->updateDetails($request);

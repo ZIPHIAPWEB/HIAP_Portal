@@ -39,6 +39,7 @@
                             </td>
                             <th>{{ client.created_at }}</th>
                             <td>
+                                <button v-if="!client.email_verified_at" @click="verifyNow(client.id)" class="btn btn-warning btn-xs btn-flat">Verify Now</button>
                                 <button v-if="client.client" @click="viewClientDetails(client.id)" class="btn btn-success btn-xs btn-flat">View</button>
                                 <button @click="deleteClientDetails(client.id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
                             </td>
@@ -80,6 +81,15 @@
             }
         },
         methods: {
+            verifyNow(userId)
+            {
+                this.$inertia.post(`/setToVerified/${userId}`, {}, {
+                    onBefore: () => confirm('Verify this account?'),
+                    onSuccess: () => {
+                        toastr.info('Account Verified');
+                    }
+                })
+            },
             viewClientDetails (userId) {
                 this.$inertia.visit(`/sa/client/${userId}`);
             },

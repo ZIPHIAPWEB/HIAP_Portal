@@ -7231,6 +7231,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -7257,6 +7258,16 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    verifyNow: function verifyNow(userId) {
+      this.$inertia.post("/setToVerified/".concat(userId), {}, {
+        onBefore: function onBefore() {
+          return confirm('Verify this account?');
+        },
+        onSuccess: function onSuccess() {
+          toastr.info('Account Verified');
+        }
+      });
+    },
     viewClientDetails: function viewClientDetails(userId) {
       this.$inertia.visit("/sa/client/".concat(userId));
     },
@@ -20588,6 +20599,21 @@ var render = function() {
                       _c("th", [_vm._v(_vm._s(client.created_at))]),
                       _vm._v(" "),
                       _c("td", [
+                        !client.email_verified_at
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning btn-xs btn-flat",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.verifyNow(client.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Verify Now")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
                         client.client
                           ? _c(
                               "button",

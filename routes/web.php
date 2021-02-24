@@ -136,6 +136,7 @@ Route::get('/getAllClientDetails', 'ClientController@getAllClients');
 Route::post('/setApplicationStatus/{id}', 'UserProgramController@setApplicationStatus');
 Route::delete('/deleteClientDetails/{userId}', 'ClientController@deleteClientDetails');
 Route::post('/updateClientDetails', 'ClientController@updateClientDetails');
+Route::post('/setToVerified/{userId}', 'ClientController@manualVerification');
 
 Route::get('/getInitialRequirementsWithClient', 'ClientInitialController@getClientInitialRequirements');
 Route::post('/storeClientInitialRequirements', 'ClientInitialController@storeClientInitialRequirement');
