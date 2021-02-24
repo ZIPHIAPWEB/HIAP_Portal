@@ -85,10 +85,20 @@ class UserProgramService
             'application_status'    => $data->application_status
         ]);
 
-        $this->createLog->execute([
-            'user_id'   =>  $data->user()->id,
-            'action'    =>  'User program id ' . $data->id . ' has been updated.'
-        ]);
+        switch($data->user()->role) {
+            case 'client':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'User program id ' . $data->id . ' has been updated.'
+                ]);
+            break;
+            case 'superadministrator':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'User program id ' . $data->id . ' has been updated.'
+                ]);
+            break;
+        }
     }
 
     public function updateStatus($data, $userProgramId)

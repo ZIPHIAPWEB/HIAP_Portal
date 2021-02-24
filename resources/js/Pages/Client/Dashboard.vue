@@ -28,7 +28,8 @@
                                         <th>Status</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-                                        <!-- <th style="width: 30%">Action</th> -->
+                                        <th>Hours Needed</th>
+                                        <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,9 +42,10 @@
                                         </td>
                                         <td class="text-center text-sm">{{ p.start_date }}</td>
                                         <td class="text-center text-sm">{{ p.end_date}}</td>
-                                        <!-- <td class="text-center">
-                                            <inertia-link :href="`/client/${p.program.id}/requirements`" class="btn btn-xs btn-success">View Requirements</inertia-link>
-                                        </td> -->
+                                        <td class="text-center text-sm">{{ p.hours_needed }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success btn-xs" @click="selectedCourse(p)">Edit</button>
+                                        </td>
                                     </tr >
                                 </tbody>
                             </table>
@@ -127,9 +129,7 @@
                             <button @click="addNewProgram" type="button" class="btn btn-block btn-sm btn-primary">Enroll</button>
                         </div>
                     </div>
-                <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
             </div>
             <div class="modal fade show" id="modal-payment" aria-modal="true">
                 <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -195,6 +195,49 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade show" id="modal-update" aria-modal="true">
+                <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update Program</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="">Program</label>
+                                <select v-model="selected.course_id" class="form-control form-control-sm">
+                                    <option selected value="">Select program</option>
+                                    <option v-for="program in onlinePrograms" :key="program.id" :value="program.id">{{ program.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Course</label>
+                                <select class="form-control form-control-sm" v-model="selected.program_id">
+                                    <option v-for="course in filteredCourse" :key="course.id" :value="course.id">{{ course.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Hours Needed</label>
+                                <input v-model="selected.hours_needed" type="text" placeholder="0" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Start Date</label>
+                                <input v-model="selected.start_date" type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">End Date</label>
+                                <input v-model="selected.end_date" type="date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button @click="updateProgram" type="button" class="btn btn-block btn-sm btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </client-layout>
 </template>
@@ -213,6 +256,7 @@
         data () {
             return {
                 programs: [],
+                selected: [],
                 form: {
                     program_id: 0,
                     courses: [],
@@ -236,13 +280,17 @@
         },
         computed: {
             filteredCourse () {
-                return this.programs.filter(e => e.course_id == this.form.program_id);
+                return this.programs.filter(e => e.course_id == this.form.program_id || this.selected.program_id);
             }
         },
         mounted () {
             this.getAllPrograms();
         },
         methods: {
+            selectedCourse(data) {
+                this.selected = data;
+                $('#modal-update').modal('show');
+            },
             fileHandler() {
                 this.payment.file = this.$refs.slip.files[0];
                 this.payment.filename = this.payment.file.name;
@@ -257,6 +305,15 @@
                 this.$inertia.post('/addNewProgram', this.form, {
                     onSuccess: () => {
                         $('#modal-default').modal('hide');
+                    }
+                })
+            },
+            updateProgram () {
+                this.$inertia.put('/updateUserProgram', this.selected, {
+                    onBefore: () => confirm('Update this program?'),
+                    onSuccess: () => {
+                        this.loadingProgram = false;
+                        $('#modal-update').modal('hide');
                     }
                 })
             },

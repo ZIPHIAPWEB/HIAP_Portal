@@ -33,9 +33,9 @@ class PaymentController extends Controller
             ->with('message', 'Payment will be verified by the accounting department.');
     }
 
-    public function removeDepositSlip($slipId)
+    public function removeDepositSlip(Request $request, $slipId)
     {
-        $this->paymentService->deleteDepositSlip($slipId);
+        $this->paymentService->deleteDepositSlip($request, $slipId);
 
         return redirect()
             ->back()

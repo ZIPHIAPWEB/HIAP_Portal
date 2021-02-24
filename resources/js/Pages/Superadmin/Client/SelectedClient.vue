@@ -125,7 +125,8 @@
                             <table class="table table-hovered table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Course</th>
+                                        <th>#</th>
+                                        <th class="text-center">Course</th>
                                         <th class="text-center">Program</th>
                                         <th class="text-center">Application Status</th>
                                         <th class="text-center">Start Date</th>
@@ -136,7 +137,8 @@
                                 </thead>
                                 <tbody v-if="userPrograms.length > 0">
                                     <tr v-for="p in userPrograms" :key="p.id" class="text-xs">
-                                        <td>{{ p.program.name }}</td>
+                                        <td>{{ p.id }}</td>
+                                        <td class="text-center">{{ p.program.name }}</td>
                                         <th class="text-center">{{ p.course.name }}</th>
                                         <td class="text-center">
                                             <i class="text-green">{{ p.application_status }}</i>
@@ -144,7 +146,7 @@
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
                                         <td class="text-center">{{ p.hours_needed }}</td>
-                                        <td style="width:30%;" class="text-center">
+                                        <td style="width:15%;" class="text-center">
                                             <!-- <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link> -->
                                             <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="removeProgram(p.id)" class="btn btn-danger btn-xs">Remove</button>

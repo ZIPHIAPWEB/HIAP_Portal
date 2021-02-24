@@ -9,6 +9,7 @@ use App\Payment;
 use App\Program;
 use App\School;
 use App\Staff;
+use App\User;
 use App\UserProgram;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -28,11 +29,15 @@ class SuperadminController extends Controller
     public function showClients()
     {
         return Inertia::render('Superadmin/Clients', [
-            'clients'   =>  Client::orderBy('created_at', 'desc')
-                ->with('school')
-                ->with(['userProgram' => function($query) {
-                    return $query->with('program');
-                }])->get()
+            'clients'   =>  User::orderBy('created_at', 'desc')
+                ->with(['client'    =>  function($query) {
+                    return $query->with('school')
+                            ->with(['userProgram' => function($query) {
+                                return $query->with('program');
+                            }]);
+                }])
+                ->where('role', 'client')
+                ->get()
         ]);
     }
 

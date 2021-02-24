@@ -13,27 +13,34 @@
                     <thead>
                         <tr class="text-xs text-center">
                             <th class="text-left">#</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>Contact Number</th>
-                            <th>School/Organization</th>
-                            <th>Enrolled Course(s)</th>
+                            <th>Email</th>
+                            <th>Is Verified</th>
+                            <th>Is Filled</th>
+                            <th>Has Client Record</th>
+                            <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody v-if="filteredClients.length > 0">
                         <tr class="text-xs text-center" v-for="client in filteredClients" :key="client.id">
                             <td class="text-left">{{ client.id }}</td>
-                            <td>{{ client.first_name }}</td>
-                            <td>{{ client.middle_name}}</td>
-                            <td>{{ client.last_name }}</td>
-                            <td>{{ client.contact_no }}</td>
-                            <td>{{ client.school ? client.school.name : '' }}</td>
-                            <th>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</th>
+                            <td>{{ client.email }}</td>
                             <td>
-                                <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>
-                                <button @click="deleteClientDetails(client.user_id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
+                                <span v-if="client.email_verified_at" class="fas fa-check text-green"></span>
+                                <span v-else class="fas fa-times text-red"></span>
+                            </td>
+                            <td>
+                                <span v-if="client.isFilled" class="fas fa-check text-green"></span>
+                                <span v-else class="fas fa-times text-red"></span>
+                            </td>
+                            <td>
+                                <span v-if="client.client" class="fas fa-check text-green"></span>
+                                <span v-else class="fas fa-times text-red"></span>
+                            </td>
+                            <th>{{ client.created_at }}</th>
+                            <td>
+                                <button v-if="client.client" @click="viewClientDetails(client.id)" class="btn btn-success btn-xs btn-flat">View</button>
+                                <button @click="deleteClientDetails(client.id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -63,7 +70,7 @@
         computed: {
             filteredClients () {
                     return this.clients.filter(e => {
-                        return e.last_name.toLowerCase().includes(this.filterName.toLowerCase());
+                        return e.email.toLowerCase().includes(this.filterName.toLowerCase());
                     })
                 },
         },

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Actions\CreateLog;
 use App\Actions\CreatePayment;
 use App\Actions\RemovePayment;
 use App\Actions\SendMailNotification;
@@ -13,18 +14,21 @@ use Illuminate\Support\Facades\File;
 class PaymentService
 {
     private $createPayment;
+    private $createLog;
     private $updatePayment;
     private $removePayment;
     private $mail;
 
     public function __construct(
         CreatePayment $createPayment,
+        CreateLog $createLog,
         UpdatePayment $updatePayment,
         RemovePayment $removePayment,
         SendMailNotification $sendMailNotification
     )
     {
         $this->createPayment = $createPayment;   
+        $this->createLog = $createLog;
         $this->updatePayment = $updatePayment; 
         $this->removePayment = $removePayment;
         $this->mail = $sendMailNotification;
@@ -40,6 +44,11 @@ class PaymentService
             'purpose'       =>  $data->purpose,
             'isVerified'    =>  false,
             'path'          =>  $filename
+        ]);
+
+        $this->createLog->execute([
+            'user_id'   =>  $data->user()->id,
+            'action'    =>  'Upload a new proof of payment.'
         ]);
 
         $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
@@ -59,6 +68,11 @@ class PaymentService
             'path'      =>  ''
         ]);
 
+        $this->createLog->execute([
+            'user_id'   =>  $data->user()->id,
+            'action'    =>  'Choose paid by school.'
+        ]);
+
         $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
             Client::where('user_id', $data->user()->id)
                 ->with('school')
@@ -67,9 +81,25 @@ class PaymentService
         ));
     }
     
-    public function deleteDepositSlip($data)
+    public function deleteDepositSlip($data, $slipId)
     {
-        $deletedSlip = $this->removePayment->execute(['id' => $data]);
+        $deletedSlip = $this->removePayment->execute(['id' => $slipId]);
+        
+        switch($data->user()->role) {
+            case 'client':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'Proof of payment deleted.'
+                ]);
+            break;
+
+            case 'superadministrator':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'Proof of payment #' . $slipId . ' has been deleted.'
+                ]);
+            break;
+        }
 
         if(File::exists(public_path('slips/' . $deletedSlip->path))){
 
