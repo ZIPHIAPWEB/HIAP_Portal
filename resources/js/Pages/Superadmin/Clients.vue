@@ -103,7 +103,7 @@
             },
             setToUnfilled (data)
             {
-                this.$inertia.post(`/setToUnfilled/${userId}`, {}, {
+                this.$inertia.post(`/setToUnfilled/${data.id}`, {}, {
                     onBefore: () => confirm(`Unfilled this ${data.email} account?`),
                     onSuccess: () => {
                         toastr.info(`${data.email} is unfilled.`);
