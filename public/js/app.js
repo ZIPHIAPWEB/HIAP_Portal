@@ -5564,8 +5564,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -7260,8 +7258,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    verifyNow: function verifyNow(userId) {
-      this.$inertia.post("/setToVerified/".concat(userId), {}, {
+    verifyNow: function verifyNow(data) {
+      this.$inertia.post("/setToVerified/".concat(data.id), {}, {
         onBefore: function onBefore() {
           return confirm('Verify this account?');
         },
@@ -7270,23 +7268,23 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    setToFilled: function setToFilled(userId) {
-      this.$inertia.post("/setToFilled/".concat(userId), {}, {
+    setToFilled: function setToFilled(data) {
+      this.$inertia.post("/setToFilled/".concat(data.id), {}, {
         onBefore: function onBefore() {
-          return confirm('Filled this account?');
+          return confirm("Filled this ".concat(data.email, " account?"));
         },
         onSuccess: function onSuccess() {
-          toastr.info('Account filled.');
+          toastr.info("".concat(data.email, " is filled."));
         }
       });
     },
     setToUnfilled: function setToUnfilled(userId) {
       this.$inertia.post("/setToUnfilled/".concat(userId), {}, {
         onBefore: function onBefore() {
-          return confirm('Unfilled this account?');
+          return confirm("Unfilled this ".concat(data.email, " account?"));
         },
         onSuccess: function onSuccess() {
-          toastr.info('Account unfilled.');
+          toastr.info("".concat(data.email, " is unfilled."));
         }
       });
     },
@@ -16481,16 +16479,11 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "td",
-                            { staticClass: "text-center text-sm text-bold" },
-                            [
-                              p.application_status
-                                ? _c("i", { staticClass: "text-danger" }, [
-                                    _vm._v("Newly Enrolled")
-                                  ])
-                                : _c("i", { staticClass: "text-success" }, [
-                                    _vm._v("Complete")
-                                  ])
-                            ]
+                            {
+                              staticClass:
+                                "text-center text-sm text-bold text-green"
+                            },
+                            [_vm._v(_vm._s(p.application_status))]
                           ),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center text-sm" }, [
@@ -16506,18 +16499,20 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success btn-xs",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.selectedCourse(p)
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            )
+                            p.application_status == "New Learner"
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success btn-xs",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.selectedCourse(p)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Edit")]
+                                )
+                              : _c("i", [_vm._v("Not Applicable")])
                           ])
                         ])
                       }),
@@ -16530,20 +16525,10 @@ var render = function() {
               _c("div", { staticClass: "card-footer" }, [
                 _c("i", { staticClass: "text-xs" }, [
                   _vm._v(
-                    "For any request to delete or edit courses, please send an email to "
+                    "You can't edit course details anymore once you have tagged as "
                   ),
-                  _c(
-                    "a",
-                    {
-                      staticStyle: { "text-decoration": "underline" },
-                      attrs: {
-                        href:
-                          "mailto:jmatibag@hospitalityinstituteofamerica.com.ph"
-                      }
-                    },
-                    [_vm._v("jmatibag@hospitalityinstituteofamerica.com.ph")]
-                  ),
-                  _vm._v(" with the complete details of the request.")
+                  _c("b", [_vm._v("Confirmed Learner")]),
+                  _vm._v(".")
                 ])
               ])
             ]),
@@ -19871,6 +19856,10 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "btn btn-success btn-xs",
+                                      attrs: {
+                                        disabled:
+                                          p.application_status != "New Learner"
+                                      },
                                       on: {
                                         click: function($event) {
                                           return _vm.editProgram(p)
@@ -20658,7 +20647,7 @@ var render = function() {
                                 staticClass: "btn btn-info btn-xs btn-flat",
                                 on: {
                                   click: function($event) {
-                                    return _vm.setToFilled(client.id)
+                                    return _vm.setToFilled(client)
                                   }
                                 }
                               },
@@ -20673,7 +20662,7 @@ var render = function() {
                                 staticClass: "btn btn-info btn-xs btn-flat",
                                 on: {
                                   click: function($event) {
-                                    return _vm.setToUnfilled(client.id)
+                                    return _vm.setToUnfilled(client)
                                   }
                                 }
                               },

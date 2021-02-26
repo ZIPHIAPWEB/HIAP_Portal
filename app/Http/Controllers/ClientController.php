@@ -110,13 +110,22 @@ class ClientController extends Controller
         ]);
     }
 
-    public function deleteClientDetails($userId)
+    public function deleteClientDetails(Request $request, $userId)
     {
-        User::find($userId)->delete();
+
+        $user = User::where('id', $userId);
+
+        Log::create([
+            'user_id'   =>  $request->user()->id,
+            'action'    =>  $user->first()->email . ' has been deleted.'
+        ]);
+
+        $user->delete();
         Client::where('user_id', $userId)->delete();
         ClientInitial::where('user_id', $userId)->delete();
         Grade::where('user_id', $userId)->delete();
-        
+        Log::where('user_id', $userId)->delete();
+
         return redirect()
             ->back()
             ->with('message', 'Client deleted.');

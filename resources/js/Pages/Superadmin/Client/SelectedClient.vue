@@ -148,7 +148,7 @@
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td style="width:15%;" class="text-center">
                                             <!-- <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link> -->
-                                            <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
+                                            <button :disabled="p.application_status != 'New Learner'" @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="removeProgram(p.id)" class="btn btn-danger btn-xs">Remove</button>
                                         </td>
                                     </tr>

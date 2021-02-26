@@ -185,12 +185,5 @@ Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
 Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::get('/test', function () {
-    App\User::create([
-        'email'     =>  'accounting@hiap.com',
-        'email_verified_at' =>  'Ready',
-        'password'          =>  Hash::make('accountingrocks5000!'),
-        'role'              =>  'accounting',
-        'isFilled'          =>  1,
-        'program_id'        =>  0
-    ]);
+    return Hash::make('WestlieM');
 });

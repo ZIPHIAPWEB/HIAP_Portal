@@ -36,15 +36,13 @@
                                     <tr v-for="p in userPrograms" :key="p.id">
                                         <td class="text-sm">{{ p.course.name }}</td>
                                         <td class="text-center text-sm">{{ p.program.name }}</td>
-                                        <td class="text-center text-sm text-bold">
-                                            <i class="text-danger" v-if="p.application_status">Newly Enrolled</i>
-                                            <i class="text-success" v-else>Complete</i>
-                                        </td>
+                                        <td class="text-center text-sm text-bold text-green">{{ p.application_status }}</td>
                                         <td class="text-center text-sm">{{ p.start_date }}</td>
                                         <td class="text-center text-sm">{{ p.end_date}}</td>
                                         <td class="text-center text-sm">{{ p.hours_needed }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-success btn-xs" @click="selectedCourse(p)">Edit</button>
+                                            <button v-if="p.application_status == 'New Learner'" class="btn btn-success btn-xs" @click="selectedCourse(p)">Edit</button>
+                                            <i v-else>Not Applicable</i>
                                         </td>
                                     </tr >
                                 </tbody>
@@ -52,7 +50,7 @@
                         </div>
                         
                         <div class="card-footer">
-                            <i class="text-xs">For any request to delete or edit courses, please send an email to <a href="mailto:jmatibag@hospitalityinstituteofamerica.com.ph" style="text-decoration: underline">jmatibag@hospitalityinstituteofamerica.com.ph</a> with the complete details of the request.</i>
+                            <i class="text-xs">You can't edit course details anymore once you have tagged as <b>Confirmed Learner</b>.</i>
                         </div>
                     </div>
                     <div class="card">
