@@ -78,14 +78,14 @@ class ClientController extends Controller
             'address'       =>  'required',
             'contact_number'=>  'bail|required|numeric',
             'school'        =>  'required',
-        ]);
+        ]);  
 
-        User::find($request->user()->id)->update([
-            'isFilled'      =>  true
-        ]);
-
-        $this->clientApplicationService->createClientApplication($request);  
-
+        if($this->clientApplicationService->createClientApplication($request)) {
+            User::find($request->user()->id)->update([
+                'isFilled'      =>  true
+            ]);
+        }
+        
         return redirect()->route('cl.dashboard');
     }
 

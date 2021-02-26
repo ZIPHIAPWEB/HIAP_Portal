@@ -31,7 +31,7 @@ class ClientApplicationService {
         $this->createLog = $createLog;
     }
 
-    public function createClientApplication(object $request) : void
+    public function createClientApplication(object $request) : bool
     {
         $client = $this->createClient->execute([
             'user_id'               =>  $request->user()->id,
@@ -69,6 +69,12 @@ class ClientApplicationService {
             'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
             'school'        =>  School::where('id', $client->school_id)->first()->name
         ]));
+
+        if(isset($client)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function updateApplicationStatus(string $status, int $userId) : void
