@@ -88,6 +88,7 @@
                                         <div class="form-group">
                                             <label for="">Personal/Alternate Email <i class="text-danger">*</i></label>
                                             <input v-model="form.alternate_email" type="text" class="form-control" placeholder="jane.doe@app.com" required>
+                                            <input @change="setCurrentEmail" type="checkbox"><i class="text-sm mx-1">Use current email</i>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -151,7 +152,7 @@
 
 <script>
     export default {
-        props: ['errors', 'schools', 'courses', 'programs', 'program_id'],
+        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id'],
         data() {
             return {
                 form: {
@@ -207,6 +208,13 @@
                         this.loading = false;
                     }
                 })
+            },
+            setCurrentEmail (e) {
+                if(e.target.checked == true) {
+                    this.form.alternate_email = this.auth.email;
+                } else {
+                    this.form.alternate_email = ''
+                }
             }
         }
     }

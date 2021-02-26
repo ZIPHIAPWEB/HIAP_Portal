@@ -5241,8 +5241,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['errors', 'schools', 'courses', 'programs', 'program_id'],
+  props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id'],
   data: function data() {
     return {
       form: {
@@ -5304,6 +5305,13 @@ __webpack_require__.r(__webpack_exports__);
           _this2.loading = false;
         }
       });
+    },
+    setCurrentEmail: function setCurrentEmail(e) {
+      if (e.target.checked == true) {
+        this.form.alternate_email = this.auth.email;
+      } else {
+        this.form.alternate_email = '';
+      }
     }
   }
 });
@@ -16070,7 +16078,15 @@ var render = function() {
                                     )
                                   }
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "checkbox" },
+                                on: { change: _vm.setCurrentEmail }
+                              }),
+                              _c("i", { staticClass: "text-sm mx-1" }, [
+                                _vm._v("Use current email")
+                              ])
                             ])
                           ]),
                           _vm._v(" "),

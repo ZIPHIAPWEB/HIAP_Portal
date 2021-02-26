@@ -31,6 +31,7 @@ class ClientController extends Controller
     public function showApplicationForm(Request $request)
     {
         return Inertia::render('Client/ApplicationForm', [
+            'auth'      =>  $request->user(),
             'program_id'=>  $request->user()->program_id,
             'schools'   =>  School::orderBy('name')->get(),
             'courses'   =>  Course::orderBy('id')->get(),
