@@ -87,7 +87,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Personal/Alternate Email <i class="text-danger">*</i></label>
-                                            <input v-model="form.alternate_email" type="text" class="form-control" placeholder="jane.doe@app.com">
+                                            <input v-model="form.alternate_email" type="text" class="form-control" placeholder="jane.doe@app.com" required>
                                         </div>
                                     </div>
                                     <div class="col-12">

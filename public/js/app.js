@@ -16054,7 +16054,8 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  placeholder: "jane.doe@app.com"
+                                  placeholder: "jane.doe@app.com",
+                                  required: ""
                                 },
                                 domProps: { value: _vm.form.alternate_email },
                                 on: {
@@ -19856,10 +19857,6 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "btn btn-success btn-xs",
-                                      attrs: {
-                                        disabled:
-                                          p.application_status != "New Learner"
-                                      },
                                       on: {
                                         click: function($event) {
                                           return _vm.editProgram(p)
