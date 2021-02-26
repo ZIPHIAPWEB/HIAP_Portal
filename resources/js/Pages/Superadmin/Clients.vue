@@ -101,7 +101,7 @@
                     }
                 })
             },
-            setToUnfilled (userId)
+            setToUnfilled (data)
             {
                 this.$inertia.post(`/setToUnfilled/${userId}`, {}, {
                     onBefore: () => confirm(`Unfilled this ${data.email} account?`),

@@ -7286,7 +7286,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    setToUnfilled: function setToUnfilled(userId) {
+    setToUnfilled: function setToUnfilled(data) {
       this.$inertia.post("/setToUnfilled/".concat(userId), {}, {
         onBefore: function onBefore() {
           return confirm("Unfilled this ".concat(data.email, " account?"));
