@@ -20653,7 +20653,7 @@ var render = function() {
                                 staticClass: "btn btn-warning btn-xs btn-flat",
                                 on: {
                                   click: function($event) {
-                                    return _vm.verifyNow(client.id)
+                                    return _vm.verifyNow(client)
                                   }
                                 }
                               },
