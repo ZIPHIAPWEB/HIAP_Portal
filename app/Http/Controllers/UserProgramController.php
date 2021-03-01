@@ -47,9 +47,9 @@ class UserProgramController extends Controller
         ]);
     }
 
-    public function deleteUserProgram($id)
+    public function deleteUserProgram(Request $request, $id)
     {
-        $this->userProgramService->removeProgram($id);
+        $this->userProgramService->removeProgram($request, $id);
 
         return redirect()->back()->with([
             'message'   =>  'Program deleted'

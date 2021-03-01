@@ -5572,6 +5572,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5652,6 +5653,13 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           _this3.loadingProgram = false;
           $('#modal-update').modal('hide');
+        }
+      });
+    },
+    removeProgram: function removeProgram(id) {
+      this.$inertia["delete"]("/deleteUserProgram/".concat(id), {
+        onBefore: function onBefore() {
+          return confirm('Remove this program?');
         }
       });
     },
@@ -16367,7 +16375,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v("Courses (Can select multiple courses)"),
+      _vm._v("Program Track (Can select multiple tracks)"),
       _c("i", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -16528,6 +16536,21 @@ var render = function() {
                                     }
                                   },
                                   [_vm._v("Edit")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            p.application_status == "New Learner"
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger btn-xs",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.removeProgram(p.id)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Delete")]
                                 )
                               : _c("i", [_vm._v("Not Applicable")])
                           ])

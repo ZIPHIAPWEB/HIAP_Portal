@@ -36,7 +36,7 @@ class PaymentService
 
     public function uploadDepositSlip($data)
     {
-        $filename = time() . '.'. $data->file->extension();
+        $filename = time() . '.'. $data->file('file')->getClientOriginalExtension();
         $data->file->move(public_path('slips'), $filename);
 
         $this->createPayment->execute([

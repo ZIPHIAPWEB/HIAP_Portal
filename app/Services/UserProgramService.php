@@ -113,8 +113,24 @@ class UserProgramService
         ]);
     }
 
-    public function removeProgram($data)
+    public function removeProgram($data, $userProgramId)
     {
-        $this->removeUserProgram->execute($data);
+        $this->removeUserProgram->execute($userProgramId);
+
+        switch($data->user()->role) {
+            case 'client':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'Deleted a program track'
+                ]);
+            break;
+
+            case 'superadministrator':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'Deleted a program track id: '. $userProgramId
+                ]);
+            break;
+        }
     }
 }

@@ -42,6 +42,7 @@
                                         <td class="text-center text-sm">{{ p.hours_needed }}</td>
                                         <td class="text-center">
                                             <button v-if="p.application_status == 'New Learner'" class="btn btn-success btn-xs" @click="selectedCourse(p)">Edit</button>
+                                            <button v-if="p.application_status == 'New Learner'" class="btn btn-danger btn-xs" @click="removeProgram(p.id)">Delete</button>
                                             <i v-else>Not Applicable</i>
                                         </td>
                                     </tr >
@@ -313,6 +314,11 @@
                         this.loadingProgram = false;
                         $('#modal-update').modal('hide');
                     }
+                })
+            },
+            removeProgram (id) {
+                this.$inertia.delete(`/deleteUserProgram/${id}`, {
+                    onBefore: () => confirm('Remove this program?')
                 })
             },
             addDepositSlip () {

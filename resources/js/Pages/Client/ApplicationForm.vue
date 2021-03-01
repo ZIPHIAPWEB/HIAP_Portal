@@ -114,7 +114,7 @@
                                     </div> -->
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="">Courses (Can select multiple courses)<i class="text-danger">*</i></label>
+                                            <label for="">Program Track (Can select multiple tracks)<i class="text-danger">*</i></label>
                                             <v-select v-model="form.course_id" label="name" multiple :options="filteredCourse"></v-select>
                                             <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span>
                                         </div>
