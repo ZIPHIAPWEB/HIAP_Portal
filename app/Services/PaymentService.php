@@ -9,7 +9,9 @@ use App\Actions\SendMailNotification;
 use App\Actions\UpdatePayment;
 use App\Client;
 use App\Mail\PaymentUploaded;
+use App\Notifications\NewPaymentUploaded;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Notification;
 
 class PaymentService
 {
@@ -51,6 +53,7 @@ class PaymentService
             'action'    =>  'Upload a new proof of payment.'
         ]);
 
+
         $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
             Client::where('user_id', $data->user()->id)
                 ->with('school')
@@ -73,12 +76,19 @@ class PaymentService
             'action'    =>  'Choose paid by school.'
         ]);
 
-        $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
-            Client::where('user_id', $data->user()->id)
+        Notification::route('mail', 'zner.mergenio@gmail.com')
+            ->notify(new NewPaymentUploaded(
+                Client::where('user_id', $data->user()->id)
                 ->with('school')
                 ->with('onlineProgram')
                 ->first()
-        ));
+            ));
+        // $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
+        //     Client::where('user_id', $data->user()->id)
+        //         ->with('school')
+        //         ->with('onlineProgram')
+        //         ->first()
+        // ));
     }
     
     public function deleteDepositSlip($data, $slipId)

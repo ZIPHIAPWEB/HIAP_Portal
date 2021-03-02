@@ -9,8 +9,10 @@ use App\Actions\SendMailNotification;
 use App\Actions\UpdateClient;
 use App\Client;
 use App\Mail\NewApplicantNotification;
+use App\Notifications\NewApplicantRegistered;
 use App\OnlineProgram;
 use App\School;
+use Illuminate\Support\Facades\Notification;
 
 class ClientApplicationService {
 
@@ -61,14 +63,23 @@ class ClientApplicationService {
             ]);
         }
 
-        (new SendMailNotification)->execute('info@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
-            'first_name'    =>  $client->first_name,
-            'middle_name'   =>  $client->middle_name,
-            'last_name'     =>  $client->last_name,
-            'contact_no'    =>  $client->contact_no,
-            'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
-            'school'        =>  School::where('id', $client->school_id)->first()->name
-        ]));
+        Notification::route('mail', 'zner.mergenio@gmail.com')
+            ->notify(new NewApplicantRegistered([
+                'first_name'    =>  $client->first_name,
+                'middle_name'   =>  $client->middle_name,
+                'last_name'     =>  $client->last_name,
+                'contact_no'    =>  $client->contact_no,
+                'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
+                'school'        =>  School::where('id', $client->school_id)->first()->name
+            ]));
+        // (new SendMailNotification)->execute('info@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
+        //     'first_name'    =>  $client->first_name,
+        //     'middle_name'   =>  $client->middle_name,
+        //     'last_name'     =>  $client->last_name,
+        //     'contact_no'    =>  $client->contact_no,
+        //     'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
+        //     'school'        =>  School::where('id', $client->school_id)->first()->name
+        // ]));
 
         if(isset($client)) {
             return true;
