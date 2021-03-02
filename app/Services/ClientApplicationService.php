@@ -63,7 +63,7 @@ class ClientApplicationService {
             ]);
         }
 
-        Notification::route('mail', 'zner.mergenio@gmail.com')
+        Notification::route('mail', 'info@hospitalityinstituteofamerica.com.ph')
             ->notify(new NewApplicantRegistered([
                 'first_name'    =>  $client->first_name,
                 'middle_name'   =>  $client->middle_name,

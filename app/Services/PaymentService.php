@@ -54,12 +54,13 @@ class PaymentService
         ]);
 
 
-        $this->mail->execute('accounting@hospitalityinstituteofamerica.com.ph', new PaymentUploaded(
-            Client::where('user_id', $data->user()->id)
+        Notification::route('mail', 'accounting@hospitalityinstituteofamerica.com.ph')
+            ->notify(new NewPaymentUploaded(
+                Client::where('user_id', $data->user()->id)
                 ->with('school')
                 ->with('onlineProgram')
                 ->first()
-        ));
+            ));
     }
 
     public function payBySchool($data)
@@ -76,7 +77,7 @@ class PaymentService
             'action'    =>  'Choose paid by school.'
         ]);
 
-        Notification::route('mail', 'zner.mergenio@gmail.com')
+        Notification::route('mail', 'accounting@hospitalityinstituteofamerica.com.ph')
             ->notify(new NewPaymentUploaded(
                 Client::where('user_id', $data->user()->id)
                 ->with('school')
