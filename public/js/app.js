@@ -4414,26 +4414,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AuthLayout: _Layouts_AuthLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ['errors', 'flash'],
   data: function data() {
     return {
       form: {
         email: ''
-      }
+      },
+      isLoading: false,
+      timeout: null,
+      countdown: 0
     };
+  },
+  watch: {
+    flash: function flash(value) {
+      toastr.info(value.message);
+    }
   },
   computed: {
     hasEmailError: function hasEmailError() {
-      return this.$page.errors.email ? 'form-control is-invalid' : 'form-control';
+      return this.errors.email ? 'form-control is-invalid' : 'form-control';
     }
   },
   methods: {
     submitLinkRequest: function submitLinkRequest() {
-      this.$inertia.post('/password/email', this.form);
+      var _this = this;
+
+      this.$inertia.post('/password/email', this.form, {
+        onBefore: function onBefore() {
+          _this.isLoading = true;
+        },
+        onSuccess: function onSuccess() {
+          _this.isLoading = false;
+          _this.countdown = 20;
+
+          _this.countdownHandler();
+        },
+        onError: function onError() {
+          _this.isLoading = false;
+        }
+      });
+    },
+    countdownHandler: function countdownHandler() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        if (_this2.countdown > 0) {
+          _this2.countdown -= 1;
+
+          _this2.countdownHandler();
+        }
+      }, 1000);
     }
   }
 });
@@ -14260,6 +14298,12 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
+        _vm.isLoading
+          ? _c("div", { staticClass: "overlay" }, [
+              _c("i", { staticClass: "fas fa-spinner fa-2x fa-pulse" })
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "card-header border-0 text-center pt-4" }, [
           _c("img", {
             staticStyle: { width: "120px", cursor: "pointer" },
@@ -14319,7 +14363,7 @@ var render = function() {
                       staticClass: "error invalid-feedback",
                       staticStyle: { display: "block" }
                     },
-                    [_vm._v(_vm._s(_vm.$page.errors.email))]
+                    [_vm._v(_vm._s(_vm.errors.email))]
                   )
                 ]),
                 _vm._v(" "),
@@ -14328,9 +14372,17 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-primary btn-block",
-                      attrs: { type: "submit" }
+                      attrs: { disabled: _vm.countdown !== 0, type: "submit" }
                     },
-                    [_vm._v("Submit Request")]
+                    [
+                      _vm._v(
+                        _vm._s(
+                          _vm.countdown > 0
+                            ? "Cooldown in " + _vm.countdown + "s"
+                            : "Submit Request"
+                        )
+                      )
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -14385,9 +14437,7 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body login-card-body" }, [
           _c("p", { staticClass: "login-box-msg" }, [
-            _vm._v(
-              "Please input your e-mail to where we send you a password verification."
-            )
+            _vm._v("Please input your e-mail and desire password.")
           ]),
           _vm._v(" "),
           _c(

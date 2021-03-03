@@ -7,7 +7,7 @@
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">Please input your e-mail to where we send you a password verification.</p>
+                    <p class="login-box-msg">Please input your e-mail and desire password.</p>
 
                     <form @submit.prevent="changePassword">
                         <div class="row">
