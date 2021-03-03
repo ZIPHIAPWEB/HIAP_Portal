@@ -41,26 +41,30 @@ class ClientController extends Controller
 
     public function showDashboard(Request $request)
     {
-        return Inertia::render('Client/Dashboard', [
-            'client'             =>  Client::where('user_id', $request->user()->id)
-                ->with('user')
-                ->with('school')
-                ->first(),
-            'schools'           =>  School::orderBy('name', 'desc')->get(),
-            'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
-            'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
-                return [
-                    'id'            =>  $payment->id,
-                    'purpose'       =>  $payment->purpose,
-                    'isVerified'    =>  $payment->isVerified,
-                    'created_at'    =>  $payment->created_at->toDayDateTimeString()
-                ];
-            }),
-            'userPrograms'      =>  UserProgram::where('user_id', $request->user()->id)
-                ->with('program')
-                ->with('course')
-                ->get()
-        ]);
+        if ($request->user()->isFilled == true) {
+            return Inertia::render('Client/Dashboard', [
+                'client'             =>  Client::where('user_id', $request->user()->id)
+                    ->with('user')
+                    ->with('school')
+                    ->first(),
+                'schools'           =>  School::orderBy('name', 'desc')->get(),
+                'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
+                'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
+                    return [
+                        'id'            =>  $payment->id,
+                        'purpose'       =>  $payment->purpose,
+                        'isVerified'    =>  $payment->isVerified,
+                        'created_at'    =>  $payment->created_at->toDayDateTimeString()
+                    ];
+                }),
+                'userPrograms'      =>  UserProgram::where('user_id', $request->user()->id)
+                    ->with('program')
+                    ->with('course')
+                    ->get()
+            ]);
+        } else {
+            return redirect()->route('cl.application');
+        }
     }
 
     public function showClientRequirements($programId)
