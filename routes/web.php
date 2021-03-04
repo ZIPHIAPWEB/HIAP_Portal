@@ -186,5 +186,5 @@ Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
 Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::get('/test', function () {
-    return Hash::make('WestlieM');
+    return Hash::make('defaultrocks500!');
 });

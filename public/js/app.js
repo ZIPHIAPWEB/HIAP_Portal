@@ -5709,6 +5709,9 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('purpose', this.payment.purpose);
       formData.append('file', this.payment.file);
       this.$inertia.post('/addDepositSlip', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
         onSuccess: function onSuccess() {
           _this4.isUploading = false;
           $('#modal-payment').modal('hide');
