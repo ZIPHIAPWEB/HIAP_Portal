@@ -4886,6 +4886,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4893,18 +4894,44 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      loading: false
+      loading: false,
+      countdown: 0
     };
+  },
+  created: function created() {
+    this.countdown = 20;
+    this.countdownHandler();
   },
   methods: {
     resend: function resend() {
       var _this = this;
 
       this.loading = true;
-      this.$inertia.post('/email/resend').then(function (response) {
-        _this.loading = false;
-        console.log(response);
+      this.$inertia.post('/email/resend', {}, {
+        onSuccess: function onSuccess() {
+          _this.loading = false;
+          _this.countdown = 20;
+
+          _this.countdownHandler();
+
+          toastr.info('Verification email has been sent.');
+        },
+        onError: function onError() {
+          _this.loading = false;
+          toastr.error('Something went wrong.');
+        }
       });
+    },
+    countdownHandler: function countdownHandler() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        if (_this2.countdown > 0) {
+          _this2.countdown -= 1;
+
+          _this2.countdownHandler();
+        }
+      }, 1000);
     }
   }
 });
@@ -15184,17 +15211,32 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("p", [
-              _vm._v(
-                "We send you a verification on your email. Please verify to activate your account."
-              )
+              _vm._v("We send you a verification on your email. Please "),
+              _c("b", [_vm._v("verify")]),
+              _vm._v(" to activate your account.")
             ]),
             _vm._v(" "),
             _c("p", [
-              _vm._v("If you didn't get an email. "),
-              _c("a", { attrs: { href: "#" }, on: { click: _vm.resend } }, [
-                _vm._v("Resend email")
-              ])
-            ])
+              _vm._v("If you didn't get an email, click the button below.")
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-block",
+                attrs: { disabled: _vm.countdown > 0 },
+                on: { click: _vm.resend }
+              },
+              [
+                _vm._v(
+                  _vm._s(
+                    _vm.countdown > 0
+                      ? "Resend after " + _vm.countdown + "s"
+                      : "Resend verification email."
+                  )
+                )
+              ]
+            )
           ])
         ])
       ])
