@@ -55,22 +55,24 @@ class UserProgramService
             'user_id'   =>  $data->user()->id,
             'action'    =>  'Enrolled ' . $count . ' course(s).'
         ]);
+    }
 
-        // if($this->createUserProgram->execute($data)) {
-        //     $client = Client::where('user_id', $data->user()->id)->first();
+    public function addUserProgramOnSuperadmin($data)
+    {
+        $this->createUserProgram->execute([
+            'user_id'           =>  $data->user_id,
+            'program_id'        =>  $data->course_id,
+            'course_id'         =>  $data->program_id,
+            'start_date'        =>  $data->start_date,
+            'end_date'          =>  $data->end_date,
+            'hours_needed'      =>  $data->hours_needed,
+            'application_status'=>  $data->application_status
+        ]);
 
-        //     $this->sendMailNotification->execute('staff@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
-        //         'first_name'    => $client->first_name,
-        //         'middle_name'   => $client->middle_name,
-        //         'last_name'     => $client->last_name,
-        //         'contact_no'    => $client->contact_no,
-        //         'program'       => ''
-        //     ]));
-
-        //     return true;
-        // } else {
-        //     return false;
-        // }
+        $this->createLog->execute([
+            'user_id'   =>  $data->user()->id,
+            'action'    =>  'Added course on user_id ' . $data->user_id . '.'
+        ]);
     }
 
     public function update($data)

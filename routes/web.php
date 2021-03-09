@@ -170,6 +170,7 @@ Route::post('/payBySchool', 'PaymentController@payBySchool');
 Route::delete('/removeDepositSlip/{slipId}', 'PaymentController@removeDepositSlip');
 
 Route::get('/getUserPrograms', 'UserProgramController@getUserProgram');
+Route::post('/addClientUserProgram', 'UserProgramController@superadminAddNewProgram');
 Route::post('/addNewProgram', 'UserProgramController@addNewProgram');
 Route::put('/updateUserProgram', 'UserProgramController@updateUserProgram');
 Route::delete('/deleteUserProgram/{id}', 'UserProgramController@deleteUserProgram');

@@ -7075,11 +7075,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'initials', 'userPrograms', 'payments', 'courses', 'online_programs', 'schools'],
   data: function data() {
     return {
+      toBeAdded: {
+        user_id: this.client.user_id,
+        program_id: '',
+        course_id: '',
+        application_status: '',
+        start_date: '',
+        end_date: '',
+        hours_needed: ''
+      },
       selectedProgram: [],
       loadingProgram: false,
       isEdit: false,
@@ -7090,8 +7152,27 @@ __webpack_require__.r(__webpack_exports__);
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    updateProfileDetails: function updateProfileDetails() {
+    addProgram: function addProgram() {
       var _this = this;
+
+      this.loading = true;
+      this.$inertia.post('/addClientUserProgram', this.toBeAdded, {
+        onBefore: function onBefore() {
+          return confirm('Save this details.');
+        },
+        onSuccess: function onSuccess() {
+          _this.loading = false;
+          $('#modal-added').modal('hide');
+          toastr.success('Program track has been added.');
+        },
+        onError: function onError() {
+          _this.loading = false;
+          toastr.error('An error has occured.');
+        }
+      });
+    },
+    updateProfileDetails: function updateProfileDetails() {
+      var _this2 = this;
 
       this.loading = true;
       this.$inertia.post('/updateClientDetails', this.client, {
@@ -7099,12 +7180,12 @@ __webpack_require__.r(__webpack_exports__);
           return confirm('Update this details?');
         },
         onSuccess: function onSuccess() {
-          _this.isEdit = false;
-          _this.loading = false;
+          _this2.isEdit = false;
+          _this2.loading = false;
         },
         onError: function onError() {
-          _this.isEdit = false;
-          _this.loading = false;
+          _this2.isEdit = false;
+          _this2.loading = false;
           toastr.error('An error has occured.');
         }
       });
@@ -7115,7 +7196,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(data);
     },
     updateUserProgram: function updateUserProgram() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.loadingProgram = true;
       this.$inertia.put('/updateUserProgram', this.selectedProgram, {
@@ -7123,7 +7204,7 @@ __webpack_require__.r(__webpack_exports__);
           return confirm('Update this program?');
         },
         onSuccess: function onSuccess() {
-          _this2.loadingProgram = false;
+          _this3.loadingProgram = false;
           $('#modal-default').modal('hide');
           toastr.info('Selected program updated.');
         }
@@ -19896,11 +19977,32 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header bg-info" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v("Enrolled Programs")
-              ])
-            ]),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "card-header bg-info d-flex justify-content-between"
+              },
+              [
+                _c("h5", { staticClass: "m-0 flex-fill" }, [
+                  _vm._v("Enrolled Programs")
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-xs",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#modal-added"
+                      }
+                    },
+                    [_vm._v("Add Program")]
+                  )
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
               _c(
@@ -20134,6 +20236,313 @@ var render = function() {
         ])
       ])
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade show",
+        attrs: { id: "modal-added", "aria-modal": "true" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-dialog-centered modal-md" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm._v("Add Program")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Program")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.toBeAdded.program_id,
+                          expression: "toBeAdded.program_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-xs",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.toBeAdded,
+                            "program_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.online_programs, function(program) {
+                        return _c(
+                          "option",
+                          { key: program.id, domProps: { value: program.id } },
+                          [_vm._v(_vm._s(program.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Course")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.toBeAdded.course_id,
+                          expression: "toBeAdded.course_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-xs",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.toBeAdded,
+                            "course_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.courses, function(course) {
+                        return _c(
+                          "option",
+                          { key: course.id, domProps: { value: course.id } },
+                          [_vm._v(_vm._s(course.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Application Status")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.toBeAdded.application_status,
+                          expression: "toBeAdded.application_status"
+                        }
+                      ],
+                      staticClass: "form-control form-control-xs",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.toBeAdded,
+                            "application_status",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "New Learner" } }, [
+                        _vm._v("New Learner")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Confirmed Learner" } }, [
+                        _vm._v("Confirmed Learner")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Complete Learner" } }, [
+                        _vm._v("Complete Learner")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Start Date")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.toBeAdded.start_date,
+                        expression: "toBeAdded.start_date"
+                      }
+                    ],
+                    staticClass: "form-control form-control-xs",
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.toBeAdded.start_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.toBeAdded,
+                          "start_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("End Date")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.toBeAdded.end_date,
+                        expression: "toBeAdded.end_date"
+                      }
+                    ],
+                    staticClass: "form-control form-control-xs",
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.toBeAdded.end_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.toBeAdded, "end_date", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("No. of Hours")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.toBeAdded.hours_needed,
+                        expression: "toBeAdded.hours_needed"
+                      }
+                    ],
+                    staticClass: "form-control form-control-xs",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.toBeAdded.hours_needed },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.toBeAdded,
+                          "hours_needed",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.addProgram()
+                      }
+                    }
+                  },
+                  [_vm._v("Add")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c(
       "div",

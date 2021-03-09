@@ -118,8 +118,11 @@
 
                     
                     <div class="card">
-                        <div class="card-header bg-info">
-                            <h5 class="card-title">Enrolled Programs</h5>
+                        <div class="card-header bg-info d-flex justify-content-between">
+                            <h5 class="m-0 flex-fill">Enrolled Programs</h5>
+                            <div>
+                                <button data-toggle="modal" data-target="#modal-added" class="btn btn-primary btn-xs">Add Program</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-hovered table-bordered table-striped table-sm">
@@ -201,60 +204,110 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="modal-default" aria-modal="true">
-                <div class="modal-dialog modal-dialog-centered modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Selected Program</h5>
+        <div class="modal fade show" id="modal-added" aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Program</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Program</label>
+                            <select v-model="toBeAdded.program_id" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option v-for="program in online_programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                            </select>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="">Program</label>
-                                <select v-model="selectedProgram.course_id" name="" id="" class="form-control form-control-xs">
-                                    <option value="">Select</option>
-                                    <option v-for="program in online_programs" :key="program.id" :value="program.id">{{ program.name }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Course</label>
-                                <select v-model="selectedProgram.program_id" name="" id="" class="form-control form-control-xs">
-                                    <option value="">Select</option>
-                                    <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Application Status</label>
-                                <select v-model="selectedProgram.application_status" name="" id="" class="form-control form-control-xs">
-                                    <option value="">Select</option>
-                                    <option value="New Learner">New Learner</option>
-                                    <option value="Confirmed Learner">Confirmed Learner</option>
-                                    <option value="Complete Learner">Complete Learner</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Start Date</label>
-                                <input v-model="selectedProgram.start_date" type="date" class="form-control form-control-xs">
-                            </div>
-                            <div class="form-group">
-                                <label for="">End Date</label>
-                                <input v-model="selectedProgram.end_date" type="date" class="form-control form-control-xs">
-                            </div>
-                            <div class="form-group">
-                                <label for="">No. of Hours</label>
-                                <input v-model="selectedProgram.hours_needed" type="number" class="form-control form-control-xs">
-                            </div>
+                        <div class="form-group">
+                            <label for="">Course</label>
+                            <select v-model="toBeAdded.course_id" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
+                            </select>
                         </div>
-                        <div class="modal-footer">
-                            <button @click="updateUserProgram()" class="btn btn-primary btn-block">Update</button>
+                        <div class="form-group">
+                            <label for="">Application Status</label>
+                            <select v-model="toBeAdded.application_status" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option value="New Learner">New Learner</option>
+                                <option value="Confirmed Learner">Confirmed Learner</option>
+                                <option value="Complete Learner">Complete Learner</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Start Date</label>
+                            <input v-model="toBeAdded.start_date" type="date" class="form-control form-control-xs">
+                        </div>
+                        <div class="form-group">
+                            <label for="">End Date</label>
+                            <input v-model="toBeAdded.end_date" type="date" class="form-control form-control-xs">
+                        </div>
+                        <div class="form-group">
+                            <label for="">No. of Hours</label>
+                            <input v-model="toBeAdded.hours_needed" type="number" class="form-control form-control-xs">
                         </div>
                     </div>
-                <!-- /.modal-content -->
+                    <div class="modal-footer">
+                        <button @click="addProgram()" class="btn btn-primary btn-block">Add</button>
+                    </div>
                 </div>
-                <!-- /.modal-dialog -->
             </div>
+        </div>
+        <div class="modal fade show" id="modal-default" aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Selected Program</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Program</label>
+                            <select v-model="selectedProgram.course_id" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option v-for="program in online_programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Course</label>
+                            <select v-model="selectedProgram.program_id" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Application Status</label>
+                            <select v-model="selectedProgram.application_status" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option value="New Learner">New Learner</option>
+                                <option value="Confirmed Learner">Confirmed Learner</option>
+                                <option value="Complete Learner">Complete Learner</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Start Date</label>
+                            <input v-model="selectedProgram.start_date" type="date" class="form-control form-control-xs">
+                        </div>
+                        <div class="form-group">
+                            <label for="">End Date</label>
+                            <input v-model="selectedProgram.end_date" type="date" class="form-control form-control-xs">
+                        </div>
+                        <div class="form-group">
+                            <label for="">No. of Hours</label>
+                            <input v-model="selectedProgram.hours_needed" type="number" class="form-control form-control-xs">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button @click="updateUserProgram()" class="btn btn-primary btn-block">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </superadmin-layout>
 </template>
 
@@ -272,6 +325,15 @@
         ],
         data () {
             return {
+                toBeAdded: {
+                    user_id: this.client.user_id,
+                    program_id: '',
+                    course_id: '',
+                    application_status: '',
+                    start_date: '',
+                    end_date: '',
+                    hours_needed: ''
+                },
                 selectedProgram: [],
                 loadingProgram: false,
                 isEdit: false,
@@ -282,6 +344,21 @@
             SuperadminLayout
         },
         methods: {
+            addProgram () {
+                this.loading = true;
+                this.$inertia.post('/addClientUserProgram', this.toBeAdded, {
+                    onBefore: () => confirm('Save this details.'),
+                    onSuccess: () => {
+                        this.loading = false;
+                        $('#modal-added').modal('hide');
+                        toastr.success('Program track has been added.');
+                    },
+                    onError: () => {
+                        this.loading = false;
+                        toastr.error('An error has occured.')
+                    }
+                })
+            },
             updateProfileDetails () {
                 this.loading = true;
                 this.$inertia.post('/updateClientDetails', this.client, {

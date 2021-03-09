@@ -19,7 +19,17 @@ class UserProgramController extends Controller
     {
         $this->userProgramService->saveUserProgram($request);
 
-        return redirect()->back()
+        return redirect()
+            ->back()
+            ->with('message', 'New course added.');
+    }
+
+    public function superadminAddNewProgram(Request $request)
+    {
+        $this->userProgramService->addUserProgramOnSuperadmin($request);
+
+        return redirect()
+            ->back()
             ->with('message', 'New course added.');
     }
 
@@ -27,7 +37,8 @@ class UserProgramController extends Controller
     {
         $this->userProgramService->update($request);
 
-        return redirect()->back()
+        return redirect()
+            ->back()
             ->with('message', 'Selected Course Updated.');
     }
 
@@ -42,9 +53,9 @@ class UserProgramController extends Controller
     {
         $this->userProgramService->updateStatus($request, $id);
 
-        return redirect()->back()->with([
-            'message'   =>  'Application Status Updated.'
-        ]);
+        return redirect()
+            ->back()
+            ->with('message', 'Application Status Updated.');
     }
 
     public function deleteUserProgram(Request $request, $id)
