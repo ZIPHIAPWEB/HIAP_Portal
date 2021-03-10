@@ -63,7 +63,7 @@ class ClientApplicationService {
             ]);
         }
 
-        Notification::route('mail', 'info@hospitalityinstituteofamerica.com.ph')
+        Notification::route('mail', 'hiapinstitute.enrollment@gmail.com')
             ->notify(new NewApplicantRegistered([
                 'first_name'    =>  $client->first_name,
                 'middle_name'   =>  $client->middle_name,

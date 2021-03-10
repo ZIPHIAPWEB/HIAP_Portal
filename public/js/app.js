@@ -7193,7 +7193,6 @@ __webpack_require__.r(__webpack_exports__);
     editProgram: function editProgram(data) {
       this.selectedProgram = data;
       $('#modal-default').modal('show');
-      console.log(data);
     },
     updateUserProgram: function updateUserProgram() {
       var _this3 = this;
@@ -7397,6 +7396,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -7496,58 +7557,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {
-      chartConfig: {
-        labels: [],
-        datasets: [{
-          data: [10],
-          backgroundColor: '#3498db',
-          borderColor: 'rgba(136,136,136,0.5)',
-          label: "2013"
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        title: {
-          display: true,
-          text: 'Chart.js Line Chart'
-        },
-        tooltips: {
-          mode: 'index',
-          intersect: false
-        },
-        hover: {
-          mode: 'nearest',
-          intersect: true
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            categoryPercentage: 0.5,
-            scaleLabel: {
-              display: true,
-              labelString: 'Month'
-            }
-          }],
-          yAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'Value'
-            }
-          }]
-        }
-      }
-    };
   }
 });
 
@@ -13288,7 +13301,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "../widgets.html" } }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/sa/dashboard" } }, [
         _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
         _vm._v(" "),
         _c("p", [_vm._v("\r\n                Dashboard\r\n                ")])
@@ -21058,6 +21071,116 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("superadmin-layout", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-info elevation-1" }, [
+            _c("i", { staticClass: "fas fa-users" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [
+              _vm._v(
+                "\n                        Total Registers\n                    "
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.clients.length) +
+                  "\n                    "
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-success elevation-1" }, [
+            _c("i", { staticClass: "fas fa-users" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [
+              _vm._v(
+                "\n                        Is Verfied\n                    "
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(
+                    _vm.clients.filter(function(e) {
+                      return e.email_verified_at != ""
+                    }).length
+                  ) +
+                  "\n                    "
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-danger elevation-1" }, [
+            _c("i", { staticClass: "fas fa-users" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [
+              _vm._v(
+                "\n                        Not Verified\n                    "
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(
+                    _vm.clients.filter(function(e) {
+                      return e.email_verified_at == ""
+                    }).length
+                  ) +
+                  "\n                    "
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-warning elevation-1" }, [
+            _c("i", { staticClass: "fas fa-users" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [
+              _vm._v(
+                "\n                        Is Filled\n                    "
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(
+                    _vm.clients.filter(function(e) {
+                      return e.isFilled == true
+                    }).length
+                  ) +
+                  "\n                    "
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header d-flex justify-content-between" }, [
         _c("h5", { staticClass: "m-0 card-title flex-grow-1" }, [
@@ -21265,21 +21388,9 @@ var render = function() {
   return _c("superadmin-layout", [
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "card" }, [
-            _c(
-              "div",
-              { staticClass: "card-body" },
-              [
-                _c("my-bar-chart", {
-                  attrs: {
-                    "bar-data": _vm.chartConfig,
-                    "chart-option": _vm.options
-                  }
-                })
-              ],
-              1
-            )
+            _c("div", { staticClass: "card-body" })
           ])
         ])
       ])

@@ -77,7 +77,7 @@ class PaymentService
             'action'    =>  'Choose paid by school.'
         ]);
 
-        Notification::route('mail', 'accounting@hospitalityinstituteofamerica.com.ph')
+        Notification::route('mail', 'zner.mergenio@gmail.com')
             ->notify(new NewPaymentUploaded(
                 Client::where('user_id', $data->user()->id)
                 ->with('school')

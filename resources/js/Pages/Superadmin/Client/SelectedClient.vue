@@ -377,7 +377,6 @@
             editProgram(data) {
                 this.selectedProgram = data;
                 $('#modal-default').modal('show');
-                console.log(data)
             },
             updateUserProgram()
             {

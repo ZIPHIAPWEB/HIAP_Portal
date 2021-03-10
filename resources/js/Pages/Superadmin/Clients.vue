@@ -1,6 +1,68 @@
 
 <template>
     <superadmin-layout>
+        <div class="row">
+            <div class="col-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-info elevation-1">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">
+                            Total Registers
+                        </span>
+                        <span class="info-box-number">
+                            {{ clients.length }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">
+                            Is Verfied
+                        </span>
+                        <span class="info-box-number">
+                            {{ clients.filter(e => e.email_verified_at != '').length }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-danger elevation-1">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">
+                            Not Verified
+                        </span>
+                        <span class="info-box-number">
+                            {{ clients.filter(e => e.email_verified_at == '').length }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-warning elevation-1">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">
+                            Is Filled
+                        </span>
+                        <span class="info-box-number">
+                            {{ clients.filter(e => e.isFilled == true).length }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
