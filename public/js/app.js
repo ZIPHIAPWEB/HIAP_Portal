@@ -21114,7 +21114,7 @@ var render = function() {
                 "\n                        " +
                   _vm._s(
                     _vm.clients.filter(function(e) {
-                      return e.email_verified_at != ""
+                      return e.email_verified_at !== null
                     }).length
                   ) +
                   "\n                    "
@@ -21142,7 +21142,7 @@ var render = function() {
                 "\n                        " +
                   _vm._s(
                     _vm.clients.filter(function(e) {
-                      return e.email_verified_at == ""
+                      return e.email_verified_at === null
                     }).length
                   ) +
                   "\n                    "

@@ -27,7 +27,7 @@
                             Is Verfied
                         </span>
                         <span class="info-box-number">
-                            {{ clients.filter(e => e.email_verified_at != '').length }}
+                            {{ clients.filter(e => e.email_verified_at !== null).length }}
                         </span>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             Not Verified
                         </span>
                         <span class="info-box-number">
-                            {{ clients.filter(e => e.email_verified_at == '').length }}
+                            {{ clients.filter(e => e.email_verified_at === null).length }}
                         </span>
                     </div>
                 </div>
