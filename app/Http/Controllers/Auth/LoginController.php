@@ -96,7 +96,7 @@ class LoginController extends Controller
             break;
 
             case 'superadministrator':
-                return redirect()->route('sa.dashboard');
+                return redirect()->route('sa.clients');
             break;
 
             case 'accounting':

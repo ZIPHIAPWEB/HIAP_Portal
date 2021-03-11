@@ -13045,8 +13045,6 @@ var render = function() {
                 }
               },
               [
-                _vm._m(3),
-                _vm._v(" "),
                 _c(
                   "li",
                   { staticClass: "nav-item" },
@@ -13228,7 +13226,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "content-wrapper" }, [
-      _vm._m(4),
+      _vm._m(3),
       _vm._v(" "),
       _c(
         "section",
@@ -13238,7 +13236,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _vm._m(4),
     _vm._v(" "),
     _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
   ])
@@ -13293,18 +13291,6 @@ var staticRenderFns = [
         _c("a", { staticClass: "d-block text-bold", attrs: { href: "#" } }, [
           _vm._v("Superadministrator")
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/sa/dashboard" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("\r\n                Dashboard\r\n                ")])
       ])
     ])
   },
