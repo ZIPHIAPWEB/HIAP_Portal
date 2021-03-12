@@ -1,6 +1,11 @@
 
 <template>
     <moderator-layout>
+        <div class="row">
+            <div class="col-3">
+                {{ Date.now() }}
+            </div>
+        </div>
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
