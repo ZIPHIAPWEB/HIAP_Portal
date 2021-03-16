@@ -15,6 +15,7 @@ use App\User;
 use App\UserProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -32,11 +33,12 @@ class ModeratorController extends Controller
         return Inertia::render('Moderator/Dashboard', [
             'programs'      =>  Program::orderBy('name', 'asc')->get(),
             'clients'       =>  UserProgram::orderBy('id', 'asc')->with('program')->get(),
-            'schools'        =>  School::orderBy('name', 'desc')
-                ->with(['clients' => function($query) {
-                    return $query->with('userProgram');
-                }])
-                ->get()
+            'schools'       =>  School::orderBy('name', 'asc')
+                                    ->with(['clients' => function($query) {
+                                        $query->with('userProgram');
+                                    }])
+                                    ->get()
+
         ]);
     }
 

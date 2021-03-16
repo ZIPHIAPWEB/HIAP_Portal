@@ -6333,6 +6333,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['programs', 'clients', 'schools'],
@@ -6344,61 +6350,22 @@ __webpack_require__.r(__webpack_exports__);
       filterByProgram: 'All'
     };
   },
-  computed: {
-    allClients: function allClients() {
-      return this.clients.length;
+  methods: {
+    statusCounter: function statusCounter($data, $filterBy) {
+      var temp = 0;
+      $data.forEach(function (e) {
+        temp += e.user_program.filter(function (e) {
+          return e.application_status == $filterBy;
+        }).length;
+      });
+      return temp;
     },
-    newApplicant: function newApplicant() {
-      var _this = this;
-
-      return this.clients.filter(function (e) {
-        if (_this.filterByProgram == 'All') {
-          return e;
-        } else {
-          return e.program_id == _this.filterByProgram;
-        }
-      }).filter(function (e) {
-        return e.application_status == 'New Learner';
-      }).length;
-    },
-    requirementSubmitted: function requirementSubmitted() {
-      var _this2 = this;
-
-      return this.clients.filter(function (e) {
-        if (_this2.filterByProgram == 'All') {
-          return e;
-        } else {
-          return e.program_id == _this2.filterByProgram;
-        }
-      }).filter(function (e) {
-        return e.application_status == 'Confirmed Learner';
-      }).length;
-    },
-    applicationProcessing: function applicationProcessing() {
-      var _this3 = this;
-
-      return this.clients.filter(function (e) {
-        if (_this3.filterByProgram == 'All') {
-          return e;
-        } else {
-          return e.program_id == _this3.filterByProgram;
-        }
-      }).filter(function (e) {
-        return e.application_status == 'On-going Learner';
-      }).length;
-    },
-    programCompleted: function programCompleted() {
-      var _this4 = this;
-
-      return this.clients.filter(function (e) {
-        if (_this4.filterByProgram == 'All') {
-          return e;
-        } else {
-          return e.program_id == _this4.filterByProgram;
-        }
-      }).filter(function (e) {
-        return e.application_status == 'Program Completed';
-      }).length;
+    totalStudents: function totalStudents($data) {
+      var temp = 0;
+      $data.forEach(function (e) {
+        temp += e.user_program.length;
+      });
+      return temp;
     }
   }
 });
@@ -18492,9 +18459,11 @@ var render = function() {
             _c("tr", { staticClass: "text-center" }, [
               _c("th", { staticClass: "text-left" }, [_vm._v("School")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Students Newly Enrolled")]),
+              _c("th", [_vm._v("Newly Enrolled in Program Track")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Students Complete")])
+              _c("th", [_vm._v("Confirmed Enrollees in Program Track")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Completed Enrollees in Program Track")])
             ])
           ]),
           _vm._v(" "),
@@ -18517,7 +18486,15 @@ var render = function() {
                           staticClass: "progress-bar bg-primary",
                           staticStyle: { width: "100%" }
                         },
-                        [_vm._v("10/" + _vm._s(_vm.clients.length))]
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.statusCounter(school.clients, "New Learner")
+                            ) +
+                              "/" +
+                              _vm._s(_vm.totalStudents(school.clients))
+                          )
+                        ]
                       )
                     ])
                   ]),
@@ -18533,15 +18510,37 @@ var render = function() {
                         [
                           _vm._v(
                             _vm._s(
-                              school.clients.filter(function(e) {
-                                return (
-                                  e.user_program.application_status ==
-                                  "Complete Learner"
-                                )
-                              })
+                              _vm.statusCounter(
+                                school.clients,
+                                "Confirmed Learner"
+                              )
                             ) +
                               "/" +
-                              _vm._s(school.clients.length)
+                              _vm._s(_vm.totalStudents(school.clients))
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "progress-bar bg-info",
+                          staticStyle: { width: "100%" }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.statusCounter(
+                                school.clients,
+                                "Complete Learner"
+                              )
+                            ) +
+                              "/" +
+                              _vm._s(_vm.totalStudents(school.clients))
                           )
                         ]
                       )

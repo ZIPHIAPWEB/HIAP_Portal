@@ -9,8 +9,9 @@
                     <thead>
                         <tr class="text-center">
                             <th class="text-left">School</th>
-                            <th>Students Newly Enrolled</th>
-                            <th>Students Complete</th>
+                            <th>Newly Enrolled in Program Track</th>
+                            <th>Confirmed Enrollees in Program Track</th>
+                            <th>Completed Enrollees in Program Track</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,12 +19,17 @@
                             <td class="text-left">{{ school.name }}</td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-primary" style="width: 100%">10/{{ clients.length }}</div>
+                                    <div class="progress-bar bg-primary" style="width: 100%">{{ statusCounter(school.clients, 'New Learner') }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" style="width: 100%">{{ school.clients.filter(e => e.user_program.application_status == 'Complete Learner') }}/{{ school.clients.length }}</div>
+                                    <div class="progress-bar bg-success" style="width: 100%">{{ statusCounter(school.clients, 'Confirmed Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" style="width: 100%">{{ statusCounter(school.clients, 'Complete Learner') }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                         </tr>
@@ -46,53 +52,22 @@
                 filterByProgram: 'All'
             }
         },
-        computed: {
-            allClients () {
-                return this.clients.length;
+        methods: {
+            statusCounter($data, $filterBy) {
+                let temp = 0;
+                $data.forEach(e => {
+                    temp += e.user_program.filter(e => e.application_status == $filterBy).length;
+                });
+
+                return temp;
             },
-            newApplicant () {
-                return this.clients.filter(e => {
-                    if (this.filterByProgram == 'All') {
-                        return e;
-                    } else {
-                        return e.program_id == this.filterByProgram;
-                    }
-                }).filter(e => {
-                    return e.application_status == 'New Learner';
-                }).length;
-            },
-            requirementSubmitted () {
-                return this.clients.filter(e => {
-                    if (this.filterByProgram == 'All') {
-                        return e;
-                    } else {
-                        return e.program_id == this.filterByProgram;
-                    }
-                }).filter(e => {
-                    return e.application_status == 'Confirmed Learner';
-                }).length;
-            },
-            applicationProcessing () {
-                return this.clients.filter(e => {
-                    if (this.filterByProgram == 'All') {
-                        return e;
-                    } else {
-                        return e.program_id == this.filterByProgram;
-                    }
-                }).filter(e => {
-                    return e.application_status == 'On-going Learner';
-                }).length;
-            },
-            programCompleted () {
-                return this.clients.filter(e => {
-                    if (this.filterByProgram == 'All') {
-                        return e;
-                    } else {
-                        return e.program_id == this.filterByProgram;
-                    }
-                }).filter(e => {
-                    return e.application_status == 'Program Completed';
-                }).length;
+            totalStudents($data) {
+                let temp = 0;
+                $data.forEach(e => {
+                    temp += e.user_program.length;
+                });
+
+                return temp;
             }
         }
     }
