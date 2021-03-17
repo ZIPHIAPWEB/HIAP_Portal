@@ -125,14 +125,15 @@
         methods: {
             register () {
                 this.loading = true;
-                this.$inertia.post('/register', this.form)
-                    .then((response) => {
-                        this.loading = false;
-                        console.log(response);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
+                this.$inertia.post('/register', this.form, {
+                  onSuccess : () => {
+                    this.loading = false;
+                    console.log(response);
+                  },
+                  onError : () => {
+                    this.loading = false;
+                  }
+                })
             }
         }
     }

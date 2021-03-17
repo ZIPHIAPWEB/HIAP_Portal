@@ -4691,11 +4691,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      this.$inertia.post('/register', this.form).then(function (response) {
-        _this.loading = false;
-        console.log(response);
-      })["catch"](function (error) {
-        console.log(error);
+      this.$inertia.post('/register', this.form, {
+        onSuccess: function onSuccess() {
+          _this.loading = false;
+          console.log(response);
+        },
+        onError: function onError() {
+          _this.loading = false;
+        }
       });
     }
   }
@@ -18484,7 +18487,12 @@ var render = function() {
                         "div",
                         {
                           staticClass: "progress-bar bg-primary",
-                          staticStyle: { width: "100%" }
+                          style:
+                            "width: " +
+                            (_vm.statusCounter(school.clients, "New Learner") /
+                              _vm.totalStudents(school.clients)) *
+                              100 +
+                            "%;"
                         },
                         [
                           _vm._v(
@@ -18505,7 +18513,15 @@ var render = function() {
                         "div",
                         {
                           staticClass: "progress-bar bg-success",
-                          staticStyle: { width: "100%" }
+                          style:
+                            "width: " +
+                            (_vm.statusCounter(
+                              school.clients,
+                              "Confirmed Learner"
+                            ) /
+                              _vm.totalStudents(school.clients)) *
+                              100 +
+                            "%;"
                         },
                         [
                           _vm._v(
@@ -18529,7 +18545,15 @@ var render = function() {
                         "div",
                         {
                           staticClass: "progress-bar bg-info",
-                          staticStyle: { width: "100%" }
+                          style:
+                            "width: " +
+                            (_vm.statusCounter(
+                              school.clients,
+                              "Complete Learner"
+                            ) /
+                              _vm.totalStudents(school.clients)) *
+                              100 +
+                            "%;"
                         },
                         [
                           _vm._v(

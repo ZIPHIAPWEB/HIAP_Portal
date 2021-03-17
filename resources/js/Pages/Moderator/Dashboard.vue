@@ -19,17 +19,17 @@
                             <td class="text-left">{{ school.name }}</td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-primary" style="width: 100%">{{ statusCounter(school.clients, 'New Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                    <div class="progress-bar bg-primary" :style=" `width: ${(statusCounter(school.clients, 'New Learner') / totalStudents(school.clients)) * 100}%;` ">{{ statusCounter(school.clients, 'New Learner') }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" style="width: 100%">{{ statusCounter(school.clients, 'Confirmed Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                    <div class="progress-bar bg-success" :style=" `width: ${(statusCounter(school.clients, 'Confirmed Learner') / totalStudents(school.clients)) * 100}%;` ">{{ statusCounter(school.clients, 'Confirmed Learner') }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-info" style="width: 100%">{{ statusCounter(school.clients, 'Complete Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                    <div class="progress-bar bg-info" :style=" `width: ${(statusCounter(school.clients, 'Complete Learner') / totalStudents(school.clients)) * 100}%;` ">{{ statusCounter(school.clients, 'Complete Learner') }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                         </tr>
