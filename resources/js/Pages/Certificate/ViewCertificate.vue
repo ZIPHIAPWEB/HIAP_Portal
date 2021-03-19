@@ -6,7 +6,7 @@
                 <h1 class="cert-name">{{ cert_details.name }}</h1>
                 <span class="cert-school">{{ cert_details.school }}</span>
                 <span class="cert-track">{{ cert_details.program }}</span>
-                <span class="cert-grade">FINAL GRADE: {{ cert_details.total_grade }} </span>
+                <span class="cert-grade">OVER-ALL GRADE: {{ cert_details.total_grade }} </span>
             </div>
 
             <div class="container-fluid d-block d-md-none">
