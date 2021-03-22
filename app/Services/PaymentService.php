@@ -55,8 +55,6 @@ class PaymentService
 
 
         Notification::route('mail', 'accounting@hospitalityinstituteofamerica.com.ph')
-            ->route('mail', 'hiapinstitute.enrollment@gmail.com')
-            ->route('mail', 'btoring@ziptravel.com.ph')
             ->notify((new NewPaymentUploaded(
                 Client::where('user_id', $data->user()->id)
                 ->with('school')
@@ -80,8 +78,6 @@ class PaymentService
         ]);
 
         Notification::route('mail', 'accounting@hospitalityinstituteofamerica.com.ph')
-            ->route('mail', 'hiapinstitute.enrollment@gmail.com')
-            ->route('mail', 'btoring@ziptravel.com.ph')
             ->notify((new NewPaymentUploaded(
                 Client::where('user_id', $data->user()->id)
                 ->with('school')
