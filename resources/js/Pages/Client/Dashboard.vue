@@ -51,7 +51,7 @@
                         </div>
                         
                         <div class="card-footer">
-                            <i class="text-xs">You can't edit course details anymore once you have tagged as <b>Confirmed Learner</b>.</i>
+                            <i class="text-xs">You can't edit course details anymore once you have tagged as <b class="text-green">Confirmed Learner</b>.</i>
                         </div>
                     </div>
                     <div class="card">

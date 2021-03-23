@@ -16184,6 +16184,8 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
+                                  pattern:
+                                    "(?:(?:http|https):\\/\\/)?(?:www.)?facebook.com\\/(?:(?:\\w)*#!\\/)?(?:pages\\/)?(?:[?\\w\\-]*\\/)?(?:profile.php\\?id=(?=\\d.*))?([\\w\\-]*)?",
                                   placeholder: "https://facebook.com/jane.doe",
                                   required: ""
                                 },
@@ -16717,7 +16719,9 @@ var render = function() {
                   _vm._v(
                     "You can't edit course details anymore once you have tagged as "
                   ),
-                  _c("b", [_vm._v("Confirmed Learner")]),
+                  _c("b", { staticClass: "text-green" }, [
+                    _vm._v("Confirmed Learner")
+                  ]),
                   _vm._v(".")
                 ])
               ])
