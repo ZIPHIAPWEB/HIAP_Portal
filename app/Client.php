@@ -60,4 +60,19 @@ class Client extends Model
     {
         return $this->hasOne('App\OnlineProgram', 'id', 'program_id');
     }
+
+    public function get_new_learners()
+    {
+        return $this->hasMany('App\UserProgram', 'user_id', 'user_id')->where('application_status', 'New Learner');
+    }
+
+    public function get_confirmed_learners()
+    {
+        return $this->hasMany('App\UserProgram', 'user_id', 'user_id')->where('application_status', 'Confirmed Learner');
+    }
+
+    public function get_complete_learners()
+    {
+        return $this->hasMany('App\UserProgram', 'user_id', 'user_id')->where('application_status', 'Complete Learner');
+    }
 }

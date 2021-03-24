@@ -31,11 +31,9 @@ class ModeratorController extends Controller
     public function showDashboard()
     {
         return Inertia::render('Moderator/Dashboard', [
-            'programs'      =>  Program::orderBy('name', 'asc')->get(),
-            'clients'       =>  UserProgram::orderBy('id', 'asc')->with('program')->get(),
             'schools'       =>  School::orderBy('name', 'asc')
                                     ->with(['clients' => function($query) {
-                                        $query->with('userProgram');
+                                        return $query->withCount(['get_new_learners', 'get_confirmed_learners', 'get_complete_learners', 'userProgram']);
                                     }])
                                     ->get()
 

@@ -6354,19 +6354,31 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    statusCounter: function statusCounter($data, $filterBy) {
+    newLearnerCount: function newLearnerCount(data) {
       var temp = 0;
-      $data.forEach(function (e) {
-        temp += e.user_program.filter(function (e) {
-          return e.application_status == $filterBy;
-        }).length;
+      data.forEach(function (e) {
+        temp += e.get_new_learners_count;
+      });
+      return temp;
+    },
+    comfirmedLearnerCount: function comfirmedLearnerCount(data) {
+      var temp = 0;
+      data.forEach(function (e) {
+        temp += e.get_confirmed_learners_count;
+      });
+      return temp;
+    },
+    completeLearnerCount: function completeLearnerCount(data) {
+      var temp = 0;
+      data.forEach(function (e) {
+        temp += e.get_complete_learners_count;
       });
       return temp;
     },
     totalStudents: function totalStudents($data) {
       var temp = 0;
       $data.forEach(function (e) {
-        temp += e.user_program.length;
+        temp += e.user_program_count;
       });
       return temp;
     }
@@ -18492,17 +18504,15 @@ var render = function() {
                         {
                           staticClass: "progress-bar bg-primary",
                           style:
-                            "width: " +
-                            (_vm.statusCounter(school.clients, "New Learner") /
+                            "width:" +
+                            (_vm.newLearnerCount(school.clients) /
                               _vm.totalStudents(school.clients)) *
                               100 +
                             "%;"
                         },
                         [
                           _vm._v(
-                            _vm._s(
-                              _vm.statusCounter(school.clients, "New Learner")
-                            ) +
+                            _vm._s(_vm.newLearnerCount(school.clients)) +
                               "/" +
                               _vm._s(_vm.totalStudents(school.clients))
                           )
@@ -18518,23 +18528,15 @@ var render = function() {
                         {
                           staticClass: "progress-bar bg-success",
                           style:
-                            "width: " +
-                            (_vm.statusCounter(
-                              school.clients,
-                              "Confirmed Learner"
-                            ) /
+                            "width:" +
+                            (_vm.comfirmedLearnerCount(school.clients) /
                               _vm.totalStudents(school.clients)) *
                               100 +
                             "%;"
                         },
                         [
                           _vm._v(
-                            _vm._s(
-                              _vm.statusCounter(
-                                school.clients,
-                                "Confirmed Learner"
-                              )
-                            ) +
+                            _vm._s(_vm.comfirmedLearnerCount(school.clients)) +
                               "/" +
                               _vm._s(_vm.totalStudents(school.clients))
                           )
@@ -18550,23 +18552,15 @@ var render = function() {
                         {
                           staticClass: "progress-bar bg-info",
                           style:
-                            "width: " +
-                            (_vm.statusCounter(
-                              school.clients,
-                              "Complete Learner"
-                            ) /
+                            "width:" +
+                            (_vm.completeLearnerCount(school.clients) /
                               _vm.totalStudents(school.clients)) *
                               100 +
                             "%;"
                         },
                         [
                           _vm._v(
-                            _vm._s(
-                              _vm.statusCounter(
-                                school.clients,
-                                "Complete Learner"
-                              )
-                            ) +
+                            _vm._s(_vm.completeLearnerCount(school.clients)) +
                               "/" +
                               _vm._s(_vm.totalStudents(school.clients))
                           )

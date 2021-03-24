@@ -19,17 +19,17 @@
                             <td class="text-left">{{ school.name }}</td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-primary" :style=" `width: ${(statusCounter(school.clients, 'New Learner') / totalStudents(school.clients)) * 100}%;` ">{{ statusCounter(school.clients, 'New Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                    <div class="progress-bar bg-primary" :style="`width:${(newLearnerCount(school.clients) / totalStudents(school.clients)) * 100}%;`" >{{ newLearnerCount(school.clients) }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" :style=" `width: ${(statusCounter(school.clients, 'Confirmed Learner') / totalStudents(school.clients)) * 100}%;` ">{{ statusCounter(school.clients, 'Confirmed Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                    <div class="progress-bar bg-success" :style="`width:${(comfirmedLearnerCount(school.clients) / totalStudents(school.clients)) * 100}%;`">{{ comfirmedLearnerCount(school.clients) }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-info" :style=" `width: ${(statusCounter(school.clients, 'Complete Learner') / totalStudents(school.clients)) * 100}%;` ">{{ statusCounter(school.clients, 'Complete Learner') }}/{{ totalStudents(school.clients) }}</div>
+                                    <div class="progress-bar bg-info" :style="`width:${(completeLearnerCount(school.clients) / totalStudents(school.clients)) * 100}%;`">{{ completeLearnerCount(school.clients) }}/{{ totalStudents(school.clients) }}</div>
                                 </div>
                             </td>
                         </tr>
@@ -53,18 +53,34 @@
             }
         },
         methods: {
-            statusCounter($data, $filterBy) {
+            newLearnerCount(data) {
                 let temp = 0;
-                $data.forEach(e => {
-                    temp += e.user_program.filter(e => e.application_status == $filterBy).length;
-                });
+                data.forEach(e => {
+                    temp += e.get_new_learners_count;
+                })
+
+                return temp;
+            },
+            comfirmedLearnerCount(data) {
+                let temp = 0;
+                data.forEach(e => {
+                    temp += e.get_confirmed_learners_count;
+                })
+
+                return temp;
+            },
+            completeLearnerCount(data) {
+                let temp = 0;
+                data.forEach(e => {
+                    temp += e.get_complete_learners_count;
+                })
 
                 return temp;
             },
             totalStudents($data) {
                 let temp = 0;
                 $data.forEach(e => {
-                    temp += e.user_program.length;
+                    temp += e.user_program_count;
                 });
 
                 return temp;
