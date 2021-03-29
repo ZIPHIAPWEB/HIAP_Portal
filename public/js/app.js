@@ -21281,7 +21281,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", [
-                        client.client
+                        client.client_count > 0
                           ? _c("span", {
                               staticClass: "fas fa-check text-green"
                             })

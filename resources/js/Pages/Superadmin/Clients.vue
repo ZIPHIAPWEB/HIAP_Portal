@@ -96,7 +96,7 @@
                                 <span v-else class="fas fa-times text-red"></span>
                             </td>
                             <td>
-                                <span v-if="client.client" class="fas fa-check text-green"></span>
+                                <span v-if="client.client_count > 0" class="fas fa-check text-green"></span>
                                 <span v-else class="fas fa-times text-red"></span>
                             </td>
                             <th>{{ client.created_at }}</th>

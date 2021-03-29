@@ -30,12 +30,7 @@ class SuperadminController extends Controller
     {
         return Inertia::render('Superadmin/Clients', [
             'clients'   =>  User::orderBy('email_verified_at', 'asc')
-                ->with(['client'    =>  function($query) {
-                    return $query->with('school')
-                            ->with(['userProgram' => function($query) {
-                                return $query->with('program');
-                            }]);
-                }])
+                ->withCount('client')
                 ->where('role', 'client')
                 ->get()
         ]);
