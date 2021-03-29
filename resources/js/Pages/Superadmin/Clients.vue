@@ -102,7 +102,7 @@
                             <th>{{ client.created_at }}</th>
                             <td>
                                 <button v-if="!client.email_verified_at" @click="verifyNow(client)" class="btn btn-warning btn-xs btn-flat">Verify</button>
-                                <button v-if="client.client" @click="viewClientDetails(client.id)" class="btn btn-success btn-xs btn-flat">View</button>
+                                <button v-if="client.client_count > 0" @click="viewClientDetails(client.id)" class="btn btn-success btn-xs btn-flat">View</button>
                                 <button v-if="client.isFilled == false" @click="setToFilled(client)" class="btn btn-info btn-xs btn-flat">Filled</button>
                                 <button v-if="client.isFilled == true" @click="setToUnfilled(client)" class="btn btn-info btn-xs btn-flat">Unfilled</button>
                                 <button @click="deleteClientDetails(client.id)" class="btn btn-danger btn-xs btn-flat">Delete</button>

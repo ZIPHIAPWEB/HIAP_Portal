@@ -21306,7 +21306,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        client.client
+                        client.client_count > 0
                           ? _c(
                               "button",
                               {
