@@ -186,6 +186,8 @@ Route::delete('/deleteCertificate/{id}', 'CertificateController@deleteCert');
 Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
 Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
+Route::post('/searchClientByEmail', 'SuperadminController@searchClientByEmail');
+
 Route::get('/test', function () {
     return Hash::make('defaultrocks500!');
 });

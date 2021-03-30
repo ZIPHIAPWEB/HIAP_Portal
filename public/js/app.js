@@ -7445,9 +7445,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['clients'],
+  props: ['clients', 'isFilled', 'verified', 'unverified', 'total_clients'],
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -7456,21 +7467,31 @@ __webpack_require__.r(__webpack_exports__);
       filterName: ''
     };
   },
-  computed: {
-    filteredClients: function filteredClients() {
-      var _this = this;
-
-      return this.clients.filter(function (e) {
-        return e.email.toLowerCase().includes(_this.filterName.toLowerCase());
-      });
-    }
-  },
   watch: {
     flash: function flash(value) {
       toastr.info(value.message);
     }
   },
   methods: {
+    searchByEmail: function searchByEmail() {
+      var _this = this;
+
+      if (this.filterName !== '') {
+        var formData = new FormData();
+        formData.append('email', this.filterName);
+        axios.post('/searchClientByEmail', formData).then(function (response) {
+          _this.clients = response.data;
+        });
+      } else {
+        toastr.error('Cannot search empty field.');
+      }
+    },
+    prevPage: function prevPage() {
+      this.$inertia.visit(this.clients.prev_page_url);
+    },
+    nextPage: function nextPage() {
+      this.$inertia.visit(this.clients.next_page_url);
+    },
     verifyNow: function verifyNow(data) {
       this.$inertia.post("/setToVerified/".concat(data.id), {}, {
         onBefore: function onBefore() {
@@ -21106,7 +21127,7 @@ var render = function() {
             _c("span", { staticClass: "info-box-number" }, [
               _vm._v(
                 "\n                        " +
-                  _vm._s(_vm.clients.length) +
+                  _vm._s(_vm.total_clients) +
                   "\n                    "
               )
             ])
@@ -21130,11 +21151,7 @@ var render = function() {
             _c("span", { staticClass: "info-box-number" }, [
               _vm._v(
                 "\n                        " +
-                  _vm._s(
-                    _vm.clients.filter(function(e) {
-                      return e.email_verified_at !== null
-                    }).length
-                  ) +
+                  _vm._s(_vm.verified) +
                   "\n                    "
               )
             ])
@@ -21158,11 +21175,7 @@ var render = function() {
             _c("span", { staticClass: "info-box-number" }, [
               _vm._v(
                 "\n                        " +
-                  _vm._s(
-                    _vm.clients.filter(function(e) {
-                      return e.email_verified_at === null
-                    }).length
-                  ) +
+                  _vm._s(_vm.unverified) +
                   "\n                    "
               )
             ])
@@ -21186,11 +21199,7 @@ var render = function() {
             _c("span", { staticClass: "info-box-number" }, [
               _vm._v(
                 "\n                        " +
-                  _vm._s(
-                    _vm.clients.filter(function(e) {
-                      return e.isFilled == true
-                    }).length
-                  ) +
+                  _vm._s(_vm.isFilled) +
                   "\n                    "
               )
             ])
@@ -21206,27 +21215,47 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filterName,
-                expression: "filterName"
-              }
-            ],
-            staticClass: "form-control form-control-sm mx-auto",
-            attrs: { type: "text", placeholder: "Search by last name" },
-            domProps: { value: _vm.filterName },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c(
+            "div",
+            {
+              staticClass: "input-group input-group-sm",
+              staticStyle: { width: "300px" }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filterName,
+                    expression: "filterName"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Search by email" },
+                domProps: { value: _vm.filterName },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.filterName = $event.target.value
+                  }
                 }
-                _vm.filterName = $event.target.value
-              }
-            }
-          })
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btn-flat",
+                    on: { click: _vm.searchByEmail }
+                  },
+                  [_c("span", { staticClass: "fas fa-search" })]
+                )
+              ])
+            ]
+          )
         ])
       ]),
       _vm._v(" "),
@@ -21250,10 +21279,10 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.filteredClients.length > 0
+          _vm.clients.data.length > 0
             ? _c(
                 "tbody",
-                _vm._l(_vm.filteredClients, function(client) {
+                _vm._l(_vm.clients.data, function(client) {
                   return _c(
                     "tr",
                     { key: client.id, staticClass: "text-xs text-center" },
@@ -21377,6 +21406,36 @@ var render = function() {
                 ])
               ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer p-2" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-xs",
+            attrs: { disabled: !_vm.clients.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.prevPage()
+              }
+            }
+          },
+          [_vm._v("Prev")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-xs",
+            attrs: { disabled: !_vm.clients.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.nextPage()
+              }
+            }
+          },
+          [_vm._v("Next")]
+        )
       ])
     ])
   ])

@@ -11,6 +11,7 @@ use App\School;
 use App\Staff;
 use App\User;
 use App\UserProgram;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -29,10 +30,21 @@ class SuperadminController extends Controller
     public function showClients()
     {
         return Inertia::render('Superadmin/Clients', [
-            'clients'   =>  User::orderBy('email_verified_at', 'asc')
-                ->withCount('client')
-                ->where('role', 'client')
-                ->get()
+            'clients'       =>  User::orderBy('email_verified_at', 'asc')
+                                    ->withCount('client')
+                                    ->where('role', 'client')
+                                    ->paginate(15),
+            'total_clients' =>  User::where('role', 'client')
+                                    ->count(),
+            'unverified'    =>  User::where('role', 'client')
+                                    ->whereNull('email_verified_at')
+                                    ->count(),
+            'verified'      =>  User::where('role', 'client')
+                                    ->whereNotNull('email_verified_at')
+                                    ->count(),
+            'isFilled'      =>  User::where('role', 'client')
+                                    ->where('isFilled', 1)
+                                    ->count()
         ]);
     }
 
@@ -96,5 +108,14 @@ class SuperadminController extends Controller
                 ->with('school')
                 ->get()
         ]);
+    }
+
+    public function searchClientByEmail(Request $request)
+    {
+        return  User::orderBy('email_verified_at', 'asc')
+                    ->withCount('client')
+                    ->where('role', 'client')
+                    ->where('email', $request->email)
+                    ->paginate(15);
     }
 }
