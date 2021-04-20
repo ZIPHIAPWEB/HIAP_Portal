@@ -200,4 +200,4 @@ Route::get('/certClientActual/{userId}', 'CertificateClientController@viewClient
 Route::get('/certDownload', 'CertificateClientController@viewSearchToDownloadCert');
 Route::post('/getSearchedCertificate', 'CertificateClientController@getSearchedCertificate');
 Route::post('/certClientsAddBulk', 'CertificateClientController@saveBulkClients');
-Route::post('/certDownloadActual/{userId}', 'CertificateClientController@downloadClientActualCert');
+Route::get('/certDownloadActual/{userId}', 'CertificateClientController@downloadClientActualCert');

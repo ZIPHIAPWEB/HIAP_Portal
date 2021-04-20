@@ -6906,7 +6906,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     downloadCert: function downloadCert(id) {
-      this.$inertia.post("/certDownloadActual/".concat(id), {}, {
+      this.$inertia.get("/certDownloadActual/".concat(id), {
         onBefore: function onBefore() {
           return confirm('Download this cert?');
         },

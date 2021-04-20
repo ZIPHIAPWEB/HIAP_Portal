@@ -101,7 +101,7 @@
                 })
             },
             downloadCert (id) {
-                this.$inertia.post(`/certDownloadActual/${id}`, {}, {
+                this.$inertia.get(`/certDownloadActual/${id}`, {
                     onBefore: () => confirm('Download this cert?'),
                     onSuccess: () => {
                         toastr.info('Cert Downloaded');
