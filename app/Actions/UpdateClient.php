@@ -7,7 +7,7 @@ use App\Client;
 class UpdateClient
 {
 
-    public function execute(array $where, array $data)
+    public function execute($where,$data)
     {
         $client = Client::where($where);
         $client->update($data);

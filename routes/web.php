@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,7 @@ Route::prefix('staff')->group(function () {
 
 Route::prefix('client')->group(function () {
     Route::get('/application-form', 'ClientController@showApplicationForm')->name('cl.application')->middleware(['verified', 'auth']);
-    Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified', 'auth']);
+    Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified','auth']);
 
     Route::get('/dashboard', 'ClientController@showDashboard')->name('cl.dashboard')->middleware(['verified', 'auth']);
     Route::get('/{programId}/requirements', 'ClientController@showClientRequirements');
@@ -181,6 +182,7 @@ Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
 Route::post('/uploadCertificate', 'CertificateController@uploadCertificates');
 Route::post('/addCertificate', 'CertificateController@addCertificate');
+Route::patch('/updateCertificate', 'CertificateController@updateCertificate');
 Route::delete('/deleteCertificate/{id}', 'CertificateController@deleteCert');  
 
 Route::post('/activateStaff/{userId}', 'StaffController@activateStaff');
@@ -188,6 +190,14 @@ Route::delete('/removeStaff/{userid}', 'StaffController@removeStaff');
 
 Route::post('/searchClientByEmail', 'SuperadminController@searchClientByEmail');
 
-Route::get('/test', function () {
-    return Hash::make('defaultrocks500!');
-});
+Route::get('/certList', 'CertificateEditorController@certList');
+Route::get('/certEditorView/{layoutId}', 'CertificateEditorController@viewEditor');
+Route::get('/certActual/{layoutId}', 'CertificateEditorController@viewActual');
+Route::post('/certChange', 'CertificateEditorController@saveChanges');
+
+Route::get('/certClients', 'CertificateClientController@clientList');
+Route::get('/certClientActual/{userId}', 'CertificateClientController@viewClientActualCert');
+Route::get('/certDownload', 'CertificateClientController@viewSearchToDownloadCert');
+Route::post('/getSearchedCertificate', 'CertificateClientController@getSearchedCertificate');
+Route::post('/certClientsAddBulk', 'CertificateClientController@saveBulkClients');
+Route::post('/certDownloadActual/{userId}', 'CertificateClientController@downloadClientActualCert');

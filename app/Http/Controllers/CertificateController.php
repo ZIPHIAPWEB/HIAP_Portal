@@ -44,13 +44,13 @@ class CertificateController extends Controller
     public function addCertificate(Request $request)
     {
         $request->validate([
-            'cert_id'       =>  'required',
-            'full_name'     =>  'required',
+            'cert_no'       =>  'required',
+            'name'          =>  'required',
             'school'        =>  'required',
             'program'       =>  'required',
-            'gold_medals'   =>  'required',
-            'silver_medals' =>  'required',
-            'bronze_medals' =>  'required',
+            'gold_medal'    =>  'required',
+            'silver_medal'  =>  'required',
+            'bronze_medal'  =>  'required',
             'total_grade'   =>  'required'
         ]);
 
@@ -69,6 +69,24 @@ class CertificateController extends Controller
         $data = array_slice($file, 1);
 
         $this->certificate->addBulkCert($data);
+
+        return redirect()->back();
+    }
+
+    public function updateCertificate(Request $request)
+    {
+        $this->certificate->updateCert($request->validate([
+            'id'            =>  '',
+            'cert_no'       =>  'required',
+            'name'          =>  'required',
+            'school'        =>  'required',
+            'program'       =>  'required',
+            'gold_medal'    =>  'required',
+            'silver_medal'  =>  'required',
+            'bronze_medal'  =>  'required',
+            'total_medal'   =>  'required',
+            'total_grade'   =>  'required'
+        ]));
 
         return redirect()->back();
     }

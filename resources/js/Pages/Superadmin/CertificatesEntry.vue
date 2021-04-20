@@ -16,45 +16,46 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="single">
-                                <form id="cert-form">
+                                <form id="cert-form" @submit.prevent="submitCert">
                                     <div class="form-group">
                                         <label for="">Cert ID</label>
-                                        <input v-model="form.cert_id" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.cert_no" type="text" class="form-control form-control-sm" placeholder="ABCD123456">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Full Name</label>
-                                        <input v-model="form.full_name" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.name" type="text" class="form-control form-control-sm" placeholder="Jane Doe">
                                     </div>
                                     <div class="form-group">
                                         <label for="">School</label>
-                                        <input v-model="form.school" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.school" type="text" class="form-control form-control-sm" placeholder="Sample School">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Program/Track</label>
-                                        <input v-model="form.program" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.program" type="text" class="form-control form-control-sm" placeholder="Sample Program/Track">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Gold Medals</label>
-                                        <input v-model="form.gold_medals" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.gold_medal" type="text" class="form-control form-control-sm" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Silver Medals</label>
-                                        <input v-model="form.silver_medals" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.silver_medal" type="text" class="form-control form-control-sm" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Bronze Medals</label>
-                                        <input v-model="form.bronze_medals" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.bronze_medal" type="text" class="form-control form-control-sm" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Total Grade</label>
-                                        <input v-model="form.total_grade" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.total_grade" type="text" class="form-control form-control-sm" placeholder="100%">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Total Medals</label>
-                                        <input v-model="form.total_medals" type="text" class="form-control form-control-sm">
+                                        <input v-model="form.total_medal" type="text" class="form-control form-control-sm" placeholder="123">
                                     </div>
                                     <div class="form-group">
-                                        <button @click="addCert" class="btn btn-primary btn-sm">Add Cert</button>
+                                        <button v-if="!isEdit" type="submit" class="btn btn-primary btn-sm">Add Cert</button>
+                                        <button v-else type="submit" class="btn btn-success btn-sm">Update Cert</button>
                                     </div>
                                 </form>
                             </div>
@@ -101,8 +102,11 @@
                                     <td class="text-bold">{{ cert.total_grade }}</td>
                                     <td class="text-bold">{{ cert.total_medal }}</td>
                                     <td>
+                                        <button @click="editFile(cert)" class="btn btn-success btn-xs">
+                                            Edit
+                                        </button>
                                         <button @click="deleteFile(cert.id)" class="btn btn-danger btn-xs">
-                                            <span class="fas fa-trash"></span>
+                                            Delete
                                         </button>
                                     </td>
                                 </tr>
@@ -124,17 +128,18 @@
         },
         data () {
             return {
+                isEdit: false,
                 form: {
                     file: '',
-                    cert_id: '',
-                    full_name: '',
+                    cert_no: '',
+                    name: '',
                     school: '',
                     program: '',
-                    gold_medals: '',
-                    silver_medals: '',
-                    bronze_medals: '',
+                    gold_medal: '',
+                    silver_medal: '',
+                    bronze_medal: '',
                     total_grade: '',
-                    total_medals: ''
+                    total_medal: ''
                 }
             }
         },
@@ -147,17 +152,40 @@
                 formData.append('file', this.form.file);
                 this.$inertia.post('/uploadCertificate', formData);
             },
-            addCert () {
-                this.$inertia.post('/addCertificate', this.form, {
-                    onBefore: () => confirm('Add this cert?'),
-                    onSuccess: () => {
-                        document.getElementById('cert-form').reset();
-                        toastr.info('Cert Added');
-                    },
-                    onError: () => {
-                        toastr.error('Error Occurs.');
-                    }
-                })
+            submitCert () {
+                switch(this.isEdit) {
+                    case false:
+                        this.$inertia.post('/addCertificate', this.form, {
+                            onBefore: () => confirm('Add this cert?'),
+                            onSuccess: () => {
+                                this.form = [];
+                                toastr.info('Cert Added');
+                                this.isEdit = false;
+                            },
+                            onError: () => {
+                                toastr.error('Error Occurs.');
+                            }
+                        })
+                        break;
+
+                    case true:
+                        this.$inertia.patch('/updateCertificate', this.form, {
+                            onBefore: () => confirm('Update this cert?'),
+                            onSuccess: () => {
+                                this.form = [];
+                                toastr.info('Cert Updated');
+                                this.isEdit = false;
+                            },
+                            onError: () => {
+                                toastr.error('Error Occurs');
+                            }
+                        })
+                        break;
+                }
+            },
+            editFile(data) {
+                this.isEdit = true;
+                this.form = data;
             },
             deleteFile (id) {
                 let q = confirm('Delete this certificate?');
