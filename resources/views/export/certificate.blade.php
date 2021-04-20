@@ -75,7 +75,7 @@
                 padding: 0;
                 width: 210mm;
                 height: 297mm;
-                background-image: url("{{ '/cert_layout/' . $data->img_path }}") !important;
+                background-image: url("{{ 'cert_layout/' . $data->img_path }}") !important;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;
@@ -89,7 +89,7 @@
             .page {
                 width: 29.7cm;
                 height: 21cm; 
-                background-image: url("/cert_layout/{{ $data->img_path }}") !important;
+                background-image: url("{{ config('app.url') . 'cert_layout/' . $data->img_path }}") !important;
                 background-position: center; 
                 background-repeat: no-repeat;
                 background-size: contain;

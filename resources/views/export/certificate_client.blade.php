@@ -50,7 +50,7 @@
             .page {
                 width: 29.7cm;
                 height: 21cm; 
-                background-image: url("{{ '/cert_layout/' . $data['layout']['img_path'] }}") !important;
+                background-image: url("{{ config('app.url') . 'cert_layout/' . $data['layout']['img_path'] }}") !important;
                 background-position: center; 
                 background-repeat: no-repeat;
                 background-size: contain;
