@@ -38,8 +38,8 @@ class CertificateClientController extends Controller
     {
         $pdf = PDF::loadView('export.certificate_client', ['data' => CertificateClient::where('id', $userId)->first()])
             ->setPaper('a4', 'landscape');
-
-        return $pdf->download('certificate.pdf');
+        // $pdf->save(config('app.url') . 'certificate.pdf');
+        return $pdf->stream('certificate.pdf');
     }
 
     public function saveBulkClients(Request $request)
