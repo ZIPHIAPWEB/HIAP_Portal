@@ -70,8 +70,20 @@
                 text-align: center;
             }
 
+            .a-four {
+                box-sizing: border-box;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+                background-image: url("{{ 'cert_layout/' . $data->img_path }}") !important;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+
             .page {
                 background: white;
+                box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
             }
 
             .page {
@@ -86,6 +98,8 @@
             .container {
                 height: 100%;
                 display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             @media print {
