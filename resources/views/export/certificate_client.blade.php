@@ -15,14 +15,6 @@
                 margin: 0;
                 background: rgb(204,204,204); 
             }
-            
-            .bg {
-                background-image: url("{{ '/cert_layout/' . $data['layout']['img_path'] }}") !important;
-                height: 100%;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-            }
 
             .full-name {
                 position: absolute;
@@ -38,7 +30,7 @@
             .page {
                 width: 29.7cm;
                 height: 21cm; 
-                background-image: url("{{ config('app.url') . 'cert_layout/' . $data['layout']['img_path'] }}") !important;
+                background-image: url("{{ asset('cert_layout/' . $data['layout']['img_path']) }}") !important;
                 background-position: center; 
                 background-repeat: no-repeat;
                 background-size: contain;

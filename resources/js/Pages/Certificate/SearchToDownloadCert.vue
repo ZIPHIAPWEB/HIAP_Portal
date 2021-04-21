@@ -32,6 +32,11 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tbody v-else>
+                        <tr>
+                            <td colspan="4" class="text-center">No Cert Found</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
