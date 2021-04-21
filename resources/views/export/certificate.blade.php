@@ -46,7 +46,7 @@
         <style>
             @font-face {
                 font-family: 'Montserrat';
-                src: url("/assets/fonts/montserrat_500_51d32715a2529ff80180b0dec7eb7073.ttf") format('truetype');
+                src: url("{{ asset('fonts/montserrat_500_51d32715a2529ff80180b0dec7eb7073.ttf') }}") format('truetype');
             }
             
             body, html {
@@ -54,31 +54,12 @@
                 margin: 0;
                 background: rgb(204,204,204); 
             }
-            
-            .bg {
-                background-image: url("{{ '/cert_layout/' . $data->img_path }}") !important;
-                height: 100%;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-            }
 
             .full-name {
                 position: absolute;
                 left: 0;
                 width: 100%;
                 text-align: center;
-            }
-
-            .a-four {
-                box-sizing: border-box;
-                padding: 0;
-                width: 210mm;
-                height: 297mm;
-                background-image: url("{{ 'cert_layout/' . $data->img_path }}") !important;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
             }
 
             .page {
@@ -89,7 +70,7 @@
             .page {
                 width: 29.7cm;
                 height: 21cm; 
-                background-image: url("{{ asset('cert_layout/' . $data->img_path) }}") !important;
+                background-image: url("{{ asset($data->img_path) }}") !important;
                 background-position: center; 
                 background-repeat: no-repeat;
                 background-size: contain;
