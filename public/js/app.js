@@ -5117,13 +5117,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.certs = response.data;
         console.log(response);
       });
-    },
-    downloadCert: function downloadCert(userId) {
-      this.$inertia.get("/certDownloadActual/".concat(userId), {
-        onBefore: function onBefore() {
-          return confirm('Download this certificate?');
-        }
-      });
     }
   }
 });
@@ -16038,13 +16031,12 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _c(
-                          "button",
+                          "a",
                           {
                             staticClass: "btn btn-primary btn-xs",
-                            on: {
-                              click: function($event) {
-                                return _vm.downloadCert(cert.id)
-                              }
+                            attrs: {
+                              href: "/certDownloadActual/" + cert.id,
+                              download: ""
                             }
                           },
                           [_vm._v("Download")]

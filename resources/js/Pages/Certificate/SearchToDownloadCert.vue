@@ -28,7 +28,7 @@
                             <td class="text-left">{{ cert.full_name }}</td>
                             <td>{{ cert.cert_created_at }}</td>
                             <td>
-                                <button @click="downloadCert(cert.id)" class="btn btn-primary btn-xs">Download</button>
+                                <a :href="`/certDownloadActual/${cert.id}`" class="btn btn-primary btn-xs" download>Download</a>
                             </td>
                         </tr>
                     </tbody>
@@ -54,11 +54,6 @@
                         console.log(response);
                     })
             },
-            downloadCert(userId) {
-                this.$inertia.get(`/certDownloadActual/${userId}`, {
-                    onBefore: () => confirm('Download this certificate?')
-                })
-            }
         }
     }
 </script>
