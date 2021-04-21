@@ -103,7 +103,7 @@
             }
 
             @media print {
-                page {
+                .page {
                     width: 29.7cm;
                     height: 21cm;
                 }

@@ -7,7 +7,7 @@
         <style>
             @font-face {
                 font-family: 'Montserrat';
-                src: url("/assets/fonts/montserrat_500_51d32715a2529ff80180b0dec7eb7073.ttf") format('truetype');
+                src: url("{{ asset('fonts/montserrat_500_51d32715a2529ff80180b0dec7eb7073.ttf') }}") format('truetype');
             }
             
             body, html {

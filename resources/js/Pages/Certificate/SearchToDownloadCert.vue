@@ -55,7 +55,7 @@
                     })
             },
             downloadCert(userId) {
-                this.$inertia.post(`/certDownloadActual/${userId}`, {}, {
+                this.$inertia.get(`/certDownloadActual/${userId}`, {
                     onBefore: () => confirm('Download this certificate?')
                 })
             }

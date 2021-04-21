@@ -5119,7 +5119,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     downloadCert: function downloadCert(userId) {
-      this.$inertia.post("/certDownloadActual/".concat(userId), {}, {
+      this.$inertia.get("/certDownloadActual/".concat(userId), {
         onBefore: function onBefore() {
           return confirm('Download this certificate?');
         }
