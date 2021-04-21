@@ -11,11 +11,6 @@ use PDF;
 
 class CertificateClientController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function clientList()
     {
         return Inertia::render('Superadmin/Cert/ClientEntry', [
