@@ -50,7 +50,7 @@
                                     <td>{{ participant.school }}</td>
                                     <td>{{ participant.layout.name }}</td>
                                     <td>
-                                        <a :href="`/certClientActual/${participant.id}`" target="_blank" class="btn btn-success btn-xs">View</a>
+                                        <!-- <a :href="`/certClientActual/${participant.id}`" target="_blank" class="btn btn-success btn-xs">View</a> -->
                                         <button @click="downloadCert(participant.id)" class="btn btn-warning btn-xs">Download</button>
                                     </td>
                                 </tr>

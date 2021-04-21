@@ -4,7 +4,18 @@
             <div class="col-sm-3">
                 <div class="card">
                     <div class="card-header">
-
+                        <h5 class="card-title">Create Template</h5>
+                    </div>
+                    <div class="card-body">
+                        <form @submit.prevent="saveTemplate()">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" v-model="form.name" class="form-control form-control-sm" placeholder="Sample Name">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-sm" type="submit">Add Template</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -48,9 +59,28 @@
         components: {
             SuperadminLayout
         },
+        data () {
+            return {
+                form: {
+                    name: ''
+                }
+            }
+        },
         methods: {
             viewLayout(layoutId) {
                 this.$inertia.visit(`/certEditorView/${layoutId}`);
+            },
+            saveTemplate () {
+                this.$inertia.post('/addCertTemplate', this.form, {
+                    onBefore: () => confirm('Create this template?'),
+                    onSuccess: () => {
+                        toastr.info('Template created.');
+                        this.form.name = '';
+                    },
+                    onError: () => {
+                        toastr.error('Error occurs');
+                    }
+                })
             }
         }
     }

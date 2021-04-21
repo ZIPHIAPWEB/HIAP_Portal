@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-use PDF;
+
 class CertificateEditorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');    
+    }
+
     public function certList()
     {
         return Inertia::render('Superadmin/CertEditor', [
@@ -17,16 +22,27 @@ class CertificateEditorController extends Controller
         ]);
     }
 
+    public function addCertTemplate(Request $request)
+    {
+        CertificateLayout::create($request->validate([
+            'name'      =>  'required',
+            'f_style'   =>  '',
+            'img_path'  =>  ''
+        ]));
+
+        return redirect()->back();
+    }
+
     public function viewEditor($layoutId)
     {
         return Inertia::render('Superadmin/Cert/CertView', [
-            'layout'    =>  CertificateLayout::find($layoutId)->first()
+            'layout'    =>  CertificateLayout::where('id', $layoutId)->first()
         ]);
     }
 
     public function viewActual($layoutId)
     {
-        return view('export.certificate')->with('data', CertificateLayout::find($layoutId)->first());
+        return view('export.certificate')->with('data', CertificateLayout::where('id', $layoutId)->first());
     }
 
     public function saveChanges(Request $request)

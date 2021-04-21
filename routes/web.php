@@ -194,6 +194,7 @@ Route::get('/certList', 'CertificateEditorController@certList');
 Route::get('/certEditorView/{layoutId}', 'CertificateEditorController@viewEditor');
 Route::get('/certActual/{layoutId}', 'CertificateEditorController@viewActual');
 Route::post('/certChange', 'CertificateEditorController@saveChanges');
+Route::post('/addCertTemplate', 'CertificateEditorController@addCertTemplate');
 
 Route::get('/certClients', 'CertificateClientController@clientList');
 Route::get('/certClientActual/{userId}', 'CertificateClientController@viewClientActualCert');

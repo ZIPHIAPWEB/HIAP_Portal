@@ -3653,12 +3653,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     document.body.classList.add('sidebar-mini');
@@ -6969,15 +6963,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layouts'],
   components: {
     SuperadminLayout: _Layouts_SuperadminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  data: function data() {
+    return {
+      form: {
+        name: ''
+      }
+    };
+  },
   methods: {
     viewLayout: function viewLayout(layoutId) {
       this.$inertia.visit("/certEditorView/".concat(layoutId));
+    },
+    saveTemplate: function saveTemplate() {
+      var _this = this;
+
+      this.$inertia.post('/addCertTemplate', this.form, {
+        onBefore: function onBefore() {
+          return confirm('Create this template?');
+        },
+        onSuccess: function onSuccess() {
+          toastr.info('Template created.');
+          _this.form.name = '';
+        },
+        onError: function onError() {
+          toastr.error('Error occurs');
+        }
+      });
     }
   }
 });
@@ -13624,22 +13652,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      { staticClass: "nav-link", attrs: { href: "/sa/certs" } },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Certificates")])
-                      ]
-                    )
-                  ],
-                  1
-                ),
+                _vm._m(3),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -13691,7 +13704,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "content-wrapper" }, [
-      _vm._m(3),
+      _vm._m(4),
       _vm._v(" "),
       _c(
         "section",
@@ -13701,7 +13714,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(4),
+    _vm._m(5),
     _vm._v(" "),
     _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
   ])
@@ -13755,6 +13768,51 @@ var staticRenderFns = [
       _c("div", { staticClass: "info" }, [
         _c("a", { staticClass: "d-block text-bold", attrs: { href: "#" } }, [
           _vm._v("Superadministrator")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item has-treeview" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+        _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\r\n                Certificates\r\n                "),
+          _c("i", { staticClass: "right fas fa-angle-left" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "nav nav-treeview" }, [
+        _c("li", { staticClass: "nav-item" }, [
+          _c("a", { staticClass: "nav-link", attrs: { href: "/sa/certs" } }, [
+            _c("i", { staticClass: "far fa-circle nav-icon" }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Lobster Ink")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c("a", { staticClass: "nav-link", attrs: { href: "/certList" } }, [
+            _c("i", { staticClass: "far fa-circle nav-icon" }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Cert Generator")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            { staticClass: "nav-link", attrs: { href: "/certClients" } },
+            [
+              _c("i", { staticClass: "far fa-circle nav-icon" }),
+              _vm._v(" "),
+              _c("p", [_vm._v("Cert Clients")])
+            ]
+          )
         ])
       ])
     ])
@@ -20025,18 +20083,6 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [
                             _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-success btn-xs",
-                                attrs: {
-                                  href: "/certClientActual/" + participant.id,
-                                  target: "_blank"
-                                }
-                              },
-                              [_vm._v("View")]
-                            ),
-                            _vm._v(" "),
-                            _c(
                               "button",
                               {
                                 staticClass: "btn btn-warning btn-xs",
@@ -20094,7 +20140,61 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-3" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" })
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Create Template")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveTemplate()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.name,
+                        expression: "form.name"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    attrs: { type: "text", placeholder: "Sample Name" },
+                    domProps: { value: _vm.form.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-sm",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Add Template")]
+                  )
+                ])
+              ]
+            )
+          ])
         ])
       ]),
       _vm._v(" "),
