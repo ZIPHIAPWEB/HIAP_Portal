@@ -53,7 +53,11 @@
         <div class="container no-print">
             <div class="page">
                 <div class="full-name" style="{{ $data['layout']['f_style'] }}">
-                    <span>{{ $data['full_name'] }}</span>
+                    @if(strlen($data['full_name']) > 50)
+                    <span style="font-size: 0.6em">{{$data['full_name']}}</span>
+                    @else
+                    <span>{{$data['full_name']}}</span>
+                    @endif
                 </div>
             </div>
         </div>
