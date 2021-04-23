@@ -1,11 +1,16 @@
 <template>
     <div class="wrapper">
+        <div class="cert-dl-header">
+            <img src="/logo2.png" alt="hiap logo">
+            <span>HIAP INC. WEBINAR E-CERTIFICATES</span>
+        </div>
+
         <div class="card">
             <div class="card-header">
                 <h6 class="card-title">Search</h6>
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" v-model="search"  placeholder="Search by email">
+                        <input @keypress.enter="searchByEmail()" type="text" class="form-control" v-model="search"  placeholder="Search by email">
                         <span class="input-group-append">
                             <button @click="searchByEmail()" class="btn btn-info btn-flat">
                                 <span class="fas fa-search"></span>
@@ -40,6 +45,13 @@
                 </table>
             </div>
         </div>
+
+        <div class="cert-dl-footer">
+            <p>Note: </p>
+            <span>- Make sure to type the same e-mail address you've put in the Webinar Evaluation Form in the Search box.</span>
+            <span>- Only those who have answered the Webinar Evaluation Form will be able to download their e-certificates.</span>
+            <span>- Expect the certificates to appear in the system two (2) days after the webinar. </span>
+        </div>
     </div>
 </template>
 
@@ -67,14 +79,55 @@
     .wrapper {
         height: 100vh;
         width: 100%;
-        background: rgb(229, 226, 226);
+        background: url('/assets/img/cert_dl_bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
 
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
 
-        .card {
-            width: 750px;
+        .cert-dl-header {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            img {
+                width: 140px;
+                margin: 15px 0;
+            }
+
+            span {
+                font-family: 'Montserrat';
+                font-size: 25px;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+
+        .cert-dl-footer {
+            font-family: 'Montserrat';
+            font-size: 20px;
+            font-weight: bold;
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-top: 25px;
+
+            span {
+                margin: 5px 0
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .card {
+                width: 700px;
+            }
         }
     }
 </style>

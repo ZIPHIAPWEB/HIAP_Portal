@@ -10,7 +10,7 @@
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
                 <div class="input-group input-group-sm" style="width: 300px">
-                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by last name">
+                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by first name or last name">
                     <span class="input-group-append">
                         <button @click="searchClientByLastName" class="btn btn-info btn-flat">
                             <span class="fas fa-search"></span>

@@ -5099,6 +5099,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -10456,7 +10468,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrapper[data-v-8099db20] {\n  height: 100vh;\n  width: 100%;\n  background: #e5e2e2;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper .card[data-v-8099db20] {\n  width: 750px;\n}", ""]);
+exports.push([module.i, ".wrapper[data-v-8099db20] {\n  height: 100vh;\n  width: 100%;\n  background: url(\"/assets/img/cert_dl_bg.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: top;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.wrapper .cert-dl-header[data-v-8099db20] {\n  padding: 20px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 25px;\n}\n.wrapper .cert-dl-header img[data-v-8099db20] {\n  width: 140px;\n  margin: 15px 0;\n}\n.wrapper .cert-dl-header span[data-v-8099db20] {\n  font-family: \"Montserrat\";\n  font-size: 25px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrapper .cert-dl-footer[data-v-8099db20] {\n  font-family: \"Montserrat\";\n  font-size: 20px;\n  font-weight: bold;\n  text-align: center;\n  display: flex;\n  flex-direction: column;\n  margin-top: 25px;\n}\n.wrapper .cert-dl-footer span[data-v-8099db20] {\n  margin: 5px 0;\n}\n@media only screen and (min-width: 992px) {\n.wrapper .card[data-v-8099db20] {\n    width: 700px;\n}\n}", ""]);
 
 // exports
 
@@ -16028,6 +16040,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header" }, [
         _c("h6", { staticClass: "card-title" }, [_vm._v("Search")]),
@@ -16047,6 +16061,15 @@ var render = function() {
               attrs: { type: "text", placeholder: "Search by email" },
               domProps: { value: _vm.search },
               on: {
+                keypress: function($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.searchByEmail()
+                },
                 input: function($event) {
                   if ($event.target.composing) {
                     return
@@ -16076,7 +16099,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "card-body p-0" }, [
         _c("table", { staticClass: "table table-striped" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _vm.certs.length > 0
             ? _c(
@@ -16110,13 +16133,25 @@ var render = function() {
                 }),
                 0
               )
-            : _c("tbody", [_vm._m(1)])
+            : _c("tbody", [_vm._m(2)])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cert-dl-header" }, [
+      _c("img", { attrs: { src: "/logo2.png", alt: "hiap logo" } }),
+      _vm._v(" "),
+      _c("span", [_vm._v("HIAP INC. WEBINAR E-CERTIFICATES")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -16138,6 +16173,32 @@ var staticRenderFns = [
     return _c("tr", [
       _c("td", { staticClass: "text-center", attrs: { colspan: "4" } }, [
         _vm._v("No Cert Found")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cert-dl-footer" }, [
+      _c("p", [_vm._v("Note: ")]),
+      _vm._v(" "),
+      _c("span", [
+        _vm._v(
+          "- Make sure to type the same e-mail address you've put in the Webinar Evaluation Form in the Search box."
+        )
+      ]),
+      _vm._v(" "),
+      _c("span", [
+        _vm._v(
+          "- Only those who have answered the Webinar Evaluation Form will be able to download their e-certificates."
+        )
+      ]),
+      _vm._v(" "),
+      _c("span", [
+        _vm._v(
+          "- Expect the certificates to appear in the system two (2) days after the webinar. "
+        )
       ])
     ])
   }
@@ -18903,7 +18964,10 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Search by last name" },
+                attrs: {
+                  type: "text",
+                  placeholder: "Search by first name or last name"
+                },
                 domProps: { value: _vm.filterName },
                 on: {
                   input: function($event) {
