@@ -172,7 +172,8 @@ class ModeratorController extends Controller
 
     public function searchStudentByLastName(Request $request)
     {
-        return Client::where('last_name', $request->last_name)
+        return Client::where('last_name', 'like', '%'. $request->last_name .'%')
+            ->orWhere('first_name', 'like' ,'%'. $request->last_name .'%')
             ->with('user')
             ->with('payments')
             ->with('school')

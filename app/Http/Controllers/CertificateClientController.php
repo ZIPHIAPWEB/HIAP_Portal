@@ -39,6 +39,7 @@ class CertificateClientController extends Controller
         $pdf = PDF::loadView('export.certificate_client', ['data' => CertificateClient::where('id', $userId)->first()])
             ->setPaper('a4', 'landscape');
 
+        $pdf->setEncryption('p@ssw0rd', array('print'));
 
         return $pdf->download('certificate.pdf');
     }
