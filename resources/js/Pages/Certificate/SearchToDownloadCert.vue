@@ -39,7 +39,7 @@
                     </tbody>
                     <tbody v-else>
                         <tr>
-                            <td colspan="4" class="text-center">No Cert Found</td>
+                            <td colspan="4" class="text-center" id="tb-msg"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -68,6 +68,7 @@
                 axios.post('/getSearchedCertificate', { search: this.search})
                     .then(response => {
                         this.certs = response.data;
+                        document.getElementById('tb-msg').innerText = 'No Cert Found';
                     })
             },
             downloadFile(id) {

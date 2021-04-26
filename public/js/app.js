@@ -5164,6 +5164,7 @@ __webpack_require__.r(__webpack_exports__);
         search: this.search
       }).then(function (response) {
         _this.certs = response.data;
+        document.getElementById('tb-msg').innerText = 'No Cert Found';
       });
     },
     downloadFile: function downloadFile(id) {
@@ -16040,12 +16041,16 @@ var staticRenderFns = [
                 staticStyle: { width: "100%" },
                 attrs: {
                   role: "progressbar",
-                  "aria-valuenow": "20",
+                  "aria-valuenow": "100",
                   "aria-valuemin": "0",
                   "aria-valuemax": "100"
                 }
               },
-              [_c("span", { staticClass: "sr-only" }, [_vm._v("20% Complete")])]
+              [
+                _c("span", { staticClass: "sr-only" }, [
+                  _vm._v("100% Complete")
+                ])
+              ]
             )
           ]),
           _vm._v(" "),
@@ -16055,7 +16060,11 @@ var staticRenderFns = [
               staticClass: "mt-3 text-center",
               staticStyle: { "font-family": "'Montserrat'" }
             },
-            [_vm._v("Please wait for your certificate to download.")]
+            [
+              _vm._v(
+                "Your certificate is downloading. Once done, just close this tab."
+              )
+            ]
           )
         ])
       ])
@@ -16333,9 +16342,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("td", { staticClass: "text-center", attrs: { colspan: "4" } }, [
-        _vm._v("No Cert Found")
-      ])
+      _c("td", {
+        staticClass: "text-center",
+        attrs: { colspan: "4", id: "tb-msg" }
+      })
     ])
   },
   function() {

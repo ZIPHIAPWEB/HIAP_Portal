@@ -8,11 +8,11 @@
         <div class="card">
             <div class="card-body">
                 <div class="progress">
-                  <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-                    <span class="sr-only">20% Complete</span>
+                  <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                    <span class="sr-only">100% Complete</span>
                   </div>
                 </div>
-                <p class="mt-3 text-center" style="font-family: 'Montserrat'">Please wait for your certificate to download.</p>
+                <p class="mt-3 text-center" style="font-family: 'Montserrat'">Your certificate is downloading. Once done, just close this tab.</p>
             </div>
         </div>
     </div>
