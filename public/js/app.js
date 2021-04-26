@@ -5000,6 +5000,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -16067,12 +16070,21 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "Your certificate is downloading. Once done, just close this tab."
+                "Your certificate is downloading. Once done, just close this tab"
               )
             ]
           )
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger btn-sm",
+          attrs: { href: "/certDownload" }
+        },
+        [_vm._v("Back to Previous Page")]
+      )
     ])
   }
 ]

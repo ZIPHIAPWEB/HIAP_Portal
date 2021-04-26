@@ -12,9 +12,12 @@
                     <span class="sr-only">100% Complete</span>
                   </div>
                 </div>
-                <p class="mt-3 text-center" style="font-family: 'Montserrat'">Your certificate is downloading. Once done, just close this tab.</p>
+                <p class="mt-3 text-center" style="font-family: 'Montserrat'">Your certificate is downloading. Once done, just close this tab</p>
             </div>
         </div>
+
+        <a href="/certDownload" class="btn btn-danger btn-sm">Back to Previous Page</a>
+
     </div>
 </template>
 
