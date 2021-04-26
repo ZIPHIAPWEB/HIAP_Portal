@@ -33,7 +33,7 @@
                             <td class="text-left">{{ cert.full_name }}</td>
                             <td>{{ cert.cert_created_at }}</td>
                             <td>
-                                <a :href="`/certDownloadActual/${cert.id}`" class="btn btn-primary btn-xs" download>Download</a>
+                                <button @click="downloadFile(cert.id)" class="btn btn-primary btn-xs">Download</button>
                             </td>
                         </tr>
                     </tbody>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="cert-dl-footer">
-            <p>Note: </p>
+            <p>Note:</p>
             <span>- Make sure to type the same e-mail address you've put in the Webinar Evaluation Form in the Search box.</span>
             <span>- Only those who have answered the Webinar Evaluation Form will be able to download their e-certificates.</span>
             <span>- Expect the certificates to appear in the system two (2) days after the webinar. </span>
@@ -68,9 +68,16 @@
                 axios.post('/getSearchedCertificate', { search: this.search})
                     .then(response => {
                         this.certs = response.data;
-                        console.log(response);
                     })
             },
+            downloadFile(id) {
+                var a = document.createElement('a');
+                a.href = `/certDownloadActual/${id}`;
+                a.setAttribute('download', '');
+                a.click();
+
+                window.location.replace('/viewCertDownloadingPage');
+            }
         }
     }
 </script>
@@ -82,7 +89,7 @@
         background: url('/assets/img/cert_dl_bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: top;
+        background-position: bottom;
 
         display: flex;
         flex-direction: column;
@@ -110,15 +117,17 @@
         }
 
         .cert-dl-footer {
+            background: rgba(240, 240, 240, 0.75);
             font-family: 'Montserrat';
-            font-size: 20px;
+            font-size: 17px;
             font-weight: bold;
 
             text-align: center;
             display: flex;
             flex-direction: column;
-            margin-top: 25px;
-
+            margin: 30px;
+            padding: 20px 35px;
+            border-radius: 10px;
             span {
                 margin: 5px 0
             }

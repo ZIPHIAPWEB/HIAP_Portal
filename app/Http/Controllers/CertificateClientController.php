@@ -69,4 +69,9 @@ class CertificateClientController extends Controller
 
         return redirect()->back();
     }
+
+    public function viewCertDownloadingPage()
+    {
+        return Inertia::render('Certificate/CertDownloading');
+    }
 }
