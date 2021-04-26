@@ -50,7 +50,7 @@
             <p>Note:</p>
             <span>- Make sure to type the same e-mail address you've put in the Webinar Evaluation Form in the Search box.</span>
             <span>- Only those who have answered the Webinar Evaluation Form will be able to download their e-certificates.</span>
-            <span>- Expect the certificates to appear in the system two (2) days after the webinar. </span>
+            <span>- Expect the certificates to appear in the system one (1) to two (2) days after the webinar. </span>
         </div>
     </div>
 </template>

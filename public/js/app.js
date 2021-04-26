@@ -16374,7 +16374,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("span", [
         _vm._v(
-          "- Expect the certificates to appear in the system two (2) days after the webinar. "
+          "- Expect the certificates to appear in the system one (1) to two (2) days after the webinar. "
         )
       ])
     ])
