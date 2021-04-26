@@ -5004,7 +5004,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  methods: {}
+  mounted: function mounted() {
+    document.title = 'HIAP Inc. - Webinar E-Certificates';
+  }
 });
 
 /***/ }),
@@ -5155,6 +5157,9 @@ __webpack_require__.r(__webpack_exports__);
       search: '',
       certs: []
     };
+  },
+  mounted: function mounted() {
+    document.title = 'HIAP Inc. - Webinar E-Certificates';
   },
   methods: {
     searchByEmail: function searchByEmail() {

@@ -63,6 +63,9 @@
                 certs: []
             }
         },
+        mounted () {
+            document.title = 'HIAP Inc. - Webinar E-Certificates';
+        },
         methods: {
             searchByEmail () {
                 axios.post('/getSearchedCertificate', { search: this.search})

@@ -25,10 +25,10 @@
                 
             }
         },
-        methods: {
-            
+        mounted () {
+            document.title = 'HIAP Inc. - Webinar E-Certificates'
         }
-    }
+    }   
 </script>
 
 <style lang="scss" scoped>
