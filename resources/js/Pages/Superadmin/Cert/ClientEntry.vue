@@ -42,8 +42,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody v-if="participants.length > 0">
-                                <tr v-for="participant in participants" :key="participant.id" class="text-center">
+                            <tbody v-if="participants.data.length > 0">
+                                <tr v-for="participant in participants.data" :key="participant.id" class="text-center">
                                     <td class="text-left">{{ participant.id }}</td>
                                     <td>{{ participant.full_name }}</td>
                                     <td>{{ participant.email }}</td>
@@ -62,6 +62,9 @@
                             </tbody>
                         </table>
                     </div>  
+                    <div class="card-footer">
+                        
+                    </div>
                 </div>
             </div>
         </div>

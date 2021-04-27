@@ -6931,6 +6931,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layouts', 'participants'],
@@ -20314,10 +20317,10 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.participants.length > 0
+              _vm.participants.data.length > 0
                 ? _c(
                     "tbody",
-                    _vm._l(_vm.participants, function(participant) {
+                    _vm._l(_vm.participants.data, function(participant) {
                       return _c(
                         "tr",
                         { key: participant.id, staticClass: "text-center" },
@@ -20361,7 +20364,9 @@ var render = function() {
                     ])
                   ])
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" })
         ])
       ])
     ])

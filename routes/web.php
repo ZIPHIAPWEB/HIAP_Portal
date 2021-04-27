@@ -203,3 +203,7 @@ Route::post('/getSearchedCertificate', 'CertificateClientController@getSearchedC
 Route::post('/certClientsAddBulk', 'CertificateClientController@saveBulkClients');
 Route::get('/certDownloadActual/{userId}', 'CertificateClientController@downloadClientActualCert');
 Route::get('/viewCertDownloadingPage', 'CertificateClientController@viewCertDownloadingPage');
+
+Route::get('/test', function () {
+    dd(Str::upper('ñ'));
+});

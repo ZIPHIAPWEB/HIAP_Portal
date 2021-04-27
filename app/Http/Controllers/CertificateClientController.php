@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\CertificateClient;
 use App\CertificateLayout;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use PDF;
 
@@ -15,7 +14,7 @@ class CertificateClientController extends Controller
     {
         return Inertia::render('Superadmin/Cert/ClientEntry', [
             'layouts'       =>  CertificateLayout::all(),
-            'participants'  =>  CertificateClient::with('layout')->get()
+            'participants'  =>  CertificateClient::with('layout')->paginate(15)
         ]);
     }
 
@@ -53,6 +52,7 @@ class CertificateClientController extends Controller
 
         $file = file($request->file->getRealPath());
         $data = array_slice($file, 1);
+        
         foreach($data as $cert) {
             $arr = explode(';', $cert);
 
@@ -60,9 +60,9 @@ class CertificateClientController extends Controller
                 CertificateClient::create([
                     'cert_created_at'   =>  $arr[0],
                     'cert_layout_id'    =>  $request->layout_id,
-                    'full_name'         =>  Str::upper($arr[1]),
+                    'full_name'         =>  utf8_encode($arr[1]),
                     'email'             =>  $arr[2],
-                    'school'            =>  ($arr[3] == 'Other') ? Str::upper($arr[4]) : Str::upper($arr[3])
+                    'school'            =>  ($arr[3] == 'Other') ? $arr[4] : $arr[3]
                 ]);
             } 
         }
