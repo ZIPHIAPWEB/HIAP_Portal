@@ -119,6 +119,10 @@
                 font-weight: bold;
                 text-align: center;
             }
+
+            i {
+                margin: 1em;
+            }
         }
 
         .cert-dl-footer {
