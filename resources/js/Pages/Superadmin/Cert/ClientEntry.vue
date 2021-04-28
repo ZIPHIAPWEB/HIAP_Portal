@@ -50,8 +50,8 @@
                                     <td>{{ participant.school }}</td>
                                     <td>{{ participant.layout.name }}</td>
                                     <td>
-                                        <!-- <a :href="`/certClientActual/${participant.id}`" target="_blank" class="btn btn-success btn-xs">View</a> -->
                                         <button @click="downloadCert(participant.id)" class="btn btn-warning btn-xs">Download</button>
+                                        <button @click="deleteCert(participant.id)" class="btn btn-danger btn-xs">Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -107,6 +107,14 @@
                     },
                     onError: () => {
                         toastr.error('Error occured.');
+                    }
+                })
+            },
+            deleteCert(id) {
+                this.$inertia.delete(`/certDelete/${id}`, {
+                    onBefore: () => confirm('Delete this certificate?'),
+                    onSuccess: () => {
+                        toastr.info('Certificated deleted.');
                     }
                 })
             },

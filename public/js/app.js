@@ -5154,6 +5154,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6984,6 +6985,16 @@ __webpack_require__.r(__webpack_exports__);
         },
         onError: function onError() {
           toastr.error('Error occured.');
+        }
+      });
+    },
+    deleteCert: function deleteCert(id) {
+      this.$inertia["delete"]("/certDelete/".concat(id), {
+        onBefore: function onBefore() {
+          return confirm('Delete this certificate?');
+        },
+        onSuccess: function onSuccess() {
+          toastr.info('Certificated deleted.');
         }
       });
     },
@@ -16362,7 +16373,13 @@ var staticRenderFns = [
     return _c("div", { staticClass: "cert-dl-header" }, [
       _c("img", { attrs: { src: "/logo2.png", alt: "hiap logo" } }),
       _vm._v(" "),
-      _c("span", [_vm._v("HIAP INC. WEBINAR E-CERTIFICATES")])
+      _c("span", [_vm._v("HIAP INC. WEBINAR E-CERTIFICATES")]),
+      _vm._v(" "),
+      _c("i", [
+        _vm._v("For optimal experience use "),
+        _c("b", [_vm._v("Google Chrome")]),
+        _vm._v(".")
+      ])
     ])
   },
   function() {
@@ -20461,6 +20478,19 @@ var render = function() {
                                 }
                               },
                               [_vm._v("Download")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-xs",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteCert(participant.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
                             )
                           ])
                         ]

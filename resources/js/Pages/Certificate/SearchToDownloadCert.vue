@@ -3,6 +3,7 @@
         <div class="cert-dl-header">
             <img src="/logo2.png" alt="hiap logo">
             <span>HIAP INC. WEBINAR E-CERTIFICATES</span>
+            <i>For optimal experience use <b>Google Chrome</b>.</i>
         </div>
 
         <div class="card">

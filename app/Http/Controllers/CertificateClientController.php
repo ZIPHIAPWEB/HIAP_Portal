@@ -72,6 +72,13 @@ class CertificateClientController extends Controller
         return redirect()->back();
     }
 
+    public function deleteClientCert($certId)
+    {
+        CertificateClient::where('id', $certId)->delete();
+
+        return redirect()->back();
+    }
+
     public function viewCertDownloadingPage()
     {
         return Inertia::render('Certificate/CertDownloading');
