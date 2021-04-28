@@ -51,14 +51,14 @@ class CertificateEditorController extends Controller
         if(!$request->hasFile('bg_img')) {
             CertificateLayout::updateOrCreate(['id' => $request->id], [
                 'name'          =>  $request->name,
-                'f_style'       =>  Str::replaceArray('?', $request->f_style, "font-family:?; font-size:?; color:?; top:?; bottom:?;"),
+                'f_style'       =>  Str::replaceArray('?', $request->f_style, "font-family:?; text-align:?; font-size:?; color:?; top:?; bottom:?; right:?; left:?;"),
             ]);
         } else {
             $path = $request->file('bg_img')->store('public/cert_layout');
 
             CertificateLayout::updateOrCreate(['id' => $request->id], [
                 'name'          =>  $request->name,
-                'f_style'       =>  Str::replaceArray('?', $request->f_style, "font-family:?; font-size:?; color:?; top:?; bottom:?;"),
+                'f_style'       =>  Str::replaceArray('?', $request->f_style, "font-family:?; text-align:?; font-size:?; color:?; top:?; bottom:?; right:?; left:?;"),
                 'img_path'      =>  Storage::url($path)
             ]);
         }

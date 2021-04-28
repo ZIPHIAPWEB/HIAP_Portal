@@ -6806,6 +6806,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layout'],
@@ -6819,10 +6831,13 @@ __webpack_require__.r(__webpack_exports__);
         name: this.layout.name,
         f_style: {
           font_style: '',
+          font_align: '',
           font_size: '',
           color: '',
           top_pos: '',
-          bot_pos: ''
+          bot_pos: '',
+          right_pos: '',
+          left_pos: ''
         },
         bg_img: ''
       }
@@ -20015,6 +20030,36 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Text Alignment")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.f_style.font_align,
+                        expression: "form.f_style.font_align"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    attrs: { type: "text", placeholder: "center" },
+                    domProps: { value: _vm.form.f_style.font_align },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form.f_style,
+                          "font_align",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Font Size")]),
                   _vm._v(" "),
                   _c("input", {
@@ -20123,6 +20168,66 @@ var render = function() {
                         _vm.$set(
                           _vm.form.f_style,
                           "bot_pos",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Right Position")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.f_style.right_pos,
+                        expression: "form.f_style.right_pos"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    attrs: { type: "text", placeholder: "50%" },
+                    domProps: { value: _vm.form.f_style.right_pos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form.f_style,
+                          "right_pos",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Left Position")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.f_style.left_pos,
+                        expression: "form.f_style.left_pos"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    attrs: { type: "text", placeholder: "50%" },
+                    domProps: { value: _vm.form.f_style.left_pos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form.f_style,
+                          "left_pos",
                           $event.target.value
                         )
                       }

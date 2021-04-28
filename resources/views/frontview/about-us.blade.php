@@ -63,13 +63,13 @@
                     </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
                     <ul
                         class="nav navbar-nav d-xl-flex mx-auto">
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="global-e-learning">Global e-learning</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="e-learning-hub">E-learning hub</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="tesda-online">Tesda online programs</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="our-facilities.html">facilities</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="contact-us.html">CONTACT US</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="blog.html">blog</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="social-stream.html">social streams</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/global-e-learning">Global e-learning</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/e-learning-hub">E-learning hub</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/tesda-online">Tesda online programs</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">facilities</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
+                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/social-stream">social streams</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
                             <ul class="list-unstyled nav-content">
                                 <li><a href="/blog">blog</a></li>

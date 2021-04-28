@@ -17,6 +17,10 @@
                                 <input type="text" v-model="form.f_style.font_style" class="form-control form-control-sm" placeholder="'Montserrat', sans-serif">
                             </div>
                             <div class="form-group">
+                                <label>Text Alignment</label>
+                                <input type="text" v-model="form.f_style.font_align" class="form-control form-control-sm" placeholder="center">
+                            </div>
+                            <div class="form-group">
                                 <label>Font Size</label>
                                 <input type="text" v-model="form.f_style.font_size" class="form-control form-control-sm" placeholder="5em">
                             </div>
@@ -31,6 +35,14 @@
                             <div class="form-group">
                                 <label>Bottom Position</label>
                                 <input type="text" v-model="form.f_style.bot_pos" class="form-control form-control-sm" placeholder="50%">
+                            </div>
+                            <div class="form-group">
+                                <label>Right Position</label>
+                                <input type="text" v-model="form.f_style.right_pos" class="form-control form-control-sm" placeholder="50%">
+                            </div>
+                            <div class="form-group">
+                                <label>Left Position</label>
+                                <input type="text" v-model="form.f_style.left_pos" class="form-control form-control-sm" placeholder="50%">
                             </div>
                             <div class="form-group">
                                 <label>Background</label>
@@ -66,10 +78,13 @@
                     name: this.layout.name,
                     f_style: {
                         font_style: '',
+                        font_align: '',
                         font_size: '',
                         color: '',
                         top_pos: '',
-                        bot_pos: ''
+                        bot_pos: '',
+                        right_pos: '',
+                        left_pos: '',
                     },
                     bg_img: ''
                 }
