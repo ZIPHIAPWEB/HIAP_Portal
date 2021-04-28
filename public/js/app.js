@@ -6949,6 +6949,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layouts', 'participants'],
@@ -6964,6 +6965,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    nextPage: function nextPage() {
+      this.$inertia.visit(this.participants.next_page_url);
+    },
+    prevPage: function prevPage() {
+      this.$inertia.visit(this.participants.prev_page_url);
+    },
     fileHandler: function fileHandler() {
       this.form.file = this.$refs.participants.files[0];
     },
@@ -20471,7 +20478,35 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-footer" })
+          _c("div", { staticClass: "card-footer p-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-xs",
+                attrs: { disabled: !_vm.participants.prev_page_url },
+                on: {
+                  click: function($event) {
+                    return _vm.prevPage()
+                  }
+                }
+              },
+              [_vm._v("Prev")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-xs",
+                attrs: { disabled: !_vm.participants.next_page_url },
+                on: {
+                  click: function($event) {
+                    return _vm.nextPage()
+                  }
+                }
+              },
+              [_vm._v("Next")]
+            )
+          ])
         ])
       ])
     ])

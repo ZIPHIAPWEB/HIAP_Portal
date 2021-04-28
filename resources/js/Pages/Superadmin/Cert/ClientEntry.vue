@@ -62,8 +62,9 @@
                             </tbody>
                         </table>
                     </div>  
-                    <div class="card-footer">
-                        
+                   <div class="card-footer p-2">
+                        <button :disabled="!participants.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!participants.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +90,12 @@
             }
         },
         methods: {
+            nextPage() {
+                this.$inertia.visit(this.participants.next_page_url);
+            },
+            prevPage() {
+                this.$inertia.visit(this.participants.prev_page_url);
+            },
             fileHandler () {
                 this.form.file = this.$refs.participants.files[0];
             },

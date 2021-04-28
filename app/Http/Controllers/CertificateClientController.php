@@ -14,7 +14,9 @@ class CertificateClientController extends Controller
     {
         return Inertia::render('Superadmin/Cert/ClientEntry', [
             'layouts'       =>  CertificateLayout::all(),
-            'participants'  =>  CertificateClient::with('layout')->paginate(15)
+            'participants'  =>  CertificateClient::with('layout')
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(18)
         ]);
     }
 
