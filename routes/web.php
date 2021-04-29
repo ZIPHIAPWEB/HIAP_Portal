@@ -205,3 +205,5 @@ Route::get('/certDownloadActual/{userId}', 'CertificateClientController@download
 Route::get('/viewCertDownloadingPage', 'CertificateClientController@viewCertDownloadingPage');
 Route::delete('/certDelete/{certId}', 'CertificateClientController@deleteClientCert');
 Route::post('/searchCertificate', 'CertificateClientController@searchCertificate');
+Route::post('/certSaveSingle', 'CertificateClientController@saveSingleClient');
+Route::patch('/certUpdateClient', 'CertificateClientController@updateClientCert');

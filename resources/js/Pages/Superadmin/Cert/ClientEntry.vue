@@ -2,26 +2,68 @@
     <superadmin-layout>
         <div class="row">
             <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h6 class="card-title">Participants Entry</h6>
+                <div class="card card-outline card-outline-tabs">
+                    <div class="card-header p-0 border-bottom-0">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a href="#single" class="nav-link active" data-toggle="pill">Single</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#bulk" class="nav-link" data-toggle="pill">Bulk</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="card-body">
-                        <form @submit.prevent="saveFile()">
-                            <div class="form-group">
-                                <input @change="fileHandler" type="file" ref="participants" name="" id="">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="single">
+                                <form id="cert-form" @submit.prevent="submitAction()">
+                                    <div class="form-group">
+                                        <label for="full_name">Fullname</label>
+                                        <input v-model="selectedParticipant.full_name" type="text" class="form-control form-control-sm" placeholder="Jane Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input v-model="selectedParticipant.email" type="text" class="form-control form-control-sm" placeholder="sample@app.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="school">School</label>
+                                        <input v-model="selectedParticipant.school" type="text" class="form-control form-control-sm" placeholder="Sample school">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cert_created_at">Webinar Date</label>
+                                        <input v-model="selectedParticipant.cert_created_at" type="text" class="form-control form-control-sm" placeholder="01/01/1990 00:00:00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="layout">Layout</label>
+                                        <select v-model="selectedParticipant.cert_layout_id" class="form-control form-control-sm">
+                                            <option selected value="">Select layout</option>
+                                            <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button v-if="!isEdit" type="submit" class="btn btn-primary btn-sm">Add Cert</button>
+                                        <button v-else type="submit" class="btn btn-success btn-sm">Update Cert</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label>Cert Layout</label>
-                                <select v-model="form.layout_id" class="form-control form-control-sm">
-                                    <option value="">Select Layout</option>
-                                    <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
-                                </select>
+                            <div class="tab-pane" id="bulk">
+                                <form @submit.prevent="saveFile()">
+                                    <div class="form-group">
+                                        <input @change="fileHandler" type="file" ref="participants" name="" id="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cert Layout</label>
+                                        <select v-model="form.layout_id" class="form-control form-control-sm">
+                                            <option selected value="">Select Layout</option>
+                                            <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-sm">Add Record</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-xs">Add Record</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,6 +103,7 @@
                                     <td>{{ participant.layout.name }}</td>
                                     <td>
                                         <button @click="downloadCert(participant.id)" class="btn btn-warning btn-xs">Download</button>
+                                        <button @click="editParticipant(participant)" class="btn btn-success btn-xs">Edit</button>
                                         <button @click="deleteCert(participant.id)" class="btn btn-danger btn-xs">Delete</button>
                                     </td>
                                 </tr>
@@ -98,10 +141,24 @@
                     layout_id: ''
                 },
                 sParticipants: this.participants,
-                search: ''
+                selectedParticipant: {
+                    full_name: '',
+                    email: '',
+                    school: '',
+                    cert_layout_id: '',
+                    cert_created_at: ''
+                },
+                search: '',
+                isEdit: false
             }
         },
         methods: {
+            editParticipant(value) {
+                this.isEdit = true;
+                this.selectedParticipant = value;
+                toastr.info(`${value.full_name} selected!`);
+                console.log(value);
+            },
             searchByEmailOrName () {
                 axios.post('/searchCertificate', {search: this.search})
                     .then((response) => {
@@ -130,6 +187,37 @@
                         toastr.error('Error occured.');
                     }
                 })
+            },
+            submitAction () {
+                switch(this.isEdit) {
+                    case false:
+                        this.$inertia.post('/certSaveSingle', this.selectedParticipant, {
+                            onBefore: () => confirm('Save this certificate details?'),
+                            onSuccess: (data) => {
+                                this.sParticipants = data.props.participants;
+                                document.getElementById('cert-form').reset();
+                                toastr.info('Certificate added.');
+                            },
+                            onError: () => {
+                                document.getElementById('cert-form').reset();
+                                toastr.error('Something went wrong.');
+                            }
+                        })
+                    break;
+
+                    case true:
+                        this.$inertia.patch('/certUpdateClient', this.selectedParticipant, {
+                            onBefore: () => confirm('Update this certificate details?'),
+                            onSuccess: (data) => {
+                                this.sParticipants = data.props.participants;
+                                toastr.info('Certificate updated.');
+                            },
+                            onError: () => {
+                                toastr.error('Something went wrong.');
+                            }
+                        })
+                    break;
+                }
             },
             deleteCert(id) {
                 this.$inertia.delete(`/certDelete/${id}`, {

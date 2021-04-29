@@ -6961,6 +6961,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layouts', 'participants'],
@@ -6974,10 +7017,24 @@ __webpack_require__.r(__webpack_exports__);
         layout_id: ''
       },
       sParticipants: this.participants,
-      search: ''
+      selectedParticipant: {
+        full_name: '',
+        email: '',
+        school: '',
+        cert_layout_id: '',
+        cert_created_at: ''
+      },
+      search: '',
+      isEdit: false
     };
   },
   methods: {
+    editParticipant: function editParticipant(value) {
+      this.isEdit = true;
+      this.selectedParticipant = value;
+      toastr.info("".concat(value.full_name, " selected!"));
+      console.log(value);
+    },
     searchByEmailOrName: function searchByEmailOrName() {
       var _this = this;
 
@@ -7010,6 +7067,43 @@ __webpack_require__.r(__webpack_exports__);
           toastr.error('Error occured.');
         }
       });
+    },
+    submitAction: function submitAction() {
+      var _this2 = this;
+
+      switch (this.isEdit) {
+        case false:
+          this.$inertia.post('/certSaveSingle', this.selectedParticipant, {
+            onBefore: function onBefore() {
+              return confirm('Save this certificate details?');
+            },
+            onSuccess: function onSuccess(data) {
+              _this2.sParticipants = data.props.participants;
+              document.getElementById('cert-form').reset();
+              toastr.info('Certificate added.');
+            },
+            onError: function onError() {
+              document.getElementById('cert-form').reset();
+              toastr.error('Something went wrong.');
+            }
+          });
+          break;
+
+        case true:
+          this.$inertia.patch('/certUpdateClient', this.selectedParticipant, {
+            onBefore: function onBefore() {
+              return confirm('Update this certificate details?');
+            },
+            onSuccess: function onSuccess(data) {
+              _this2.sParticipants = data.props.participants;
+              toastr.info('Certificate updated.');
+            },
+            onError: function onError() {
+              toastr.error('Something went wrong.');
+            }
+          });
+          break;
+      }
     },
     deleteCert: function deleteCert(id) {
       this.$inertia["delete"]("/certDelete/".concat(id), {
@@ -20349,97 +20443,365 @@ var render = function() {
   return _c("superadmin-layout", [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h6", { staticClass: "card-title" }, [
-              _vm._v("Participants Entry")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "card card-outline card-outline-tabs" }, [
+          _c("div", { staticClass: "card-header p-0 border-bottom-0" }, [
             _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.saveFile()
-                  }
-                }
-              },
+              "ul",
+              { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
               [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    ref: "participants",
-                    attrs: { type: "file", name: "", id: "" },
-                    on: { change: _vm.fileHandler }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Cert Layout")]),
-                  _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
                   _c(
-                    "select",
+                    "a",
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.layout_id,
-                          expression: "form.layout_id"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "layout_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
+                      staticClass: "nav-link active",
+                      attrs: { href: "#single", "data-toggle": "pill" }
                     },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Select Layout")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.layouts, function(layout) {
-                        return _c(
-                          "option",
-                          { key: layout.id, domProps: { value: layout.id } },
-                          [_vm._v(_vm._s(layout.name))]
-                        )
-                      })
-                    ],
-                    2
+                    [_vm._v("Single")]
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
+                _c("li", { staticClass: "nav-item" }, [
                   _c(
-                    "button",
+                    "a",
                     {
-                      staticClass: "btn btn-primary btn-xs",
-                      attrs: { type: "submit" }
+                      staticClass: "nav-link",
+                      attrs: { href: "#bulk", "data-toggle": "pill" }
                     },
-                    [_vm._v("Add Record")]
+                    [_vm._v("Bulk")]
                   )
                 ])
               ]
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "tab-content" }, [
+              _c(
+                "div",
+                { staticClass: "tab-pane active", attrs: { id: "single" } },
+                [
+                  _c(
+                    "form",
+                    {
+                      attrs: { id: "cert-form" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.submitAction()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "full_name" } }, [
+                          _vm._v("Fullname")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectedParticipant.full_name,
+                              expression: "selectedParticipant.full_name"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: { type: "text", placeholder: "Jane Doe" },
+                          domProps: {
+                            value: _vm.selectedParticipant.full_name
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.selectedParticipant,
+                                "full_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Email Address")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectedParticipant.email,
+                              expression: "selectedParticipant.email"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: {
+                            type: "text",
+                            placeholder: "sample@app.com"
+                          },
+                          domProps: { value: _vm.selectedParticipant.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.selectedParticipant,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "school" } }, [
+                          _vm._v("School")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectedParticipant.school,
+                              expression: "selectedParticipant.school"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: { type: "text", placeholder: "Sample school" },
+                          domProps: { value: _vm.selectedParticipant.school },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.selectedParticipant,
+                                "school",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "cert_created_at" } }, [
+                          _vm._v("Webinar Date")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectedParticipant.cert_created_at,
+                              expression: "selectedParticipant.cert_created_at"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: {
+                            type: "text",
+                            placeholder: "01/01/1990 00:00:00"
+                          },
+                          domProps: {
+                            value: _vm.selectedParticipant.cert_created_at
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.selectedParticipant,
+                                "cert_created_at",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "layout" } }, [
+                          _vm._v("Layout")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selectedParticipant.cert_layout_id,
+                                expression: "selectedParticipant.cert_layout_id"
+                              }
+                            ],
+                            staticClass: "form-control form-control-sm",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.selectedParticipant,
+                                  "cert_layout_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "", value: "" } },
+                              [_vm._v("Select layout")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.layouts, function(layout) {
+                              return _c(
+                                "option",
+                                {
+                                  key: layout.id,
+                                  domProps: { value: layout.id }
+                                },
+                                [_vm._v(_vm._s(layout.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        !_vm.isEdit
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-sm",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Add Cert")]
+                            )
+                          : _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success btn-sm",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Update Cert")]
+                            )
+                      ])
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "tab-pane", attrs: { id: "bulk" } }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.saveFile()
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        ref: "participants",
+                        attrs: { type: "file", name: "", id: "" },
+                        on: { change: _vm.fileHandler }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Cert Layout")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.layout_id,
+                              expression: "form.layout_id"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "layout_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { selected: "", value: "" } }, [
+                            _vm._v("Select Layout")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.layouts, function(layout) {
+                            return _c(
+                              "option",
+                              {
+                                key: layout.id,
+                                domProps: { value: layout.id }
+                              },
+                              [_vm._v(_vm._s(layout.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Add Record")]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ])
           ])
         ])
       ]),
@@ -20550,6 +20912,19 @@ var render = function() {
                                 }
                               },
                               [_vm._v("Download")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success btn-xs",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editParticipant(participant)
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
                             ),
                             _vm._v(" "),
                             _c(

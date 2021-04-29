@@ -10,6 +10,17 @@ use PDF;
 
 class CertificateClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+                ->except([
+                    'viewSearchToDownloadCert',
+                    'getSearchedCertificate',
+                    'downloadClientActualCert',
+                    'viewCertDownloadingPage'
+                ]);
+    }
+
     public function clientList()
     {
         return Inertia::render('Superadmin/Cert/ClientEntry', [
@@ -68,6 +79,33 @@ class CertificateClientController extends Controller
                 ]);
             } 
         }
+
+        return redirect()->back();
+    }
+
+    public function saveSingleClient(Request $request)
+    {
+        CertificateClient::create($request->validate([
+            'full_name'         =>  'required',
+            'email'             =>  'required',
+            'school'            =>  'required',
+            'cert_created_at'   =>  'required',
+            'cert_layout_id'    =>  'required'
+        ]));
+
+        return redirect()->back();
+    }
+
+    public function updateClientCert(Request $request)
+    {
+        CertificateClient::where('id', $request->id)
+            ->update($request->validate([
+                'full_name'         =>  'required',
+                'email'             =>  'required',
+                'school'            =>  'required',
+                'cert_created_at'   =>  'required',
+                'cert_layout_id'    =>  'required'
+            ]));
 
         return redirect()->back();
     }
