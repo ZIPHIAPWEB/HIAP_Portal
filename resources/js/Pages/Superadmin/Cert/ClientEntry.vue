@@ -29,6 +29,16 @@
                 <div class="card">
                     <div class="card-header">
                         <h6 class="card-title">Participants</h6>
+                        <div class="card-tools">
+                             <div class="input-group input-group-sm">
+                                <input @keypress.enter="searchByEmailOrName()" type="text" class="form-control" v-model="search"  placeholder="Search by email/name">
+                                <span class="input-group-append">
+                                    <button @click="searchByEmailOrName()" class="btn btn-info btn-flat">
+                                        <span class="fas fa-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <table class="table table-striped table-sm">
@@ -42,8 +52,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody v-if="participants.data.length > 0">
-                                <tr v-for="participant in participants.data" :key="participant.id" class="text-center">
+                            <tbody v-if="sParticipants.data.length > 0">
+                                <tr v-for="participant in sParticipants.data" :key="participant.id" class="text-center">
                                     <td class="text-left">{{ participant.id }}</td>
                                     <td>{{ participant.full_name }}</td>
                                     <td>{{ participant.email }}</td>
@@ -63,8 +73,8 @@
                         </table>
                     </div>  
                    <div class="card-footer p-2">
-                        <button :disabled="!participants.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
-                        <button :disabled="!participants.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
+                        <button :disabled="!sParticipants.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!sParticipants.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                 </div>
             </div>
@@ -86,10 +96,21 @@
                 form: {
                     file: '',
                     layout_id: ''
-                }
+                },
+                sParticipants: this.participants,
+                search: ''
             }
         },
         methods: {
+            searchByEmailOrName () {
+                axios.post('/searchCertificate', {search: this.search})
+                    .then((response) => {
+                        this.sParticipants = response.data;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
             nextPage() {
                 this.$inertia.visit(this.participants.next_page_url);
             },

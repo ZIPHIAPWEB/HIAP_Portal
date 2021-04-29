@@ -68,7 +68,7 @@
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
                 <div>
                     <div class="input-group input-group-sm" style="width: 300px">
-                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by email">
+                    <input @keypress.enter="searchByEmail" type="text" class="form-control" v-model="filterName" placeholder="Search by email">
                     <span class="input-group-append">
                         <button @click="searchByEmail" class="btn btn-info btn-flat">
                             <span class="fas fa-search"></span>
@@ -90,8 +90,8 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody v-if="clients.data.length > 0">
-                        <tr class="text-xs text-center" v-for="client in clients.data" :key="client.id">
+                    <tbody v-if="sClients.data.length > 0">
+                        <tr class="text-xs text-center" v-for="client in sClients.data" :key="client.id">
                             <td class="text-left">{{ client.id }}</td>
                             <td>{{ client.email }}</td>
                             <td>
@@ -124,8 +124,8 @@
                 </table>
             </div>
             <div class="card-footer p-2">
-                <button :disabled="!clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
-                <button :disabled="!clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
+                <button :disabled="!sClients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                <button :disabled="!sClients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
             </div>
         </div>
     </superadmin-layout>
@@ -146,7 +146,8 @@
         },
         data () {
             return {
-                filterName: ''
+                filterName: '',
+                sClients: this.clients
             }
         },
         watch: {
@@ -156,16 +157,15 @@
         },
         methods: {
             searchByEmail () {
-                if (this.filterName !== '') {
-                    let formData = new FormData();
-                    formData.append('email', this.filterName);
-                    axios.post('/searchClientByEmail', formData)
-                        .then((response) => {
-                            this.clients = response.data;
-                        })
-                } else {
-                    toastr.error('Cannot search empty field.');
-                }
+                let formData = new FormData();
+                formData.append('email', this.filterName);
+                axios.post('/searchClientByEmail', formData)
+                    .then((response) => {
+                        this.sClients = response.data;
+                    })
+                    .catch(error => {
+                        toastr.error('Something went wrong.');
+                    })
             },
             prevPage() {
                 this.$inertia.visit(this.clients.prev_page_url);

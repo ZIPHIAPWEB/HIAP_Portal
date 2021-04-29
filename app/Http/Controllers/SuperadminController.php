@@ -115,7 +115,7 @@ class SuperadminController extends Controller
         return  User::orderBy('email_verified_at', 'asc')
                     ->withCount('client')
                     ->where('role', 'client')
-                    ->where('email', $request->email)
+                    ->where('email', 'like', '%'.$request->email.'%')
                     ->paginate(15);
     }
 }

@@ -6951,6 +6951,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layouts', 'participants'],
@@ -6962,10 +6972,23 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         file: '',
         layout_id: ''
-      }
+      },
+      sParticipants: this.participants,
+      search: ''
     };
   },
   methods: {
+    searchByEmailOrName: function searchByEmailOrName() {
+      var _this = this;
+
+      axios.post('/searchCertificate', {
+        search: this.search
+      }).then(function (response) {
+        _this.sParticipants = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     nextPage: function nextPage() {
       this.$inertia.visit(this.participants.next_page_url);
     },
@@ -8001,7 +8024,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      filterName: ''
+      filterName: '',
+      sClients: this.clients
     };
   },
   watch: {
@@ -8013,15 +8037,13 @@ __webpack_require__.r(__webpack_exports__);
     searchByEmail: function searchByEmail() {
       var _this = this;
 
-      if (this.filterName !== '') {
-        var formData = new FormData();
-        formData.append('email', this.filterName);
-        axios.post('/searchClientByEmail', formData).then(function (response) {
-          _this.clients = response.data;
-        });
-      } else {
-        toastr.error('Cannot search empty field.');
-      }
+      var formData = new FormData();
+      formData.append('email', this.filterName);
+      axios.post('/searchClientByEmail', formData).then(function (response) {
+        _this.sClients = response.data;
+      })["catch"](function (error) {
+        toastr.error('Something went wrong.');
+      });
     },
     prevPage: function prevPage() {
       this.$inertia.visit(this.clients.prev_page_url);
@@ -20425,7 +20447,57 @@ var render = function() {
       _c("div", { staticClass: "col-sm-9" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _c("h6", { staticClass: "card-title" }, [_vm._v("Participants")])
+            _c("h6", { staticClass: "card-title" }, [_vm._v("Participants")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c("div", { staticClass: "input-group input-group-sm" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Search by email/name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keypress: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.searchByEmailOrName()
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-append" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info btn-flat",
+                      on: {
+                        click: function($event) {
+                          return _vm.searchByEmailOrName()
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "fas fa-search" })]
+                  )
+                ])
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body p-0" }, [
@@ -20446,10 +20518,10 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.participants.data.length > 0
+              _vm.sParticipants.data.length > 0
                 ? _c(
                     "tbody",
-                    _vm._l(_vm.participants.data, function(participant) {
+                    _vm._l(_vm.sParticipants.data, function(participant) {
                       return _c(
                         "tr",
                         { key: participant.id, staticClass: "text-center" },
@@ -20513,7 +20585,7 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-primary btn-xs",
-                attrs: { disabled: !_vm.participants.prev_page_url },
+                attrs: { disabled: !_vm.sParticipants.prev_page_url },
                 on: {
                   click: function($event) {
                     return _vm.prevPage()
@@ -20527,7 +20599,7 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-primary btn-xs",
-                attrs: { disabled: !_vm.participants.next_page_url },
+                attrs: { disabled: !_vm.sParticipants.next_page_url },
                 on: {
                   click: function($event) {
                     return _vm.nextPage()
@@ -22959,6 +23031,15 @@ var render = function() {
                 attrs: { type: "text", placeholder: "Search by email" },
                 domProps: { value: _vm.filterName },
                 on: {
+                  keypress: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.searchByEmail($event)
+                  },
                   input: function($event) {
                     if ($event.target.composing) {
                       return
@@ -23003,10 +23084,10 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.clients.data.length > 0
+          _vm.sClients.data.length > 0
             ? _c(
                 "tbody",
-                _vm._l(_vm.clients.data, function(client) {
+                _vm._l(_vm.sClients.data, function(client) {
                   return _c(
                     "tr",
                     { key: client.id, staticClass: "text-xs text-center" },
@@ -23137,7 +23218,7 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-primary btn-xs",
-            attrs: { disabled: !_vm.clients.prev_page_url },
+            attrs: { disabled: !_vm.sClients.prev_page_url },
             on: {
               click: function($event) {
                 return _vm.prevPage()
@@ -23151,7 +23232,7 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-primary btn-xs",
-            attrs: { disabled: !_vm.clients.next_page_url },
+            attrs: { disabled: !_vm.sClients.next_page_url },
             on: {
               click: function($event) {
                 return _vm.nextPage()

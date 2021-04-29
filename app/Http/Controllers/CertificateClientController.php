@@ -79,6 +79,15 @@ class CertificateClientController extends Controller
         return redirect()->back();
     }
 
+    public function searchCertificate(Request $request)
+    {
+        return CertificateClient::orderBy('created_at', 'desc')
+                        ->with('layout')
+                        ->where('email', 'like', '%'.$request->search.'%')
+                        ->orWhere('full_name', 'like', '%'.$request->search.'%')
+                        ->paginate(18);
+    }
+
     public function viewCertDownloadingPage()
     {
         return Inertia::render('Certificate/CertDownloading');
