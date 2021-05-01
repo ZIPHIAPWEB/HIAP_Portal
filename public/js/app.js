@@ -5276,6 +5276,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cert_details'],
@@ -7056,11 +7057,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form.file = this.$refs.participants.files[0];
     },
     saveFile: function saveFile() {
+      var _this2 = this;
+
       this.$inertia.post('/certClientsAddBulk', this.form, {
         onBefore: function onBefore() {
           return confirm('Add this datas?');
         },
-        onSuccess: function onSuccess() {
+        onSuccess: function onSuccess(data) {
+          _this2.sParticipants = data.props.participants;
           toastr.info('Data added.');
         },
         onError: function onError() {
@@ -7069,7 +7073,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submitAction: function submitAction() {
-      var _this2 = this;
+      var _this3 = this;
 
       switch (this.isEdit) {
         case false:
@@ -7078,7 +7082,7 @@ __webpack_require__.r(__webpack_exports__);
               return confirm('Save this certificate details?');
             },
             onSuccess: function onSuccess(data) {
-              _this2.sParticipants = data.props.participants;
+              _this3.sParticipants = data.props.participants;
               document.getElementById('cert-form').reset();
               toastr.info('Certificate added.');
             },
@@ -7095,7 +7099,7 @@ __webpack_require__.r(__webpack_exports__);
               return confirm('Update this certificate details?');
             },
             onSuccess: function onSuccess(data) {
-              _this2.sParticipants = data.props.participants;
+              _this3.sParticipants = data.props.participants;
               toastr.info('Certificate updated.');
             },
             onError: function onError() {
@@ -7106,11 +7110,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     deleteCert: function deleteCert(id) {
+      var _this4 = this;
+
       this.$inertia["delete"]("/certDelete/".concat(id), {
         onBefore: function onBefore() {
           return confirm('Delete this certificate?');
         },
-        onSuccess: function onSuccess() {
+        onSuccess: function onSuccess(data) {
+          _this4.sParticipants = data.props.participants;
           toastr.info('Certificated deleted.');
         }
       });
@@ -7361,6 +7368,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['certs'],
@@ -7380,7 +7393,8 @@ __webpack_require__.r(__webpack_exports__);
         silver_medal: '',
         bronze_medal: '',
         total_grade: '',
-        total_medal: ''
+        total_medal: '',
+        proficiency: ''
       }
     };
   },
@@ -10711,7 +10725,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cert-bg[data-v-726229fe] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-family: Montserrat;\n}\n.cert-bg img[data-v-726229fe] {\n  height: 150px;\n  margin: 0.5em;\n}\n@media (min-width: 576px) {\n.cert-bg img[data-v-726229fe] {\n    height: 200px;\n    margin: 1em;\n}\n}\n.cert-bg .medal-wrapper[data-v-726229fe] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.cert-bg .medal-wrapper div[data-v-726229fe] {\n  display: flex;\n  align-items: center;\n  padding: 15px;\n  border: solid 2px black;\n  border-radius: 10px;\n  margin: 0 2px;\n}\n@media (min-width: 576px) {\n.cert-bg .medal-wrapper div span[data-v-726229fe] {\n    font-size: 22px;\n}\n.cert-bg .medal-wrapper div h5[data-v-726229fe] {\n    font-size: 15px;\n}\n}\n.cert-bg .cert-basic[data-v-726229fe] {\n  margin: 20px 0;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n  width: 80vw;\n  border-bottom: solid #910824 4px;\n  text-align: center;\n  padding-bottom: 15px;\n  margin-bottom: 15px;\n  font-family: \"Bebas Kai\";\n  font-size: 35px;\n  text-transform: uppercase;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bolder;\n}\n@media (min-width: 576px) {\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    width: 50vw;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    font-size: 80px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n    font-size: 25px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n    font-size: 20px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n    font-size: 25px;\n}\n}", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Bebas Kai\";\n  src: url(\"/assets/fonts/BebasKai-Regular.woff\");\n}\n.cert-bg[data-v-726229fe] {\n  height: 100vh;\n  background: url(\"/assets/img/cert-background.jpg\");\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-family: \"Montserrat\";\n}\n.cert-bg img[data-v-726229fe] {\n  height: 150px;\n  margin: 0.5em;\n}\n@media (min-width: 576px) {\n.cert-bg img[data-v-726229fe] {\n    height: 200px;\n    margin: 1em;\n}\n}\n.cert-bg .medal-wrapper[data-v-726229fe] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.cert-bg .medal-wrapper div[data-v-726229fe] {\n  display: flex;\n  align-items: center;\n  padding: 15px;\n  border: solid 2px black;\n  border-radius: 10px;\n  margin: 0 2px;\n}\n@media (min-width: 576px) {\n.cert-bg .medal-wrapper div span[data-v-726229fe] {\n    font-size: 22px;\n}\n.cert-bg .medal-wrapper div h5[data-v-726229fe] {\n    font-size: 15px;\n}\n}\n.cert-bg .cert-basic[data-v-726229fe] {\n  margin: 20px 0;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n  width: 80vw;\n  border-bottom: solid #910824 4px;\n  text-align: center;\n  padding-bottom: 15px;\n  margin-bottom: 15px;\n  font-family: \"Montserrat\";\n  font-size: 30px;\n  text-transform: uppercase;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n  font-size: 18px;\n  font-weight: bolder;\n}\n.cert-bg .cert-basic .cert-prof[data-v-726229fe] {\n  font-weight: bold;\n}\n@media (min-width: 576px) {\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    width: 50vw;\n}\n.cert-bg .cert-basic .cert-name[data-v-726229fe] {\n    font-size: 50px;\n}\n.cert-bg .cert-basic .cert-school[data-v-726229fe] {\n    font-size: 25px;\n}\n.cert-bg .cert-basic .cert-track[data-v-726229fe] {\n    font-size: 20px;\n}\n.cert-bg .cert-basic .cert-grade[data-v-726229fe] {\n    font-size: 25px;\n}\n}", ""]);
 
 // exports
 
@@ -16604,7 +16618,16 @@ var render = function() {
               _vm._v(
                 "OVER-ALL GRADE: " + _vm._s(_vm.cert_details.total_grade) + " "
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _vm.cert_details.proficiencty !== 0
+              ? _c("span", { staticClass: "cert-prof" }, [
+                  _vm._v(
+                    "Learner's Proficiency / Attempt to Pass: " +
+                      _vm._s(_vm.cert_details.proficiency)
+                  )
+                ])
+              : _vm._e()
           ]
         ),
         _vm._v(" "),
@@ -20866,7 +20889,7 @@ var render = function() {
             _c("table", { staticClass: "table table-striped table-sm" }, [
               _c("thead", [
                 _c("tr", { staticClass: "text-center" }, [
-                  _c("th", { staticClass: "text-left" }, [_vm._v("#")]),
+                  _c("th", { staticClass: "text-left" }, [_vm._v("Date")]),
                   _vm._v(" "),
                   _c("th", [_vm._v("Full Name")]),
                   _vm._v(" "),
@@ -20889,7 +20912,7 @@ var render = function() {
                         { key: participant.id, staticClass: "text-center" },
                         [
                           _c("td", { staticClass: "text-left" }, [
-                            _vm._v(_vm._s(participant.id))
+                            _vm._v(_vm._s(participant.cert_created_at))
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(participant.full_name))]),
@@ -21478,6 +21501,38 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v("Proficiency")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.proficiency,
+                              expression: "form.proficiency"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: { type: "text", placeholder: "1.2345" },
+                          domProps: { value: _vm.form.proficiency },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "proficiency",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
                         !_vm.isEdit
                           ? _c(
                               "button",
@@ -21547,6 +21602,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [_vm._v("Total Medals")]),
                   _vm._v(" "),
+                  _c("th", [_vm._v("Proficiency")]),
+                  _vm._v(" "),
                   _c("th", [_vm._v("Actions")])
                 ])
               ]),
@@ -21581,6 +21638,8 @@ var render = function() {
                       _c("td", { staticClass: "text-bold" }, [
                         _vm._v(_vm._s(cert.total_medal))
                       ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(cert.proficiency))]),
                       _vm._v(" "),
                       _c("td", [
                         _c(

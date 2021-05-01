@@ -86,7 +86,7 @@
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr class="text-center">
-                                    <th class="text-left">#</th>
+                                    <th class="text-left">Date</th>
                                     <th>Full Name</th>
                                     <th>E-mail</th>
                                     <th>School</th>
@@ -96,7 +96,7 @@
                             </thead>
                             <tbody v-if="sParticipants.data.length > 0">
                                 <tr v-for="participant in sParticipants.data" :key="participant.id" class="text-center">
-                                    <td class="text-left">{{ participant.id }}</td>
+                                    <td class="text-left">{{ participant.cert_created_at }}</td>
                                     <td>{{ participant.full_name }}</td>
                                     <td>{{ participant.email }}</td>
                                     <td>{{ participant.school }}</td>
@@ -180,7 +180,8 @@
             saveFile () {
                 this.$inertia.post('/certClientsAddBulk', this.form, {
                     onBefore: () => confirm('Add this datas?'),
-                    onSuccess: () => {
+                    onSuccess: (data) => {
+                        this.sParticipants = data.props.participants;
                         toastr.info('Data added.');
                     },
                     onError: () => {
@@ -222,7 +223,8 @@
             deleteCert(id) {
                 this.$inertia.delete(`/certDelete/${id}`, {
                     onBefore: () => confirm('Delete this certificate?'),
-                    onSuccess: () => {
+                    onSuccess: (data) => {
+                        this.sParticipants = data.props.participants;
                         toastr.info('Certificated deleted.');
                     }
                 })

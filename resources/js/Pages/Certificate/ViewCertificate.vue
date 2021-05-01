@@ -7,6 +7,7 @@
                 <span class="cert-school">{{ cert_details.school }}</span>
                 <span class="cert-track">{{ cert_details.program }}</span>
                 <span class="cert-grade">OVER-ALL GRADE: {{ cert_details.total_grade }} </span>
+                <span v-if="cert_details.proficiencty !== 0" class="cert-prof">Learner's Proficiency / Attempt to Pass: {{ cert_details.proficiency }}</span>
             </div>
 
             <div class="container-fluid d-block d-md-none">
@@ -87,13 +88,18 @@
 </script>
 
 <style lang="scss" scoped>
+    @font-face {
+    font-family: 'Bebas Kai';
+    src: url('/assets/fonts/BebasKai-Regular.woff');
+
+    }
     .cert-bg {
         height: 100vh;
         background: url('/assets/img/cert-background.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        font-family: Montserrat;
+        font-family: 'Montserrat';
 
         img {
             height: 150px;
@@ -135,14 +141,15 @@
 
         .cert-basic {
             margin: 20px 0;
+            
             .cert-name {
                 width: 80vw;
                 border-bottom: solid #910824 4px;
                 text-align: center;
                 padding-bottom: 15px;   
                 margin-bottom: 15px;
-                font-family: 'Bebas Kai';
-                font-size: 35px;
+                font-family: 'Montserrat';
+                font-size: 30px;
                 text-transform: uppercase;
             }
 
@@ -163,12 +170,16 @@
                 font-weight: bolder;
             }
 
+            .cert-prof {
+                font-weight: bold;
+            }
+
             @media (min-width: 576px) {
                 .cert-name {
                     width:50vw;
                 }
                 .cert-name {
-                    font-size: 80px;
+                    font-size: 50px;
                 }
 
                 .cert-school {

@@ -54,6 +54,10 @@
                                         <input v-model="form.total_medal" type="text" class="form-control form-control-sm" placeholder="123">
                                     </div>
                                     <div class="form-group">
+                                        <label for="">Proficiency</label>
+                                        <input v-model="form.proficiency" type="text" class="form-control form-control-sm" placeholder="1.2345">
+                                    </div>
+                                    <div class="form-group">
                                         <button v-if="!isEdit" type="submit" class="btn btn-primary btn-sm">Add Cert</button>
                                         <button v-else type="submit" class="btn btn-success btn-sm">Update Cert</button>
                                     </div>
@@ -87,6 +91,7 @@
                                     <th>Bronze Medals</th>
                                     <th>Total Grade</th>
                                     <th>Total Medals</th>
+                                    <th>Proficiency</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -101,6 +106,7 @@
                                     <td>{{ cert.bronze_medal }}</td>
                                     <td class="text-bold">{{ cert.total_grade }}</td>
                                     <td class="text-bold">{{ cert.total_medal }}</td>
+                                    <td>{{ cert.proficiency }}</td>
                                     <td>
                                         <button @click="editFile(cert)" class="btn btn-success btn-xs">
                                             Edit
@@ -139,7 +145,8 @@
                     silver_medal: '',
                     bronze_medal: '',
                     total_grade: '',
-                    total_medal: ''
+                    total_medal: '',
+                    proficiency: ''
                 }
             }
         },

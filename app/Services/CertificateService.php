@@ -26,19 +26,20 @@ class CertificateService
     public function addBulkCert($data)
     {
         foreach($data as $cert) {
-            $arr = explode(',', $cert);
+            $arr = explode(';', $cert);
 
             if($arr[0] != '') {
                 $this->createCertificate->execute([
                     'cert_no'       =>  $arr[0],
                     'name'          =>  $arr[1],
-                    'school'        =>  $arr[5],
-                    'program'       =>  $arr[6],
-                    'total_grade'   =>  $arr[7],
-                    'gold_medal'    => intval($arr[8]),
-                    'silver_medal'  => intval($arr[9]),
-                    'bronze_medal'  => intval($arr[10]),
-                    'total_medal'   =>  $arr[11]
+                    'school'        =>  $arr[2],
+                    'program'       =>  $arr[3],
+                    'total_grade'   =>  $arr[4],
+                    'gold_medal'    => intval($arr[5]),
+                    'silver_medal'  => intval($arr[6]),
+                    'bronze_medal'  => intval($arr[7]),
+                    'total_medal'   =>  $arr[8],
+                    'proficiency'   =>  $arr[9]
                 ]);
             } 
         }
@@ -52,10 +53,11 @@ class CertificateService
             'school'        =>  $data->school,
             'program'       =>  $data->program,
             'total_grade'   =>  $data->total_grade,
-            'gold_medal'   =>  $data->gold_medal,
-            'silver_medal' =>  $data->silver_medal,
-            'bronze_medal' =>  $data->bronze_medal,
-            'total_medal'  =>  $data->total_medal   
+            'gold_medal'    =>  $data->gold_medal,
+            'silver_medal'  =>  $data->silver_medal,
+            'bronze_medal'  =>  $data->bronze_medal,
+            'total_medal'   =>  $data->total_medal,
+            'proficiency'   =>  $data->proficiency
         ]);
     }
 
@@ -70,7 +72,8 @@ class CertificateService
             'gold_medal'    =>  $data['gold_medal'],
             'silver_medal'  =>  $data['silver_medal'],
             'bronze_medal'  =>  $data['bronze_medal'],
-            'total_medal'   =>  $data['total_medal']  
+            'total_medal'   =>  $data['total_medal'],
+            'proficiency'   =>  $data['proficiencty']
         ]);
     }
 
