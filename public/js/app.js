@@ -16620,7 +16620,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm.cert_details.proficiencty > 0
+            _vm.cert_details.proficiency > 0
               ? _c("span", { staticClass: "cert-prof" }, [
                   _vm._v(
                     "Learner's Proficiency / Attempt to Pass: " +
