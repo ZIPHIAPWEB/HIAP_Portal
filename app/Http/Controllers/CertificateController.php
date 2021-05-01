@@ -85,7 +85,8 @@ class CertificateController extends Controller
             'silver_medal'  =>  'required',
             'bronze_medal'  =>  'required',
             'total_medal'   =>  'required',
-            'total_grade'   =>  'required'
+            'total_grade'   =>  'required',
+            'proficiency'   =>  'required'
         ]));
 
         return redirect()->back();
