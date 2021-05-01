@@ -7,7 +7,7 @@
                 <span class="cert-school">{{ cert_details.school }}</span>
                 <span class="cert-track">{{ cert_details.program }}</span>
                 <span class="cert-grade">OVER-ALL GRADE: {{ cert_details.total_grade }} </span>
-                <span v-if="cert_details.proficiencty !== 0" class="cert-prof">Learner's Proficiency / Attempt to Pass: {{ cert_details.proficiency }}</span>
+                <span v-if="cert_details.proficiencty > 0" class="cert-prof">Learner's Proficiency / Attempt to Pass: {{ cert_details.proficiency }}</span>
             </div>
 
             <div class="container-fluid d-block d-md-none">
