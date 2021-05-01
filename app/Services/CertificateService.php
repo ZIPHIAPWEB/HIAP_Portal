@@ -73,7 +73,7 @@ class CertificateService
             'silver_medal'  =>  $data['silver_medal'],
             'bronze_medal'  =>  $data['bronze_medal'],
             'total_medal'   =>  $data['total_medal'],
-            'proficiency'   =>  $data['proficiencty']
+            'proficiency'   =>  $data['proficiency']
         ]);
     }
 
