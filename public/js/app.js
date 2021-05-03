@@ -6344,11 +6344,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['clients'],
@@ -19302,12 +19297,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("moderator-layout", [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-3" }, [
-        _vm._v("\n            " + _vm._s(Date.now()) + "\n        ")
-      ])
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c(
         "div",
@@ -19382,7 +19371,7 @@ var render = function() {
       _c("div", { staticClass: "card-body p-0" }, [
         _c("table", { staticClass: "table table-hover table-sm" }, [
           _c("thead", [
-            _c("tr", { staticClass: "text-xs text-center" }, [
+            _c("tr", { staticClass: "text-xs " }, [
               _c("th", { staticClass: "text-left" }, [_vm._v("First Name")]),
               _vm._v(" "),
               _c("th", [_vm._v("Middle Name")]),
@@ -19399,7 +19388,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("E-mail Address")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Actions")])
+              _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
             ])
           ]),
           _vm._v(" "),
@@ -19407,62 +19396,58 @@ var render = function() {
             ? _c(
                 "tbody",
                 _vm._l(_vm.clients.data, function(client) {
-                  return _c(
-                    "tr",
-                    { key: client.id, staticClass: "text-xs text-center" },
-                    [
-                      _c("td", { staticClass: "text-left" }, [
-                        _vm._v(_vm._s(client.first_name))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.middle_name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.last_name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.contact_no))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(client.school ? client.school.name : ""))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            client.online_program
-                              ? client.online_program.name
-                              : ""
-                          )
+                  return _c("tr", { key: client.id, staticClass: "text-xs " }, [
+                    _c("td", { staticClass: "text-left" }, [
+                      _vm._v(_vm._s(client.first_name))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(client.middle_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(client.last_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(client.contact_no))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(client.school ? client.school.name : ""))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          client.online_program
+                            ? client.online_program.name
+                            : ""
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            client.user_program.length == 1
-                              ? client.user_program[0]["program"].name
-                              : client.user_program.length + " Courses"
-                          )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          client.user_program.length == 1
+                            ? client.user_program[0]["program"].name
+                            : client.user_program.length + " Courses"
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(client.user.email))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success btn-xs btn-flat",
-                            on: {
-                              click: function($event) {
-                                return _vm.viewClientDetails(client.user_id)
-                              }
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(client.user.email))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-xs btn-flat",
+                          on: {
+                            click: function($event) {
+                              return _vm.viewClientDetails(client.user_id)
                             }
-                          },
-                          [_vm._v("View")]
-                        )
-                      ])
-                    ]
-                  )
+                          }
+                        },
+                        [_vm._v("View")]
+                      )
+                    ])
+                  ])
                 }),
                 0
               )

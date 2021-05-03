@@ -1,11 +1,6 @@
 
 <template>
     <moderator-layout>
-        <div class="row">
-            <div class="col-3">
-                {{ Date.now() }}
-            </div>
-        </div>
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
@@ -28,7 +23,7 @@
             <div class="card-body p-0">
                 <table class="table table-hover table-sm">
                     <thead>
-                        <tr class="text-xs text-center">
+                        <tr class="text-xs ">
                             <th class="text-left">First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
@@ -37,11 +32,11 @@
                             <th>Program</th>
                             <th>Enrolled Course(s)</th>
                             <th>E-mail Address</th>
-                            <th>Actions</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody v-if="clients.data.length > 0">
-                        <tr class="text-xs text-center" v-for="client in clients.data" :key="client.id">
+                        <tr class="text-xs " v-for="client in clients.data" :key="client.id">
                             <td class="text-left">{{ client.first_name }}</td>
                             <td>{{ client.middle_name}}</td>
                             <td>{{ client.last_name }}</td>
@@ -50,7 +45,7 @@
                             <td>{{ client.online_program ? client.online_program.name : '' }}</td>
                             <td>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</td>
                             <td>{{ client.user.email }}</td>
-                            <td>
+                            <td class="text-center">
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>
                             </td>
                         </tr>
