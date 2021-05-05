@@ -12,9 +12,11 @@
                         </button>
                     </span>
                 </div>
+                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openExport()">Export</button>
                 <download-excel 
-                    class="mx-1 btn btn-success btn-sm btn-flat"
-                    :data="clients.data"
+                    id="export-btn"
+                    class="mx-1 btn btn-success btn-sm btn-flat d-none"
+                    :data="forExport"
                     :fields="fields"
                     name="HIAP Export"
                     title="HIAP Clients"
@@ -65,14 +67,44 @@
         <div class="modal fade show" id="modal-export" aria-modal="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
+                    <div class="overlay d-flex justify-content-center align-items-center" v-if="isExportLoading">
+                        <i class="fas fa-2x fa-sync fa-spin"></i>
+                    </div>
                     <div class="modal-header">
-                        <h5 class="modal-title">Selected Program</h5>
+                        <h5 class="modal-title">Export</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="start-date">From</label>
+                                <input v-model="form.from" type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="end-date">To</label>
+                                <input v-model="form.to" type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="school">School</label>
+                                <select v-model="form.school_id" class="form-control form-control-sm">
+                                    <option value="" selected>All</option>
+                                    <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button @click="filterClients" type="button" class="btn btn-primary btn-sm btn-flat btn-block">Filter</button>
+                        <download-excel v-if="forExport.length > 0"
+                            id="export-btn"
+                            class="mx-1 btn btn-success btn-sm btn-flat btn-block"
+                            :data="forExport"
+                            :fields="fields"
+                            name="HIAP Export"
+                            title="HIAP Clients"
+                        >Export</download-excel>
                     </div>
                 </div>
             <!-- /.modal-content -->
@@ -85,19 +117,28 @@
 <script>
     import ModeratorLayout from '../../Layouts/ModeratorLayout.vue';
     export default {
-        props: ['clients'],
+        props: ['clients', 'schools'],
         components: {
             ModeratorLayout
         },
         data () {
             return {
+                form: {
+                    from: '',
+                    to: '',
+                    school_id: ''
+                },
+                isExportLoading: false,
+                forExport: [],
                 filterName: '',
                 fields: {
+                    "Date Registered": "created_at",
                     "First Name": "first_name",
                     "Middle Name": "middle_name",
                     "Last Name": "last_name",
                     "E-mail Address": "user.email",
                     "Contact No.": "contact_no",
+                    "School": "school.name",
                     "Program": "online_program.name",
                     "Program Track": {
                         field: "user_program",
@@ -157,6 +198,17 @@
                 } else {
                     toastr.error('Cannot search empty field.');
                 }
+            },
+            openExport () {
+                $('#modal-export').modal('show');
+            },
+            filterClients () {
+                this.isExportLoading = true;
+                axios.post('/filterClients', this.form)
+                    .then((response) => {
+                        this.forExport = response.data;
+                        this.isExportLoading = false;
+                    })
             }
         }
     }

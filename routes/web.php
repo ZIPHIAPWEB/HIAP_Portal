@@ -207,3 +207,5 @@ Route::delete('/certDelete/{certId}', 'CertificateClientController@deleteClientC
 Route::post('/searchCertificate', 'CertificateClientController@searchCertificate');
 Route::post('/certSaveSingle', 'CertificateClientController@saveSingleClient');
 Route::patch('/certUpdateClient', 'CertificateClientController@updateClientCert');
+
+Route::post('/filterClients', 'ClientController@filterClients');

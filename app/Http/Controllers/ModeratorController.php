@@ -124,7 +124,8 @@ class ModeratorController extends Controller
                 ->with(['userProgram' => function($query) {
                     return $query->with('program');
                 }])
-                ->paginate(15)
+                ->paginate(15),
+            'schools'   =>  School::orderBy('name')->get()
         ]);
     }
 

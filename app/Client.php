@@ -20,6 +20,10 @@ class Client extends Model
         'program_id',
         'alternate_email'
     ];
+    
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
 
     public function user()
     {

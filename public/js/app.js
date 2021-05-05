@@ -6344,21 +6344,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['clients'],
+  props: ['clients', 'schools'],
   components: {
     ModeratorLayout: _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
+      form: {
+        from: '',
+        to: '',
+        school_id: ''
+      },
+      isExportLoading: false,
+      forExport: [],
       filterName: '',
       fields: {
+        "Date Registered": "created_at",
         "First Name": "first_name",
         "Middle Name": "middle_name",
         "Last Name": "last_name",
         "E-mail Address": "user.email",
         "Contact No.": "contact_no",
+        "School": "school.name",
         "Program": "online_program.name",
         "Program Track": {
           field: "user_program",
@@ -6417,6 +6458,18 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         toastr.error('Cannot search empty field.');
       }
+    },
+    openExport: function openExport() {
+      $('#modal-export').modal('show');
+    },
+    filterClients: function filterClients() {
+      var _this2 = this;
+
+      this.isExportLoading = true;
+      axios.post('/filterClients', this.form).then(function (response) {
+        _this2.forExport = response.data;
+        _this2.isExportLoading = false;
+      });
     }
   }
 });
@@ -19352,11 +19405,25 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "download-excel",
+            "button",
             {
               staticClass: "mx-1 btn btn-success btn-sm btn-flat",
+              on: {
+                click: function($event) {
+                  return _vm.openExport()
+                }
+              }
+            },
+            [_vm._v("Export")]
+          ),
+          _vm._v(" "),
+          _c(
+            "download-excel",
+            {
+              staticClass: "mx-1 btn btn-success btn-sm btn-flat d-none",
               attrs: {
-                data: _vm.clients.data,
+                id: "export-btn",
+                data: _vm.forExport,
                 fields: _vm.fields,
                 name: "HIAP Export",
                 title: "HIAP Clients"
@@ -19504,10 +19571,19 @@ var render = function() {
           { staticClass: "modal-dialog modal-dialog-centered modal-md" },
           [
             _c("div", { staticClass: "modal-content" }, [
+              _vm.isExportLoading
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "overlay d-flex justify-content-center align-items-center"
+                    },
+                    [_c("i", { staticClass: "fas fa-2x fa-sync fa-spin" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _vm._v("Selected Program")
-                ]),
+                _c("h5", { staticClass: "modal-title" }, [_vm._v("Export")]),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -19527,7 +19603,152 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-body" })
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "form-group col-6" }, [
+                    _c("label", { attrs: { for: "start-date" } }, [
+                      _vm._v("From")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.from,
+                          expression: "form.from"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.form.from },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "from", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-6" }, [
+                    _c("label", { attrs: { for: "end-date" } }, [_vm._v("To")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.to,
+                          expression: "form.to"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.form.to },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "to", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12" }, [
+                    _c("label", { attrs: { for: "school" } }, [
+                      _vm._v("School")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.school_id,
+                            expression: "form.school_id"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "school_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "", selected: "" } }, [
+                          _vm._v("All")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.schools, function(school) {
+                          return _c(
+                            "option",
+                            { key: school.id, domProps: { value: school.id } },
+                            [_vm._v(_vm._s(school.name))]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-footer" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-sm btn-flat btn-block",
+                      attrs: { type: "button" },
+                      on: { click: _vm.filterClients }
+                    },
+                    [_vm._v("Filter")]
+                  ),
+                  _vm._v(" "),
+                  _vm.forExport.length > 0
+                    ? _c(
+                        "download-excel",
+                        {
+                          staticClass:
+                            "mx-1 btn btn-success btn-sm btn-flat btn-block",
+                          attrs: {
+                            id: "export-btn",
+                            data: _vm.forExport,
+                            fields: _vm.fields,
+                            name: "HIAP Export",
+                            title: "HIAP Clients"
+                          }
+                        },
+                        [_vm._v("Export")]
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
             ])
           ]
         )

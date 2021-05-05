@@ -171,4 +171,18 @@ class ClientController extends Controller
             ->back()
             ->with('message', 'Client details updated.');
     }
+
+    public function filterClients(Request $request)
+    {
+        return Client::orderBy('created_at', 'desc')
+                ->with('user')
+                ->with('school')
+                ->with('onlineProgram')
+                ->with(['userProgram' => function($query) {
+                    return $query->with('program');
+                }])
+                ->whereBetween('created_at', [date($request->from), date($request->to)])
+                ->where('school_id', 'like', '%'.$request->school_id.'%')
+                ->get();
+    }
 }
