@@ -6416,19 +6416,31 @@ __webpack_require__.r(__webpack_exports__);
         "Required Hours": {
           field: "user_program",
           callback: function callback(value) {
-            return value[0]['hours_needed'];
+            if (value.length === 0) {
+              return '';
+            } else {
+              return value[0]['hours_needed'];
+            }
           }
         },
         "Start Date": {
           field: "user_program",
           callback: function callback(value) {
-            return value[0]['start_date'];
+            if (value.length === 0) {
+              return '';
+            } else {
+              return value[0]['start_date'];
+            }
           }
         },
         "End Date": {
           field: "user_program",
           callback: function callback(value) {
-            return value[0]['end_date'];
+            if (value.length === 0) {
+              return '';
+            } else {
+              return value[0]['end_date'];
+            }
           }
         },
         "Remarks": "''"
