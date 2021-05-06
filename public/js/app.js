@@ -6406,6 +6406,8 @@ __webpack_require__.r(__webpack_exports__);
           callback: function callback(value) {
             if (value.length > 1) {
               return 'Multiple Courses';
+            } else if (value.length === 0) {
+              return 'Not enrolled in any course';
             } else {
               return value[0]['program'].name;
             }
@@ -19050,7 +19052,7 @@ var render = function() {
                             "td",
                             {
                               staticClass: "text-center text-sm",
-                              attrs: { colspan: "3" }
+                              attrs: { colspan: "6" }
                             },
                             [_vm._v("Not enrolled in any program")]
                           )

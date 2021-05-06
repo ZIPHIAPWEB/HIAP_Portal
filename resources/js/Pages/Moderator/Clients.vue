@@ -145,9 +145,11 @@
                         callback: (value) => {
                             if (value.length > 1) {
                                 return 'Multiple Courses'
+                            } else if (value.length === 0) {
+                                return 'Not enrolled in any course'
                             } else {
                                 return value[0]['program'].name;
-                            }
+                            } 
                         }
                     },
                      "Required Hours": {

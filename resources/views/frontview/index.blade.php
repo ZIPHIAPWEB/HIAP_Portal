@@ -139,7 +139,7 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1>ABOUT US</h1>
                 <p class="text-center">Hospitality Institute of America-Philippines Inc. (HIAP Inc.) was established in October 2015 as the first international training center along the University Belt. We provide hybrid programs, short course training, seminars, and workshops
-                    for senior high students, college students, and professionals.&nbsp;<br></p><a href="about-us.html">Learn more about us</a></div>
+                    for senior high students, college students, and professionals.&nbsp;<br></p><a href="/about-us">Learn more about us</a></div>
         </div>
     </section>
     <section class="home-services" style="background-image: url(&quot;assets/img/SERVICES%20-%20HOME%20PAGE.jpg&quot;);">

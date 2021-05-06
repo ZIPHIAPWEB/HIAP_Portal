@@ -97,7 +97,7 @@
                                 </tbody>
                                 <tbody v-else>
                                     <tr>
-                                        <td colspan="3" class="text-center text-sm">Not enrolled in any program</td>
+                                        <td colspan="6" class="text-center text-sm">Not enrolled in any program</td>
                                     </tr>
                                 </tbody>
                             </table>
