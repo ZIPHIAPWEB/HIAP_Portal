@@ -96,7 +96,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-xs text-center" v-for="cert in certs" :key="cert.id">
+                                <tr class="text-xs text-center" v-for="cert in certs.data" :key="cert.id">
                                     <td class="text-left">{{ cert.cert_no }}</td>
                                     <td>{{ cert.name }}</td>
                                     <td>{{ cert.school }}</td>
@@ -118,6 +118,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-footer p-2">
+                        <button :disabled="!certs.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!certs.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                 </div>
             </div>
@@ -151,6 +155,12 @@
             }
         },
         methods : {
+            prevPage() {
+                this.$inertia.visit(this.certs.prev_page_url);
+            },
+            nextPage() {
+                this.$inertia.visit(this.certs.next_page_url);
+            },
             fileHandler () {
                 this.form.file = this.$refs.cert.files[0];
             },

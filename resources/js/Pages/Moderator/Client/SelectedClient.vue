@@ -126,8 +126,8 @@
                                             <i v-else class="fas fa-times text-red"></i>
                                         </td>
                                         <td class="text-sm">
-                                            <a :href="payment.path" class="btn btn-primary btn-xs" target="_blank">View</a>
-                                            <!-- <span v-else>Not Applicable</span> -->
+                                            <a v-if="payment.path" :href="payment.path" class="btn btn-primary btn-xs" target="_blank">View</a>
+                                            <span v-else>No file to view</span>
                                         </td>
                                     </tr>
                                 </tbody>

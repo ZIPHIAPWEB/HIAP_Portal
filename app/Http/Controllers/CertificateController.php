@@ -37,7 +37,7 @@ class CertificateController extends Controller
     public function showCertificateEntry()
     {
         return Inertia::render('Superadmin/CertificatesEntry', [
-            'certs' =>  Certificate::orderBy('created_at', 'desc')->get()
+            'certs' =>  Certificate::orderBy('created_at', 'desc')->paginate(14)
         ]);
     }
 

@@ -7436,6 +7436,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['certs'],
@@ -7461,6 +7465,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    prevPage: function prevPage() {
+      this.$inertia.visit(this.certs.prev_page_url);
+    },
+    nextPage: function nextPage() {
+      this.$inertia.visit(this.certs.next_page_url);
+    },
     fileHandler: function fileHandler() {
       this.form.file = this.$refs.cert.files[0];
     },
@@ -19124,17 +19134,19 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-sm" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary btn-xs",
-                                    attrs: {
-                                      href: payment.path,
-                                      target: "_blank"
-                                    }
-                                  },
-                                  [_vm._v("View")]
-                                )
+                                payment.path
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-primary btn-xs",
+                                        attrs: {
+                                          href: payment.path,
+                                          target: "_blank"
+                                        }
+                                      },
+                                      [_vm._v("View")]
+                                    )
+                                  : _c("span", [_vm._v("No file to view")])
                               ])
                             ]
                           )
@@ -21830,7 +21842,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.certs, function(cert) {
+                _vm._l(_vm.certs.data, function(cert) {
                   return _c(
                     "tr",
                     { key: cert.id, staticClass: "text-xs text-center" },
@@ -21902,6 +21914,36 @@ var render = function() {
                 0
               )
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer p-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-xs",
+                attrs: { disabled: !_vm.certs.prev_page_url },
+                on: {
+                  click: function($event) {
+                    return _vm.prevPage()
+                  }
+                }
+              },
+              [_vm._v("Prev")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-xs",
+                attrs: { disabled: !_vm.certs.next_page_url },
+                on: {
+                  click: function($event) {
+                    return _vm.nextPage()
+                  }
+                }
+              },
+              [_vm._v("Next")]
+            )
           ])
         ])
       ])
