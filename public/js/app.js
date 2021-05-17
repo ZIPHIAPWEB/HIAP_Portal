@@ -19134,7 +19134,7 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-sm" }, [
-                                payment.purpose !== "Paid By School"
+                                payment.purpose !== "Paid by School"
                                   ? _c(
                                       "a",
                                       {
