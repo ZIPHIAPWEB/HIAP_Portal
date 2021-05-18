@@ -16686,11 +16686,15 @@ var render = function() {
               _vm._v(_vm._s(_vm.cert_details.program))
             ]),
             _vm._v(" "),
-            _c("span", { staticClass: "cert-grade" }, [
-              _vm._v(
-                "OVER-ALL GRADE: " + _vm._s(_vm.cert_details.total_grade) + " "
-              )
-            ]),
+            _vm.cert_details.total_grade > 0
+              ? _c("span", { staticClass: "cert-grade" }, [
+                  _vm._v(
+                    "OVER-ALL GRADE: " +
+                      _vm._s(_vm.cert_details.total_grade) +
+                      " "
+                  )
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm.cert_details.proficiency > 0
               ? _c("span", { staticClass: "cert-prof" }, [
