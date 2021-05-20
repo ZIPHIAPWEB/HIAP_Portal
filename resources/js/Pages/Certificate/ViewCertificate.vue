@@ -6,7 +6,7 @@
                 <h1 class="cert-name">{{ cert_details.name }}</h1>
                 <span class="cert-school">{{ cert_details.school }}</span>
                 <span class="cert-track">{{ cert_details.program }}</span>
-                <span v-if="cert_details.total_grade > 0" class="cert-grade">OVER-ALL GRADE: {{ cert_details.total_grade }} </span>
+                <span v-if="cert_details.total_grade !== 0" class="cert-grade">OVER-ALL GRADE: {{ cert_details.total_grade }} </span>
                 <span v-if="cert_details.proficiency > 0" class="cert-prof">Learner's Proficiency / Attempt to Pass: {{ cert_details.proficiency }}</span>
             </div>
 
