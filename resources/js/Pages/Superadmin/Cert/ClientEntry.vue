@@ -3,6 +3,9 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card card-outline card-outline-tabs">
+                    <div v-if="isLoading" class="overlay">
+                        <i class="fas fa-2x fa-spinner fa-spin"></i>
+                    </div>
                     <div class="card-header p-0 border-bottom-0">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
@@ -149,7 +152,8 @@
                     cert_created_at: ''
                 },
                 search: '',
-                isEdit: false
+                isEdit: false,
+                isLoading: false,
             }
         },
         methods: {
@@ -178,43 +182,50 @@
                 this.form.file = this.$refs.participants.files[0];
             },
             saveFile () {
+                this.isLoading = true;
                 this.$inertia.post('/certClientsAddBulk', this.form, {
                     onBefore: () => confirm('Add this datas?'),
                     onSuccess: (data) => {
                         this.sParticipants = data.props.participants;
                         toastr.info('Data added.');
+                        this.isLoading = false;
                     },
                     onError: () => {
                         toastr.error('Error occured.');
+                        this.isLoading = false;
                     }
                 })
             },
             submitAction () {
                 switch(this.isEdit) {
                     case false:
+                        this.isLoading = true;
                         this.$inertia.post('/certSaveSingle', this.selectedParticipant, {
                             onBefore: () => confirm('Save this certificate details?'),
                             onSuccess: (data) => {
                                 this.sParticipants = data.props.participants;
-                                document.getElementById('cert-form').reset();
                                 toastr.info('Certificate added.');
+                                this.isLoading = false;
                             },
                             onError: () => {
-                                document.getElementById('cert-form').reset();
                                 toastr.error('Something went wrong.');
+                                this.isLoading = false;
                             }
                         })
                     break;
 
                     case true:
+                        this.isLoading = true;
                         this.$inertia.patch('/certUpdateClient', this.selectedParticipant, {
                             onBefore: () => confirm('Update this certificate details?'),
                             onSuccess: (data) => {
                                 this.sParticipants = data.props.participants;
                                 toastr.info('Certificate updated.');
+                                this.isLoading = false;
                             },
                             onError: () => {
                                 toastr.error('Something went wrong.');
+                                this.isLoading = false;
                             }
                         })
                     break;

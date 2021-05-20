@@ -7067,6 +7067,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['layouts', 'participants'],
@@ -7088,7 +7091,8 @@ __webpack_require__.r(__webpack_exports__);
         cert_created_at: ''
       },
       search: '',
-      isEdit: false
+      isEdit: false,
+      isLoading: false
     };
   },
   methods: {
@@ -7121,6 +7125,7 @@ __webpack_require__.r(__webpack_exports__);
     saveFile: function saveFile() {
       var _this2 = this;
 
+      this.isLoading = true;
       this.$inertia.post('/certClientsAddBulk', this.form, {
         onBefore: function onBefore() {
           return confirm('Add this datas?');
@@ -7128,9 +7133,11 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess(data) {
           _this2.sParticipants = data.props.participants;
           toastr.info('Data added.');
+          _this2.isLoading = false;
         },
         onError: function onError() {
           toastr.error('Error occured.');
+          _this2.isLoading = false;
         }
       });
     },
@@ -7139,23 +7146,25 @@ __webpack_require__.r(__webpack_exports__);
 
       switch (this.isEdit) {
         case false:
+          this.isLoading = true;
           this.$inertia.post('/certSaveSingle', this.selectedParticipant, {
             onBefore: function onBefore() {
               return confirm('Save this certificate details?');
             },
             onSuccess: function onSuccess(data) {
               _this3.sParticipants = data.props.participants;
-              document.getElementById('cert-form').reset();
               toastr.info('Certificate added.');
+              _this3.isLoading = false;
             },
             onError: function onError() {
-              document.getElementById('cert-form').reset();
               toastr.error('Something went wrong.');
+              _this3.isLoading = false;
             }
           });
           break;
 
         case true:
+          this.isLoading = true;
           this.$inertia.patch('/certUpdateClient', this.selectedParticipant, {
             onBefore: function onBefore() {
               return confirm('Update this certificate details?');
@@ -7163,9 +7172,11 @@ __webpack_require__.r(__webpack_exports__);
             onSuccess: function onSuccess(data) {
               _this3.sParticipants = data.props.participants;
               toastr.info('Certificate updated.');
+              _this3.isLoading = false;
             },
             onError: function onError() {
               toastr.error('Something went wrong.');
+              _this3.isLoading = false;
             }
           });
           break;
@@ -7440,6 +7451,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['certs'],
@@ -7449,6 +7463,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isEdit: false,
+      isLoading: false,
       form: {
         file: '',
         cert_no: '',
@@ -7475,42 +7490,60 @@ __webpack_require__.r(__webpack_exports__);
       this.form.file = this.$refs.cert.files[0];
     },
     saveFile: function saveFile() {
+      var _this = this;
+
+      this.isLoading = true;
       var formData = new FormData();
       formData.append('file', this.form.file);
-      this.$inertia.post('/uploadCertificate', formData);
+      this.$inertia.post('/uploadCertificate', formData, {
+        onSuccess: function onSuccess() {
+          toastr.info('Data added.');
+          _this.isLoading = false;
+        },
+        onError: function onError() {
+          toastr.error('Something went wrong');
+          _this.isLoading = false;
+        }
+      });
     },
     submitCert: function submitCert() {
-      var _this = this;
+      var _this2 = this;
 
       switch (this.isEdit) {
         case false:
+          this.isLoading = true;
           this.$inertia.post('/addCertificate', this.form, {
             onBefore: function onBefore() {
               return confirm('Add this cert?');
             },
             onSuccess: function onSuccess() {
-              _this.form = [];
+              _this2.form = [];
               toastr.info('Cert Added');
-              _this.isEdit = false;
+              _this2.isEdit = false;
+              _this2.isLoading = false;
             },
             onError: function onError() {
               toastr.error('Error Occurs.');
+              _this2.isLoading = false;
             }
           });
           break;
 
         case true:
+          this.isLoading = true;
           this.$inertia.patch('/updateCertificate', this.form, {
             onBefore: function onBefore() {
               return confirm('Update this cert?');
             },
             onSuccess: function onSuccess() {
-              _this.form = [];
+              _this2.form = [];
               toastr.info('Cert Updated');
-              _this.isEdit = false;
+              _this2.isEdit = false;
+              _this2.isLoading = false;
             },
             onError: function onError() {
               toastr.error('Error Occurs');
+              _this2.isLoading = false;
             }
           });
           break;
@@ -20703,6 +20736,12 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-3" }, [
         _c("div", { staticClass: "card card-outline card-outline-tabs" }, [
+          _vm.isLoading
+            ? _c("div", { staticClass: "overlay" }, [
+                _c("i", { staticClass: "fas fa-2x fa-spinner fa-spin" })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "card-header p-0 border-bottom-0" }, [
             _c(
               "ul",
@@ -21415,6 +21454,12 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-3" }, [
         _c("div", { staticClass: "card card-outline card-outline-tabs" }, [
+          _vm.isLoading
+            ? _c("div", { staticClass: "overlay" }, [
+                _c("i", { staticClass: "fas fa-spinner fa-2x fa-spin" })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "card-header p-0 border-bottom-0" }, [
             _c(
               "ul",

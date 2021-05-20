@@ -3,6 +3,9 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-outline card-outline-tabs">
+                    <div v-if="isLoading" class="overlay">
+                        <i class="fas fa-spinner fa-2x fa-spin"></i>
+                    </div>
                     <div class="card-header p-0 border-bottom-0">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
@@ -139,6 +142,7 @@
         data () {
             return {
                 isEdit: false,
+                isLoading: false,
                 form: {
                     file: '',
                     cert_no: '',
@@ -165,36 +169,52 @@
                 this.form.file = this.$refs.cert.files[0];
             },
             saveFile () {
+                this.isLoading = true;
                 let formData = new FormData();
                 formData.append('file', this.form.file);
-                this.$inertia.post('/uploadCertificate', formData);
+                this.$inertia.post('/uploadCertificate', formData, {
+                    onSuccess: () => {
+                        toastr.info('Data added.')
+                        this.isLoading = false;
+                    },
+                    onError: () => {
+                        toastr.error('Something went wrong');
+                        this.isLoading = false;
+                    }
+                });
             },
             submitCert () {
                 switch(this.isEdit) {
                     case false:
+                        this.isLoading = true;
                         this.$inertia.post('/addCertificate', this.form, {
                             onBefore: () => confirm('Add this cert?'),
                             onSuccess: () => {
                                 this.form = [];
                                 toastr.info('Cert Added');
                                 this.isEdit = false;
+                                this.isLoading = false;
                             },
                             onError: () => {
                                 toastr.error('Error Occurs.');
+                                this.isLoading = false;
                             }
                         })
                         break;
 
                     case true:
+                        this.isLoading = true;
                         this.$inertia.patch('/updateCertificate', this.form, {
                             onBefore: () => confirm('Update this cert?'),
                             onSuccess: () => {
                                 this.form = [];
                                 toastr.info('Cert Updated');
                                 this.isEdit = false;
+                                this.isLoading = false;
                             },
                             onError: () => {
                                 toastr.error('Error Occurs');
+                                this.isLoading = false;
                             }
                         })
                         break;
