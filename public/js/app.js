@@ -7517,7 +7517,6 @@ __webpack_require__.r(__webpack_exports__);
               return confirm('Add this cert?');
             },
             onSuccess: function onSuccess() {
-              _this2.form = [];
               toastr.info('Cert Added');
               _this2.isEdit = false;
               _this2.isLoading = false;
@@ -7536,7 +7535,6 @@ __webpack_require__.r(__webpack_exports__);
               return confirm('Update this cert?');
             },
             onSuccess: function onSuccess() {
-              _this2.form = [];
               toastr.info('Cert Updated');
               _this2.isEdit = false;
               _this2.isLoading = false;

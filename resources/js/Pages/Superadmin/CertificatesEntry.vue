@@ -190,7 +190,6 @@
                         this.$inertia.post('/addCertificate', this.form, {
                             onBefore: () => confirm('Add this cert?'),
                             onSuccess: () => {
-                                this.form = [];
                                 toastr.info('Cert Added');
                                 this.isEdit = false;
                                 this.isLoading = false;
@@ -207,7 +206,6 @@
                         this.$inertia.patch('/updateCertificate', this.form, {
                             onBefore: () => confirm('Update this cert?'),
                             onSuccess: () => {
-                                this.form = [];
                                 toastr.info('Cert Updated');
                                 this.isEdit = false;
                                 this.isLoading = false;
