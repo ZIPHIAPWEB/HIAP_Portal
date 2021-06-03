@@ -21890,7 +21890,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Search by email/name" },
+                  attrs: {
+                    type: "text",
+                    placeholder: "Search by cert id/name"
+                  },
                   domProps: { value: _vm.search },
                   on: {
                     keypress: function($event) {
