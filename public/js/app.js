@@ -7454,6 +7454,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['certs'],
@@ -7464,6 +7474,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isEdit: false,
       isLoading: false,
+      sCerts: this.certs,
       form: {
         file: '',
         cert_no: '',
@@ -7506,8 +7517,17 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    submitCert: function submitCert() {
+    searchByNameOrCertId: function searchByNameOrCertId() {
       var _this2 = this;
+
+      var formData = new FormData();
+      formData.append('search', this.search);
+      axios.post('/searchLobsterInkCertificate', formData).then(function (response) {
+        _this2.sCerts = response.data;
+      });
+    },
+    submitCert: function submitCert() {
+      var _this3 = this;
 
       switch (this.isEdit) {
         case false:
@@ -7518,12 +7538,12 @@ __webpack_require__.r(__webpack_exports__);
             },
             onSuccess: function onSuccess() {
               toastr.info('Cert Added');
-              _this2.isEdit = false;
-              _this2.isLoading = false;
+              _this3.isEdit = false;
+              _this3.isLoading = false;
             },
             onError: function onError() {
               toastr.error('Error Occurs.');
-              _this2.isLoading = false;
+              _this3.isLoading = false;
             }
           });
           break;
@@ -7536,12 +7556,12 @@ __webpack_require__.r(__webpack_exports__);
             },
             onSuccess: function onSuccess() {
               toastr.info('Cert Updated');
-              _this2.isEdit = false;
-              _this2.isLoading = false;
+              _this3.isEdit = false;
+              _this3.isLoading = false;
             },
             onError: function onError() {
               toastr.error('Error Occurs');
-              _this2.isLoading = false;
+              _this3.isLoading = false;
             }
           });
           break;
@@ -21856,7 +21876,57 @@ var render = function() {
       _c("div", { staticClass: "col-md-9" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _c("h6", [_vm._v("Certs")])
+            _c("h6", { staticClass: "card-title" }, [_vm._v("Certs")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c("div", { staticClass: "input-group input-group-sm" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Search by email/name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keypress: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.searchByNameOrCertId()
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-append" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info btn-flat",
+                      on: {
+                        click: function($event) {
+                          return _vm.searchByNameOrCertId()
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "fas fa-search" })]
+                  )
+                ])
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body p-0" }, [
@@ -21889,7 +21959,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.certs.data, function(cert) {
+                _vm._l(_vm.sCerts.data, function(cert) {
                   return _c(
                     "tr",
                     { key: cert.id, staticClass: "text-xs text-center" },

@@ -180,6 +180,7 @@ Route::post('/storeSchool', 'SchoolController@storeSchool');
 Route::put('/updateSchool', 'SchoolController@updateSchool');
 Route::delete('/deleteSchool/{id}', 'SchoolController@deleteSchool');
 
+Route::post('/searchLobsterInkCertificate', 'CertificateController@getSearchedLobsterInkCert');
 Route::post('/uploadCertificate', 'CertificateController@uploadCertificates');
 Route::post('/addCertificate', 'CertificateController@addCertificate');
 Route::patch('/updateCertificate', 'CertificateController@updateCertificate');

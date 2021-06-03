@@ -79,7 +79,17 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <h6>Certs</h6>
+                        <h6 class="card-title">Certs</h6>
+                        <div class="card-tools">
+                             <div class="input-group input-group-sm">
+                                <input @keypress.enter="searchByNameOrCertId()" type="text" class="form-control" v-model="search"  placeholder="Search by email/name">
+                                <span class="input-group-append">
+                                    <button @click="searchByNameOrCertId()" class="btn btn-info btn-flat">
+                                        <span class="fas fa-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <table class="table table-sm table-hover">
@@ -99,7 +109,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-xs text-center" v-for="cert in certs.data" :key="cert.id">
+                                <tr class="text-xs text-center" v-for="cert in sCerts.data" :key="cert.id">
                                     <td class="text-left">{{ cert.cert_no }}</td>
                                     <td>{{ cert.name }}</td>
                                     <td>{{ cert.school }}</td>
@@ -143,6 +153,7 @@
             return {
                 isEdit: false,
                 isLoading: false,
+                sCerts: this.certs,
                 form: {
                     file: '',
                     cert_no: '',
@@ -182,6 +193,14 @@
                         this.isLoading = false;
                     }
                 });
+            },
+            searchByNameOrCertId() {
+                let formData = new FormData();
+                formData.append('search', this.search);
+                axios.post('/searchLobsterInkCertificate', formData)
+                    .then((response) => {
+                        this.sCerts = response.data
+                    })
             },
             submitCert () {
                 switch(this.isEdit) {

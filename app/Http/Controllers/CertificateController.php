@@ -16,6 +16,15 @@ class CertificateController extends Controller
         $this->certificate = $certificateService;       
     }
 
+    public function getSearchedLobsterInkCert(Request $request)
+    {
+        return response()->json(
+            Certificate::where('name', $request->search)
+                ->OrWhere('cert_no', $request->search)
+                ->paginate(20)
+        );
+    }
+
     public function showSearchCertificate()
     {
         return Inertia::render('Certificate/Search');
