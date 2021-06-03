@@ -19,8 +19,8 @@ class CertificateController extends Controller
     public function getSearchedLobsterInkCert(Request $request)
     {
         return response()->json(
-            Certificate::where('name', $request->search)
-                ->OrWhere('cert_no', $request->search)
+            Certificate::where('name', 'like', '%'. $request->search . '%')
+                ->OrWhere('cert_no', 'like', '%' . $request->search . '%')
                 ->paginate(20)
         );
     }
