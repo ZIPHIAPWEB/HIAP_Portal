@@ -7906,6 +7906,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'initials', 'userPrograms', 'payments', 'courses', 'online_programs', 'schools'],
@@ -22106,6 +22109,12 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "card" }, [
+            _vm.loading
+              ? _c("div", { staticClass: "overlay" }, [
+                  _c("i", { staticClass: "fas fa-2x fa-spinner fa-pulse" })
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "div",
               {

@@ -11,6 +11,9 @@
                 </div>
                 <div class="col-9">
                     <div class="card">
+                        <div v-if="loading" class="overlay">
+                            <i class="fas fa-2x fa-spinner fa-pulse"></i>
+                        </div>
                         <div class="card-header bg-info d-flex justify-content-between">
                             <h5 class="m-0 flex-fill">Profile</h5>
                             <div v-if="!isEdit" >
