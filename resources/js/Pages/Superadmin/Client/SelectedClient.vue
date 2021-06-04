@@ -101,7 +101,7 @@
                                         <td>E-mail Address</td>
                                         <td class="text-center">
                                             <span v-if="!isEdit" class="text-bold">{{ client.user.email }}</span>
-                                            <input v-else type="text" v-model="client.user.email" disabled class="form-control form-control-sm">
+                                            <input v-else type="text" v-model="client.user.email" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>

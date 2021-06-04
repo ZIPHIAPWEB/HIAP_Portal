@@ -22579,7 +22579,7 @@ var render = function() {
                                 }
                               ],
                               staticClass: "form-control form-control-sm",
-                              attrs: { type: "text", disabled: "" },
+                              attrs: { type: "text" },
                               domProps: { value: _vm.client.user.email },
                               on: {
                                 input: function($event) {

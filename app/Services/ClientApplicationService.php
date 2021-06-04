@@ -12,6 +12,7 @@ use App\Mail\NewApplicantNotification;
 use App\Notifications\NewApplicantRegistered;
 use App\OnlineProgram;
 use App\School;
+use App\User;
 use Illuminate\Support\Facades\Notification;
 
 class ClientApplicationService {
@@ -109,6 +110,11 @@ class ClientApplicationService {
             'program_id'            =>  $request->program_id,
             'alternate_email'       =>  $request->alternate_email
         ]);
+
+        User::where('id', $request->user_id)
+            ->update([
+                'email'     =>  $request->user['email']
+            ]);
 
         switch($request->user()->role) {
             case 'client':
