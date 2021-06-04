@@ -81,7 +81,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="">Facebook Profile Link <i class="text-danger">*</i></label>
-                                            <input v-model="form.fb_link" type="text" class="form-control" pattern="(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)" placeholder="https://facebook.com/jane.doe" required>
+                                            <input v-model="form.fb_link" type="text" class="form-control" placeholder="https://facebook.com/jane.doe" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
