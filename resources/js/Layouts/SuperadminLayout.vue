@@ -103,22 +103,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/sa/certs" class="nav-link">
+                <inertia-link href="/sa/certs" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lobster Ink</p>
-                </a>
+                </inertia-link>
               </li>
               <li class="nav-item">
-                <a href="/certList" class="nav-link">
+                <inertia-link href="/certList" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cert Generator</p>
-                </a>
+                </inertia-link>
               </li>
               <li class="nav-item">
-                <a href="/certClients" class="nav-link">
+                <inertia-link href="/certClients" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cert Clients</p>
-                </a>
+                </inertia-link>
               </li>
             </ul>
           </li>
