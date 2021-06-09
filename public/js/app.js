@@ -7488,6 +7488,7 @@ __webpack_require__.r(__webpack_exports__);
       isEdit: false,
       isLoading: false,
       sCerts: this.certs,
+      search: '',
       form: {
         file: '',
         cert_no: '',
@@ -7505,10 +7506,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     prevPage: function prevPage() {
-      this.$inertia.visit(this.certs.prev_page_url);
+      this.$inertia.visit(this.certs.prev_page_url, {
+        preserveScroll: true
+      });
     },
     nextPage: function nextPage() {
-      this.$inertia.visit(this.certs.next_page_url);
+      this.$inertia.visit(this.certs.next_page_url, {
+        preserveScroll: true
+      });
     },
     fileHandler: function fileHandler() {
       this.form.file = this.$refs.cert.files[0];
@@ -13760,100 +13765,104 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper" }, [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "main-header navbar navbar-expand navbar-white navbar-light"
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "javascript:void();" },
-                on: { click: _vm.logout }
-              },
-              [_c("i", { staticClass: "fas fa-sign-out-alt" })]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "aside",
-      { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar" }, [
-          _vm._m(2),
+  return _c(
+    "div",
+    { staticClass: "wrapper", staticStyle: { "z-index": "0" } },
+    [
+      _c(
+        "nav",
+        {
+          staticClass:
+            "main-header navbar navbar-expand navbar-white navbar-light"
+        },
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _c("nav", { staticClass: "mt-2" }, [
-            _c(
-              "ul",
-              {
-                staticClass: "nav nav-pills nav-sidebar flex-column",
-                attrs: {
-                  "data-widget": "treeview",
-                  role: "menu",
-                  "data-accordion": "false"
-                }
-              },
-              [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/ac/clients" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-tachometer-alt"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                    Dashboard\r\n                "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
+          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "javascript:void();" },
+                  on: { click: _vm.logout }
+                },
+                [_c("i", { staticClass: "fas fa-sign-out-alt" })]
+              )
+            ])
           ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "content-wrapper" }, [
-      _vm._m(3),
+        ]
+      ),
       _vm._v(" "),
       _c(
-        "section",
-        { staticClass: "content", attrs: { id: "app" } },
-        [_vm._t("default")],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
-  ])
+        "aside",
+        { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "sidebar" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("nav", { staticClass: "mt-2" }, [
+              _c(
+                "ul",
+                {
+                  staticClass: "nav nav-pills nav-sidebar flex-column",
+                  attrs: {
+                    "data-widget": "treeview",
+                    role: "menu",
+                    "data-accordion": "false"
+                  }
+                },
+                [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/ac/clients" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-tachometer-alt"
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                    Dashboard\r\n                "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-wrapper" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "content", attrs: { id: "app" } },
+          [_vm._t("default")],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -14025,61 +14034,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper" }, [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "main-header navbar navbar-expand-md navbar-light navbar-white"
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse order-3",
-              attrs: { id: "navbarCollapse" }
-            },
-            [
-              _c(
-                "ul",
-                {
-                  staticClass:
-                    "order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"
-                },
-                [
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "javascript:void();" },
-                        on: { click: _vm.logout }
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-sign-out-alt" }),
-                        _vm._v(" Logout\n                        ")
-                      ]
-                    )
-                  ])
-                ]
-              )
-            ]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "content-wrapper p-3" }, [_vm._t("default")], 2),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _vm._m(3)
-  ])
+  return _c(
+    "div",
+    { staticClass: "wrapper", staticStyle: { "z-index": "0" } },
+    [
+      _c(
+        "nav",
+        {
+          staticClass:
+            "main-header navbar navbar-expand-md navbar-light navbar-white"
+        },
+        [
+          _c("div", { staticClass: "container" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse navbar-collapse order-3",
+                attrs: { id: "navbarCollapse" }
+              },
+              [
+                _c(
+                  "ul",
+                  {
+                    staticClass:
+                      "order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"
+                  },
+                  [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void();" },
+                          on: { click: _vm.logout }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                          _vm._v(" Logout\n                        ")
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-wrapper p-3" }, [_vm._t("default")], 2),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -14175,126 +14188,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper" }, [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "main-header navbar navbar-expand navbar-white navbar-light"
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "javascript:void();" },
-                on: { click: _vm.logout }
-              },
-              [_c("i", { staticClass: "fas fa-sign-out-alt" })]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "aside",
-      { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar" }, [
-          _vm._m(2),
+  return _c(
+    "div",
+    { staticClass: "wrapper", staticStyle: { "z-index": "0" } },
+    [
+      _c(
+        "nav",
+        {
+          staticClass:
+            "main-header navbar navbar-expand navbar-white navbar-light"
+        },
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _c("nav", { staticClass: "mt-2" }, [
-            _c(
-              "ul",
-              {
-                staticClass: "nav nav-pills nav-sidebar flex-column",
-                attrs: {
-                  "data-widget": "treeview",
-                  role: "menu",
-                  "data-accordion": "false"
-                }
-              },
-              [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/md/dashboard" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-tachometer-alt"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                    Dashboard\r\n                "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/md/clients" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-user-friends"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                        List of Enrollees\r\n                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
+          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "javascript:void();" },
+                  on: { click: _vm.logout }
+                },
+                [_c("i", { staticClass: "fas fa-sign-out-alt" })]
+              )
+            ])
           ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "content-wrapper" }, [
-      _vm._m(3),
+        ]
+      ),
       _vm._v(" "),
       _c(
-        "section",
-        { staticClass: "content", attrs: { id: "app" } },
-        [_vm._t("default")],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
-  ])
+        "aside",
+        { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "sidebar" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("nav", { staticClass: "mt-2" }, [
+              _c(
+                "ul",
+                {
+                  staticClass: "nav nav-pills nav-sidebar flex-column",
+                  attrs: {
+                    "data-widget": "treeview",
+                    role: "menu",
+                    "data-accordion": "false"
+                  }
+                },
+                [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/md/dashboard" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-tachometer-alt"
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                    Dashboard\r\n                "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/md/clients" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-user-friends"
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                        List of Enrollees\r\n                    "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-wrapper" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "content", attrs: { id: "app" } },
+          [_vm._t("default")],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -14397,297 +14414,312 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper" }, [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "main-header navbar navbar-expand navbar-white navbar-light"
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "#", method: "post" },
-                on: { click: _vm.logout }
-              },
-              [_c("i", { staticClass: "fas fa-sign-out-alt" })]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "aside",
-      { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar" }, [
-          _vm._m(2),
+  return _c(
+    "div",
+    { staticClass: "wrapper", staticStyle: { "z-index": "0" } },
+    [
+      _c(
+        "nav",
+        {
+          staticClass:
+            "main-header navbar navbar-expand navbar-white navbar-light"
+        },
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _c("nav", { staticClass: "mt-2" }, [
-            _c(
-              "ul",
-              {
-                staticClass: "nav nav-pills nav-sidebar flex-column",
-                attrs: {
-                  "data-widget": "treeview",
-                  role: "menu",
-                  "data-accordion": "false"
-                }
-              },
-              [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/sa/clients" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-user-friends"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                        Clients\r\n                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/sa/programs" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-layer-group" }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                        Programs\r\n                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/sa/moderators" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                        Moderators\r\n                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/sa/teachers" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Teachers")])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/sa/school" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Schools")])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item has-treeview" }, [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "nav nav-treeview" }, [
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "inertia-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "/sa/certs" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Lobster Ink")])
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "inertia-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "/certList" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Cert Generator")])
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "inertia-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "/certClients" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Cert Clients")])
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "/sa/staffs" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Staffs")])
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "inertia-link",
-                      { staticClass: "nav-link", attrs: { href: "/sa/logs" } },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-clipboard-list"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\r\n                        Logs\r\n                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
+          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "#", method: "post" },
+                  on: { click: _vm.logout }
+                },
+                [_c("i", { staticClass: "fas fa-sign-out-alt" })]
+              )
+            ])
           ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "content-wrapper" }, [
-      _vm._m(4),
+        ]
+      ),
       _vm._v(" "),
       _c(
-        "section",
-        { staticClass: "content", attrs: { id: "app" } },
-        [_vm._t("default")],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _vm._m(5),
-    _vm._v(" "),
-    _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
-  ])
+        "aside",
+        { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "sidebar" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("nav", { staticClass: "mt-2" }, [
+              _c(
+                "ul",
+                {
+                  staticClass: "nav nav-pills nav-sidebar flex-column",
+                  attrs: {
+                    "data-widget": "treeview",
+                    role: "menu",
+                    "data-accordion": "false"
+                  }
+                },
+                [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/clients" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-user-friends"
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                        Clients\r\n                    "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/programs" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-layer-group"
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                        Programs\r\n                    "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/moderators" }
+                        },
+                        [
+                          _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                        Moderators\r\n                    "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/teachers" }
+                        },
+                        [
+                          _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Teachers")])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/school" }
+                        },
+                        [
+                          _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Schools")])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item has-treeview" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "nav nav-treeview" }, [
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { href: "/sa/certs" }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-circle nav-icon"
+                              }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Lobster Ink")])
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { href: "/certList" }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-circle nav-icon"
+                              }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Cert Generator")])
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { href: "/certClients" }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-circle nav-icon"
+                              }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Cert Clients")])
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/staffs" }
+                        },
+                        [
+                          _c("i", { staticClass: "nav-icon fas fa-users-cog" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Staffs")])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "/sa/logs" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-clipboard-list"
+                          }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\r\n                        Logs\r\n                    "
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-wrapper" }, [
+        _vm._m(4),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "content", attrs: { id: "app" } },
+          [_vm._t("default")],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(5),
+      _vm._v(" "),
+      _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -45220,7 +45252,7 @@ __webpack_require__.r(__webpack_exports__);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__["InertiaProgress"].init({
   // The delay after which the progress bar will
   // appear during navigation, in milliseconds.
-  delay: 250,
+  delay: 0,
   // The color of the progress bar.
   color: '#29d',
   // Whether to include the default NProgress styles.

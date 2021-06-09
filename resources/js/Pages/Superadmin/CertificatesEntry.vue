@@ -154,6 +154,7 @@
                 isEdit: false,
                 isLoading: false,
                 sCerts: this.certs,
+                search: '',
                 form: {
                     file: '',
                     cert_no: '',
@@ -171,10 +172,10 @@
         },
         methods : {
             prevPage() {
-                this.$inertia.visit(this.certs.prev_page_url);
+                this.$inertia.visit(this.certs.prev_page_url, { preserveScroll: true });
             },
             nextPage() {
-                this.$inertia.visit(this.certs.next_page_url);
+                this.$inertia.visit(this.certs.next_page_url, { preserveScroll: true });
             },
             fileHandler () {
                 this.form.file = this.$refs.cert.files[0];

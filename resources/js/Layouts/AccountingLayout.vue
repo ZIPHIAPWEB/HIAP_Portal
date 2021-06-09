@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="wrapper" style="z-index: 0;">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
