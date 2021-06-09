@@ -14034,65 +14034,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "wrapper", staticStyle: { "z-index": "0" } },
-    [
-      _c(
-        "nav",
-        {
-          staticClass:
-            "main-header navbar navbar-expand-md navbar-light navbar-white"
-        },
-        [
-          _c("div", { staticClass: "container" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse order-3",
-                attrs: { id: "navbarCollapse" }
-              },
-              [
-                _c(
-                  "ul",
-                  {
-                    staticClass:
-                      "order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"
-                  },
-                  [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "javascript:void();" },
-                          on: { click: _vm.logout }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-sign-out-alt" }),
-                          _vm._v(" Logout\n                        ")
-                        ]
-                      )
-                    ])
-                  ]
-                )
-              ]
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "content-wrapper p-3" }, [_vm._t("default")], 2),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _vm._m(3)
-    ]
-  )
+  return _c("div", { staticClass: "wrapper" }, [
+    _c(
+      "nav",
+      {
+        staticClass:
+          "main-header navbar navbar-expand-md navbar-light navbar-white"
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse order-3",
+              attrs: { id: "navbarCollapse" }
+            },
+            [
+              _c(
+                "ul",
+                {
+                  staticClass:
+                    "order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"
+                },
+                [
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { href: "javascript:void();" },
+                        on: { click: _vm.logout }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                        _vm._v(" Logout\n                        ")
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ]
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "content-wrapper p-3" }, [_vm._t("default")], 2),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3)
+  ])
 }
 var staticRenderFns = [
   function() {
