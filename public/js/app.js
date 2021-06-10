@@ -14184,130 +14184,126 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "wrapper", staticStyle: { "z-index": "0" } },
-    [
-      _c(
-        "nav",
-        {
-          staticClass:
-            "main-header navbar navbar-expand navbar-white navbar-light"
-        },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { href: "javascript:void();" },
-                  on: { click: _vm.logout }
-                },
-                [_c("i", { staticClass: "fas fa-sign-out-alt" })]
-              )
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "aside",
-        { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
-        [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("nav", { staticClass: "mt-2" }, [
-              _c(
-                "ul",
-                {
-                  staticClass: "nav nav-pills nav-sidebar flex-column",
-                  attrs: {
-                    "data-widget": "treeview",
-                    role: "menu",
-                    "data-accordion": "false"
-                  }
-                },
-                [
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "inertia-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "/md/dashboard" }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "nav-icon fas fa-tachometer-alt"
-                          }),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\r\n                    Dashboard\r\n                "
-                            )
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "inertia-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "/md/clients" }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "nav-icon fas fa-user-friends"
-                          }),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\r\n                        List of Enrollees\r\n                    "
-                            )
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "content-wrapper" }, [
-        _vm._m(3),
+  return _c("div", { staticClass: "wrapper" }, [
+    _c(
+      "nav",
+      {
+        staticClass:
+          "main-header navbar navbar-expand navbar-white navbar-light"
+      },
+      [
+        _vm._m(0),
         _vm._v(" "),
-        _c(
-          "section",
-          { staticClass: "content", attrs: { id: "app" } },
-          [_vm._t("default")],
-          2
-        )
-      ]),
+        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "javascript:void();" },
+                on: { click: _vm.logout }
+              },
+              [_c("i", { staticClass: "fas fa-sign-out-alt" })]
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "aside",
+      { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
+      [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "sidebar" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("nav", { staticClass: "mt-2" }, [
+            _c(
+              "ul",
+              {
+                staticClass: "nav nav-pills nav-sidebar flex-column",
+                attrs: {
+                  "data-widget": "treeview",
+                  role: "menu",
+                  "data-accordion": "false"
+                }
+              },
+              [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { href: "/md/dashboard" }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "nav-icon fas fa-tachometer-alt"
+                        }),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "\r\n                    Dashboard\r\n                "
+                          )
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { href: "/md/clients" }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "nav-icon fas fa-user-friends"
+                        }),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "\r\n                        List of Enrollees\r\n                    "
+                          )
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "content-wrapper" }, [
+      _vm._m(3),
       _vm._v(" "),
-      _vm._m(4),
-      _vm._v(" "),
-      _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
-    ]
-  )
+      _c(
+        "section",
+        { staticClass: "content", attrs: { id: "app" } },
+        [_vm._t("default")],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
+  ])
 }
 var staticRenderFns = [
   function() {
