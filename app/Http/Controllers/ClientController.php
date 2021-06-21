@@ -179,13 +179,14 @@ class ClientController extends Controller
                         return $query->with('user')
                                      ->with('school')
                                      ->with('onlineProgram')
-                                     ->whereBetween('created_at', [date($request->from), date($request->to)])
+                                     ->whereBetween('created_at', [date($request->from), date($request->to)])   
                                      ->where('school_id', 'like', '%' .$request->school_id . '%')
                                      ->get();
                     }])
                     ->with('program')
+                    ->whereBetween('created_at', [date($request->from), date($request->to)])
                     ->get();
-                    
+
         // return Client::orderBy('created_at', 'desc')
         //         ->with('user')
         //         ->with('school')

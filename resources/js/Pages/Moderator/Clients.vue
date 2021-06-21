@@ -142,9 +142,9 @@
                     "Program": "client.online_program.name",
                     "Program Track": 'program.description',
                     "Program Status": 'application_status',
-                     "Required Hours": 'hours_needed',
-                     "Start Date": 'start_date',
-                     "End Date": 'end_date',
+                    "Required Hours": 'hours_needed',
+                    "Start Date": 'start_date',
+                    "End Date": 'end_date',
                     "Remarks": "''"
                 }
             }
