@@ -161,7 +161,7 @@
                                 </tbody>
                                 <tbody v-else>
                                     <tr>
-                                        <td colspan="3" class="text-center text-sm">Not enrolled in any program</td>
+                                        <td colspan="9" class="text-center text-sm">Not enrolled in any program</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -381,8 +381,7 @@
                 this.selectedProgram = data;
                 $('#modal-default').modal('show');
             },
-            updateUserProgram()
-            {
+            updateUserProgram() {
                 this.loadingProgram = true;
                 this.$inertia.put('/updateUserProgram', this.selectedProgram, {
                     onBefore: () => confirm('Update this program?'),

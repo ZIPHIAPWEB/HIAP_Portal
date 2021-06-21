@@ -7,6 +7,7 @@ use App\Events\UserLogCreated;
 use App\Http\Requests\ModeratorCreateRequest;
 use App\Initial;
 use App\Moderator;
+use App\OnlineProgram;
 use App\Payment;
 use App\Program;
 use App\School;
@@ -133,7 +134,10 @@ class ModeratorController extends Controller
     {
         $client = Client::where('user_id', $id)->with('user')->with('school')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
-            'client'    =>  $client,
+            'client'            =>  $client,
+            'schools'           =>  School::orderBy('name', 'asc')->get(),
+            'online_programs'   =>  OnlineProgram::orderBy('name', 'asc')->get(),
+            'courses'           =>  Program::where('isActive', 1)->orderBy('name', 'asc')->get(),
             'payments'  =>  Payment::where('user_id', $id)->get()->map(function($payment) {
                 return [
                     'id'        =>  $payment->id,

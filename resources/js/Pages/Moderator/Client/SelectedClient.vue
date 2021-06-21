@@ -11,51 +11,105 @@
                 </div>
                 <div class="col-9">
                     <div class="card">
-                        <div class="card-header bg-info">
-                            <h5 class="card-title">Personal Profile</h5>
-                        </div>
+                        <div class="card-header bg-info d-flex justify-content-between">
+                            <h5 class="m-0 flex-fill">Profile</h5>
+                            <div v-if="!isEdit" >
+                                <button @click="isEdit = true" class="btn btn-primary btn-xs">Edit</button>
+                            </div>
+                            <div v-else>
+                                <button @click="updatePersonalProfile()" class="btn btn-success btn-xs">Update</button>
+                                <button @click="isEdit = false;" class="btn btn-danger btn-xs">Cancel</button>
+                            </div>
+                        </div>  
                         <div class="card-body p-0">
-                            <table class="table table-hover table-sm">
+                            <table class="table table-hover table-sm table-bordered">
                                 <tbody class="text-sm">
                                     <tr>
                                         <td>First name</td>
-                                        <td class="text-center">{{ client.first_name }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.first_name }}</span>
+                                            <input v-else type="text" v-model="client.first_name" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Middle name</td>
-                                        <td class="text-center">{{ client.middle_name }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.middle_name }}</span>
+                                            <input v-else type="text" v-model="client.middle_name" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Last name</td>
-                                        <td class="text-center">{{ client.last_name }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.last_name }}</span>
+                                            <input v-else type="text" v-model="client.last_name" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Course</td>
-                                        <td class="text-center">{{ client.course }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.course }}</span>
+                                            <input v-else type="text" v-model="client.course" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Year</td>
-                                        <td class="text-center">{{ client.school_year }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.school_year }}</span>
+                                            <select v-else v-model="client.school_year" class="form-control form-control-sm">
+                                                <option value="">Select Year</option>
+                                                <option value="First Year">First Year</option>
+                                                <option value="Second Year">Second Year</option>
+                                                <option value="Third Year">Third Year</option>
+                                                <option value="Fourth Year">Fourth Year</option>
+                                                <option value="Graduate">Graduate</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Address</td>
-                                        <td class="text-center">{{ client.address }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.address }}</span>
+                                            <input v-else type="text" v-model="client.address" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Contact No.</td>
-                                        <td class="text-center">{{ client.contact_no }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.contact_no }}</span>
+                                            <input v-else type="text" v-model="client.contact_no" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>School/Organization</td>
-                                        <td class="text-center">{{ client.school.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail Address</td>
-                                        <td class="text-center">{{ client.user.email }}</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.school ? client.school.name : '' }}</span>
+                                            <select v-else v-model="client.school_id" class="form-control form-control-sm text-sm">
+                                                <option value="">Select School</option>
+                                                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Facebook Profile</td>
-                                        <td class="text-center">{{ client.fb_link }}</td>
+                                        <td class="text-center">
+                                            <a v-if="!isEdit" :href="client.fb_link">{{ client.fb_link }}</a>
+                                            <input v-else v-model="client.fb_link" type="text" class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail Address</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.user.email }}</span>
+                                            <input v-else type="text" v-model="client.user.email" disabled class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alternate E-mail Address</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.alternate_email }}</span>
+                                            <input v-else type="text" v-model="client.alternate_email" class="form-control form-control-sm">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -75,6 +129,7 @@
                                         <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="userPrograms.length > 0">
@@ -82,7 +137,7 @@
                                         <td>{{ p.course.name }}</td>
                                         <td class="text-center">{{ p.program.name }}</td>
                                         <td class="text-center">
-                                            <select @change="UpdateStatus" v-model="p.application_status" :dataid="p.id" class="form-control form-control-sm">
+                                            <select @change="updateStatus" v-model="p.application_status" :dataid="p.id" class="form-control form-control-sm">
                                                 <option value="New Learner">New Learner</option>
                                                 <option value="Confirmed Learner">Confirmed Learner</option>
                                                 <option value="Complete Learner">Complete Learner</option>
@@ -93,6 +148,9 @@
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
+                                        <td class="text-center">
+                                            <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
@@ -142,6 +200,58 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="modal-default" aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Selected Program</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Program</label>
+                            <select v-model="selectedProgram.course_id" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option v-for="program in online_programs" :key="program.id" :value="program.id">{{ program.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Course</label>
+                            <select v-model="selectedProgram.program_id" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Application Status</label>
+                            <select v-model="selectedProgram.application_status" name="" id="" class="form-control form-control-xs">
+                                <option value="">Select</option>
+                                <option value="New Learner">New Learner</option>
+                                <option value="Confirmed Learner">Confirmed Learner</option>
+                                <option value="Complete Learner">Complete Learner</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Start Date</label>
+                            <input v-model="selectedProgram.start_date" type="date" class="form-control form-control-xs">
+                        </div>
+                        <div class="form-group">
+                            <label for="">End Date</label>
+                            <input v-model="selectedProgram.end_date" type="date" class="form-control form-control-xs">
+                        </div>
+                        <div class="form-group">
+                            <label for="">No. of Hours</label>
+                            <input v-model="selectedProgram.hours_needed" type="number" class="form-control form-control-xs">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button @click="updateUserProgram()" class="btn btn-primary btn-block">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </moderator-layout>
 </template>
 
@@ -152,8 +262,18 @@
             'client',
             'initials',
             'userPrograms',
-            'payments'
+            'payments',
+            'schools',
+            'online_programs',
+            'courses'
         ],
+        data () {
+            return {
+                isEdit: false,
+                isLoading: false,
+                selectedProgram: []
+            }
+        },
         components: {
             ModeratorLayout
         },
@@ -163,7 +283,7 @@
             }
         },
         methods: {
-            UpdateStatus(e) {
+            updateStatus(e) {
                 this.$inertia.post(`/setApplicationStatus/${e.target.getAttribute('dataid')}`, { status : e.target.value}, {
                     onBefore: () => confirm('Set application status?'),
                     onSuccess: () => {
@@ -171,6 +291,36 @@
                     }
                 })
             },
+            updateUserProgram() {
+                this.loadingProgram = true;
+                this.$inertia.put('/updateUserProgram', this.selectedProgram, {
+                    onBefore: () => confirm('Update this program?'),
+                    onSuccess: () => {
+                        this.loadingProgram = false;
+                        $('#modal-default').modal('hide');
+                        toastr.info('Selected program updated.');
+                    }
+                })
+            },
+            editProgram(data) {
+                this.selectedProgram = data;
+                $('#modal-default').modal('show');
+            },
+            updatePersonalProfile () {
+                this.loading = true;
+                this.$inertia.post('/updateClientDetails', this.client, {
+                    onBefore: () => confirm('Update this details?'),
+                    onSuccess: () => {
+                        this.isEdit = false;
+                        this.loading = false;
+                    },
+                    onError: () => {
+                        this.isEdit = false;
+                        this.loading = false;
+                        toastr.error('An error has occured.');
+                    }
+                });  
+            }   
         }
     }
 </script>
