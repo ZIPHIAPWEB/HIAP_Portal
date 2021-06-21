@@ -132,58 +132,19 @@
                 forExport: [],
                 filterName: '',
                 fields: {
-                    "Date Registered": "created_at",
-                    "First Name": "first_name",
-                    "Middle Name": "middle_name",
-                    "Last Name": "last_name",
-                    "E-mail Address": "user.email",
-                    "Contact No.": "contact_no",
-                    "School": "school.name",
-                    "Program": "online_program.name",
-                    "Program Track": {
-                        field: "user_program",
-                        callback: (value) => {
-                            if (value.length > 1) {
-                                return 'Multiple Courses'
-                            } else if (value.length === 0) {
-                                return 'Not enrolled in any course'
-                            } else {
-                                return value[0]['program'].name;
-                            } 
-                        }
-                    },
-                     "Required Hours": {
-                        field: "user_program",
-                        callback: (value) => {
-                            if (value.length === 0) {
-                                return '';
-                            } else {
-                                return value[0]['hours_needed'];
-                            }
-                        }
-                    },
-                    
-                     "Start Date": {
-                        field: "user_program",
-                        callback: (value) => {
-                            if (value.length === 0) {
-                                return '';
-                            } else {
-                                return value[0]['start_date'];
-                            }
-                        }
-                    },
-                    
-                     "End Date": {
-                        field: "user_program",
-                        callback: (value) => {
-                            if (value.length === 0) {
-                                return '';
-                            } else {
-                                return value[0]['end_date'];
-                            }
-                        }
-                    },
+                    "Date Registered": "client.created_at",
+                    "First Name": "client.first_name",
+                    "Middle Name": "client.middle_name",
+                    "Last Name": "client.last_name",
+                    "E-mail Address": "client.user.email",
+                    "Contact No.": "client.contact_no",
+                    "School": "client.school.name",
+                    "Program": "client.online_program.name",
+                    "Program Track": 'program.description',
+                    "Program Status": 'application_status',
+                     "Required Hours": 'hours_needed',
+                     "Start Date": 'start_date',
+                     "End Date": 'end_date',
                     "Remarks": "''"
                 }
             }

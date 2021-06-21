@@ -2,6 +2,11 @@ import './bootstrap'
 import JsonExcel from 'vue-json-excel'
 import vSelect from 'vue-select'
 import { InertiaProgress } from '@inertiajs/progress'
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+import { App, plugin } from '@inertiajs/inertia-vue'
+import Vue from 'vue' 
+
+Vue.use( CKEditor );
 
 InertiaProgress.init({
   // The delay after which the progress bar will
@@ -20,9 +25,6 @@ InertiaProgress.init({
 
 Vue.component('v-select', vSelect)
 Vue.component('downloadExcel', JsonExcel);
-
-import { App, plugin } from '@inertiajs/inertia-vue'
-import Vue from 'vue'
 
 Vue.use(plugin)
 

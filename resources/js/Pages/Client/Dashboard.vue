@@ -14,7 +14,7 @@
                     <!-- <client-initial-requirements></client-initial-requirements> -->
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">My Courses</h5>
+                            <h5 class="card-title">Learner's Program</h5>
                             <div class="card-tools">
                                 <button class="btn btn-xs btn-primary" data-target="#modal-default" data-toggle="modal">Enroll New Course</button>
                             </div>

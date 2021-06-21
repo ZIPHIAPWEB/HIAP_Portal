@@ -26,7 +26,6 @@ Auth::routes(['verify' => true]);
 Route::view('/', 'frontview.index')->name('home');
 Route::view('/about-us', 'frontview.about-us');
 Route::view('/assessment', 'frontview.assessment');
-Route::view('/blog', 'frontview.blog');
 Route::view('/contact-us', 'frontview.contact-us');
 Route::view('/customized-senior-25', 'frontview.customized-senior-25');
 Route::view('/customized-college', 'frontview.customized-college');
@@ -45,6 +44,8 @@ Route::view('/twsp', 'frontview.twsp');
 Route::view('/global-e-learning', 'frontview.global-e-learning');
 Route::view('/e-learning-hub', 'frontview.e-learninghub');
 Route::view('/tesda-online', 'frontview.tesda-online');
+Route::get('/blog', 'BlogController@showBlogList');
+Route::get('/blog/{slug}', 'BlogController@showSelectedBlog');
 
 Route::post('/sendInquiry', 'InquiryController@sendInquiry')->name('send.inquiry');
 
@@ -101,6 +102,9 @@ Route::prefix('sa')->group(function () {
     Route::get('/certs', 'CertificateController@showCertificateEntry');
 
     Route::get('/staffs', 'SuperadminController@showStaffEntry');
+
+    Route::get('/blogs', 'BlogController@showBlogEntry');
+    Route::get('/blogs/create', 'BlogController@showBlogCreate');
 });
 
 Route::prefix('md')->group(function () {
@@ -118,6 +122,12 @@ Route::prefix('teacher')->group(function () {
     Route::get('/stud-profile/{userId}', 'TeacherController@showStudentProfile')->name('teacher.stud-profile');
     Route::get('/student/{userId}/gradebook/{programId}', 'TeacherController@showStudentGradebook');
 });
+
+Route::post('/publishBlog', 'BlogController@publishBlog');
+Route::get('/blogEdit/{blogId}', 'BlogController@editBlog');
+Route::patch('/blogUpdate', 'BlogController@updateBlog');
+Route::delete('/blogDelete/{blogId}', 'BlogController@deleteBlog');
+Route::post('/blogImageUpload', 'MediaController@blogImageUpload');
 
 Route::get('/getAllPrograms', 'ProgramController@getAllPrograms');
 Route::post('/storeProgramDetails', 'ProgramController@storeProgramDetails');
@@ -208,5 +218,6 @@ Route::delete('/certDelete/{certId}', 'CertificateClientController@deleteClientC
 Route::post('/searchCertificate', 'CertificateClientController@searchCertificate');
 Route::post('/certSaveSingle', 'CertificateClientController@saveSingleClient');
 Route::patch('/certUpdateClient', 'CertificateClientController@updateClientCert');
+
 
 Route::post('/filterClients', 'ClientController@filterClients');

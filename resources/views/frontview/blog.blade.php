@@ -17,9 +17,64 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.min.css">
+
+    <style>
+        .blog-list-wrapper {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .blog-list-wrapper .blog-list-header {
+            font-family: 'Bebas Kai Regular';
+            font-weight: bold;
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .blog-list-wrapper .blog-list {
+            list-style: none;
+        }
+
+        .blog-list-wrapper .blog-list .blog-item {
+            margin: 10px 0;
+            padding:15px;
+            transition: box-shadow 500ms;
+        }
+
+        .blog-list-wrapper .blog-list .blog-item a{
+            font-family: 'Bebas Kai Regular';
+            text-decoration: none;
+        }
+
+        .blog-list-wrapper .blog-list .blog-item p{
+            font-family: 'Montserrat';
+            text-align: justify;
+        }
+
+        .blog-list-wrapper .blog-list .blog-item:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+        xfbml            : true,
+        version          : 'v7.0'
+        });
+    };
+
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <nav class="navbar navbar-light navbar-expand-lg bg-white">
         <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
             <button
@@ -81,12 +136,24 @@
                 </div>
         </div>
     </nav>
-    <section class="d-flex flex-column justify-content-center align-items-center elearning" style="background-image: url(&quot;assets/img/BLOG%20-%20HEADER.jpg&quot;);">
-        <div class="container text-center d-xl-flex flex-column justify-content-xl-center align-items-xl-center">
-            <h1 class="text-center">study today, excel tomorrow</h1>
-            <h2 class="mb-3">something awesome is getting ready for you.</h2>
-            <h4 class="text-center">Our blog will be available soon.</h4>
-        </div>
+    <section class="blog-list-wrapper container">
+        <h1 class="blog-list-header">BLOG</h1>
+        <ul class="blog-list">
+            @foreach($blogs as $blog)
+            <li class="blog-item">
+                <a href="{{ $blog['view_full_url'] }}" target="_blank"><h1>{{ $blog['title'] }}</h1></a>
+                <span>{{ $blog['created_at'] }}</span>
+                <p class="my-3">
+                    {{ $blog['initial_content'] }}
+                </p>
+                <div class="fb-share-button" 
+                    data-href="{{ $blog['view_full_url'] }}" 
+                    data-layout="button"
+                    data-size="small">
+                </div>
+            </li>
+            @endforeach()
+        </ul>
     </section>
     <footer class="footer-wrapper">
         <div class="container">
@@ -111,22 +178,6 @@
         </div>
         </div>
     </footer><a id="go-back-button" href="#"><i class="fa fa-angle-up"></i></a><!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      xfbml            : true,
-      version          : 'v7.0'
-    });
-  };
-
-  (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Your customer chat code -->
 <div class="fb-customerchat"

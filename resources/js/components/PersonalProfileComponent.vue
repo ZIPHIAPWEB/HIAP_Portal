@@ -4,7 +4,7 @@
             <i class="fas fa-2x fa-spinner fa-pulse"></i>
         </div>
         <div class="card-header d-flex justify-content-between">
-            <h5 class="m-0 flex-fill">My Profile</h5>
+            <h5 class="m-0 flex-fill">Learner's Profile</h5>
             <div v-if="!isEdit" >
                 <button @click="isEdit = true" class="btn btn-primary btn-xs">Edit</button>
             </div>
@@ -45,7 +45,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Year</td>
+                        <td>Year Level</td>
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ profile.school_year }}</strong>
                             <select v-model="profile.school_year" v-else class="form-control form-control sm w-100">
@@ -89,14 +89,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>E-mail</td>
+                        <td>E-mail Address</td>
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ profile.user.email }}</strong>
                             <input v-model="profile.user.email" v-else type="text" class="form-control form-control-sm w-100" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td>Alternate E-mail</td>
+                        <td>Alternate E-mail Address</td>
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ profile.alternate_email }}</strong>
                             <input v-else v-model="profile.alternate_email" type="text" class="form-control form-control-sm w-100">

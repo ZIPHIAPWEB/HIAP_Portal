@@ -174,15 +174,27 @@ class ClientController extends Controller
 
     public function filterClients(Request $request)
     {
-        return Client::orderBy('created_at', 'desc')
-                ->with('user')
-                ->with('school')
-                ->with('onlineProgram')
-                ->with(['userProgram' => function($query) {
-                    return $query->with('program');
-                }])
-                ->whereBetween('created_at', [date($request->from), date($request->to)])
-                ->where('school_id', 'like', '%'.$request->school_id.'%')
-                ->get();
+        return UserProgram::orderBy('created_at', 'desc')
+                    ->with(['client' => function($query) use ($request) {
+                        return $query->with('user')
+                                     ->with('school')
+                                     ->with('onlineProgram')
+                                     ->whereBetween('created_at', [date($request->from), date($request->to)])
+                                     ->where('school_id', 'like', '%' .$request->school_id . '%')
+                                     ->get();
+                    }])
+                    ->with('program')
+                    ->get();
+                    
+        // return Client::orderBy('created_at', 'desc')
+        //         ->with('user')
+        //         ->with('school')
+        //         ->with('onlineProgram')
+        //         ->with(['userProgram' => function($query) {
+        //             return $query->with('program');
+        //         }])
+        //         ->whereBetween('created_at', [date($request->from), date($request->to)])
+        //         ->where('school_id', 'like', '%'.$request->school_id.'%')
+        //         ->get();
     }
 }
