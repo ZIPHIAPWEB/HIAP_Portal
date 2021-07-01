@@ -6471,6 +6471,7 @@ __webpack_require__.r(__webpack_exports__);
         "Middle Name": "client.middle_name",
         "Last Name": "client.last_name",
         "E-mail Address": "client.user.email",
+        "FB Link": "client.fb_link",
         "Contact No.": "client.contact_no",
         "School": "client.school.name",
         "Program": "client.online_program.name",
@@ -23267,7 +23268,7 @@ var render = function() {
                                 _vm._v(_vm._s(p.end_date))
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "text-center" }, [
+                              _c("td", { staticClass: "text-center " }, [
                                 _c(
                                   "button",
                                   {
@@ -23292,7 +23293,7 @@ var render = function() {
                             "td",
                             {
                               staticClass: "text-center text-sm",
-                              attrs: { colspan: "6" }
+                              attrs: { colspan: "7" }
                             },
                             [_vm._v("Not enrolled in any program")]
                           )

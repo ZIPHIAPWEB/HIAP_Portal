@@ -148,14 +148,14 @@
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
-                                        <td class="text-center">
+                                        <td class="text-center ">
                                             <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
                                     <tr>
-                                        <td colspan="6" class="text-center text-sm">Not enrolled in any program</td>
+                                        <td colspan="7" class="text-center text-sm">Not enrolled in any program</td>
                                     </tr>
                                 </tbody>
                             </table>

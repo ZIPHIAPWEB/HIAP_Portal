@@ -137,6 +137,7 @@
                     "Middle Name": "client.middle_name",
                     "Last Name": "client.last_name",
                     "E-mail Address": "client.user.email",
+                    "FB Link": "client.fb_link",
                     "Contact No.": "client.contact_no",
                     "School": "client.school.name",
                     "Program": "client.online_program.name",
