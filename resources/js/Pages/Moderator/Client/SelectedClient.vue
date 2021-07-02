@@ -164,6 +164,9 @@
                     <div class="card">
                         <div class="card-header bg-info">
                             <h5 class="card-title">Payment</h5>
+                            <div class="card-tools">
+                                <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Proof of Payment</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-sm table-bordered table-striped">
@@ -252,6 +255,70 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="modal-payment" aria-modal="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div v-if="isUploading" class="overlay d-flex justify-content-center align-items-center">
+                            <i class="fas fa-spinner fa-2x fa-pulse"></i>
+                        </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Upload Proof of payment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="">Type</label>
+                                <select v-model="payment.purpose" class="form-control form-control-sm">
+                                    <option selected>Select purpose</option>
+                                    <option value="Initial Payment">Initial Payment</option>
+                                    <option value="Final Payment">Final Payment</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Proof of Payment</label>
+                                <div class="input-group input-group-sm">
+                                    <input @change="fileHandler()" type="file" ref="slip" id="deposit-form" style="display:none">
+                                    <input v-model="payment.filename" type="text" disabled>
+                                    <span class="input-group-append">
+                                        <button @click="browseFile()" class="btn btn-info btn-flat">Browse</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-sm btn-block" @click="addDepositSlip()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade show" id="modal-choices" aria-modal="true">
+                <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                        <div v-if="isLoading" class="overlay d-flex justify-content-center align-items-center">
+                            <i class="fas fa-spinner fa-2x fa-pulse"></i>
+                        </div>
+                        <div class="modal-header">
+                            <h5>Select Mode</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary btn-block btn-lg" @click="payBy('student')">Paid By Student</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-success btn-block btn-lg" @click="payBy('school')">Paid By School</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </moderator-layout>
 </template>
 
@@ -271,7 +338,13 @@
             return {
                 isEdit: false,
                 isLoading: false,
-                selectedProgram: []
+                selectedProgram: [],
+                payment: {
+                    purpose: '',
+                    file: '',
+                    filename: ''
+                },
+                isUploading: false
             }
         },
         components: {
@@ -306,6 +379,30 @@
                 this.selectedProgram = data;
                 $('#modal-default').modal('show');
             },
+            addDepositSlip () {
+                this.isUploading = true;
+                let formData = new FormData();
+                formData.append('purpose', this.payment.purpose);
+                formData.append('file', this.payment.file);
+                formData.append('client_id', this.client.user_id);
+                this.$inertia.post('/addDepositSlip', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                    onSuccess: () => {
+                        this.isUploading = false;
+                        $('#modal-payment').modal('hide');
+                    },
+                    onError: () => {
+                        this.isUploading = false;
+                    }
+                })
+            },
+            removeDepositSlip (id) {
+                this.$inertia.delete(`/removeDepositSlip/${id}`, {
+                    onBefore: () => confirm('Remove deposit slip?'),
+                })
+            },
             updatePersonalProfile () {
                 this.loading = true;
                 this.$inertia.post('/updateClientDetails', this.client, {
@@ -320,7 +417,33 @@
                         toastr.error('An error has occured.');
                     }
                 });  
-            }   
+            },
+            payBy (mode) {
+                switch(mode) {
+                    case 'student':
+                        $('#modal-choices').modal('hide');
+                        $('#modal-payment').modal('show');
+                    break;
+
+                    case 'school':
+                        this.isLoading = true;
+                        this.$inertia.post('/payBySchool', {}, {
+                            onSuccess: () => {
+                                this.isLoading = false;
+                                $('#modal-choices').modal('hide');
+                            }
+                        })
+                        
+                    break;
+                }
+            },
+            fileHandler() {
+                this.payment.file = this.$refs.slip.files[0];
+                this.payment.filename = this.payment.file.name;
+            },
+            browseFile () {
+                document.getElementById('deposit-form').click();
+            },
         }
     }
 </script>

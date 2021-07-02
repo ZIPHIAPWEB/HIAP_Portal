@@ -42,7 +42,7 @@ class PaymentService
         $data->file->move(public_path('slips'), $filename);
 
         $this->createPayment->execute([
-            'user_id'       =>  $data->user()->id,
+            'user_id'       =>  ($data->user()->role == 'moderator') ? $data->client_id : $data->user()->id,
             'purpose'       =>  $data->purpose,
             'isVerified'    =>  false,
             'path'          =>  $filename
@@ -57,16 +57,16 @@ class PaymentService
         Notification::route('mail', 'accounting@hospitalityinstituteofamerica.com.ph')
             ->notify((new NewPaymentUploaded(
                 Client::where('user_id', $data->user()->id)
-                ->with('school')
-                ->with('onlineProgram')
-                ->first()
+                    ->with('school')
+                    ->with('onlineProgram')
+                    ->first()
             ))->delay(now()->addSeconds((3))));
     }
 
     public function payBySchool($data)
     {
         $this->createPayment->execute([
-            'user_id'   =>  $data->user()->id,
+            'user_id'   =>  ($data->user()->role == 'moderator') ? $data->client_id : $data->user()->id,
             'purpose'   =>  'Paid by School',
             'isVerified'=>  false,
             'path'      =>  ''
@@ -104,6 +104,13 @@ class PaymentService
                 ]);
             break;
 
+            case 'moderator':
+                $this->createLog->execute([
+                    'user_id'   =>  $data->user()->id,
+                    'action'    =>  'Proof of payment #' . $slipId . ' has been deleted.'
+                ]);
+            break;
+            
             case 'superadministrator':
                 $this->createLog->execute([
                     'user_id'   =>  $data->user()->id,

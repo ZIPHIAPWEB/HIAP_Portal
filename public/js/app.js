@@ -6155,6 +6155,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'initials', 'userPrograms', 'payments', 'schools', 'online_programs', 'courses'],
@@ -6162,7 +6229,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isEdit: false,
       isLoading: false,
-      selectedProgram: []
+      selectedProgram: [],
+      payment: {
+        purpose: '',
+        file: '',
+        filename: ''
+      },
+      isUploading: false
     };
   },
   components: {
@@ -6205,8 +6278,36 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedProgram = data;
       $('#modal-default').modal('show');
     },
-    updatePersonalProfile: function updatePersonalProfile() {
+    addDepositSlip: function addDepositSlip() {
       var _this2 = this;
+
+      this.isUploading = true;
+      var formData = new FormData();
+      formData.append('purpose', this.payment.purpose);
+      formData.append('file', this.payment.file);
+      formData.append('client_id', this.client.user_id);
+      this.$inertia.post('/addDepositSlip', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onSuccess: function onSuccess() {
+          _this2.isUploading = false;
+          $('#modal-payment').modal('hide');
+        },
+        onError: function onError() {
+          _this2.isUploading = false;
+        }
+      });
+    },
+    removeDepositSlip: function removeDepositSlip(id) {
+      this.$inertia["delete"]("/removeDepositSlip/".concat(id), {
+        onBefore: function onBefore() {
+          return confirm('Remove deposit slip?');
+        }
+      });
+    },
+    updatePersonalProfile: function updatePersonalProfile() {
+      var _this3 = this;
 
       this.loading = true;
       this.$inertia.post('/updateClientDetails', this.client, {
@@ -6214,15 +6315,42 @@ __webpack_require__.r(__webpack_exports__);
           return confirm('Update this details?');
         },
         onSuccess: function onSuccess() {
-          _this2.isEdit = false;
-          _this2.loading = false;
+          _this3.isEdit = false;
+          _this3.loading = false;
         },
         onError: function onError() {
-          _this2.isEdit = false;
-          _this2.loading = false;
+          _this3.isEdit = false;
+          _this3.loading = false;
           toastr.error('An error has occured.');
         }
       });
+    },
+    payBy: function payBy(mode) {
+      var _this4 = this;
+
+      switch (mode) {
+        case 'student':
+          $('#modal-choices').modal('hide');
+          $('#modal-payment').modal('show');
+          break;
+
+        case 'school':
+          this.isLoading = true;
+          this.$inertia.post('/payBySchool', {}, {
+            onSuccess: function onSuccess() {
+              _this4.isLoading = false;
+              $('#modal-choices').modal('hide');
+            }
+          });
+          break;
+      }
+    },
+    fileHandler: function fileHandler() {
+      this.payment.file = this.$refs.slip.files[0];
+      this.payment.filename = this.payment.file.name;
+    },
+    browseFile: function browseFile() {
+      document.getElementById('deposit-form').click();
     }
   }
 });
@@ -23306,7 +23434,21 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header bg-info" }, [
-              _c("h5", { staticClass: "card-title" }, [_vm._v("Payment")])
+              _c("h5", { staticClass: "card-title" }, [_vm._v("Payment")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-tools" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-xs btn-primary",
+                    attrs: {
+                      "data-target": "#modal-choices",
+                      "data-toggle": "modal"
+                    }
+                  },
+                  [_vm._v("Upload Proof of Payment")]
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
@@ -23696,6 +23838,263 @@ var render = function() {
                   },
                   [_vm._v("Update")]
                 )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade show",
+        attrs: { id: "modal-payment", "aria-modal": "true" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-dialog-centered modal-sm" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.isUploading
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "overlay d-flex justify-content-center align-items-center"
+                    },
+                    [_c("i", { staticClass: "fas fa-spinner fa-2x fa-pulse" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm._v("Upload Proof of payment")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("x")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Type")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment.purpose,
+                          expression: "payment.purpose"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.payment,
+                            "purpose",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Select purpose")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Initial Payment" } }, [
+                        _vm._v("Initial Payment")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Final Payment" } }, [
+                        _vm._v("Final Payment")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Proof of Payment")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group input-group-sm" }, [
+                    _c("input", {
+                      ref: "slip",
+                      staticStyle: { display: "none" },
+                      attrs: { type: "file", id: "deposit-form" },
+                      on: {
+                        change: function($event) {
+                          return _vm.fileHandler()
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment.filename,
+                          expression: "payment.filename"
+                        }
+                      ],
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.payment.filename },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.payment, "filename", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "input-group-append" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info btn-flat",
+                          on: {
+                            click: function($event) {
+                              return _vm.browseFile()
+                            }
+                          }
+                        },
+                        [_vm._v("Browse")]
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-sm btn-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.addDepositSlip()
+                      }
+                    }
+                  },
+                  [_vm._v("Submit")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade show",
+        attrs: { id: "modal-choices", "aria-modal": "true" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-dialog-centered modal-md" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.isLoading
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "overlay d-flex justify-content-center align-items-center"
+                    },
+                    [_c("i", { staticClass: "fas fa-spinner fa-2x fa-pulse" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", [_vm._v("Select Mode")]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("x")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-6" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-block btn-lg",
+                        on: {
+                          click: function($event) {
+                            return _vm.payBy("student")
+                          }
+                        }
+                      },
+                      [_vm._v("Paid By Student")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-6" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-block btn-lg",
+                        on: {
+                          click: function($event) {
+                            return _vm.payBy("school")
+                          }
+                        }
+                      },
+                      [_vm._v("Paid By School")]
+                    )
+                  ])
+                ])
               ])
             ])
           ]
