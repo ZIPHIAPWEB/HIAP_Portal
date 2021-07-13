@@ -144,6 +144,9 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
+                                <i>NOTE: Please write your name in your deposit slip/receipt.</i>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Type</label>
                                 <select v-model="payment.purpose" class="form-control form-control-sm">
                                     <option selected>Select purpose</option>

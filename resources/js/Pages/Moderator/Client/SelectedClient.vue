@@ -129,6 +129,7 @@
                                         <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
+                                        <th class="text-center">Enrolled Since</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -148,8 +149,10 @@
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
+                                        <td class="text-center text-bold">{{ p.created_at }}</td>
                                         <td class="text-center ">
                                             <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
+                                            <button @click="deleteUserProgram(p.id)" class="btn-danger btn-xs">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -173,6 +176,7 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th class="text-left">Type</th>
+                                        <th>Mode of Payment</th>
                                         <th>Date Uploaded</th>
                                         <th>Verified</th>
                                         <th>Action</th>
@@ -181,13 +185,14 @@
                                 <tbody v-if="payments.length > 0">
                                     <tr v-for="payment in payments" :key="payment.id" class="text-center">
                                         <td class="text-left text-sm">{{ payment.purpose }}</td>
+                                        <td class="text-sm">{{ payment.paid_from }}</td>
                                         <td class="text-sm">{{ payment.created_at }}</td>
                                         <td class="text-sm">
                                             <i v-if="payment.isVerified" class="fas fa-check text-green"></i>
                                             <i v-else class="fas fa-times text-red"></i>
                                         </td>
                                         <td class="text-sm">
-                                            <a v-if="payment.purpose !== 'Paid by School'" :href="payment.path" class="btn btn-primary btn-xs" target="_blank">View</a>
+                                            <a v-if="payment.path != ''" :href="payment.path" class="btn btn-primary btn-xs" target="_blank">View</a>
                                             <span v-else>No file to view</span>
                                         </td>
                                     </tr>
@@ -268,6 +273,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="form-group">
+                                <i>NOTE: Please write your name in your deposit slip/receipt.</i>
+                            </div>
                             <div class="form-group">
                                 <label for="">Type</label>
                                 <select v-model="payment.purpose" class="form-control form-control-sm">
@@ -375,6 +383,14 @@
                     }
                 })
             },
+            deleteUserProgram(programId) {
+                this.$inertia.delete(`/deleteUserProgram/${programId}`, {
+                    onBefore: () => confirm('Delete this program?'),
+                    onSuccess: () => {
+                        toastr.info('Selected program deleted.')
+                    }
+                })
+            },
             editProgram(data) {
                 this.selectedProgram = data;
                 $('#modal-default').modal('show');
@@ -427,7 +443,7 @@
 
                     case 'school':
                         this.isLoading = true;
-                        this.$inertia.post('/payBySchool', {}, {
+                        this.$inertia.post('/payBySchool', { client_id: this.client.user_id }, {
                             onSuccess: () => {
                                 this.isLoading = false;
                                 $('#modal-choices').modal('hide');

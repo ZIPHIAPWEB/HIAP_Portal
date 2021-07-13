@@ -143,8 +143,9 @@ class ModeratorController extends Controller
                     'id'        =>  $payment->id,
                     'user_id'   =>  $payment->user_id,
                     'purpose'   =>  $payment->purpose,
+                    'paid_from' =>  $payment->paid_from,
                     'isVerified'=>  $payment->isVerified,
-                    'path'      =>  (Auth::check()) ? '/slips/' . $payment->path : 'Auth required.',
+                    'path'      =>  ($payment->path) ? '/slips/' . $payment->path : '',
                     'created_at'=>  $payment->created_at->toDayDateTimeString()
                 ];
             }),
@@ -152,6 +153,21 @@ class ModeratorController extends Controller
                 ->with('program')
                 ->with('course')
                 ->get()
+                ->map(function($userProgram) {
+                    return [
+                        'id'                    =>  $userProgram->id,
+                        'user_id'               =>  $userProgram->user_id,
+                        'course_id'             =>  $userProgram->course_id,
+                        'program_id'            =>  $userProgram->program_id,
+                        'hours_needed'          =>  $userProgram->hours_needed,
+                        'application_status'    =>  $userProgram->application_status,
+                        'start_date'            =>  $userProgram->start_date,
+                        'end_date'              =>  $userProgram->end_date,
+                        'program'               =>  $userProgram->program,
+                        'course'                =>  $userProgram->course,
+                        'created_at'            =>  $userProgram->created_at->diffForHumans()
+                    ];
+                })
         ]);
     }
 

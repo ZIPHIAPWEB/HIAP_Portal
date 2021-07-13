@@ -137,15 +137,18 @@
                     "Middle Name": "client.middle_name",
                     "Last Name": "client.last_name",
                     "E-mail Address": "client.user.email",
+                    "Alternate Email": "client.alternate_email",
                     "FB Link": "client.fb_link",
                     "Contact No.": "client.contact_no",
                     "School": "client.school.name",
+                    "Year Level": "client.school_year",
+                    "Course": "client.course",
                     "Program": "client.online_program.name",
                     "Program Track": 'program.description',
-                    "Program Status": 'application_status',
                     "Required Hours": 'hours_needed',
                     "Start Date": 'start_date',
                     "End Date": 'end_date',
+                    "Program Status": 'application_status',
                     "Remarks": "''"
                 }
             }
