@@ -29,7 +29,7 @@ class CertificateService
             $arr = explode(';', $cert);
 
             if($arr[0] != '') {
-                $this->createCertificate->execute([
+                (new CreateCertificate)->execute([
                     'cert_no'       =>  $arr[0],
                     'name'          =>  $arr[1],
                     'school'        =>  $arr[2],
@@ -47,7 +47,7 @@ class CertificateService
 
     public function addSingleCert($data)
     {
-        $this->createCertificate->execute([
+        (new CreateCertificate)->execute([
             'cert_no'       =>  $data->cert_no,
             'name'          =>  $data->name,
             'school'        =>  $data->school,
@@ -63,7 +63,7 @@ class CertificateService
 
     public function updateCert($data)
     {
-        $this->updateCertificate->execute(['id' => $data['id']], [
+        (new UpdateCertificate)->execute(['id' => $data['id']], [
             'cert_no'       =>  $data['cert_no'],
             'name'          =>  $data['name'],
             'school'        =>  $data['school'],
@@ -79,6 +79,6 @@ class CertificateService
 
     public function remove($id)
     {
-        $this->removeCertificate->execute($id);
+        (new RemoveCertificate)->execute($id);
     }
 }

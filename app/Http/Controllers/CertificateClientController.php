@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CertificateClient;
 use App\CertificateLayout;
+use App\Services\Certificate\WebinarCertificateService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use PDF;
@@ -63,29 +64,14 @@ class CertificateClientController extends Controller
             'layout_id'     =>  'required'
         ]);
 
-        $file = file($request->file->getRealPath());
-        $data = array_slice($file, 1);
-        
-        foreach($data as $cert) {
-            $arr = explode(';', $cert);
-
-            if($arr[0] != '') {
-                CertificateClient::create([
-                    'cert_created_at'   =>  $arr[0],
-                    'cert_layout_id'    =>  $request->layout_id,
-                    'full_name'         =>  utf8_encode($arr[1]),
-                    'email'             =>  $arr[2],
-                    'school'            =>  ($arr[3] == 'Other') ? $arr[4] : $arr[3]
-                ]);
-            } 
-        }
+        (new WebinarCertificateService)->uploadBulk($request);
 
         return redirect()->back();
     }
 
     public function saveSingleClient(Request $request)
     {
-        CertificateClient::create($request->validate([
+        (new WebinarCertificateService)->uploadSingle($request->validate([
             'full_name'         =>  'required',
             'email'             =>  'required',
             'school'            =>  'required',
@@ -98,21 +84,20 @@ class CertificateClientController extends Controller
 
     public function updateClientCert(Request $request)
     {
-        CertificateClient::where('id', $request->id)
-            ->update($request->validate([
-                'full_name'         =>  'required',
-                'email'             =>  'required',
-                'school'            =>  'required',
-                'cert_created_at'   =>  'required',
-                'cert_layout_id'    =>  'required'
-            ]));
+        (new WebinarCertificateService)->updateSingleCertificate($request->id, $request->validate([
+            'full_name'         =>  'required',
+            'email'             =>  'required',
+            'school'            =>  'required',
+            'cert_created_at'   =>  'required',
+            'cert_layout_id'    =>  'required'
+        ]));
 
         return redirect()->back();
     }
 
     public function deleteClientCert($certId)
     {
-        CertificateClient::where('id', $certId)->delete();
+        (new WebinarCertificateService)->removeSingleCertificate($certId);
 
         return redirect()->back();
     }

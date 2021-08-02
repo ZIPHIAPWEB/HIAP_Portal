@@ -115,9 +115,21 @@
                 </inertia-link>
               </li>
               <li class="nav-item">
+                <inertia-link href="/lobsterCertLayouts" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lobster Cert Generator</p>
+                </inertia-link>
+              </li>
+              <li class="nav-item">
                 <inertia-link href="/certClients" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cert Clients</p>
+                </inertia-link>
+              </li>
+              <li class="nav-item">
+                <inertia-link href="/lobsterClientCerts" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lobster Cert Clients</p>
                 </inertia-link>
               </li>
             </ul>

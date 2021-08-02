@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Http\Requests\Payment\AddPaymentRequest;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,10 @@ class PaymentController extends Controller
         $this->paymentService = $paymentService;        
     }
 
-    public function addDepositSlip(Request $request)
+    public function addDepositSlip(AddPaymentRequest $request)
     {
-        $this->paymentService->uploadDepositSlip($request);
+        
+        $this->paymentService->uploadDepositSlip($request->validated());
 
         return redirect()
             ->back()

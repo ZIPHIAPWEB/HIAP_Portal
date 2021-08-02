@@ -219,5 +219,24 @@ Route::post('/searchCertificate', 'CertificateClientController@searchCertificate
 Route::post('/certSaveSingle', 'CertificateClientController@saveSingleClient');
 Route::patch('/certUpdateClient', 'CertificateClientController@updateClientCert');
 
+Route::get('/lobsterCertLayouts', 'LobsterLayoutGeneratorController@showLobsterLayouts');
+Route::post('/lobsterCertLayoutStore', 'LobsterLayoutGeneratorController@addNewLobsterLayout');
+Route::get('/lobsterCertLayoutView/{layoutId}', 'LobsterLayoutGeneratorController@viewSelectedLobsterLayout');
+Route::patch('/lobsterCertLayoutUpdate', 'LobsterLayoutGeneratorController@updateLobsterLayout');
+Route::delete('/lobsterCertLayoutDelete/{layoutid}', 'LobsterLayoutGeneratorController@removeLobsterLayout');
+Route::get('/lobsterCertForEditor/{layoutid}', 'LobsterLayoutGeneratorController@viewEditorLobsterLayout');
+Route::get('/lobsterCertForActual/{layoutid}', 'LobsterLayoutGeneratorController@viewActualLobsterLayout');
+
+Route::get('/lobsterClientCertDownload/{userId}', 'LobsterCertificateClientController@downloadClientLobsterCertificate');
+Route::get('/lobsterClientCerts', 'LobsterCertificateClientController@showLobsterClientCertificates');
+Route::post('/lobsterClientUploadCerts', 'LobsterCertificateClientController@uploadLobsterClients');
+Route::post('/lobsterClientUploadCert', 'LobsterCertificateClientController@uploadLobsterClient');
+
+Route::post('/addStyleToCertificate', 'CertStyleGeneratorController@addStyleToCert');
+Route::patch('/updateStyleToCertificate/{styleId}', 'CertStyleGeneratorController@updateStyleToCert');
 
 Route::post('/filterClients', 'ClientController@filterClients');
+
+Route::get('/testing', function() {
+    return view('export.lobster_cert_view');
+});
