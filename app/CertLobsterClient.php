@@ -10,6 +10,7 @@ class CertLobsterClient extends Model
     use HasFactory;
 
     protected $fillable = [
+        'cert_id_main',
         'cert_id',
         'full_name',
         'course',

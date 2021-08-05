@@ -47,7 +47,7 @@ class LobsterCertificateClientController extends Controller
                 'cert_id'       =>  (!$data->cert_id) ? null : $data->cert_id,
                 'hours'         =>  (!$data->hours) ? null : 'Academic Credit: '.$data->hours. ' hours',
                 'date_issued'   =>  'Issued on ' . $data->created_at->format('F d, Y'),
-                'course'        =>  (!$data->course) ? null : $data->course,
+                'course'        =>  (!$data->course) ? null : strtoupper($data->course),
             ],
         ];
 

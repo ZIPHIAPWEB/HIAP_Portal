@@ -3,32 +3,34 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
+
                     <div class="card-header">
                         <h5 class="card-title">Create Template</h5>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" v-model="form.name" class="form-control form-control-sm" placeholder="Sample Name">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" v-model="form.name" class="form-control form-control-sm" placeholder="Sample Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Template</label>
+                            <div><input @change="fileHandler()" ref="img" type="file"></div>
+                        </div>
+                        <div class="form-group">
+                            <button v-if="!isEdit" class="btn btn-primary btn-sm" @click="saveTemplate()">Add Template</button>
+                            <div v-else>
+                                <button class="btn btn-success btn-sm" @click="updateTemplate()">Update</button>
+                                <button class="btn btn-danger btn-sm" @click="isEdit = false">Cancel Edit</button>
                             </div>
-                            <div class="form-group">
-                                <label>Template</label>
-                                <div><input @change="fileHandler()" ref="img" type="file"></div>
-                            </div>
-                            <div class="form-group">
-                                <button v-if="!isEdit" class="btn btn-primary btn-sm" @click="saveTemplate()">Add Template</button>
-                                <div v-else>
-                                    <button class="btn btn-success btn-sm" @click="updateTemplate()">Update</button>
-                                    <button class="btn btn-danger btn-sm" @click="isEdit = false">Cancel Edit</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-9">
                 <div class="card">
+                    <div v-if="isLoading" class="overlay d-flex justify-content-center align-items-center">
+                        <i class="fas fa-spinner fa-2x fa-pulse"></i>
+                    </div>
                     <div class="card-header">
                         <h5 class="card-title">Layouts</h5>
                     </div>
@@ -76,7 +78,8 @@ export default {
                 file: ''
             },
             selected: [],
-            isEdit: false
+            isEdit: false,
+            isLoadng: false
         }
     },
     methods: {
@@ -87,8 +90,13 @@ export default {
             this.$inertia.get(`/lobsterCertLayoutView/${layoutId}`)
         },
         saveTemplate() {
+            this.isLoadng = true;
             this.$inertia.post('/lobsterCertLayoutStore', this.form, {
-                onBefore: () => confirm('Add this template?')
+                onBefore: () => confirm('Add this template?'),
+                onSuccess: () => {
+                    toastr.info('New Template Added.')
+                    this.isLoadng = false;
+                }
             })
         },
         editTemplate(template) {
@@ -96,8 +104,13 @@ export default {
             this.form = template;
         },
         updateTemplate() {
+            this.isLoadng = true;
             this.$inertia.patch('/lobsterCertLayoutUpdate', this.form, {
-                onBefore: () => confirm('Update this template')
+                onBefore: () => confirm('Update this template'),
+                onSuccess: () => {
+                    toastr.info('Template Updated.');
+                    this.isLoadng = false;
+                }
             })
         },
         removeTemplate(layoutId) {

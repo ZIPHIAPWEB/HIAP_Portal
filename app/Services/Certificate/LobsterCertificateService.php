@@ -14,7 +14,8 @@ class LobsterCertificateService implements ICertificateService
             'full_name'         =>  $data['full_name'],
             'course'            =>  $data['course'],
             'hours'             =>  $data['hours'],
-            'lobster_layout_id' =>  $data['lobster_layout']
+            'lobster_layout_id' =>  $data['lobster_layout'],
+            'cert_id_main'      =>  $data['cert_id']
         ];
     }
     public function uploadBulk($data): void
@@ -25,7 +26,8 @@ class LobsterCertificateService implements ICertificateService
                 'full_name'         =>  $file[1],
                 'course'            =>  $file[2],
                 'hours'             =>  $file[3],
-                'lobster_layout_id' =>  $data['layout_id']
+                'lobster_layout_id' =>  $data['layout_id'],
+                'cert_id_main'      =>  $file[4]
             ]);
         }
     }
