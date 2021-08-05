@@ -84,4 +84,25 @@ class LobsterCertificateClientController extends Controller
 
         return redirect()->back();
     }
+
+    public function viewSearchToDownloadCert()
+    {
+        return Inertia::render('Certificate/LobsterSearchToDownloadCert');
+    }
+
+    public function viewLobsterCertDownloadingPage()
+    {
+        return Inertia::render('Certificate/LobsterCertDownloading');
+    }
+
+    public function getSearchedLobsterCertificate(Request $request)
+    {
+        return response()->json(CertLobsterClient::where('cert_id_main', $request->search)->get()->map(function($query) {
+            return [
+                'id'        =>  $query->id,
+                'full_name' =>  $query->full_name,
+                'created_at'=>  $query->created_at->toFormattedDateString()
+            ];
+        }));
+    }
 }

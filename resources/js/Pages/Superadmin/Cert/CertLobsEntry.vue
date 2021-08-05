@@ -99,7 +99,7 @@
                             </thead>
                             <tbody v-if="lobster_clients.data.length > 0">
                                 <tr v-for="participant in lobster_clients.data" :key="participant.id" class="text-center">
-                                    <td class="text-left">{{ participant.cert_id }}</td>
+                                    <td class="text-left">{{ participant.cert_id_main }}</td>
                                     <td>{{ participant.full_name }}</td>
                                     <td>{{ participant.course }}</td>
                                     <td>{{ participant.hours }}</td>
