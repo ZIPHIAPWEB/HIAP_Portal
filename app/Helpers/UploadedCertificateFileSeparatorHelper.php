@@ -4,17 +4,18 @@ namespace App\Helpers;
 
 class UploadedCertificateFileSeparatorHelper
 {
-    public function separateFileToArray($file, string $separatorSymbol = ';') : array
+    public function separateFileToArray($file, string $separatorSymbol = ';')
     {
         $convertedFile = file($file->getRealPath());
         $data = array_splice($convertedFile, 1);
-        $arrayOfData = [];
-
+        $arrayOfData = collect();
+        
         foreach($data as $value) {
             $arr = explode($separatorSymbol, $value);
-            array_push($arrayOfData, $arr);
+            if ($arr[0] != '') {
+                $arrayOfData->push($arr);
+            }
         }
-
         return $arrayOfData;
     }
 }

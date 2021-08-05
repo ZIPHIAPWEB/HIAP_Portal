@@ -15,19 +15,19 @@ class LobsterCertificateService implements ICertificateService
             'course'            =>  $data['course'],
             'hours'             =>  $data['hours'],
             'lobster_layout_id' =>  $data['lobster_layout'],
-            'cert_id_main'      =>  $data['cert_id']
+            'cert_id_main'      =>  $data['cert_id_main']
         ];
     }
     public function uploadBulk($data): void
     {
         foreach((new FileSeparator)->separateFileToArray($data['file']) as $file) {
             CertLobsterClient::create([
-                'cert_id'           =>  $file[0],
-                'full_name'         =>  $file[1],
-                'course'            =>  $file[2],
-                'hours'             =>  $file[3],
+                'cert_id_main'      =>  $file[0],
+                'cert_id'           =>  $file[1],
+                'full_name'         =>  $file[2],
+                'course'            =>  $file[3],
+                'hours'             =>  $file[4],
                 'lobster_layout_id' =>  $data['layout_id'],
-                'cert_id_main'      =>  $file[4]
             ]);
         }
     }

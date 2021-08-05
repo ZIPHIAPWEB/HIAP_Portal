@@ -3,7 +3,9 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
-
+                    <div v-if="isLoading" class="overlay d-flex justify-content-center align-items-center">
+                        <i class="fas fa-spinner fa-2x fa-pulse"></i>
+                    </div>
                     <div class="card-header">
                         <h5 class="card-title">Create Template</h5>
                     </div>
@@ -28,9 +30,6 @@
             </div>
             <div class="col-sm-9">
                 <div class="card">
-                    <div v-if="isLoading" class="overlay d-flex justify-content-center align-items-center">
-                        <i class="fas fa-spinner fa-2x fa-pulse"></i>
-                    </div>
                     <div class="card-header">
                         <h5 class="card-title">Layouts</h5>
                     </div>
@@ -79,7 +78,7 @@ export default {
             },
             selected: [],
             isEdit: false,
-            isLoadng: false
+            isLoading: false
         }
     },
     methods: {
@@ -90,12 +89,12 @@ export default {
             this.$inertia.get(`/lobsterCertLayoutView/${layoutId}`)
         },
         saveTemplate() {
-            this.isLoadng = true;
+            this.isLoading = true;
             this.$inertia.post('/lobsterCertLayoutStore', this.form, {
                 onBefore: () => confirm('Add this template?'),
                 onSuccess: () => {
                     toastr.info('New Template Added.')
-                    this.isLoadng = false;
+                    this.isLoading = false;
                 }
             })
         },
@@ -104,12 +103,12 @@ export default {
             this.form = template;
         },
         updateTemplate() {
-            this.isLoadng = true;
+            this.isLoading = true;
             this.$inertia.patch('/lobsterCertLayoutUpdate', this.form, {
                 onBefore: () => confirm('Update this template'),
                 onSuccess: () => {
                     toastr.info('Template Updated.');
-                    this.isLoadng = false;
+                    this.isLoading = false;
                 }
             })
         },

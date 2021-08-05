@@ -185,7 +185,13 @@ export default {
         editParticipant() {
             
          },
-        deleteCert() { }
+        deleteCert() { },
+        nextPage() {
+            this.$inertia.visit(this.lobster_clients.next_page_url);
+        },
+        prevPage() {
+            this.$inertia.visit(this.lobster_clients.prev_page_url);
+        },
     }
 }
 </script>
