@@ -18,8 +18,9 @@ class PaymentController extends Controller
 
     public function addDepositSlip(AddPaymentRequest $request)
     {
-        
-        $this->paymentService->uploadDepositSlip($request->validated());
+        $request->validated();
+
+        $this->paymentService->uploadDepositSlip($request);
 
         return redirect()
             ->back()

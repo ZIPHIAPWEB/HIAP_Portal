@@ -80,5 +80,10 @@
   'montserrat' => array(
     '500' => $fontDir . '/montserrat_500_51d32715a2529ff80180b0dec7eb7073',
     'normal' => $fontDir . '/montserrat_normal_21817bda1245da0aa5b26121455b400c',
+    'bold' => $fontDir . '/montserrat_bold_7154ccf2716a82cb7416508741f9f24c',
+  ),
+  'montserratbold' => array(
+    'normal' => $fontDir . '/montserratbold_normal_7154ccf2716a82cb7416508741f9f24c',
+    'bold' => $fontDir . '/montserratbold_bold_7154ccf2716a82cb7416508741f9f24c',
   ),
 ) ?>

@@ -9,9 +9,17 @@
                 font-family: 'Montserrat';
                 src: url("{{ asset('fonts/montserrat_500_51d32715a2529ff80180b0dec7eb7073.ttf') }}") format('truetype');
             }
+
+            @font-face {
+                font-family: 'Montserrat';
+                src: url("{{ asset('fonts/MontserratBold-DOWZd.ttf') }}") format('truetype');
+                font-weight: bold;
+            }
+
             body {
                 background: rgb(204,204,204); 
             }
+            
             page {
                 background: white;
                 display: block;

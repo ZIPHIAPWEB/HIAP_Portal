@@ -43,17 +43,18 @@ class LobsterCertificateClientController extends Controller
                 })
             ],
             'client'    =>  [
-                'full_name' =>  $data->full_name,
-                'cert_id'   =>  $data->cert_id,
-                'course'    =>  $data->course,
-                'hours'     =>  $data->hours,
+                'full_name'     =>  strtoupper($data->full_name),
+                'cert_id'       =>  (!$data->cert_id) ? null : $data->cert_id,
+                'hours'         =>  (!$data->hours) ? null : 'Academic Credit: '.$data->hours. ' hours',
+                'date_issued'   =>  'Issued on ' . $data->created_at->format('F d, Y'),
+                'course'        =>  (!$data->course) ? null : $data->course,
             ],
         ];
 
-        // return view('export.lobster_cert_export', ['data' => $formattedData]);
+        // return view('export.lobs ter_cert_export', ['data' => $formattedData]);
         $pdf = PDF::loadView('export.lobster_cert_export', ['data' => $formattedData])->setPaper('a4', 'portrait');
         $pdf->setEncryption('p@ssw0rd', ['print']);
-        return $pdf->download('lobster_certificate.pdf');
+        return $pdf->download('lobster_COC.pdf');
     }
 
     public function uploadLobsterClients(UploadBulkLobsterRequest $request)
