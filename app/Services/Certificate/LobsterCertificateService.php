@@ -24,8 +24,8 @@ class LobsterCertificateService implements ICertificateService
             CertLobsterClient::create([
                 'cert_id_main'      =>  $file[0],
                 'cert_id'           =>  $file[1],
-                'full_name'         =>  $file[2],
-                'course'            =>  $file[3],
+                'full_name'         =>  utf8_encode($file[2]),
+                'course'            =>  utf8_encode($file[3]),
                 'hours'             =>  $file[4],
                 'lobster_layout_id' =>  $data['layout_id'],
             ]);
