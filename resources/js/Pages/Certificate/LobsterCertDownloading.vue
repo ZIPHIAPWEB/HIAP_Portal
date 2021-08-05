@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <a href="/lobsterCertDownload" class="btn btn-danger btn-sm">Back to Previous Page</a>
+        <a href="/hiapCoCDownload" class="btn btn-danger btn-sm">Back to Previous Page</a>
 
     </div>
 </template>
