@@ -227,10 +227,10 @@ Route::delete('/lobsterCertLayoutDelete/{layoutid}', 'LobsterLayoutGeneratorCont
 Route::get('/lobsterCertForEditor/{layoutid}', 'LobsterLayoutGeneratorController@viewEditorLobsterLayout');
 Route::get('/lobsterCertForActual/{layoutid}', 'LobsterLayoutGeneratorController@viewActualLobsterLayout');
 
-Route::get('/lobsterCertDownload', 'LobsterCertificateClientController@viewSearchToDownloadCert');
+Route::get('/hiapCoCDownload', 'LobsterCertificateClientController@viewSearchToDownloadCert');
 Route::post('/getSearchedLobsterCertificate', 'LobsterCertificateClientController@getSearchedLobsterCertificate');
 Route::get('/lobsterClientCertDownload/{userId}', 'LobsterCertificateClientController@downloadClientLobsterCertificate');
-Route::get('/viewLobsterCertDownloadingPage', 'LobsterCertificateClientController@viewLobsterCertDownloadingPage');
+Route::get('/viewCoCDownloadingPage', 'LobsterCertificateClientController@viewLobsterCertDownloadingPage');
 Route::get('/lobsterClientCerts', 'LobsterCertificateClientController@showLobsterClientCertificates');
 Route::post('/lobsterClientUploadCerts', 'LobsterCertificateClientController@uploadLobsterClients');
 Route::post('/lobsterClientUploadCert', 'LobsterCertificateClientController@uploadLobsterClient');

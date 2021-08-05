@@ -74,7 +74,7 @@
                 a.setAttribute('download', '');
                 a.click();
 
-                window.location.replace('/viewLobsterCertDownloadingPage');
+                window.location.replace('/viewCoCDownloadingPage');
             }
         }
     }
