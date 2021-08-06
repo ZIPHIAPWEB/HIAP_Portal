@@ -85,7 +85,7 @@
                              <div class="input-group input-group-sm">
                                 <input @keypress.enter="searchByCertId()" type="text" class="form-control" v-model="search"  placeholder="Search by email/name">
                                 <span class="input-group-append">
-                                    <button @click="searchByEmailOrName()" class="btn btn-info btn-flat">
+                                    <button @click="searchByCertId()" class="btn btn-info btn-flat">
                                         <span class="fas fa-search"></span>
                                     </button>
                                 </span>

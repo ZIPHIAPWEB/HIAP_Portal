@@ -27381,7 +27381,7 @@ var render = function() {
                       staticClass: "btn btn-info btn-flat",
                       on: {
                         click: function($event) {
-                          return _vm.searchByEmailOrName()
+                          return _vm.searchByCertId()
                         }
                       }
                     },
