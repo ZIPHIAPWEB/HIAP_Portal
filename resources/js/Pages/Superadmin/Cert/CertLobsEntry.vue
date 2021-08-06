@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Cert Layout</label>
-                                        <select v-model="form.lobster_layout" class="form-control form-control-sm">
+                                        <select v-model="form.layout_id" class="form-control form-control-sm">
                                             <option selected value="">Select Layout</option>
                                             <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
                                         </select>

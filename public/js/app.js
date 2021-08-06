@@ -27275,8 +27275,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.lobster_layout,
-                              expression: "form.lobster_layout"
+                              value: _vm.form.layout_id,
+                              expression: "form.layout_id"
                             }
                           ],
                           staticClass: "form-control form-control-sm",
@@ -27292,7 +27292,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.form,
-                                "lobster_layout",
+                                "layout_id",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
