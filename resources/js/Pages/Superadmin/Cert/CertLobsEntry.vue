@@ -161,12 +161,14 @@ export default {
             this.form.file = this.$refs.participants.files[0];
         },
         submitAction() {
+            this.isLoading = true;
             switch(this.isEdit) {
                 case false: 
                     this.$inertia.post('/lobsterClientUploadCert', this.selectedParticipant, {
                         onBefore: () => confirm('Submit this record?'),
                         onSuccess: () => {
                             toastr.info('New cert added.')
+                            this.isLoading = false;
                         }
                     })
                 break;
@@ -176,6 +178,7 @@ export default {
                         onBefore: () => confirm('Update this record?'),
                         onSuccess: () => {
                             this.isEdit = false;
+                            this.isLoading = false;
                             toastr.info('Selected cert updated.')
                         }
                     })
@@ -183,8 +186,17 @@ export default {
             }
         },
         saveFile() {
+            this.isLoading = true;
             this.$inertia.post('/lobsterClientUploadCerts', this.form, {
-                onBefore: () => confirm('Add this datas?')
+                onBefore: () => confirm('Add this datas?'),
+                onSuccess: () => {
+                    this.isLoading = false;
+                    toastr.info('Record from file uploaded.');
+                },
+                onError: errors => {
+                    this.isLoading = false;
+                    toastr.error('An error has occured while uploading.')
+                }
             })
         },
         editParticipant(participant) {

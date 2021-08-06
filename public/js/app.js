@@ -7572,6 +7572,8 @@ __webpack_require__.r(__webpack_exports__);
     submitAction: function submitAction() {
       var _this = this;
 
+      this.isLoading = true;
+
       switch (this.isEdit) {
         case false:
           this.$inertia.post('/lobsterClientUploadCert', this.selectedParticipant, {
@@ -7580,6 +7582,7 @@ __webpack_require__.r(__webpack_exports__);
             },
             onSuccess: function onSuccess() {
               toastr.info('New cert added.');
+              _this.isLoading = false;
             }
           });
           break;
@@ -7591,6 +7594,7 @@ __webpack_require__.r(__webpack_exports__);
             },
             onSuccess: function onSuccess() {
               _this.isEdit = false;
+              _this.isLoading = false;
               toastr.info('Selected cert updated.');
             }
           });
@@ -7598,9 +7602,20 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     saveFile: function saveFile() {
+      var _this2 = this;
+
+      this.isLoading = true;
       this.$inertia.post('/lobsterClientUploadCerts', this.form, {
         onBefore: function onBefore() {
           return confirm('Add this datas?');
+        },
+        onSuccess: function onSuccess() {
+          _this2.isLoading = false;
+          toastr.info('Record from file uploaded.');
+        },
+        onError: function onError(errors) {
+          _this2.isLoading = false;
+          toastr.error('An error has occured while uploading.');
         }
       });
     },
@@ -7619,12 +7634,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.visit(this.lobster_clients.prev_page_url);
     },
     searchByCertId: function searchByCertId() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post('/lobsterClientSearch', {
         search: this.search
       }).then(function (response) {
-        _this2.lobster_clients = response.data;
+        _this3.lobster_clients = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
