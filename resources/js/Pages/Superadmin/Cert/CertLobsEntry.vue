@@ -21,6 +21,10 @@
                             <div class="tab-pane active" id="single">
                                 <form id="cert-form" @submit.prevent="submitAction()">
                                     <div class="form-group">
+                                        <label for="cert_id">Permanent Cert ID</label>
+                                        <input v-model="selectedParticipant.cert_id_main" type="text" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="cert_id">Cert ID</label>
                                         <input v-model="selectedParticipant.cert_id" type="text" class="form-control form-control-sm">
                                     </div>
@@ -45,7 +49,10 @@
                                     </div>
                                     <div class="form-group">
                                         <button v-if="!isEdit" type="submit" class="btn btn-primary btn-sm">Add Cert</button>
-                                        <button v-else type="submit" class="btn btn-success btn-sm">Update Cert</button>
+                                        <div v-else>
+                                            <button type="submit" class="btn btn-success btn-sm">Update Cert</button>
+                                            <button @click="cancelEdit()" type="button" class="btn btn-danger btn-sm">Cancel Edit</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -56,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Cert Layout</label>
-                                        <select v-model="form.layout_id" class="form-control form-control-sm">
+                                        <select v-model="form.lobster_layout_id" class="form-control form-control-sm">
                                             <option selected value="">Select Layout</option>
                                             <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
                                         </select>
@@ -76,7 +83,7 @@
                         <h6 class="card-title">Participants</h6>
                         <div class="card-tools">
                              <div class="input-group input-group-sm">
-                                <input @keypress.enter="searchByEmailOrName()" type="text" class="form-control" v-model="search"  placeholder="Search by email/name">
+                                <input @keypress.enter="searchByCertId()" type="text" class="form-control" v-model="search"  placeholder="Search by email/name">
                                 <span class="input-group-append">
                                     <button @click="searchByEmailOrName()" class="btn btn-info btn-flat">
                                         <span class="fas fa-search"></span>
@@ -98,18 +105,7 @@
                                 </tr>
                             </thead>
                             <tbody v-if="lobster_clients.data.length > 0">
-                                <tr v-for="participant in lobster_clients.data" :key="participant.id" class="text-center">
-                                    <td class="text-left">{{ participant.cert_id_main }}</td>
-                                    <td>{{ participant.full_name }}</td>
-                                    <td>{{ participant.course }}</td>
-                                    <td>{{ participant.hours }}</td>
-                                    <td>{{ participant.layout.name }}</td>
-                                    <td>
-                                        <button @click="downloadCert(participant.id)" class="btn btn-warning btn-xs">Download</button>
-                                        <button @click="editParticipant(participant)" class="btn btn-success btn-xs">Edit</button>
-                                        <button @click="deleteCert(participant.id)" class="btn btn-danger btn-xs">Delete</button>
-                                    </td>
-                                </tr>
+                                <lobster-client-item v-for="participant in lobster_clients.data" :participant="participant" :key="participant.id" @selectedParticipant="editParticipant" class="text-center"></lobster-client-item>
                             </tbody>
                             <tbody v-else>
                                 <tr class="text-center">
@@ -130,6 +126,7 @@
 
 <script>
 import SuperadminLayout from '../../../Layouts/SuperadminLayout.vue';
+import LobsterClientItem from '../../../components/LobsterClientItem.vue';
 
 export default {
     props: [
@@ -137,18 +134,20 @@ export default {
         'layouts'
     ],
     components: {
-        SuperadminLayout
+        SuperadminLayout,
+        LobsterClientItem
     },
     data () {
         return {
             isLoading: false,
             isEdit: false,
             selectedParticipant: {
+                cert_id_main: '',
                 cert_id: '',
                 full_name: '',
                 course: '',
                 hours: '',
-                lobster_layout: ''
+                lobster_layout_id: ''
             },
             search: '',
             form: {
@@ -165,12 +164,21 @@ export default {
             switch(this.isEdit) {
                 case false: 
                     this.$inertia.post('/lobsterClientUploadCert', this.selectedParticipant, {
-                        onBefore: () => confirm('Submit this record?')
+                        onBefore: () => confirm('Submit this record?'),
+                        onSuccess: () => {
+                            toastr.info('New cert added.')
+                        }
                     })
                 break;
 
                 case true: 
-
+                    this.$inertia.patch(`/lobsterClientUpdateCert/${this.selectedParticipant.id}`, this.selectedParticipant, {
+                        onBefore: () => confirm('Update this record?'),
+                        onSuccess: () => {
+                            this.isEdit = false;
+                            toastr.info('Selected cert updated.')
+                        }
+                    })
                 break;
             }
         },
@@ -179,19 +187,29 @@ export default {
                 onBefore: () => confirm('Add this datas?')
             })
         },
-        downloadCert(id) { 
-            this.$inertia.get(`/lobsterClientCertDownload/${id}`);
-         },
-        editParticipant() {
-            
-         },
-        deleteCert() { },
+        editParticipant(participant) {
+            this.isEdit = true;
+            this.selectedParticipant = participant;
+        },
+        cancelEdit() {
+            this.isEdit = false;
+            this.selectedParticipant = {};
+        },
         nextPage() {
             this.$inertia.visit(this.lobster_clients.next_page_url);
         },
         prevPage() {
             this.$inertia.visit(this.lobster_clients.prev_page_url);
         },
+        searchByCertId() {
+            axios.post('/lobsterClientSearch', {search: this.search})
+                .then((response) => {
+                    this.lobster_clients = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     }
 }
 </script>

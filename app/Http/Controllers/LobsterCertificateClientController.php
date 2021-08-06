@@ -18,7 +18,7 @@ class LobsterCertificateClientController extends Controller
     {
         return Inertia::render('Superadmin/Cert/CertLobsEntry', [
             'layouts'           =>  CertLobsterLayout::orderBy('name')->get(),
-            'lobster_clients'   =>  CertLobsterClient::orderBy('created_at')
+            'lobster_clients'   =>  CertLobsterClient::orderBy('created_at', 'desc')
                 ->with('layout')
                 ->paginate(18)
         ]);
@@ -104,5 +104,13 @@ class LobsterCertificateClientController extends Controller
                 'created_at'=>  $query->created_at->toFormattedDateString()
             ];
         }));
+    }
+
+    public function searchLobsterCertificate(Request $request) 
+    {
+        return CertLobsterClient::orderBy('created_at', 'desc')
+                ->with('layout')
+                ->where('cert_id_main', 'like', '%'. $request->search .'%')
+                ->paginate(18);
     }
 }

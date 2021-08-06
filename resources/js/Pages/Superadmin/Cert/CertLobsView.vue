@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <iframe id="cert-actual-view" :src="`/lobsterCertForEditor/${lobster_layout.id}`" title="W3Schools Free Online Web Tutorials" style="height: 80vh; width: 100%; "></iframe>
+                <iframe id="cert-actual-view" :src="`/lobsterCertForEditor/${lobster_layout.id}`" title="W3Schools Free Online Web Tutorials" style="height: 100vh; width: 100%; "></iframe>
             </div>
         </div>
     </superadmin-layout>
