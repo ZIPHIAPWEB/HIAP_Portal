@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="layout">Layout</label>
-                                        <select v-model="selectedParticipant.lobster_layout" class="form-control form-control-sm">
+                                        <select v-model="selectedParticipant.lobster_layout_id" class="form-control form-control-sm">
                                             <option selected value="">Select layout</option>
                                             <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
                                         </select>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Cert Layout</label>
-                                        <select v-model="form.lobster_layout_id" class="form-control form-control-sm">
+                                        <select v-model="form.lobster_layout" class="form-control form-control-sm">
                                             <option selected value="">Select Layout</option>
                                             <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
                                         </select>

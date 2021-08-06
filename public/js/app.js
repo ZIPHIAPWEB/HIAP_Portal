@@ -27156,8 +27156,10 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.selectedParticipant.lobster_layout,
-                                expression: "selectedParticipant.lobster_layout"
+                                value:
+                                  _vm.selectedParticipant.lobster_layout_id,
+                                expression:
+                                  "selectedParticipant.lobster_layout_id"
                               }
                             ],
                             staticClass: "form-control form-control-sm",
@@ -27173,7 +27175,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.selectedParticipant,
-                                  "lobster_layout",
+                                  "lobster_layout_id",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -27273,8 +27275,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.lobster_layout_id,
-                              expression: "form.lobster_layout_id"
+                              value: _vm.form.lobster_layout,
+                              expression: "form.lobster_layout"
                             }
                           ],
                           staticClass: "form-control form-control-sm",
@@ -27290,7 +27292,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.form,
-                                "lobster_layout_id",
+                                "lobster_layout",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
