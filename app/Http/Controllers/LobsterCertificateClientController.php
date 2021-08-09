@@ -101,6 +101,7 @@ class LobsterCertificateClientController extends Controller
             return [
                 'id'        =>  $query->id,
                 'full_name' =>  $query->full_name,
+                'course'    =>  ($query->course == null) ? 'MAIN CERTIFICATE TRACK' : $query->course,
                 'created_at'=>  $query->created_at->toFormattedDateString()
             ];
         }));
@@ -111,6 +112,7 @@ class LobsterCertificateClientController extends Controller
         return CertLobsterClient::orderBy('created_at', 'desc')
                 ->with('layout')
                 ->where('cert_id_main', 'like', '%'. $request->search .'%')
+                ->orWhere('full_name', 'like', '%'.$request->search.'%')
                 ->paginate(18);
     }
 }

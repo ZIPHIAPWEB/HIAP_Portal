@@ -25,6 +25,7 @@
                     <thead>
                         <tr class="text-center">
                             <th class="text-left">Name</th>
+                            <th>Course</th>
                             <th>Date Created</th>
                             <th>Actions</th>
                         </tr>
@@ -32,6 +33,7 @@
                     <tbody v-if="certs.length > 0">
                         <tr v-for="cert in certs" :key="cert.id" class="text-center">
                             <td class="text-left">{{ cert.full_name }}</td>
+                            <td>{{ cert.course }}</td>
                             <td>{{ cert.created_at }}</td>
                             <td>
                                 <button @click="downloadFile(cert.id)" class="btn btn-primary btn-xs">Download</button>
