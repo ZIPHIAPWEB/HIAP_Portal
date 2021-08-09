@@ -12,6 +12,7 @@ class LobsterCertificateService implements ICertificateService
         return [
             'cert_id'           =>  $data['cert_id'],
             'full_name'         =>  $data['full_name'],
+            'school'            =>  $data['school'],
             'course'            =>  $data['course'],
             'hours'             =>  $data['hours'],
             'lobster_layout_id' =>  $data['lobster_layout_id'],
@@ -28,6 +29,7 @@ class LobsterCertificateService implements ICertificateService
                 'course'            =>  utf8_encode($file[3]),
                 'hours'             =>  $file[4],
                 'lobster_layout_id' =>  $data['layout_id'],
+                'school'            =>  $data['school']
             ]);
         }
     }

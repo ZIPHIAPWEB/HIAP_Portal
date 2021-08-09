@@ -33,8 +33,12 @@
                                         <input v-model="selectedParticipant.full_name" type="text" class="form-control form-control-sm" placeholder="Jane Doe">
                                     </div>
                                     <div class="form-group">
+                                        <label for="email">School</label>
+                                        <input v-model="selectedParticipant.school" type="text" class="form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="email">Course</label>
-                                        <input v-model="selectedParticipant.course" type="text" class="form-control form-control-sm" placeholder="sample@app.com">
+                                        <input v-model="selectedParticipant.course" type="text" class="form-control form-control-sm" placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="cert_hours">Hours</label>
@@ -60,6 +64,10 @@
                                 <form @submit.prevent="saveFile()">
                                     <div class="form-group">
                                         <input @change="fileHandler" type="file" ref="participants" name="" id="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>School</label>
+                                        <input v-model="form.school" type="text" class="form-control form-control-sm">
                                     </div>
                                     <div class="form-group">
                                         <label>Cert Layout</label>
@@ -98,6 +106,7 @@
                                 <tr class="text-center">
                                     <th class="text-left">Cert ID</th>
                                     <th>Full Name</th>
+                                    <th>School</th>
                                     <th>Course</th>
                                     <th>Hours</th>
                                     <th>Layout</th>
@@ -145,6 +154,7 @@ export default {
                 cert_id_main: '',
                 cert_id: '',
                 full_name: '',
+                school: '',
                 course: '',
                 hours: '',
                 lobster_layout_id: ''
@@ -152,6 +162,7 @@ export default {
             search: '',
             form: {
                 layout_id: '',
+                school: '',
                 file: []
             }
         }

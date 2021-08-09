@@ -2,6 +2,7 @@
     <tr class="text-center">
         <td class="text-left">{{ participant.cert_id_main }}</td>
         <td>{{ participant.full_name }}</td>
+        <td>{{ participant.school }}</td>
         <td>{{ participant.course }}</td>
         <td>{{ participant.hours }}</td>
         <td>{{ participant.layout.name }}</td>

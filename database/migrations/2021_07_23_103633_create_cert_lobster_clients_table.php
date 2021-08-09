@@ -17,6 +17,7 @@ class CreateCertLobsterClientsTable extends Migration
             $table->id();
             $table->string('cert_id');
             $table->string('full_name');
+            $table->string('school');
             $table->string('course');
             $table->string('hours');
             $table->integer('lobster_layout_id');

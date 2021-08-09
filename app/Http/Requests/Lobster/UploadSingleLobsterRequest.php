@@ -26,6 +26,7 @@ class UploadSingleLobsterRequest extends FormRequest
         return [
             'cert_id'           =>  'required',
             'full_name'         =>  'required',
+            'school'            =>  'required',
             'course'            =>  'required',
             'hours'             =>  'required',
             'lobster_layout_id' =>  'required',

@@ -13,6 +13,7 @@ class CertLobsterClient extends Model
         'cert_id_main',
         'cert_id',
         'full_name',
+        'school',
         'course',
         'hours',
         'lobster_layout_id'

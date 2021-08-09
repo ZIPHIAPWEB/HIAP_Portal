@@ -25,6 +25,7 @@ class UploadBulkLobsterRequest extends FormRequest
     {
         return [
             'file'      =>  'required',
+            'school'    =>  'required',
             'layout_id' =>  'required'
         ];
     }
