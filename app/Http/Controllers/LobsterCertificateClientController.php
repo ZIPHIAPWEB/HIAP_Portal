@@ -113,6 +113,7 @@ class LobsterCertificateClientController extends Controller
                 ->with('layout')
                 ->where('cert_id_main', 'like', '%'. $request->search .'%')
                 ->orWhere('full_name', 'like', '%'.$request->search.'%')
+                ->orWhere('school', 'like', '%'.$request->search.'%')
                 ->paginate(18);
     }
 }
