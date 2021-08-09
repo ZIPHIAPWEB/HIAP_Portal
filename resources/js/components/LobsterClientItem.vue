@@ -1,10 +1,19 @@
 <template>
-    <tr class="text-center">
+    <tr class="text-center text-xs">
         <td class="text-left">{{ participant.cert_id_main }}</td>
         <td>{{ participant.full_name }}</td>
-        <td>{{ participant.school }}</td>
-        <td>{{ participant.course }}</td>
-        <td>{{ participant.hours }}</td>
+        <td>
+            <span v-if="participant.school">{{ participant.school }}</span>
+            <span v-else class="text-danger text-italic">Not Applicable</span>
+        </td>
+        <td>
+            <span v-if="participant.course">{{ participant.course }}</span>
+            <span v-else class="text-danger text-italic">Not Applicable</span>
+        </td>
+        <td>
+            <span v-if="participant.hours">{{ participant.hours }}</span>
+            <span v-else class="text-danger text-italic">Not Applicable</span>
+        </td>
         <td>{{ participant.layout.name }}</td>
         <td>
             <button @click="downloadCert(participant.id)" class="btn btn-warning btn-xs">Download</button>

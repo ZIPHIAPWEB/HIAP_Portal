@@ -113,8 +113,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody v-if="lobster_clients.data.length > 0">
-                                <lobster-client-item v-for="participant in lobster_clients.data" :participant="participant" :key="participant.id" @selectedParticipant="editParticipant" class="text-center"></lobster-client-item>
+                            <tbody v-if="clients.data.length > 0">
+                                <lobster-client-item v-for="participant in clients.data" :participant="participant" :key="participant.id" @selectedParticipant="editParticipant" class="text-center"></lobster-client-item>
                             </tbody>
                             <tbody v-else>
                                 <tr class="text-center">
@@ -123,9 +123,13 @@
                             </tbody>
                         </table>
                     </div>  
-                   <div class="card-footer p-2">
-                        <button :disabled="!lobster_clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
-                        <button :disabled="!lobster_clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
+                    <div v-if="!isSearched" class="card-footer p-2">
+                        <button :disabled="!clients.prev_page_url" @click="prevNormalPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!clients.next_page_url" @click="nextNormalPage()" class="btn btn-primary btn-xs">Next</button>
+                    </div>
+                   <div v-else class="card-footer p-2">
+                        <button :disabled="!clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                 </div>
             </div>
@@ -148,8 +152,10 @@ export default {
     },
     data () {
         return {
+            clients: this.lobster_clients,
             isLoading: false,
             isEdit: false,
+            isSearched: false,
             selectedParticipant: {
                 cert_id_main: '',
                 cert_id: '',
@@ -218,16 +224,29 @@ export default {
             this.isEdit = false;
             this.selectedParticipant = {};
         },
+        nextNormalPage() {
+            this.$inertia.visit(this.clients.next_page_url);
+        },
+        prevNormalPage() {
+            this.$inertia.visit(this.clients.prev_page_url);
+        },
         nextPage() {
-            this.$inertia.visit(this.lobster_clients.next_page_url);
+            axios.get(this.clients.next_page_url)
+                .then((response) => {
+                    this.clients = response.data;
+                });
         },
         prevPage() {
-            this.$inertia.visit(this.lobster_clients.prev_page_url);
+            axios.get(this.clients.prev_page_url)
+                .then((response) => {
+                    this.clients = response.data;
+                })
         },
         searchByCertId() {
-            axios.post('/lobsterClientSearch', {search: this.search})
+            this.isSearched = true;
+            axios.get('/lobsterClientSearch', {search: this.search})
                 .then((response) => {
-                    this.lobster_clients = response.data;
+                    this.clients = response.data;
                 })
                 .catch(error => {
                     console.log(error);
