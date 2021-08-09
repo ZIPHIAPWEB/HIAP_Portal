@@ -28,7 +28,7 @@ class UploadSingleLobsterRequest extends FormRequest
             'full_name'         =>  'required',
             'course'            =>  'required',
             'hours'             =>  'required',
-            'lobster_layout'    =>  'required',
+            'lobster_layout_id' =>  'required',
             'cert_id_main'      =>  'required'
         ];
     }

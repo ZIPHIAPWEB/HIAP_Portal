@@ -14,7 +14,7 @@ class LobsterCertificateService implements ICertificateService
             'full_name'         =>  $data['full_name'],
             'course'            =>  $data['course'],
             'hours'             =>  $data['hours'],
-            'lobster_layout_id' =>  $data['lobster_layout'],
+            'lobster_layout_id' =>  $data['lobster_layout_id'],
             'cert_id_main'      =>  $data['cert_id_main']
         ];
     }
