@@ -231,20 +231,20 @@ export default {
             this.$inertia.visit(this.clients.prev_page_url);
         },
         nextPage() {
-            axios.get(this.clients.next_page_url)
+            axios.post(this.clients.next_page_url)
                 .then((response) => {
                     this.clients = response.data;
                 });
         },
         prevPage() {
-            axios.get(this.clients.prev_page_url)
+            axios.post(this.clients.prev_page_url)
                 .then((response) => {
                     this.clients = response.data;
                 })
         },
         searchByCertId() {
             this.isSearched = true;
-            axios.get('/lobsterClientSearch', {search: this.search})
+            axios.post('/lobsterClientSearch', {search: this.search})
                 .then((response) => {
                     this.clients = response.data;
                 })

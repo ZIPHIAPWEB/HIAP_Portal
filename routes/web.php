@@ -236,7 +236,7 @@ Route::post('/lobsterClientUploadCerts', 'LobsterCertificateClientController@upl
 Route::post('/lobsterClientUploadCert', 'LobsterCertificateClientController@uploadLobsterClient');
 Route::delete('/lobsterClientDeleteCert/{id}', 'LobsterCertificateClientController@removeLobsterClient');
 Route::patch('/lobsterClientUpdateCert/{id}', 'LobsterCertificateClientController@updateLobsterClient');
-Route::get('/lobsterClientSearch', 'LobsterCertificateClientController@searchLobsterCertificate');
+Route::post('/lobsterClientSearch', 'LobsterCertificateClientController@searchLobsterCertificate');
 
 Route::post('/addStyleToCertificate', 'CertStyleGeneratorController@addStyleToCert');
 Route::patch('/updateStyleToCertificate/{styleId}', 'CertStyleGeneratorController@updateStyleToCert');
