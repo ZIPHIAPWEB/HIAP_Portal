@@ -83,7 +83,7 @@
                         <h6 class="card-title">Participants</h6>
                         <div class="card-tools">
                              <div class="input-group input-group-sm">
-                                <input @keypress.enter="searchByCertId()" type="text" class="form-control" v-model="search"  placeholder="Search by email/name">
+                                <input @keypress.enter="searchByCertId()" type="text" class="form-control" v-model="search"  placeholder="Search by cert id/name">
                                 <span class="input-group-append">
                                     <button @click="searchByCertId()" class="btn btn-info btn-flat">
                                         <span class="fas fa-search"></span>
