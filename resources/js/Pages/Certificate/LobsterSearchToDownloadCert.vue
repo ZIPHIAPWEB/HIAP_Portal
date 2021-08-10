@@ -20,8 +20,8 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body p-0">
-                <table class="table table-striped">
+            <div class="card-body p-0" style="height: 30vh; overflow:auto;">
+                <table class="table table-striped h-100">
                     <thead>
                         <tr class="text-center">
                             <th class="text-left">Name</th>
@@ -42,7 +42,7 @@
                     </tbody>
                     <tbody v-else>
                         <tr>
-                            <td colspan="4" class="text-center" id="tb-msg"></td>
+                            <td colspan="4" class="text-center" id="tb-msg">No record to display</td>
                         </tr>
                     </tbody>
                 </table>

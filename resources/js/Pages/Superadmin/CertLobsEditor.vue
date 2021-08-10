@@ -92,10 +92,16 @@ export default {
     },
     methods: {
         nextPage () {
-            this.$inertia.visit(this.layouts.next_page_url);
+            this.$inertia.visit(this.layouts.next_page_url, {
+                preserveState: true,
+                preserveScroll: true
+            });
         },
         prevPage () {
-            this.$inertia.visit(this.layouts.prev_page_url);
+            this.$inertia.visit(this.layouts.prev_page_url, {
+                preserveState: true,
+                preserveScroll: true
+            });
         },
         fileHandler () {
             this.form.file = this.$refs.img.files[0];
@@ -120,6 +126,8 @@ export default {
         updateTemplate() {
             this.isLoading = true;
             this.$inertia.patch('/lobsterCertLayoutUpdate', this.form, {
+                preserveState: true,
+                preserveScroll: true,
                 onBefore: () => confirm('Update this template'),
                 onSuccess: () => {
                     toastr.info('Template Updated.');
@@ -129,6 +137,8 @@ export default {
         },
         removeTemplate(layoutId) {
             this.$inertia.delete(`/lobsterCertLayoutDelete/${layoutId}`, {
+                preserveState: true,
+                preserveScroll: true,
                 onBefore: () => confirm('Delete this template')
             })
         }

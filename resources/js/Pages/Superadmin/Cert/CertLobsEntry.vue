@@ -225,10 +225,16 @@ export default {
             this.selectedParticipant = {};
         },
         nextNormalPage() {
-            this.$inertia.visit(this.lobsterClientData.next_page_url);
+            this.$inertia.visit(this.lobsterClientData.next_page_url, {
+                preserveState: true,
+                preserveScroll: true
+            });
         },
         prevNormalPage() {
-            this.$inertia.visit(this.lobsterClientData.prev_page_url);
+            this.$inertia.visit(this.lobsterClientData.prev_page_url, {
+                preserveState: true,
+                preserveScroll: true
+            });
         },
         nextPage() {
             axios.post(this.lobsterClientData.next_page_url)
