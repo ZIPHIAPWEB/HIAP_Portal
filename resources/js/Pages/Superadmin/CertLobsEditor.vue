@@ -43,7 +43,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-center" v-for="layout in lobster_layout.data" :key="layout.id">
+                                <tr class="text-center text-xs" v-for="layout in layouts.data" :key="layout.id">
                                     <td class="text-left">{{ layout.id }}</td>
                                     <td>{{ layout.name }}</td>
                                     <td class="text-center">
@@ -54,6 +54,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-footer p-2">
+                        <button :disabled="!layouts.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!layouts.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                 </div>
             </div>
@@ -81,7 +85,18 @@ export default {
             isLoading: false
         }
     },
+    computed: {
+        layouts () {
+            return this.lobster_layout;
+        }
+    },
     methods: {
+        nextPage () {
+            this.$inertia.visit(this.layouts.next_page_url);
+        },
+        prevPage () {
+            this.$inertia.visit(this.layouts.prev_page_url);
+        },
         fileHandler () {
             this.form.file = this.$refs.img.files[0];
         },
