@@ -15,6 +15,10 @@
                             <input type="text" v-model="form.name" class="form-control form-control-sm" placeholder="Sample Name">
                         </div>
                         <div class="form-group">
+                            <label>Styles</label>
+                            <v-select v-model="form.styles" label="name" multiple :options="styles"></v-select>
+                        </div>
+                        <div class="form-group">
                             <label>Template</label>
                             <div><input @change="fileHandler()" ref="img" type="file"></div>
                         </div>
@@ -72,12 +76,14 @@ export default {
         SuperadminLayout
     },
     props: [
-        'lobster_layout'
+        'lobster_layout',
+        'styles'
     ],
     data () {
         return {
             form: {
                 name: '',
+                styles: [],
                 file: ''
             },
             selected: [],

@@ -3,6 +3,8 @@
 namespace App\Services\Generator;
 
 use App\CertLobsterLayout;
+use App\CertStyle;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class LobsterLayoutGeneratorService implements IGeneratorService
@@ -13,11 +15,28 @@ class LobsterLayoutGeneratorService implements IGeneratorService
     {
         if($settings['file']) {
             $path = Storage::putFile('public/' . $this->directory, $settings['file']);
-            CertLobsterLayout::create([
-                'name'      =>  $settings['name'],
-                'f_style'   =>  '',
-                'img_path'  =>  $path
-            ]);
+            DB::beginTransaction();
+            
+            try {
+                $cert = CertLobsterLayout::create([
+                    'name'      =>  $settings['name'],
+                    'f_style'   =>  '',
+                    'img_path'  =>  $path
+                ]);
+    
+                foreach($settings['styles'] as $style) {
+                    CertStyle::create([
+                        'cert_id'   =>  $cert->id,
+                        'name'      =>  $style['name'],
+                        'class_name'=>  $style['class_name'],
+                        'style'     =>  $style['style']
+                    ]);
+                }
+
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+            }
         }
     }
 

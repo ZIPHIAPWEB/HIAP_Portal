@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CertLobsterLayout;
+use App\CertStyle;
 use App\Http\Requests\Lobster\AddNewLobsterLayoutRequest;
 use App\Services\Generator\LobsterLayoutGeneratorService as LayoutGenerator;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class LobsterLayoutGeneratorController extends Controller
     public function showLobsterLayouts()
     {
         return Inertia::render('Superadmin/CertLobsEditor', [
+            'styles'            =>  CertStyle::orderBy('created_at', 'asc')->get(),
             'lobster_layout'    =>  CertLobsterLayout::orderBy('created_at')->paginate(15)
         ]);
     }

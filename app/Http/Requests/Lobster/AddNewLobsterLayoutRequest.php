@@ -25,7 +25,8 @@ class AddNewLobsterLayoutRequest extends FormRequest
     {
         return [
             'name'      =>  'required',
-            'file'      =>  'required'
+            'file'      =>  'required',
+            'styles'    =>  ''
         ];
     }
 }
