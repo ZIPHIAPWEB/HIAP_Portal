@@ -24,10 +24,10 @@ class UploadSingleLobsterRequest extends FormRequest
     public function rules()
     {
         return [
-            'cert_id'           =>  'required',
+            'cert_id'           =>  '',
             'full_name'         =>  'required',
             'school'            =>  'required',
-            'course'            =>  'required',
+            'course'            =>  '',
             'hours'             =>  'required',
             'lobster_layout_id' =>  'required',
             'cert_id_main'      =>  'required'
