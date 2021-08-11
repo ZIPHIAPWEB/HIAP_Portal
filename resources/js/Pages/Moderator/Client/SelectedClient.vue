@@ -142,6 +142,8 @@
                                                 <option value="New Learner">New Learner</option>
                                                 <option value="Confirmed Learner">Confirmed Learner</option>
                                                 <option value="Complete Learner">Complete Learner</option>
+                                                <option value="Cancelled Learner">Cancelled Learner</option>
+                                                <option value="Not Enrolled">Not Enrolled</option>
                                             </select>
                                             <!-- <i class="text-red" v-if="p.application_status == 0">Newly Enrolled</i>
                                             <i class="text-green" v-else>Completed</i> -->
