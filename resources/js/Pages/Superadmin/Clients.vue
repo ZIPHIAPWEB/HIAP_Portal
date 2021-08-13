@@ -113,6 +113,7 @@
                                 <button v-if="client.isFilled == false" @click="setToFilled(client)" class="btn btn-info btn-xs btn-flat">Filled</button>
                                 <button v-if="client.isFilled == true" @click="setToUnfilled(client)" class="btn btn-info btn-xs btn-flat">Unfilled</button>
                                 <button @click="deleteClientDetails(client.id)" class="btn btn-danger btn-xs btn-flat">Delete</button>
+                                <button @click="resetToDefaultPassword(client.id)" class="btn btn-primary btn-xs btn-flat">Default password</button>
                             </td>
                         </tr>
                     </tbody>
@@ -210,6 +211,14 @@
                         tostr.info('Client details deleted.');
                     }
                 });
+            },
+            resetToDefaultPassword (id) {
+                this.$inertia.post('/setToDefaultPassword', { user_id: id}, {
+                    onBefore: () => confirm('Set password to default?'),
+                    onSuccess: () => {
+                        toastr.info('Password set to p@ssw0rd');
+                    }
+                })
             }
         }
     }

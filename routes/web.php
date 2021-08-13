@@ -242,7 +242,8 @@ Route::post('/addStyleToCertificate', 'CertStyleGeneratorController@addStyleToCe
 Route::patch('/updateStyleToCertificate/{styleId}', 'CertStyleGeneratorController@updateStyleToCert');
 
 Route::post('/filterClients', 'ClientController@filterClients');
+Route::post('/setToDefaultPassword', 'ClientController@setUserPasswordToDefault');
 
 Route::get('/testing', function() {
-    return view('export.lobster_cert_view');
+    return Hash::make('p@ssw0rd');
 });

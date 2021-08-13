@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use App\Services\ClientApplicationService;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -175,27 +176,25 @@ class ClientController extends Controller
     public function filterClients(Request $request)
     {
         return UserProgram::orderBy('created_at', 'desc')
-                    ->with(['client' => function($query) use ($request) {
-                        return $query->with('user')
-                                     ->with('school')
-                                     ->with('onlineProgram')
-                                     ->whereBetween('created_at', [date($request->from), date($request->to)])   
-                                     ->where('school_id', 'like', '%' .$request->school_id . '%')
-                                     ->get();
-                    }])
-                    ->with('program')
-                    ->whereBetween('created_at', [date($request->from), date($request->to)])
-                    ->get();
+                ->with(['client' => function($query) use ($request) {
+                    return $query->with('user')
+                                    ->with('school')
+                                    ->with('onlineProgram')
+                                    ->whereBetween('created_at', [date($request->from), date($request->to)])   
+                                    ->where('school_id', 'like', '%' .$request->school_id . '%')
+                                    ->get();
+                }])
+                ->with('program')
+                ->whereBetween('created_at', [date($request->from), date($request->to)])
+                ->get();
+    }
 
-        // return Client::orderBy('created_at', 'desc')
-        //         ->with('user')
-        //         ->with('school')
-        //         ->with('onlineProgram')
-        //         ->with(['userProgram' => function($query) {
-        //             return $query->with('program');
-        //         }])
-        //         ->whereBetween('created_at', [date($request->from), date($request->to)])
-        //         ->where('school_id', 'like', '%'.$request->school_id.'%')
-        //         ->get();
+    public function setUserPasswordToDefault(Request $request)
+    {
+        User::where('id', $request->user_id)->update([
+            'password'  =>  Hash::make('p@ssw0rd')
+        ]);
+
+        return redirect()->back();
     }
 }
