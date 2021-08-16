@@ -85,7 +85,7 @@
     <section class="page-description">
         <div class="container-fluid">
             <div>
-                <h1 class="text-center">Global E-learning Programs</h1>
+                <h1 class="text-center">World-class Training Programs</h1>
                 <p class="text-center mb-4">These are world-class training programs developed based on the global standards and requirements. These training programs are used by the top hotel brands such and Marriott and Hilton and developed by the leading experts and industries such as Ecolab and CIA.</p>
                 <p
                     class="text-center mb-4">We have the right platform and content drive for job-blended learning with innovative instructional design techniques and the latest trends in multimedia production and methodology.It makes learning more effective, efficient, engaging and drive performance. </p>
