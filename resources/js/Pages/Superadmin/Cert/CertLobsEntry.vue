@@ -113,8 +113,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody v-if="lobsterClientData.data.length > 0">
-                                <lobster-client-item v-for="participant in lobsterClientData.data" :participant="participant" :key="participant.id" @selectedParticipant="editParticipant" class="text-center"></lobster-client-item>
+                            <tbody v-if="lobster_clients.data.length > 0">
+                                <lobster-client-item v-for="participant in lobster_clients.data" :participant="participant" :key="participant.id" @selectedParticipant="editParticipant" class="text-center"></lobster-client-item>
                             </tbody>
                             <tbody v-else>
                                 <tr class="text-center">
@@ -124,12 +124,12 @@
                         </table>
                     </div>  
                     <div v-if="!isSearched" class="card-footer p-2">
-                        <button :disabled="!lobsterClientData.prev_page_url" @click="prevNormalPage()" class="btn btn-primary btn-xs">Prev</button>
-                        <button :disabled="!lobsterClientData.next_page_url" @click="nextNormalPage()" class="btn btn-primary btn-xs">Next</button>
+                        <button :disabled="!lobster_clients.prev_page_url" @click="prevNormalPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!lobster_clients.next_page_url" @click="nextNormalPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                    <div v-else class="card-footer p-2">
-                        <button :disabled="!lobsterClientData.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
-                        <button :disabled="!lobsterClientData.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
+                        <button :disabled="!lobster_clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                        <button :disabled="!lobster_clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
                     </div>
                 </div>
             </div>
@@ -152,7 +152,6 @@ export default {
     },
     data () {
         return {
-            lobsterClientData: this.lobster_clients,
             isLoading: false,
             isEdit: false,
             isSearched: false,
@@ -225,34 +224,34 @@ export default {
             this.selectedParticipant = {};
         },
         nextNormalPage() {
-            this.$inertia.visit(this.lobsterClientData.next_page_url, {
+            this.$inertia.visit(this.lobster_clients.next_page_url, {
                 preserveState: true,
                 preserveScroll: true
             });
         },
         prevNormalPage() {
-            this.$inertia.visit(this.lobsterClientData.prev_page_url, {
+            this.$inertia.visit(this.lobster_clients.prev_page_url, {
                 preserveState: true,
                 preserveScroll: true
             });
         },
         nextPage() {
-            axios.post(this.lobsterClientData.next_page_url)
+            axios.post(this.lobster_clients.next_page_url)
                 .then((response) => {
-                    this.lobsterClientData = response.data;
+                    this.lobster_clients = response.data;
                 });
         },
         prevPage() {
             axios.post(this.lobsterClientData.prev_page_url)
                 .then((response) => {
-                    this.lobsterClientData = response.data;
+                    this.lobster_clients = response.data;
                 })
         },
         searchByCertId() {
             this.isSearched = true;
             axios.post('/lobsterClientSearch', {search: this.search})
                 .then((response) => {
-                    this.lobsterClientData = response.data;
+                    this.lobster_clients = response.data;
                 })
                 .catch(error => {
                     console.log(error);
