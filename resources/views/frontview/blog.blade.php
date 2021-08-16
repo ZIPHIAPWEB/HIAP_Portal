@@ -110,7 +110,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">global e-learning</a></li>
+                                <li><a href="/global-e-learning">World-class Training Programs</a></li>
                                 <li><a href="/e-learning-hub">e-learning hub</a></li>
                                 <li><a href="/tesda-online">Tesda online programs</a></li>
                             </ul>
@@ -127,7 +127,7 @@
                         <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/social-stream">social streams</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/blog">blog</a></li>
+                                <!-- <li><a href="/blog">blog</a></li> -->
                                 <li><a href="/social-stream">social streams</a></li>
                             </ul>
                         </li>

@@ -24,13 +24,15 @@ class LobsterLayoutGeneratorService implements IGeneratorService
                     'img_path'  =>  $path
                 ]);
     
-                foreach($settings['styles'] as $style) {
-                    CertStyle::create([
-                        'cert_id'   =>  $cert->id,
-                        'name'      =>  $style['name'],
-                        'class_name'=>  $style['class_name'],
-                        'style'     =>  $style['style']
-                    ]);
+                if ($settings['styles']) {
+                    foreach($settings['styles'] as $style) {
+                        CertStyle::create([
+                            'cert_id'   =>  $cert->id,
+                            'name'      =>  $style['name'],
+                            'class_name'=>  $style['class_name'],
+                            'style'     =>  $style['style']
+                        ]);
+                    }
                 }
 
                 DB::commit();
