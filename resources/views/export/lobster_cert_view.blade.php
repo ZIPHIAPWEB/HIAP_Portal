@@ -57,7 +57,7 @@
     <body>
         <page size="A4">
             @foreach($data['cert_styles'] as $style)
-            <p style="{{ $style['styles'] }}">RENZ D MERGENIO</p>
+            <p style="{{ $style['styles'] }}">Lorem Ipsum</p>
             @endforeach
         </page>
         <!-- <div class="container no-print">

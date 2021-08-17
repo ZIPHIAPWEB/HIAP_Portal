@@ -96,9 +96,9 @@
             <div class="page">
                 <div class="full-name" style="{{ $data->f_style }}">
                     @if(strlen('JANE DOE') > 50)
-                    <span style="font-size: 0.6em">Testing</span>
+                    <span style="font-size: 0.6em">Lorem Ipsum</span>
                     @else
-                    <span>Alyssa Diaz</span>
+                    <span>Lorem Ipsum</span>
                     @endif
                 </div>
             </div>

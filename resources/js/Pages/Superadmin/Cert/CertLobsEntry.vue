@@ -21,20 +21,20 @@
                             <div class="tab-pane active" id="single">
                                 <form id="cert-form" @submit.prevent="submitAction()">
                                     <div class="form-group">
-                                        <label for="cert_id">Permanent Cert ID</label>
-                                        <input v-model="selectedParticipant.cert_id_main" type="text" class="form-control form-control-sm">
+                                        <label for="cert_id">Permanent Cert ID <i class="text-red">*</i></label>
+                                        <input v-model="selectedParticipant.cert_id_main" type="text" class="form-control form-control-sm" :class="(!errors.hasOwnProperty('cert_id_main')) ? '' : 'is-invalid'">
                                     </div>
                                     <div class="form-group">
                                         <label for="cert_id">Cert ID</label>
                                         <input v-model="selectedParticipant.cert_id" type="text" class="form-control form-control-sm">
                                     </div>
                                     <div class="form-group">
-                                        <label for="full_name">Fullname</label>
-                                        <input v-model="selectedParticipant.full_name" type="text" class="form-control form-control-sm" placeholder="Jane Doe">
+                                        <label for="full_name">Fullname <i class="text-red">*</i></label>
+                                        <input v-model="selectedParticipant.full_name" type="text" class="form-control form-control-sm" :class="(!errors.hasOwnProperty('full_name')) ? '' : 'is-invalid'" placeholder="Jane Doe">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">School</label>
-                                        <input v-model="selectedParticipant.school" type="text" class="form-control form-control-sm" placeholder="">
+                                        <label for="email">School <i class="text-red">*</i></label>
+                                        <input v-model="selectedParticipant.school" type="text" class="form-control form-control-sm" :class="(!errors.hasOwnProperty('school')) ? '' : 'is-invalid'" placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Course</label>
@@ -42,11 +42,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cert_hours">Hours</label>
-                                        <input v-model="selectedParticipant.hours" type="text" class="form-control form-control-sm" placeholder="01/01/1990 00:00:00">
+                                        <input v-model="selectedParticipant.hours" type="text" class="form-control form-control-sm" placeholder="000">
                                     </div>
                                     <div class="form-group">
-                                        <label for="layout">Layout</label>
-                                        <select v-model="selectedParticipant.lobster_layout_id" class="form-control form-control-sm">
+                                        <label for="layout">Layout <i class="text-red">*</i></label>
+                                        <select v-model="selectedParticipant.lobster_layout_id" class="form-control form-control-sm" :class="(!errors.hasOwnProperty('lobster_layout_id')) ? '' : 'is-invalid'">
                                             <option selected value="">Select layout</option>
                                             <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
                                         </select>
@@ -144,6 +144,7 @@ import LobsterClientItem from '../../../components/LobsterClientItem.vue';
 export default {
     props: [
         'lobster_clients',
+        'errors',   
         'layouts'
     ],
     components: {
@@ -184,6 +185,9 @@ export default {
                         onBefore: () => confirm('Submit this record?'),
                         onSuccess: () => {
                             toastr.info('New cert added.')
+                            this.isLoading = false;
+                        },
+                        onError: () => {
                             this.isLoading = false;
                         }
                     })

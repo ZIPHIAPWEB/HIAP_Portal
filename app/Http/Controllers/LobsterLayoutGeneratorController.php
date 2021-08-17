@@ -23,7 +23,7 @@ class LobsterLayoutGeneratorController extends Controller
     {
         return Inertia::render('Superadmin/Cert/CertLobsView', [
             'lobster_layout'    =>  CertLobsterLayout::where('id', $layoutId)
-                ->with('certStyles')
+                ->with(['certStyles'])
                 ->first()
         ]);
     }
