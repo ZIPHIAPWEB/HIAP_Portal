@@ -39,7 +39,8 @@ class CertStyleGeneratorController extends Controller
             ->update([
                 'name'          =>  $request->name,
                 'class_name'    =>  '.'.Str::snake($request->name),
-                'style'         =>  json_encode($stringedStyle)
+                'style'         =>  json_encode($stringedStyle),
+                'raw_style'     =>  json_encode($request->style)
             ]);
 
         return redirect()->back();

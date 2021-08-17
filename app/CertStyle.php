@@ -13,8 +13,14 @@ class CertStyle extends Model
         'cert_id',
         'name',
         'class_name',
-        'style'
+        'style',
+        'raw_style'
     ];
+
+    public function getRawStyleAttribute($value) 
+    {
+        return json_decode($value, true);
+    }
 
     public function CertLobsterLayout()
     {

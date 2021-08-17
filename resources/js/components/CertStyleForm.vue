@@ -69,17 +69,7 @@ export default {
         return {
             form: {
                 name: this.styles.name,
-                style: {
-                    font_style: '',
-                    font_size: '',
-                    font_weight: '',
-                    text_align: '',
-                    color: '',
-                    top_pos: '',
-                    bot_pos: '',
-                    right_pos: '',
-                    left_pos: ''
-                }
+                style: { ...this.styles.raw_style }
             }
         }
     },

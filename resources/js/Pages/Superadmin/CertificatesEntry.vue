@@ -22,43 +22,43 @@
                                 <form id="cert-form" @submit.prevent="submitCert">
                                     <div class="form-group">
                                         <label for="">Cert ID</label>
-                                        <input v-model="form.cert_no" type="text" class="form-control form-control-sm" placeholder="ABCD123456">
+                                        <input v-model="form.cert_no" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('cert_no')) ? 'is-invalid' : ''" placeholder="ABCD123456">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Full Name</label>
-                                        <input v-model="form.name" type="text" class="form-control form-control-sm" placeholder="Jane Doe">
+                                        <input v-model="form.name" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('name')) ? 'is-invalid' : ''" placeholder="Jane Doe">
                                     </div>
                                     <div class="form-group">
                                         <label for="">School</label>
-                                        <input v-model="form.school" type="text" class="form-control form-control-sm" placeholder="Sample School">
+                                        <input v-model="form.school" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('school')) ? 'is-invalid' : ''" placeholder="Sample School">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Program/Track</label>
-                                        <input v-model="form.program" type="text" class="form-control form-control-sm" placeholder="Sample Program/Track">
+                                        <input v-model="form.program" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('program')) ? 'is-invalid' : ''" placeholder="Sample Program/Track">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Gold Medals</label>
-                                        <input v-model="form.gold_medal" type="text" class="form-control form-control-sm" placeholder="123">
+                                        <input v-model="form.gold_medal" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('gold_medal')) ? 'is-invalid' : ''" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Silver Medals</label>
-                                        <input v-model="form.silver_medal" type="text" class="form-control form-control-sm" placeholder="123">
+                                        <input v-model="form.silver_medal" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('silver_medal')) ? 'is-invalid' : ''" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Bronze Medals</label>
-                                        <input v-model="form.bronze_medal" type="text" class="form-control form-control-sm" placeholder="123">
+                                        <input v-model="form.bronze_medal" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('bronze_medal')) ? 'is-invalid' : ''" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Total Grade</label>
-                                        <input v-model="form.total_grade" type="text" class="form-control form-control-sm" placeholder="100%">
+                                        <input v-model="form.total_grade" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('total_grade')) ? 'is-invalid' : ''" placeholder="100%">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Total Medals</label>
-                                        <input v-model="form.total_medal" type="text" class="form-control form-control-sm" placeholder="123">
+                                        <input v-model="form.total_medal" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('total_medal')) ? 'is-invalid' : ''" placeholder="123">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Proficiency</label>
-                                        <input v-model="form.proficiency" type="text" class="form-control form-control-sm" placeholder="1.2345">
+                                        <input v-model="form.proficiency" type="text" class="form-control form-control-sm" :class="(errors.hasOwnProperty('proficiency')) ? 'is-invalid' : ''" placeholder="1.2345">
                                     </div>
                                     <div class="form-group">
                                         <button v-if="!isEdit" type="submit" class="btn btn-primary btn-sm">Add Cert</button>
@@ -145,7 +145,10 @@
 <script>
     import SuperadminLayout from '../../Layouts/SuperadminLayout.vue';
     export default {
-        props: ['certs'],
+        props: [
+            'certs',
+            'errors'
+        ],
         components: {
             SuperadminLayout
         },
