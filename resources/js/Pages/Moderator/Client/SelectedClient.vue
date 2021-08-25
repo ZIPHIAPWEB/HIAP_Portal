@@ -117,6 +117,40 @@
                     </div>
                     <div class="card">
                         <div class="card-header bg-info">
+                            <h5>Initial requirements</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-hovered table-bordered table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50%;">Requirements</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-if="initials.length > 0">
+                                    <tr v-for="initial in initials" :key="initial.id">
+                                        <td>{{ initial.name }}</td>
+                                        <td class="text-center">
+                                            <i v-if="initial.client_initial.status" class="fas fa-check text-green"></i>
+                                            <i v-else class="fas fa-times text-red"></i>
+                                        </td>
+                                        <td class="text-center">
+                                            <a v-if="initial.client_initial.status" :href="initial.client_initial.file_path" download="" class="btn btn-primary btn-xs">Download</a>
+                                            <i v-else class="text-sm">Not Applicable</i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr>
+                                        <td colspan="3" class="text-center">No Requirements</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header bg-info">
                             <h5 class="card-title">Enrolled Programs</h5>
                         </div>
                         <div class="card-body p-0">

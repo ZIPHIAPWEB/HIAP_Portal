@@ -10,29 +10,26 @@ use Illuminate\Http\Request;
 
 class ClientInitialController extends Controller
 {
-    private $initialRequirement;
-
-    public function __construct(InitialClientRequirementService $initialRequirementService)
-    {
-        $this->initialRequirement = $initialRequirementService;
-    }
-
-    public function getClientInitialRequirements (Request $request, $programId)
+    public function getClientInitialRequirements (Request $request)
     {
         return ClientInitial::where('user_id', $request->user()->id)
-            ->with('initial', function ($query) use ($programId){
-                $query->where('program_id',$programId);
+            ->with('initial', function ($query) {
+                $query->where('program_id', 2);
             })
             ->get();
     }
 
     public function storeClientInitialRequirement(ClientInitialStoreRequest $request)
     {
-        return $this->initialRequirement->uploadRequirement($request);
+        (new InitialClientRequirementService())->uploadRequirement($request->validated());
+
+        return redirect()->back();
     }   
 
     public function deleteClientInitialRequirement($id)
     {
-        $this->initialRequirement->removeUploadedRequirement($id);
+        (new InitialClientRequirementService())->removeUploadedRequirement($id);
+
+        return redirect()->back();
     }
 }

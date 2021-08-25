@@ -2,61 +2,28 @@
 
 namespace App\Services;
 
-use App\Actions\CreateClientInitial;
-use App\Actions\CreateLog;
-use App\Actions\RemoveRequirement;
+use App\ClientInitial;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class InitialClientRequirementService 
 {
-    private $createClientInitial;
-    private $createLog;
-    private $removeRequirement;
-    
-    public function __construct(
-        CreateClientInitial $createClientInitial,
-        RemoveRequirement $removeRequirement,
-        CreateLog $createLog
-    )
+    private $directory = 'cinitials';
+
+    public function uploadRequirement($data)
     {
-        $this->createClientInitial = $createClientInitial;  
-        $this->removeRequirement = $removeRequirement;
-        $this->createLog = $createLog;      
-    }
+        $path = Storage::putFile('public/'. $this->directory, $data['file']);
 
-    public function uploadRequirement($data) : object
-    {
-        $filename = time() . '.' . $data->file->extension();
-        $data->file->move(public_path('uploads'), $filename);
-
-        $newRequirement = $this->createClientInitial->execute([
-            'user_id'       =>  $data->user()->id,
-            'initial_id'    =>  $data->initial_id,
-            'status'        =>  true,
-            'file_path'     =>  $filename
+        ClientInitial::create([
+            'user_id'   =>  request()->user()->id,
+            'initial_id'=>  $data['initial_id'],
+            'status'    =>  true,
+            'file_path' =>  $path
         ]);
-
-        $this->createLog->execute([
-            'user_id'       =>  $data->user()->id,
-            'action'        =>  $filename . ' has been uploaded.'
-        ]);
-
-        return $newRequirement;
     }
 
     public function removeUploadedRequirement($data) : void
     {
-        $deletedRequirement = $this->removeRequirement->execute($data);
         
-        if (File::exists(public_path('uploads/' . $deletedRequirement->first()->file_path))) {
-            File::delete(public_path('uploads/' . $deletedRequirement->first()->file_path));
-        } else {
-            dd('File not exist');
-        }
-
-        $this->createLog->execute([
-            'user_id'       =>  $deletedRequirement->first()->user_id,
-            'action'        =>  $deletedRequirement->first()->file_path . ' has been deleted.'
-        ]);
     }
 }

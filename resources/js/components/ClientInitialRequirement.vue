@@ -31,14 +31,14 @@
                             <tr v-for="requirement in requirements" :key="requirement.id">
                                 <td>{{ requirement.name }}</td>
                                 <td class="text-center">
-                                    <i v-if="requirement.client_initial" class="fas fa-check text-success"></i>
+                                    <i v-if="requirement.client_initial.status" class="fas fa-check text-success"></i>
                                     <i v-else class="fas fa-times text-danger"></i>
                                 </td>
                                 <td class="text-center">
-                                    <button v-if="requirement.client_initial" @click="deleteFile(requirement.client_initial.id)" class="btn btn-danger btn-xs">Delete File</button>
+                                <button v-if="requirement.client_initial.status" @click="deleteFile(requirement.client_initial.id)" class="btn btn-danger btn-xs">Delete File</button>
                                     <div v-else class="d-flex flex-row justify-content-center">
                                         <div v-if="requirement.file_path">
-                                            <a :href="'/initials/' + requirement.file_path" class="mx-1 btn btn-success btn-xs" download>Download {{ requirement.name }}</a>
+                                            <a :href="requirement.file_path" class="mx-1 btn btn-success btn-xs" download>Download {{ requirement.name }}</a>
                                         </div>
                                         <upload-initial-requirement :initialId="requirement.id" />
                                     </div>
@@ -93,10 +93,11 @@
             this.getClientGrades();
         },
         methods: {
-            getClientRequirements () {
+            getClientGrades () {
                 this.loading = true;
-                axios.get(`/getInitialRequirementsForClient/${this.programId}`)
-                    .then(({data}) => {
+                axios.get(`/getClientGrades/1`)
+                    .then((response) => {
+                        console.log(response)
                         this.requirements = data;
                         this.loading = false;
                     })
@@ -105,11 +106,11 @@
                         console.log(error);
                     })
             },
-            getClientGrades() {
+            getClientRequirements() {
                 this.loading = true;
-                axios.get(`/getClientGrades/${this.programId}`)
+                axios.get(`/getInitial`)
                     .then(({data}) => {
-                        this.grades = data;
+                        this.requirements = data;
                         this.loading = false;
                     })
                     .catch(error => {

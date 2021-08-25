@@ -8,7 +8,6 @@ use App\Initial;
 use App\Program;
 use App\Services\InitialRequirementService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class InitialController extends Controller
@@ -48,24 +47,14 @@ class InitialController extends Controller
 
         return redirect()->back();
     }
-
+    
+    public function getInitial()
+    {
+        return dd([]);
+    }
+    
     public function getAllInitialRequirements($programId)
     {
         return Initial::where('program_id', $programId)->get();
-    }
-
-    public function getInitialRequirementsForClient(Request $request, $programId)
-    {
-        return Initial::where('program_id', $programId)
-            ->with('clientInitial')
-            ->get()
-            ->map(function ($initials) use ($request) {
-                return [
-                    'id'    =>  $initials->id,
-                    'name'  =>  $initials->name,
-                    'file_path' =>  $initials->file_path,
-                    'client_initial'    =>  $initials->clientInitial->where('initial_id', $initials->id)->where('user_id', $request->user()->id)->first()
-                ];
-            });
     }
 }

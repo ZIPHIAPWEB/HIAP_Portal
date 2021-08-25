@@ -5,62 +5,78 @@ namespace App\Services;
 use App\Actions\CreateInitialRequirement;
 use App\Actions\RemoveInitialRequirement;
 use App\Actions\UpdateInitialRequirement;
+use App\Initial;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class InitialRequirementService
 {
-    private $createInitialRequirement;
-    private $updateInitialRequirement;
-    private $removeInitialRequirement;
+    private $directory = 'downloadables';
 
-    public function __construct(
-        CreateInitialRequirement $createInitialRequirement,
-        UpdateInitialRequirement $updateInitialRequirement,
-        RemoveInitialRequirement $removeInitialRequirement
-    )
+    public function addRequirement($data, $program_id)
     {
-        $this->createInitialRequirement = $createInitialRequirement;
-        $this->updateInitialRequirement = $updateInitialRequirement;    
-        $this->removeInitialRequirement = $removeInitialRequirement;
-    }
+        if ($data['file'] <> null) {
+            $path = Storage::putFile('public/' . $this->directory, $data['file']);
 
-    public function addRequirement($data, $programId) : void
-    {
-        if ($data->hasFile('file')) {
-            $filename = Str::snake($data->name) . '-' . time() . '.' . $data->file->extension();
-            $data->file->move(public_path('initials'), $filename);
+            Initial::create([
+                'program_id'    =>  $program_id,
+                'name'          =>  $data['name'],
+                'description'   =>  $data['description'],
+                'file_path'     =>  $path
+            ]);
+        } else {
+            Initial::create([
+                'program_id'    =>  $program_id,
+                'name'          =>  $data['name'],
+                'description'   =>  $data['description'],
+                'file_path'     =>  ''
+            ]);
         }
-
-        $this->createInitialRequirement->execute([
-            'program_id'        =>  $programId,
-            'name'              =>  $data->name,
-            'description'       =>  $data->description,
-            'file_path'         =>  $filename   
-        ]);
     }
 
     public function updateRequirement($data)
     {
-        if ($data->hasFile('file')) {
-            $filename = Str::snake($data->name) . '-' . time() . '.' . $data->file->extension();
-            $data->file->move(public_path('initials'), $filename);
-        }
+        if ($data['file'] <> null) {
+            $file = Initial::where('id', $data['id'])->first()->file_path;
 
-        $this->updateInitialRequirement->execute([
-            'id'            =>  $data->id,
-            'name'          =>  $data->name,
-            'description'   =>  $data->description,
-            'file_path'     =>  $data->hasFile('file') ? $filename: ''
-        ]);
+            if($file <> '' || $file <> null) {
+                if(Storage::delete($file)) {
+                    $path = Storage::putFile('public/'. $this->directory, $data['file']);
+
+                    Initial::where('id', $data['id'])
+                        ->update([
+                            'program_id'    =>  1,
+                            'name'          =>  $data['name'],
+                            'description'   =>  $data['description'],
+                            'file_path'     =>  $path
+                        ]);
+                }
+            } else {
+                $path = Storage::putFile('public/'. $this->directory, $data['file']);
+
+                Initial::where('id', $data['id'])
+                    ->update([
+                        'program_id'    =>  1,
+                        'name'          =>  $data['name'],
+                        'description'   =>  $data['description'],
+                        'file_path'     =>  $path
+                    ]);
+            }
+
+        }
     }
 
-    public function removeRequirement($data) : void
+    public function removeRequirement($requirementId)
     {
-        if(File::exists('initials/' . $data->first()->file_path)) {
-            File::delete('initials/' . $data->first()->file_path);
-        }
+        $selectedRequirement = Initial::where('id', $requirementId)->first();
 
-        $this->removeInitialRequirement->execute($data);
+        if ($selectedRequirement->file_path <> '' || $selectedRequirement->file_path <> null) {
+            Storage::delete($selectedRequirement->file_path);
+
+            Initial::where('id', $requirementId)->delete();
+        } else {
+            Initial::where('id', $requirementId)->delete();
+        }
     }
 }

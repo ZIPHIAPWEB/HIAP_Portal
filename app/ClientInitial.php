@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class ClientInitial extends Model
 {
@@ -12,4 +13,9 @@ class ClientInitial extends Model
         'status',
         'file_path'
     ];
+
+    public function getFilePathAttribute($value) 
+    {
+        return Storage::url($value);
+    }
 }

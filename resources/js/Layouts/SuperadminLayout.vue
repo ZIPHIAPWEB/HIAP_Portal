@@ -74,6 +74,14 @@
                 </inertia-link>
           </li>
           <li class="nav-item">
+                <inertia-link href="/sa/programs" class="nav-link">
+                    <i class="nav-icon fas fa-layer-group"></i>
+                    <p>
+                        Courses
+                    </p>
+                </inertia-link>
+          </li>
+          <li class="nav-item">
                 <inertia-link href="/sa/moderators" class="nav-link">
                     <i class="nav-icon fas fa-users-cog"></i>
                     <p>

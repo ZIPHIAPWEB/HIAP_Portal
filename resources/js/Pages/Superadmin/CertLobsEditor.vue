@@ -99,7 +99,7 @@ export default {
     methods: {
         nextPage () {
             this.$inertia.visit(this.layouts.next_page_url, {
-                preserveState: true,
+                preserveState: true,    
                 preserveScroll: true
             });
         },

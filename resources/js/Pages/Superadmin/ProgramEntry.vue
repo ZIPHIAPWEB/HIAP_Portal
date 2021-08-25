@@ -56,9 +56,9 @@
                                             <i v-else class="class text-bold text-red">Inactive</i>
                                         </td>
                                         <td>
-                                            <!-- <inertia-link :href="`/sa/program/initials/${program.id}`" class="btn btn-warning btn-xs">
+                                            <inertia-link :href="`/sa/program/initials/${program.course_id}`" class="btn btn-warning btn-xs">
                                                 View Requirements
-                                            </inertia-link> -->
+                                            </inertia-link>
                                             <!-- <inertia-link :href="`/sa/${program.id}/lessons`" class="btn btn-info btn-xs">View Gradebook</inertia-link> -->
                                             <button v-if="!program.isActive" @click="activateProgram(program.id)" class="btn btn-info btn-xs">Activate</button>
                                             <button v-else @click="deactivateProgram(program.id)" class="btn btn-warning btn-xs">Deactivate</button>

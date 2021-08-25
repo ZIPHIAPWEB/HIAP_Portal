@@ -24,7 +24,8 @@ class ClientInitialStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'file'  =>  'required'
+            'initial_id'    =>  'required',
+            'file'          =>  'required'
         ];
     }
 }

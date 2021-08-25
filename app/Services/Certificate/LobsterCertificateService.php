@@ -19,6 +19,7 @@ class LobsterCertificateService implements ICertificateService
             'cert_id_main'      =>  $data['cert_id_main']
         ];
     }
+    
     public function uploadBulk($data): void
     {
         foreach((new FileSeparator)->separateFileToArray($data['file']) as $file) {

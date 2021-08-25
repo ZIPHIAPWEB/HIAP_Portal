@@ -87,7 +87,7 @@ Route::prefix('sa')->group(function () {
     Route::get('/moderators', 'ModeratorController@showModeratorEntry')->name('sa.moderators');
     Route::get('/moderators/create', 'ModeratorController@createModerator')->name('sa.moderators.create');
 
-    Route::get('/program/initials/{programId}', 'InitialController@showInitialRequirements')->name('sa.program.initials');
+    Route::get('/program/initials/{programId}', 'InitialRequirementController@showInitialRequirements')->name('sa.program.initials');
 
     Route::get('/logs', 'LogController@showLogs')->name('sa.logs');
 
@@ -136,12 +136,11 @@ Route::delete('/deleteProgramDetails/{id}', 'ProgramController@deleteProgramDeta
 Route::post('/activateProgram/{id}', 'ProgramController@activateProgram');
 Route::post('/deactivateProgram/{id}', 'ProgramController@deactivateProgram');
 
-
-Route::get('/getAllInitialRequirements/{programId}', 'InitialController@getAllInitialRequirements');
-Route::get('/getInitialRequirementsForClient/{programId}', 'InitialController@getInitialRequirementsForClient');
-Route::post('/storeInitialRequirement/{programId}', 'InitialController@storeInitialRequirement');
-Route::put('/updateInitialRequirement', 'InitialController@updateInitialRequirement');
-Route::delete('/deleteInitialRequirement/{id}', 'InitialController@deleteInitialRequirement');
+Route::get('/getInitial', 'InitialRequirementController@getInitial');
+Route::get('/getAllInitialRequirements/{programId}', 'InitialRequirementController@getAllInitialRequirements');
+Route::post('/storeInitialRequirement/{programId}', 'InitialRequirementController@storeInitialRequirement');
+Route::put('/updateInitialRequirement', 'InitialRequirementController@updateInitialRequirement');
+Route::delete('/deleteInitialRequirement/{id}', 'InitialRequirementController@deleteInitialRequirement');
 
 Route::get('/getLoggedClientDetails', 'ClientController@getLoggedClientDetails');
 Route::get('/getAllClientDetails', 'ClientController@getAllClients');

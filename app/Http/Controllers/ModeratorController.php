@@ -135,6 +135,18 @@ class ModeratorController extends Controller
         $client = Client::where('user_id', $id)->with('user')->with('school')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
             'client'            =>  $client,
+            'initials'              =>  Initial::orderBy('id', 'asc')
+                ->with(['clientInitial' => function ($query) use ($client) {
+                    return $query->where('user_id', $client->user_id);
+                }])
+                ->get()
+                ->map(function ($initial) {
+                    return [
+                        'id'                =>  $initial->id,
+                        'name'              =>  $initial->name,
+                        'client_initial'    =>  $initial->clientInitial
+                    ];
+                }),
             'schools'           =>  School::orderBy('name', 'asc')->get(),
             'online_programs'   =>  OnlineProgram::orderBy('name', 'asc')->get(),
             'courses'           =>  Program::where('isActive', 1)->orderBy('name', 'asc')->get(),

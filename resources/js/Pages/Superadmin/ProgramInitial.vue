@@ -1,14 +1,14 @@
 <template>
     <superadmin-layout>
         <div class="container-fluid">
-            <div class="row" v-if="$page.flash.message">
+            <!-- <div class="row" v-if="$page.flash.message">
                 <div class="col-12">
                     <div class="alert alert-info alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <strong>Info</strong> &nbsp; {{ $page.flash.message }}
+                        <strong>Info</strong> &nbsp;
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-3">
                     <div class="card">
@@ -25,7 +25,7 @@
                                 <input type="text" v-model="form.description" class="form-control form-control-sm" placeholder="Text Description">
                             </div>
                             <div class="form-group">
-                                <input type="file" ref="file" @change="fileHandler">
+                                <input type="file" ref="doc" @change="fileHandler">
                             </div>
                             <div class="d-flex">
                                 <button @click="submitDetails" class="btn btn-success btn-sm ml-auto mx-1">{{ buttonName }}</button>
@@ -45,7 +45,6 @@
                                     <tr>
                                         <th>Name</th>
                                         <th class="text-center">Description</th>
-                                        <th class="text-center">File</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -53,8 +52,8 @@
                                     <tr v-for="initial in initials" :key="initial.id">
                                         <td>{{ initial.name }}</td>
                                         <td class="text-center">{{ initial.description }}</td>
-                                        <td class="text-center">{{ initial.file_path }}</td>
                                         <td class="text-center">
+                                            <a target="_blank" v-if="initial.file_path !== ''" :href="initial.file_path" class="btn btn-warning btn-xs">View/Download</a>
                                             <button @click="editDetails(initial)" class="btn btn-success btn-xs">Edit</button>
                                             <button @click="deleteInitial(initial)" class="btn btn-danger btn-xs">Delete</button>
                                         </td>           
@@ -81,7 +80,7 @@
                 form: {
                     name: '',
                     description: '',
-                    file: '',
+                    file: [],
                 },
                 method: 'create',
                 buttonName: 'Add'
@@ -89,7 +88,7 @@
         },
         methods: {
             fileHandler () {
-                this.form.file = this.$refs.file.files[0];
+                this.form.file = this.$refs.doc.files[0];
             },
             submitDetails () {
                 let formData = new FormData();
@@ -128,7 +127,12 @@
                 this.buttonName = 'Update';
             },
             cancelRecord () {
-                this.form = {};
+                this.form = {
+                    name: '',
+                    description: '',
+                    file: ''
+                };
+
                 this.method = 'create';
                 this.buttonName = 'Add';
             }
