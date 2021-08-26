@@ -55,6 +55,7 @@ class InitialRequirementController extends Controller
     public function getInitial()
     {
         $initials = Initial::orderBy('id', 'asc')
+            ->where('program_id', request()->user()->program_id)
             ->with(['clientInitial' => function ($query) {
                 return $query->where('user_id', request()->user()->id);
             }])
