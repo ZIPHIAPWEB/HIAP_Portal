@@ -22,8 +22,12 @@ class InitialClientRequirementService
         ]);
     }
 
-    public function removeUploadedRequirement($data) : void
+    public function removeUploadedRequirement($id) : void
     {
+        $selectedInitial = ClientInitial::where('id', $id)->first();
         
+        Storage::delete($selectedInitial->file_path);
+
+        ClientInitial::where('id', $id)->delete();
     }
 }

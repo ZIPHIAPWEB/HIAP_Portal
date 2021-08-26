@@ -13,9 +13,4 @@ class ClientInitial extends Model
         'status',
         'file_path'
     ];
-
-    public function getFilePathAttribute($value) 
-    {
-        return Storage::url($value);
-    }
 }

@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    <!-- <div class="card">
+                    <div class="card">
                         <div class="card-header bg-info">
                             <h5>Initial requirements</h5>
                         </div>
@@ -152,7 +152,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div> -->
+                    </div>
                     
                     <div class="card">
                         <div class="card-header bg-info d-flex justify-content-between">

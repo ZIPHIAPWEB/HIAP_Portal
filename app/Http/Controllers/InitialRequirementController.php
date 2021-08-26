@@ -59,7 +59,22 @@ class InitialRequirementController extends Controller
                 return $query->where('user_id', request()->user()->id);
             }])
             ->get()
-            ;
+            ->map(function ($query) {
+                return [
+                    'id'            =>  $query->id,
+                    'program_id'    =>  $query->program_id,
+                    'name'          =>  $query->name,
+                    'description'   =>  $query->description,
+                    'file_path'     =>  $query->file_path,
+                    'client_initial'=>  [
+                        'id'        =>  $query->clientInitial->id,
+                        'initial_id'=>  $query->clientInitial->initial_id,
+                        'user_id'   =>  $query->clientInitial->user_id,
+                        'status'    =>  $query->clientInitial->status,
+                        'file_path' =>  Storage::url($query->clientInitial->file_path)
+                    ]
+                ];
+            });
 
         return response()->json($initials, 200);
     }

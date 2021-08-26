@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-9">
                     <personal-profile-component :profile="client" :schools="schools"></personal-profile-component>
-                    <!-- <client-initial-requirements></client-initial-requirements> -->
+                    <client-initial-requirements></client-initial-requirements>
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Learner's Program</h5>

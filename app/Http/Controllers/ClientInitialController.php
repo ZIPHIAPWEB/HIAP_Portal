@@ -29,7 +29,5 @@ class ClientInitialController extends Controller
     public function deleteClientInitialRequirement($id)
     {
         (new InitialClientRequirementService())->removeUploadedRequirement($id);
-
-        return redirect()->back();
     }
 }
