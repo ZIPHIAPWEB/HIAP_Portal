@@ -60,6 +60,7 @@ class SuperadminController extends Controller
         return Inertia::render('Superadmin/Client/SelectedClient', [
             'client'                =>  $client,
             'initials'              =>  Initial::orderBy('id', 'asc')
+                ->where('program_id', $client->user->program_id)
                 ->with(['clientInitial' => function ($query) use ($client) {
                     return $query->where('user_id', $client->user_id);
                 }])
@@ -68,7 +69,13 @@ class SuperadminController extends Controller
                     return [
                         'id'                =>  $initial->id,
                         'name'              =>  $initial->name,
-                        'client_initial'    =>  $initial->clientInitial
+                        'client_initial'    =>  [
+                            'id'        =>  $initial->clientInitial->id,
+                            'initial_id'=>  $initial->clientInitial->initial_id,
+                            'user_id'   =>  $initial->clientInitial->user_id,
+                            'status'    =>  $initial->clientInitial->status,
+                            'file_path' =>  Storage::url($initial->clientInitial->file_path)
+                        ]
                     ];
                 }),
             'schools'               =>  School::orderBy('name', 'asc')->get(),

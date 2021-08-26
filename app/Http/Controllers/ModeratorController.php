@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ModeratorController extends Controller
@@ -144,7 +145,13 @@ class ModeratorController extends Controller
                     return [
                         'id'                =>  $initial->id,
                         'name'              =>  $initial->name,
-                        'client_initial'    =>  $initial->clientInitial
+                        'client_initial'    =>  [
+                            'id'        =>  $initial->clientInitial->id,
+                            'initial_id'=>  $initial->clientInitial->initial_id,
+                            'user_id'   =>  $initial->clientInitial->user_id,
+                            'status'    =>  $initial->clientInitial->status,
+                            'file_path' =>  Storage::url($initial->clientInitial->file_path)
+                        ]
                     ];
                 }),
             'schools'           =>  School::orderBy('name', 'asc')->get(),
