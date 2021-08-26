@@ -12158,11 +12158,13 @@ __webpack_require__.r(__webpack_exports__);
     uploadMe: function uploadMe() {
       var _this = this;
 
+      this.$parent.loading = true;
       var formData = new FormData();
       formData.append('file', this.$refs.file.files[0]);
       formData.append('initial_id', this.initialId);
       axios.post('/storeClientInitialRequirements', formData).then(function (_ref) {
         var data = _ref.data;
+        _this.$parent.loading = false;
         toastr.info("File has been uploaded.");
 
         _this.$parent.getClientRequirements();
