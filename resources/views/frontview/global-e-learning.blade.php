@@ -305,7 +305,7 @@
     </section>
     <section class="about-vision-mission" style="background-image: url(&quot;assets/img/GLOBAL%20PIC%203.jpg&quot;);background-repeat: no-repeat;background-size: cover;border-bottom: 5px solid white;background-position: center;">
         <div class="container-fluid">
-            <h1 class="text-center mb-5" style="font-family: 'Bebas Kai Regular';font-size: 60px;font-weight: normal;font-style: normal;">why avail of our global e-learning courses?</h1>
+            <h1 class="text-center mb-5" style="font-family: 'Bebas Kai Regular';font-size: 60px;font-weight: normal;font-style: normal;">why avail of our World-class Training Programs?</h1>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col d-flex flex-column justify-content-center align-items-center my-2"><img src="assets/img/W-certificate%20(1).png" style="width: 90px;margin: 0 35px;">
                     <div class="about-item">
