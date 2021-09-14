@@ -16,11 +16,6 @@ class CertLobsterLayout extends Model
         'img_path'
     ];
 
-    public function getImgPathAttribute($value) 
-    {
-        return Storage::url($value);
-    }
-
     public function certStyles()
     {
         return $this->hasMany('App\CertStyle', 'cert_id', 'id');

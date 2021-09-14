@@ -44,10 +44,10 @@ class LobsterLayoutGeneratorService implements IGeneratorService
 
     public function updateLayout($settings, $layoutId): void
     {
-        if($settings['img_path']) {
+        if($settings['file'] <> null || $settings['file'] <> '') {
             $cert = CertLobsterLayout::where('id', $layoutId);
             Storage::delete($cert->first()->img_path);
-            $path = Storage::putFile('public/' . $this->directory, $settings['img_path']);
+            $path = Storage::putFile('public/' . $this->directory, $settings['file']);
             $cert->update([
                 'name'      =>  $settings['name'],
                 'f_style'   =>  '',

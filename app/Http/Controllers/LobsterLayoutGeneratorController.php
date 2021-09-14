@@ -7,6 +7,7 @@ use App\CertStyle;
 use App\Http\Requests\Lobster\AddNewLobsterLayoutRequest;
 use App\Services\Generator\LobsterLayoutGeneratorService as LayoutGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class LobsterLayoutGeneratorController extends Controller
@@ -36,7 +37,7 @@ class LobsterLayoutGeneratorController extends Controller
             'id'            =>  $data->id,
             'name'          =>  $data->name,
             'class_name'    =>  $data->class_name,
-            'img_path'      =>  $data->img_path,
+            'img_path'      =>  Storage::url($data->img_path),
             'cert_styles'   =>  $data->certStyles->map(function ($cert) {
                 $string = implode(';', (array) json_decode($cert->style, true));
                 return [

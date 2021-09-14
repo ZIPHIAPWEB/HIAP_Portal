@@ -131,7 +131,7 @@ export default {
         },
         updateTemplate() {
             this.isLoading = true;
-            this.$inertia.patch('/lobsterCertLayoutUpdate', this.form, {
+            this.$inertia.post('/lobsterCertLayoutUpdate', {_method: 'patch', ...this.form}, {
                 preserveState: true,
                 preserveScroll: true,
                 onBefore: () => confirm('Update this template'),
