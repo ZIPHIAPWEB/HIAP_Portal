@@ -31,7 +31,7 @@ class LobsterCertificateClientController extends Controller
             'id'        =>  $data->id,
             'layout'    =>  [
                 'id'        => $data->layout->id,
-                'img_path'  => $data->layout->img_path,
+                'img_path'  => Storage::url($data->layout->img_path),
                 'styles'    => $data->layout->certStyles->map(function($style) {
                     $string = implode(';', (array) json_decode($style->style, true));
                     return [
