@@ -26,35 +26,35 @@
                                 <tbody class="text-sm">
                                     <tr>
                                         <td>First name</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.first_name }}</span>
                                             <input v-else type="text" v-model="client.first_name" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Middle name</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.middle_name }}</span>
                                             <input v-else type="text" v-model="client.middle_name" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Last name</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.last_name }}</span>
                                             <input v-else type="text" v-model="client.last_name" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Course</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.course }}</span>
                                             <input v-else type="text" v-model="client.course" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Year</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.school_year }}</span>
                                             <select v-else v-model="client.school_year" class="form-control form-control-sm">
                                                 <option value="">Select Year</option>
@@ -68,21 +68,21 @@
                                     </tr>
                                     <tr>
                                         <td>Address</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.address }}</span>
                                             <input v-else type="text" v-model="client.address" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Contact No.</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.contact_no }}</span>
                                             <input v-else type="text" v-model="client.contact_no" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>School/Organization</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.school ? client.school.name : '' }}</span>
                                             <select v-else v-model="client.school_id" class="form-control form-control-sm text-sm">
                                                 <option value="">Select School</option>
@@ -92,21 +92,21 @@
                                     </tr>
                                     <tr>
                                         <td>Facebook Profile</td>
-                                        <td class="text-center">
+                                        <td>
                                             <a v-if="!isEdit" :href="client.fb_link">{{ client.fb_link }}</a>
                                             <input v-else v-model="client.fb_link" type="text" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>E-mail Address</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.user.email }}</span>
                                             <input v-else type="text" v-model="client.user.email" disabled class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Alternate E-mail Address</td>
-                                        <td class="text-center">
+                                        <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.alternate_email }}</span>
                                             <input v-else type="text" v-model="client.alternate_email" class="form-control form-control-sm">
                                         </td>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header bg-info">
-                            <h5>Initial requirements</h5>
+                            <h5>Program Requirements</h5>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-hovered table-bordered table-striped table-sm">
@@ -212,15 +212,22 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th class="text-left">Type</th>
-                                        <th>Mode of Payment</th>
+                                        <!-- <th>Mode of Payment</th>
+                                        <th>Amount</th>
+                                        <th>Payment for course</th>
+                                        <th>Date Paid</th>
+                                        <th>Actions</th> -->
                                         <th>Date Uploaded</th>
                                         <th>Verified</th>
-                                        <th>Action</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="payments.length > 0">
                                     <tr v-for="payment in payments" :key="payment.id" class="text-center">
                                         <td class="text-left text-sm">{{ payment.purpose }}</td>
+                                        <!-- <td class="text-sm">GCAsh</td>
+                                        <td class="text-sm">2000</td>
+                                        <td class="text-sm">Test Course</td> -->
                                         <td class="text-sm">{{ payment.paid_from }}</td>
                                         <td class="text-sm">{{ payment.created_at }}</td>
                                         <td class="text-sm">

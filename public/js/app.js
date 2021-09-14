@@ -5881,6 +5881,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6082,6 +6096,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Layouts/ModeratorLayout.vue */ "./resources/js/Layouts/ModeratorLayout.vue");
+//
+//
+//
 //
 //
 //
@@ -23281,13 +23298,7 @@ var render = function() {
                           _vm._v("Type")
                         ]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Mode of Payment")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Amount")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Payment for course")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Date Paid")]),
+                        _c("th", [_vm._v("Date Uploaded")]),
                         _vm._v(" "),
                         _c("th", [_vm._v("Actions")])
                       ])
@@ -23303,18 +23314,6 @@ var render = function() {
                               [
                                 _c("td", { staticClass: "text-left text-sm" }, [
                                   _vm._v(_vm._s(payment.purpose))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-sm" }, [
-                                  _vm._v("GCAsh")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-sm" }, [
-                                  _vm._v("2000")
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-sm" }, [
-                                  _vm._v("Test Course")
                                 ]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-sm" }, [
@@ -23694,85 +23693,6 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "" } }, [
-                      _vm._v("Payment Method")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.payment.purpose,
-                            expression: "payment.purpose"
-                          }
-                        ],
-                        staticClass: "form-control form-control-sm",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.payment,
-                              "purpose",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Select payment method")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "GCash" } }, [
-                          _vm._v("GCash")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "option",
-                          { attrs: { value: "Bank Online Transfer" } },
-                          [_vm._v("Bank Online Transfer")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "option",
-                          { attrs: { value: "Bank Online Transfer" } },
-                          [_vm._v("Bank Deposit")]
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "" } }, [_vm._v("Date Paid")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control form-control-sm",
-                      attrs: { type: "date" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "" } }, [_vm._v("Amount")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control form-control-sm",
-                      attrs: { type: "text" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "" } }, [
                       _vm._v("Proof of Payment")
                     ]),
                     _vm._v(" "),
@@ -23797,6 +23717,7 @@ var render = function() {
                             expression: "payment.filename"
                           }
                         ],
+                        staticClass: "form-control",
                         attrs: { type: "text", disabled: "" },
                         domProps: { value: _vm.payment.filename },
                         on: {
@@ -25132,25 +25053,11 @@ var render = function() {
                     _c("tr", [
                       _c("th", { staticClass: "text-left" }, [_vm._v("Type")]),
                       _vm._v(" "),
-                      _c("th", [
-                        _vm._v(
-                          "Payment Method (gcash/bank online transfer/bank deposit)"
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Amount")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Payment for course")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Date Paid")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Mode of Payment")]),
-                      _vm._v(" "),
                       _c("th", [_vm._v("Date Uploaded")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Verified")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Action")])
+                      _c("th", [_vm._v("Actions")])
                     ])
                   ]),
                   _vm._v(" "),

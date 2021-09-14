@@ -66,6 +66,10 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th class="text-left">Type</th>
+                                        <!-- <th>Mode of Payment</th>
+                                        <th>Amount</th>
+                                        <th>Payment for course</th>
+                                        <th>Date Paid</th> -->
                                         <th>Date Uploaded</th>
                                         <th>Actions</th>
                                     </tr>
@@ -73,6 +77,9 @@
                                 <tbody v-if="payments.length > 0">
                                     <tr v-for="payment in payments" :key="payment.id" class="text-center">
                                         <td class="text-left text-sm">{{ payment.purpose }}</td>
+                                        <!-- <td class="text-sm">GCAsh</td>
+                                        <td class="text-sm">2000</td>
+                                        <td class="text-sm">Test Course</td> -->
                                         <td class="text-sm">{{ payment.created_at }}</td>
                                         <td>
                                             <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
@@ -131,7 +138,7 @@
                 </div>
             </div>
             <div class="modal fade show" id="modal-payment" aria-modal="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-dialog modal-dialog-centered modal-md">
                     <div class="modal-content">
                         <div v-if="isUploading" class="overlay d-flex justify-content-center align-items-center">
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
@@ -154,11 +161,41 @@
                                     <option value="Final Payment">Final Payment</option>
                                 </select>
                             </div>
+                            <!-- <div class="form-group">
+                                <label for="">Payment Method</label>
+                                <select v-model="payment.purpose" class="form-control form-control-sm">
+                                    <option selected>Select payment method</option>
+                                    <option value="GCash">GCash</option>
+                                    <option value="Bank Online Transfer">Bank Online Transfer</option>
+                                    <option value="Bank Online Transfer">Bank Deposit</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Date Paid</label>
+                                <input type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Amount Paid</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Program Fee</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Course to be paid</label>
+                                <select v-model="payment.purpose" class="form-control form-control-sm">
+                                    <option selected>Select payment method</option>
+                                    <option value="GCash">GCash</option>
+                                    <option value="Bank Online Transfer">Bank Online Transfer</option>
+                                    <option value="Bank Online Transfer">Bank Deposit</option>
+                                </select>
+                            </div> -->
                             <div class="form-group">
                                 <label for="">Proof of Payment</label>
                                 <div class="input-group input-group-sm">
                                     <input @change="fileHandler()" type="file" ref="slip" id="deposit-form" style="display:none">
-                                    <input v-model="payment.filename" type="text" disabled>
+                                    <input v-model="payment.filename" type="text" class="form-control" disabled>
                                     <span class="input-group-append">
                                         <button @click="browseFile()" class="btn btn-info btn-flat">Browse</button>
                                     </span>

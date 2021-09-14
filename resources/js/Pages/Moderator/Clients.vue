@@ -26,12 +26,12 @@
                 <table class="table table-hover table-sm">
                     <thead>
                         <tr class="text-xs ">
-                            <th class="text-left">First Name</th>
+                            <th>Date Registered</th>
+                            <th>First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
                             <th>Contact Number</th>
                             <th>School/Organization</th>
-                            <th>Program</th>
                             <th>Enrolled Course(s)</th>
                             <th>E-mail Address</th>
                             <th class="text-center">Actions</th>
@@ -39,12 +39,12 @@
                     </thead>
                     <tbody v-if="clients.data.length > 0">
                         <tr class="text-xs " v-for="client in clients.data" :key="client.id">
-                            <td class="text-left">{{ client.first_name }}</td>
+                            <td class="text-left">{{ client.created_at }}</td>
+                            <td>{{ client.first_name }}</td>
                             <td>{{ client.middle_name}}</td>
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.contact_no }}</td>
                             <td>{{ client.school ? client.school.name : '' }}</td>
-                            <td>{{ client.online_program ? client.online_program.name : '' }}</td>
                             <td>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</td>
                             <td>{{ client.user.email }}</td>
                             <td class="text-center">
