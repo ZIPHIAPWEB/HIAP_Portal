@@ -243,7 +243,7 @@
                                 </tbody>
                                 <tbody v-else>
                                     <tr class="text-center">
-                                        <td class="text-sm text-center" colspan="4">No Payment Registered</td>
+                                        <td class="text-sm text-center" colspan="9">No Payment Registered</td>
                                     </tr>
                                 </tbody>
                             </table>

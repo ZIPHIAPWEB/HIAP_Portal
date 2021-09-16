@@ -19883,7 +19883,7 @@ var render = function() {
                             "td",
                             {
                               staticClass: "text-sm text-center",
-                              attrs: { colspan: "4" }
+                              attrs: { colspan: "9" }
                             },
                             [_vm._v("No Payment Registered")]
                           )
@@ -25423,7 +25423,7 @@ var render = function() {
                             "td",
                             {
                               staticClass: "text-sm text-center",
-                              attrs: { colspan: "4" }
+                              attrs: { colspan: "9" }
                             },
                             [_vm._v("No Payment Registered")]
                           )

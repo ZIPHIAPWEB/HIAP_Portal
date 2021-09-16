@@ -57,8 +57,8 @@ class AccountingController extends Controller
                     'path'      =>  (Auth::check()) ? '/slips/' . $payment->path : 'Auth required.',
                     'created_at'=>  $payment->created_at->toDayDateTimeString(),
                     'track'         =>  [
-                        'id'    =>  $payment->track->id,
-                        'name'  =>  $payment->track->program->name
+                        'id'    =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->id,
+                        'name'  =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->program->name
                     ],
                 ];
             }),
