@@ -44,6 +44,11 @@ class PaymentService
         $this->createPayment->execute([
             'user_id'       =>  ($data->user()->role == 'moderator') ? $data->client_id : $data->user()->id,
             'purpose'       =>  $data->purpose,
+            'mop'           =>  $data->mop,
+            'date_paid'     =>  $data->date_paid,
+            'amount_paid'   =>  $data->amount_paid,
+            'program_fee'   =>  $data->program_fee,
+            'course_id'     =>  $data->course_id,
             'paid_from'     =>  'Paid by Student',
             'isVerified'    =>  false,
             'path'          =>  $filename

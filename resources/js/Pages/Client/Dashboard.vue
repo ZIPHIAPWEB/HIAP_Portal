@@ -66,21 +66,21 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th class="text-left">Type</th>
-                                        <!-- <th>Mode of Payment</th>
+                                        <th>Mode of Payment</th>
                                         <th>Amount</th>
                                         <th>Payment for course</th>
-                                        <th>Date Paid</th> -->
-                                        <th>Date Uploaded</th>
+                                        <th>Date Paid</th>
+                                        <!-- <th>Date Uploaded</th> -->
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="payments.length > 0">
                                     <tr v-for="payment in payments" :key="payment.id" class="text-center">
                                         <td class="text-left text-sm">{{ payment.purpose }}</td>
-                                        <!-- <td class="text-sm">GCAsh</td>
-                                        <td class="text-sm">2000</td>
-                                        <td class="text-sm">Test Course</td> -->
-                                        <td class="text-sm">{{ payment.created_at }}</td>
+                                        <td class="text-sm">{{ payment.mop }}</td>
+                                        <td class="text-sm">{{ payment.amount_paid }}</td>
+                                        <td class="text-sm">{{ payment.track.name }}</td>
+                                        <td class="text-sm">{{ payment.date_paid }}</td>
                                         <td>
                                             <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
                                             <i v-else>Not Applicable</i>
@@ -161,9 +161,9 @@
                                     <option value="Final Payment">Final Payment</option>
                                 </select>
                             </div>
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="">Payment Method</label>
-                                <select v-model="payment.purpose" class="form-control form-control-sm">
+                                <select v-model="payment.mop" class="form-control form-control-sm">
                                     <option selected>Select payment method</option>
                                     <option value="GCash">GCash</option>
                                     <option value="Bank Online Transfer">Bank Online Transfer</option>
@@ -172,25 +172,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Date Paid</label>
-                                <input type="date" class="form-control form-control-sm">
+                                <input v-model="payment.date_paid" type="date" class="form-control form-control-sm">
                             </div>
                             <div class="form-group">
                                 <label for="">Amount Paid</label>
-                                <input type="text" class="form-control form-control-sm">
+                                <input v-model="payment.amount_paid" type="text" class="form-control form-control-sm">
                             </div>
                             <div class="form-group">
                                 <label for="">Program Fee</label>
-                                <input type="text" class="form-control form-control-sm">
+                                <input v-model="payment.program_fee" type="text" class="form-control form-control-sm">
                             </div>
                             <div class="form-group">
                                 <label for="">Course to be paid</label>
-                                <select v-model="payment.purpose" class="form-control form-control-sm">
+                                <select v-model="payment.course_id" class="form-control form-control-sm">
                                     <option selected>Select payment method</option>
-                                    <option value="GCash">GCash</option>
-                                    <option value="Bank Online Transfer">Bank Online Transfer</option>
-                                    <option value="Bank Online Transfer">Bank Deposit</option>
+                                    <option v-for="program in userPrograms" :key="program.id" :value="program.id">{{ program.program.name }}</option>
                                 </select>
-                            </div> -->
+                            </div>
                             <div class="form-group">
                                 <label for="">Proof of Payment</label>
                                 <div class="input-group input-group-sm">
@@ -305,6 +303,11 @@
                 },
                 payment: {
                     purpose: '',
+                    mop: '',
+                    date_paid: '',
+                    amount_paid: '',
+                    program_fee: '',
+                    course_id: '',
                     file: '',
                     filename: ''
                 },
@@ -363,10 +366,16 @@
             },
             addDepositSlip () {
                 this.isUploading = true;
-                let formData = new FormData();
-                formData.append('purpose', this.payment.purpose);
-                formData.append('file', this.payment.file);
-                this.$inertia.post('/addDepositSlip', formData, {
+                // let formData = new FormData();purpose: '',
+                //     mop: '',
+                //     date_paid: '',
+                //     amount_paid: '',
+                //     program_fee: '',
+                //     course_id: '',
+                // formData.append('mop', this.payment)
+                // formData.append('purpose', this.payment.purpose);
+                // formData.append('file', this.payment.file);
+                this.$inertia.post('/addDepositSlip', this.payment, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },

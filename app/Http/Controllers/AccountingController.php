@@ -49,9 +49,17 @@ class AccountingController extends Controller
                     'id'        =>  $payment->id,
                     'user_id'   =>  $payment->user_id,
                     'purpose'   =>  $payment->purpose,
+                    'paid_from'     =>  $payment->paid_from,
+                    'mop'           =>  $payment->mop,
+                    'date_paid'     =>  $payment->date_paid,
+                    'amount_paid'   =>  $payment->amount_paid,
                     'isVerified'=>  $payment->isVerified,
                     'path'      =>  (Auth::check()) ? '/slips/' . $payment->path : 'Auth required.',
-                    'created_at'=>  $payment->created_at->toDayDateTimeString()
+                    'created_at'=>  $payment->created_at->toDayDateTimeString(),
+                    'track'         =>  [
+                        'id'    =>  $payment->track->id,
+                        'name'  =>  $payment->track->program->name
+                    ],
                 ];
             }),
             'userPrograms' =>  UserProgram::where('user_id', $client->user_id)

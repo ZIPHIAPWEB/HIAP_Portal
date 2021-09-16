@@ -212,11 +212,11 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th class="text-left">Type</th>
-                                        <!-- <th>Mode of Payment</th>
+                                        <th>Mode of Payment</th>
                                         <th>Amount</th>
                                         <th>Payment for course</th>
                                         <th>Date Paid</th>
-                                        <th>Actions</th> -->
+                                        <th>Paid By</th>
                                         <th>Date Uploaded</th>
                                         <th>Verified</th>
                                         <th>Actions</th>
@@ -225,9 +225,10 @@
                                 <tbody v-if="payments.length > 0">
                                     <tr v-for="payment in payments" :key="payment.id" class="text-center">
                                         <td class="text-left text-sm">{{ payment.purpose }}</td>
-                                        <!-- <td class="text-sm">GCAsh</td>
-                                        <td class="text-sm">2000</td>
-                                        <td class="text-sm">Test Course</td> -->
+                                        <td class="text-sm">{{ payment.mop }}</td>
+                                        <td class="text-sm">{{ payment.amount_paid }}</td>
+                                        <td class="text-sm">{{ payment.track.name }} </td>
+                                        <td class="text-s">{{ payment.date_paid }}</td>
                                         <td class="text-sm">{{ payment.paid_from }}</td>
                                         <td class="text-sm">{{ payment.created_at }}</td>
                                         <td class="text-sm">

@@ -50,11 +50,21 @@ class ClientController extends Controller
                     ->first(),
                 'schools'           =>  School::orderBy('name', 'desc')->get(),
                 'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
-                'payments'          =>  Payment::where('user_id', $request->user()->id)->get()->map(function($payment) {
+                'payments'          =>  Payment::where('user_id', $request->user()->id)
+                    ->with(['track'])
+                    ->get()
+                    ->map(function($payment) {
                     return [
                         'id'            =>  $payment->id,
                         'purpose'       =>  $payment->purpose,
+                        'mop'           =>  $payment->mop,
+                        'amount_paid'   =>  $payment->amount_paid,
                         'isVerified'    =>  $payment->isVerified,
+                        'track'         =>  [
+                            'id'    =>  $payment->track->id,
+                            'name'  =>  $payment->track->program->name
+                        ],
+                        'date_paid'     =>  $payment->date_paid,
                         'created_at'    =>  $payment->created_at->toDayDateTimeString()
                     ];
                 }),

@@ -3917,6 +3917,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['client', 'userPrograms', 'payments'],
@@ -5893,8 +5903,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -5918,6 +5926,11 @@ __webpack_require__.r(__webpack_exports__);
       },
       payment: {
         purpose: '',
+        mop: '',
+        date_paid: '',
+        amount_paid: '',
+        program_fee: '',
+        course_id: '',
         file: '',
         filename: ''
       },
@@ -5988,11 +6001,17 @@ __webpack_require__.r(__webpack_exports__);
     addDepositSlip: function addDepositSlip() {
       var _this4 = this;
 
-      this.isUploading = true;
-      var formData = new FormData();
-      formData.append('purpose', this.payment.purpose);
-      formData.append('file', this.payment.file);
-      this.$inertia.post('/addDepositSlip', formData, {
+      this.isUploading = true; // let formData = new FormData();purpose: '',
+      //     mop: '',
+      //     date_paid: '',
+      //     amount_paid: '',
+      //     program_fee: '',
+      //     course_id: '',
+      // formData.append('mop', this.payment)
+      // formData.append('purpose', this.payment.purpose);
+      // formData.append('file', this.payment.file);
+
+      this.$inertia.post('/addDepositSlip', this.payment, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -6096,6 +6115,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_ModeratorLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Layouts/ModeratorLayout.vue */ "./resources/js/Layouts/ModeratorLayout.vue");
+//
 //
 //
 //
@@ -19743,6 +19763,16 @@ var render = function() {
                     _c("tr", [
                       _c("th", { staticClass: "text-left" }, [_vm._v("Type")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("Mode of Payment")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Amount")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Payment for course")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Date Paid")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Paid By")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("Date Uploaded")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Verified")]),
@@ -19761,6 +19791,26 @@ var render = function() {
                             [
                               _c("td", { staticClass: "text-left text-sm" }, [
                                 _vm._v(_vm._s(payment.purpose))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.mop))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.amount_paid))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.track.name) + " ")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-s" }, [
+                                _vm._v(_vm._s(payment.date_paid))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.paid_from))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-sm" }, [
@@ -23298,7 +23348,13 @@ var render = function() {
                           _vm._v("Type")
                         ]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Date Uploaded")]),
+                        _c("th", [_vm._v("Mode of Payment")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Amount")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Payment for course")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Date Paid")]),
                         _vm._v(" "),
                         _c("th", [_vm._v("Actions")])
                       ])
@@ -23317,7 +23373,19 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-sm" }, [
-                                  _vm._v(_vm._s(payment.created_at))
+                                  _vm._v(_vm._s(payment.mop))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-sm" }, [
+                                  _vm._v(_vm._s(payment.amount_paid))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-sm" }, [
+                                  _vm._v(_vm._s(payment.track.name))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-sm" }, [
+                                  _vm._v(_vm._s(payment.date_paid))
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -23688,6 +23756,218 @@ var render = function() {
                           _vm._v("Final Payment")
                         ])
                       ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Payment Method")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.payment.mop,
+                            expression: "payment.mop"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.payment,
+                              "mop",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { selected: "" } }, [
+                          _vm._v("Select payment method")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GCash" } }, [
+                          _vm._v("GCash")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Bank Online Transfer" } },
+                          [_vm._v("Bank Online Transfer")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Bank Online Transfer" } },
+                          [_vm._v("Bank Deposit")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Date Paid")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment.date_paid,
+                          expression: "payment.date_paid"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.payment.date_paid },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.payment,
+                            "date_paid",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Amount Paid")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment.amount_paid,
+                          expression: "payment.amount_paid"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.payment.amount_paid },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.payment,
+                            "amount_paid",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Program Fee")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment.program_fee,
+                          expression: "payment.program_fee"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.payment.program_fee },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.payment,
+                            "program_fee",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Course to be paid")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.payment.course_id,
+                            expression: "payment.course_id"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.payment,
+                              "course_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { selected: "" } }, [
+                          _vm._v("Select payment method")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.userPrograms, function(program) {
+                          return _c(
+                            "option",
+                            {
+                              key: program.id,
+                              domProps: { value: program.id }
+                            },
+                            [_vm._v(_vm._s(program.program.name))]
+                          )
+                        })
+                      ],
+                      2
                     )
                   ]),
                   _vm._v(" "),
@@ -25053,6 +25333,16 @@ var render = function() {
                     _c("tr", [
                       _c("th", { staticClass: "text-left" }, [_vm._v("Type")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("Mode of Payment")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Amount")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Payment for course")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Date Paid")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Paid By")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("Date Uploaded")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Verified")]),
@@ -25071,6 +25361,22 @@ var render = function() {
                             [
                               _c("td", { staticClass: "text-left text-sm" }, [
                                 _vm._v(_vm._s(payment.purpose))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.mop))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.amount_paid))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-sm" }, [
+                                _vm._v(_vm._s(payment.track.name) + " ")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-s" }, [
+                                _vm._v(_vm._s(payment.date_paid))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-sm" }, [

@@ -159,13 +159,20 @@ class ModeratorController extends Controller
             'courses'           =>  Program::where('isActive', 1)->orderBy('name', 'asc')->get(),
             'payments'  =>  Payment::where('user_id', $id)->get()->map(function($payment) {
                 return [
-                    'id'        =>  $payment->id,
-                    'user_id'   =>  $payment->user_id,
-                    'purpose'   =>  $payment->purpose,
-                    'paid_from' =>  $payment->paid_from,
-                    'isVerified'=>  $payment->isVerified,
-                    'path'      =>  ($payment->path) ? '/slips/' . $payment->path : '',
-                    'created_at'=>  $payment->created_at->toDayDateTimeString()
+                    'id'            =>  $payment->id,
+                    'user_id'       =>  $payment->user_id,
+                    'purpose'       =>  $payment->purpose,
+                    'paid_from'     =>  $payment->paid_from,
+                    'mop'           =>  $payment->mop,
+                    'date_paid'     =>  $payment->date_paid,
+                    'amount_paid'   =>  $payment->amount_paid,
+                    'isVerified'    =>  $payment->isVerified,
+                    'path'          =>  ($payment->path) ? '/slips/' . $payment->path : '',
+                    'created_at'    =>  $payment->created_at->toDayDateTimeString(),
+                    'track'         =>  [
+                        'id'    =>  $payment->track->id,
+                        'name'  =>  $payment->track->program->name
+                    ],
                 ];
             }),
             'userPrograms' =>  UserProgram::where('user_id', $client->user_id)
