@@ -61,8 +61,8 @@ class ClientController extends Controller
                         'amount_paid'   =>  $payment->amount_paid,
                         'isVerified'    =>  $payment->isVerified,
                         'track'         =>  [
-                            'id'    =>  $payment->track->id,
-                            'name'  =>  $payment->track->program->name
+                            'id'    =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->id,
+                            'name'  =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->program->name
                         ],
                         'date_paid'     =>  $payment->date_paid,
                         'created_at'    =>  $payment->created_at->toDayDateTimeString()
