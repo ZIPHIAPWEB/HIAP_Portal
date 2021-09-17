@@ -19,6 +19,15 @@ class Payment extends Model
         'paid_from'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
+
+    public function client()
+    {
+        return $this->hasOne('App\Client', 'user_id', 'user_id');
+    }
+
     public function track()
     {
         return $this->hasOne('App\UserProgram','id', 'course_id');

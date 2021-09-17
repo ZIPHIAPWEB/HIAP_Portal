@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="cert-dl-header">
             <img src="/logo2.png" alt="hiap logo">
-            <span>HIAP INC. WEBINAR E-CERTIFICATES</span>
+            <span>HIAP INC. SESSION E-CERTIFICATES</span>
             <i>For optimal experience use <b>Google Chrome</b>.</i>
         </div>
 
@@ -49,9 +49,9 @@
 
         <div class="cert-dl-footer">
             <p>Note:</p>
-            <span>- Make sure to type the same e-mail address you've put in the Webinar Evaluation Form in the Search box.</span>
-            <span>- Only those who have answered the Webinar Evaluation Form will be able to download their e-certificates.</span>
-            <span>- Expect the certificates to appear in the system one (1) or two (2) working days after the webinar. </span>
+            <span>- Make sure to type the same e-mail address you've put in the Session Evaluation Form in the Search box.</span>
+            <span>- Only those who have answered the Session Evaluation Form will be able to download their e-certificates.</span>
+            <span>- Expect the certificates to appear in the system one (1) or two (2) working days after the session. </span>
         </div>
     </div>
 </template>

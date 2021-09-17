@@ -199,6 +199,22 @@ class ClientController extends Controller
                 ->get();
     }
 
+    public function filterClientsPayment(Request $request) 
+    {
+        return Payment::orderBy('created_at', 'desc')
+            ->with(['client' => function($query) use ($request) {
+                return $query->with('school')
+                            ->where('school_id', 'like', '%' .$request->school_id . '%')
+                            ->get();
+            }])
+            ->with(['track' => function($query) {
+                return $query->with('program')->get();
+            }])
+            ->where('isVerified', true)
+            ->whereBetween('created_at', [date($request->from), date($request->to)])   
+            ->get();
+    }
+
     public function setUserPasswordToDefault(Request $request)
     {
         User::where('id', $request->user_id)->update([

@@ -12,15 +12,8 @@
                         </button>
                     </span>
                 </div>
-                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openExport()">Export</button>
-                <download-excel 
-                    id="export-btn"
-                    class="mx-1 btn btn-success btn-sm btn-flat d-none"
-                    :data="forExport"
-                    :fields="fields"
-                    name="HIAP Export"
-                    title="HIAP Clients"
-                >Export</download-excel>
+                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openExport()">Export Track</button>
+                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openPaymentExport()">Export Payments</button>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover table-sm">
@@ -111,6 +104,53 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <div class="modal fade show" id="modal-export-payment" aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="overlay d-flex justify-content-center align-items-center" v-if="isExportLoading">
+                        <i class="fas fa-2x fa-sync fa-spin"></i>
+                    </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Export Payment Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="start-date">From</label>
+                                <input v-model="paymentForm.from" type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="end-date">To</label>
+                                <input v-model="paymentForm.to" type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="school">School</label>
+                                <select v-model="paymentForm.school_id" class="form-control form-control-sm">
+                                    <option value="" selected>All</option>
+                                    <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button @click="filterClientsPayment" type="button" class="btn btn-primary btn-sm btn-flat btn-block">Filter</button>
+                        <download-excel v-if="forExportPayment.length > 0"
+                            id="export-btn"
+                            class="mx-1 btn btn-success btn-sm btn-flat btn-block"
+                            :data="forExportPayment"
+                            :fields="paymentFields"
+                            name="HIAP Export"
+                            title="HIAP Clients"
+                        >Export</download-excel>
+                    </div>
+                </div>
+            <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </moderator-layout>
 </template>
 
@@ -128,8 +168,14 @@
                     to: '',
                     school_id: ''
                 },
+                paymentForm: {
+                    from: '',
+                    to: '',
+                    school_id: ''
+                },
                 isExportLoading: false,
                 forExport: [],
+                forExportPayment: [],
                 filterName: '',
                 fields: {
                     "Date Registered": "client.created_at",
@@ -149,6 +195,24 @@
                     "Start Date": 'start_date',
                     "End Date": 'end_date',
                     "Program Status": 'application_status',
+                    "Remarks": "''"
+                },
+                paymentFields: {
+                    "Date Registered": "client.created_at",
+                    "First Name": "client.first_name",
+                    "Middle Name": "client.middle_name",
+                    "Last Name": "client.last_name",
+                    "Contact No.": "client.contact_no",
+                    "School": "client.school.name",
+                    "Year Level": "client.school_year",
+                    "Program Track": "track.program.name",
+                    "Program Status": 'track.application_status',
+                    "Paid From": "paid_from",
+                    "Purpose": "purpose",
+                    "MOP": "mop",
+                    "Date Paid": "date_paid",
+                    "Amount Paid": "amount_paid",
+                    "Program Fee": "program_fee",
                     "Remarks": "''"
                 }
             }
@@ -181,11 +245,22 @@
             openExport () {
                 $('#modal-export').modal('show');
             },
+            openPaymentExport () {
+                $('#modal-export-payment').modal('show');
+            },
             filterClients () {
                 this.isExportLoading = true;
                 axios.post('/filterClients', this.form)
                     .then((response) => {
                         this.forExport = response.data;
+                        this.isExportLoading = false;
+                    })
+            },
+            filterClientsPayment () {
+                this.isExportLoading = true;
+                axios.post('/filterClientsPayment', this.paymentForm)
+                    .then((response) => {
+                        this.forExportPayment = response.data;
                         this.isExportLoading = false;
                     })
             }

@@ -241,6 +241,7 @@ Route::post('/addStyleToCertificate', 'CertStyleGeneratorController@addStyleToCe
 Route::patch('/updateStyleToCertificate/{styleId}', 'CertStyleGeneratorController@updateStyleToCert');
 
 Route::post('/filterClients', 'ClientController@filterClients');
+Route::post('/filterClientsPayment', 'ClientController@filterClientsPayment');
 Route::post('/setToDefaultPassword', 'ClientController@setUserPasswordToDefault');
 
 Route::get('/testing', function() {
