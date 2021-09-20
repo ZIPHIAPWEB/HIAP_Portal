@@ -83,7 +83,7 @@
                                         <td class="text-sm">{{ payment.date_paid }}</td>
                                         <td>
                                             <button v-if="!payment.isVerified" @click="removeDepositSlip(payment.id)" class="btn btn-danger btn-xs">Remove</button>
-                                            <i v-else>Not Applicable</i>
+                                            <i v-else>For sending invitation code</i>
                                         </td>
                                     </tr>
                                 </tbody>
