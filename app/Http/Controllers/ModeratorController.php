@@ -227,6 +227,6 @@ class ModeratorController extends Controller
             ->with(['userProgram' => function($query) {
                 return $query->with('program');
             }])
-            ->get();
+            ->pagination(50);
     }
 }
