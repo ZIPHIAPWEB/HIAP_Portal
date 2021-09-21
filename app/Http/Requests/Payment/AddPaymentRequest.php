@@ -25,7 +25,12 @@ class AddPaymentRequest extends FormRequest
     {
         return [
             'purpose'       =>  'required',
-            'file'          =>  'required'
+            'file'          =>  'required',
+            'mop'           =>  'required',
+            'date_paid'     =>  'required',
+            'amount_paid'   =>  'required',
+            'program_fee'   =>  'required',
+            'course_id'     =>  'required'
         ];
     }
 }
