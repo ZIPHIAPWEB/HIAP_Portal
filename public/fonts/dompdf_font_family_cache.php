@@ -79,8 +79,8 @@
   ),
   'montserrat' => array(
     '500' => $fontDir . '/montserrat_500_51d32715a2529ff80180b0dec7eb7073',
-    'normal' => $fontDir . '/montserrat_normal_21817bda1245da0aa5b26121455b400c',
-    'bold' => $fontDir . '/montserrat_bold_7154ccf2716a82cb7416508741f9f24c',
+    'normal' => $fontDir . '/montserrat_normal_b6c2f0bf4719dcf1edc14b9856176c5d',
+    'bold' => $fontDir . '/montserrat_bold_2485b487afdd4d2d7eb7757dd1472d24',
   ),
   'montserratbold' => array(
     'normal' => $fontDir . '/montserratbold_normal_7154ccf2716a82cb7416508741f9f24c',
