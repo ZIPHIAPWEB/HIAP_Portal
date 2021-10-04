@@ -1,14 +1,8 @@
 <?php
 
-use App\Mail\SendInquiry;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
