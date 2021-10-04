@@ -57,7 +57,7 @@ class LobsterCertificateClientController extends Controller
         $pdf->setWarnings(false);
         $pdf->setPaper('a4', 'portrait');
         $pdf->setEncryption('p@ssw0rd', ['print']);
-        return $pdf->download('COC_HIAP.pdf');
+        return $pdf->stream('COC_HIAP.pdf');
     }
 
     public function uploadLobsterClients(UploadBulkLobsterRequest $request)
