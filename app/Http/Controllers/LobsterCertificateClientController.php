@@ -54,7 +54,7 @@ class LobsterCertificateClientController extends Controller
         
         // return view('export.lobster_cert_export', ['data' => $formattedData]);
         $pdf = PDF::loadView('export.lobster_cert_export', ['data' => $formattedData]);
-        $pdf->setWarnings(true);
+        $pdf->setWarnings(false);
         $pdf->setPaper('a4', 'portrait');
         $pdf->setEncryption('p@ssw0rd', ['print']);
         return $pdf->stream('COC_HIAP.pdf');
