@@ -52,10 +52,10 @@ class LobsterCertificateClientController extends Controller
             ],
         ];
         
-        return view('export.lobster_cert_export', ['data' => $formattedData]);
-        // $pdf = PDF::loadView('export.lobster_cert_export', ['data' => $formattedData])->setPaper('a4', 'portrait');
-        // $pdf->setEncryption('p@ssw0rd', ['print']);
-        // return $pdf->download('COC_HIAP.pdf');
+        // return view('export.lobster_cert_export', ['data' => $formattedData]);
+        $pdf = PDF::loadView('export.lobster_cert_export', ['data' => $formattedData])->setWarnings(true)->setPaper('a4', 'portrait');
+        $pdf->setEncryption('p@ssw0rd', ['print']);
+        return $pdf->download('COC_HIAP.pdf');
     }
 
     public function uploadLobsterClients(UploadBulkLobsterRequest $request)
