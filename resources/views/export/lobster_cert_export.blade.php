@@ -23,7 +23,7 @@
                 background: white;
                 display: block;
                 margin: 0 auto;
-                box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+                /* box-shadow: 0 0 0.5cm rgba(0,0,0,0.5); */
             }
 
             div[size="A4"] {  
