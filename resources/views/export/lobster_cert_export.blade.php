@@ -29,7 +29,7 @@
             div[size="A4"] {  
                 width: 21cm;
                 height: 29.7cm; 
-                background-image: url("{{ storage_path($data['layout']['img_path']) }}") !important;
+                background-image: url("{{ storage_path('app/'.$data['layout']['img_path']) }}") !important;
                 background-position: center;
                 background-size: contain;
                 position: relative;
@@ -52,7 +52,7 @@
                 }
 
                 div[size="A4"] {  
-                    background-image: url("{{ asset($data['layout']['img_path']) }}") !important;
+                    background-image: url("{{ storage_path('app/'.$data['layout']['img_path']) }}") !important;
                     background-position: center;
                     background-size: contain;
                     position: relative;
