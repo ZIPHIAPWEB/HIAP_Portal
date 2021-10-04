@@ -49,14 +49,14 @@ class CertificateClientController extends Controller
 
     public function downloadClientActualCert($userId)
     {
-        return view('export.certificate_client')->with('data', CertificateClient::where('id', $userId)->with('layout')->first());
+        // return view('export.certificate_client')->with('data', CertificateClient::where('id', $userId)->with('layout')->first());
 
-        // $pdf = PDF::loadView('export.certificate_client', ['data' => CertificateClient::where('id', $userId)->with('layout')->first()]);
-        // $pdf->setWarnings(true);            
-        // $pdf->setPaper('a4', 'landscape');
-        // $pdf->setEncryption('p@ssw0rd', ['print']);
+        $pdf = PDF::loadView('export.certificate_client', ['data' => CertificateClient::where('id', $userId)->with('layout')->first()]);
+        $pdf->setWarnings(true);            
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->setEncryption('p@ssw0rd', ['print']);
 
-        // return $pdf->download('certificate.pdf');
+        return $pdf->download('certificate.pdf');
     }
 
     public function saveBulkClients(Request $request)
