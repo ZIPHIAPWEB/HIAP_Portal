@@ -63,6 +63,7 @@ class LobsterLayoutGeneratorService implements IGeneratorService
         if($cert->first()->img_path) {
             Storage::delete($cert->first()->img_path);
             $cert->delete();
+            CertStyle::where('cert_id', $layoutId)->delete();
         } 
 
         $cert->delete();    
