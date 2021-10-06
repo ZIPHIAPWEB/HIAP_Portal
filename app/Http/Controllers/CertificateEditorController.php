@@ -42,7 +42,14 @@ class CertificateEditorController extends Controller
 
     public function viewActual($layoutId)
     {
-        return view('export.certificate')->with('data', CertificateLayout::where('id', $layoutId)->first());
+        $data = CertificateLayout::where('id', $layoutId)->first();
+
+        return view('export.certificate')->with('data', [
+            'id'        =>  $data->id,
+            'name'      =>  $data->name,
+            'f_style'   =>  $data->f_style,
+            'img_path'  =>  Storage::url($data->img_path),
+        ]);
     }
 
     public function saveChanges(Request $request)
@@ -54,12 +61,12 @@ class CertificateEditorController extends Controller
                 'f_style'       =>  Str::replaceArray('?', $request->f_style, "font-family:?; text-align:?; font-size:?; color:?; top:?; bottom:?; right:?; left:?;"),
             ]);
         } else {
-            $path = $request->file('bg_img')->store('public/cert_layout');
+            $path = Storage::putFile('public/cert_layout', $request->file('bg_img'));
 
             CertificateLayout::updateOrCreate(['id' => $request->id], [
                 'name'          =>  $request->name,
                 'f_style'       =>  Str::replaceArray('?', $request->f_style, "font-family:?; text-align:?; font-size:?; color:?; top:?; bottom:?; right:?; left:?;"),
-                'img_path'      =>  Storage::url($path)
+                'img_path'      =>  $path
             ]);
         }
 

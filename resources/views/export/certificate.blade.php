@@ -1,42 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>  
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-        <title>Hello Bulma!</title>
-        <style>
-            body, html {
-                height: 100%;
-                margin: 0;
-            }
-            
-            .bg {
-                background-image: url("{{ 'http://hiap-portal.test/cert_layout/' . $data->img_path }}") !important;
-                height: 100%;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-            }
-
-            .full-name {
-                position: absolute;
-                left: 0;
-                width: 100%;
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="bg">
-            <div class="full-name" style="{{ $data->f_style }}">
-                <span>Jane Doe</span>
-            </div>
-        </div>
-    </body>
-</html> -->
-
 <!DOCTYPE html>
 <html>  
     <head>
@@ -70,7 +31,7 @@
             .page {
                 width: 29.7cm;
                 height: 21cm; 
-                background-image: url("{{ asset($data->img_path) }}") !important;
+                background-image: url("{{ $data['img_path'] }}") !important;
                 background-position: center; 
                 background-repeat: no-repeat;
                 background-size: contain;
@@ -94,7 +55,7 @@
     <body>
         <div class="container no-print">
             <div class="page">
-                <div class="full-name" style="{{ $data->f_style }}">
+                <div class="full-name" style="{{ $data['f_style'] }}">
                     @if(strlen('JANE DOE') > 50)
                     <span style="font-size: 0.6em">Lorem Ipsum</span>
                     @else
