@@ -204,6 +204,7 @@ class ClientController extends Controller
         return Payment::orderBy('created_at', 'desc')
             ->with(['client' => function($query) use ($request) {
                 return $query->with('school')
+                            ->with('user')
                             ->where('school_id', 'like', '%' .$request->school_id . '%')
                             ->get();
             }])
