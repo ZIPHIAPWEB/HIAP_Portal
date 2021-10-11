@@ -12,8 +12,8 @@
                         </button>
                     </span>
                 </div>
-                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openExport()">Export Track</button>
-                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openPaymentExport()">Export Payments</button>
+                <!-- <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openExport()">Export Track</button> -->
+                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openPaymentExport()">Export Program and Payments</button>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover table-sm">
@@ -111,7 +111,7 @@
                         <i class="fas fa-2x fa-sync fa-spin"></i>
                     </div>
                     <div class="modal-header">
-                        <h5 class="modal-title">Export Payment Details</h5>
+                        <h5 class="modal-title">Export Payment and Track Details</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -208,6 +208,8 @@
                     "Contact No.": "client.contact_no",
                     "School": "client.school.name",
                     "Year Level": "client.school_year",
+                    "Course": "client.course",
+                    "Program": "client.online_program.name",
                     "Program Track": "track.program.name",
                     "Program Status": 'track.application_status',
                     "Required Hrs": "track.hours_needed",

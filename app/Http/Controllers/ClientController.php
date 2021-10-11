@@ -205,6 +205,7 @@ class ClientController extends Controller
             ->with(['client' => function($query) use ($request) {
                 return $query->with('school')
                             ->with('user')
+                            ->with('onlineProgram')
                             ->where('school_id', 'like', '%' .$request->school_id . '%')
                             ->get();
             }])
