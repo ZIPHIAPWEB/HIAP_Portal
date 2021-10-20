@@ -71,7 +71,7 @@
                         <i class="fas fa-2x fa-sync fa-spin"></i>
                     </div>
                     <div class="modal-header">
-                        <h5 class="modal-title">Export Payment Details</h5>
+                        <h5 class="modal-title">Export Track Details</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
