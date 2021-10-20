@@ -4,16 +4,23 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-xs dropdown-toggle mr-2" data-toggle="dropdown" aria-expanded="false">
+                      <span>Export By</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu" style="">
+                      <a class="dropdown-item" href="javascript:void(0)" @click="openExport()">Track Details</a>
+                      <a class="dropdown-item" href="javascript:void(0)" @click="openPaymentExport()">Payment Details</a>
+                    </div>
+                </div>
                 <div class="input-group input-group-sm" style="width: 300px">
                     <input type="text" class="form-control" v-model="filterName" placeholder="Search by first name or last name">
                     <span class="input-group-append">
-                        <button @click="searchClientByLastName" class="btn btn-info btn-flat">
+                        <button @click="searchClientByLastName" class="btn btn-info btn-flat mr-1">
                             <span class="fas fa-search"></span>
                         </button>
                     </span>
                 </div>
-                <!-- <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openExport()">Export Track</button> -->
-                <button class="mx-1 btn btn-success btn-sm btn-flat" @click="openPaymentExport()">Export Program and Payments</button>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover table-sm">
@@ -64,7 +71,7 @@
                         <i class="fas fa-2x fa-sync fa-spin"></i>
                     </div>
                     <div class="modal-header">
-                        <h5 class="modal-title">Export</h5>
+                        <h5 class="modal-title">Export Payment Details</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -111,7 +118,7 @@
                         <i class="fas fa-2x fa-sync fa-spin"></i>
                     </div>
                     <div class="modal-header">
-                        <h5 class="modal-title">Export Payment and Track Details</h5>
+                        <h5 class="modal-title">Export Payment Details</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
