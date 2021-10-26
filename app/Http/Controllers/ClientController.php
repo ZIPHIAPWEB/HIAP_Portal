@@ -212,7 +212,6 @@ class ClientController extends Controller
             ->with(['track' => function($query) {
                 return $query->with('program')->get();
             }])
-            ->where('isVerified', true)
             ->whereBetween('created_at', [date($request->from), date($request->to)])   
             ->get();
     }
