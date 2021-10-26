@@ -65,14 +65,14 @@
                     </p>
                 </inertia-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
                 <inertia-link href="/sa/programs" class="nav-link">
                     <i class="nav-icon fas fa-layer-group"></i>
                     <p>
                         Programs
                     </p>
                 </inertia-link>
-          </li>
+          </li> -->
           <li class="nav-item">
                 <inertia-link href="/sa/programs" class="nav-link">
                     <i class="nav-icon fas fa-layer-group"></i>

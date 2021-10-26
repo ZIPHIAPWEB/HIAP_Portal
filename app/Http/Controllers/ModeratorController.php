@@ -135,8 +135,9 @@ class ModeratorController extends Controller
     {
         $client = Client::where('user_id', $id)->with('user')->with('school')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
-            'client'            =>  $client,
-            'initials'              =>  Initial::orderBy('id', 'asc')
+            'client'                    =>  $client,
+            'initials'                  =>  Initial::orderBy('id', 'asc')
+                ->where('program_id', $client->program_id)
                 ->with(['clientInitial' => function ($query) use ($client) {
                     return $query->where('user_id', $client->user_id);
                 }])
