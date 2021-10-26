@@ -228,7 +228,16 @@
                     "Date Paid": "date_paid",
                     "Amount Paid": "amount_paid",
                     "Program Fee": "program_fee",
-                    "Is Verified": "isVerified",
+                    "Is Verified": {
+                        field: "isVerified",
+                        callback: (value) => {
+                            if (value) {
+                                return 'true';
+                            } else {
+                                return 'false'
+                            }
+                        }
+                    },
                     "Remarks": "''"
                 }
             }
