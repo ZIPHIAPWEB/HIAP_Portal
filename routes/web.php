@@ -92,7 +92,7 @@ Route::prefix('sa')->group(function () {
     Route::get('/client/{userId}/program/{programId}', 'SuperadminController@showSelectedProgram')->name('sa.selected.program');
 
     Route::get('/school', 'SchoolController@showSchoolEntry');
-
+    
     Route::get('/certs', 'CertificateController@showCertificateEntry');
 
     Route::get('/staffs', 'SuperadminController@showStaffEntry');
@@ -103,6 +103,7 @@ Route::prefix('sa')->group(function () {
 
 Route::prefix('md')->group(function () {
     Route::get('/dashboard', 'ModeratorController@showDashboard')->name('md.dashboard')->middleware('auth');
+    Route::get('/certs', 'ModeratorController@showLobsterGrades')->name('md.certs')->middleware('auth');
 
     Route::get('/clients', 'ModeratorController@showClients')->name('md.clients')->middleware('auth');
     Route::get('/client/{userId}', 'ModeratorController@showSelectedClient')->name('md.selected.client')->middleware('auth');

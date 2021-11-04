@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Certificate;
 use App\Client;
 use App\Events\UserLogCreated;
 use App\Http\Requests\ModeratorCreateRequest;
@@ -229,5 +230,12 @@ class ModeratorController extends Controller
                 return $query->with('program');
             }])
             ->paginate(50);
+    }
+
+    public function showLobsterGrades()
+    {
+        return Inertia::render('Moderator/LobsterGrades', [
+            'certs' =>  Certificate::orderBy('created_at', 'desc')->paginate(14)
+        ]);
     }
 }

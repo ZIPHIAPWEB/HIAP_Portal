@@ -64,6 +64,14 @@
                     </p>
                 </inertia-link>
           </li>
+          <li class="nav-item">
+              <inertia-link href="/md/certs" class="nav-link">
+                  <i class="nav-icon fas fa-user-friends"></i>
+                  <p>
+                      LobsterInk Grades
+                  </p>
+              </inertia-link>
+          </li>
           <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
