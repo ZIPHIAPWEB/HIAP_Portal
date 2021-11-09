@@ -8,21 +8,9 @@ use Illuminate\Support\Str;
 
 class CertStyleGeneratorController extends Controller
 {
-    public function addStyleToCert(Request $request)
+    private function toStringedStyle($request)
     {
-        CertStyle::create([
-            'cert_id'   =>  $request->cert_id,
-            'name'      =>  '',
-            'class_name'=>  '',
-            'style'     =>  '',
-        ]);
-
-        return redirect()->back();
-    }
-
-    public function updateStyleToCert(Request $request, $styleId)
-    {
-        $stringedStyle = [
+        return [
             'position:absolute',
             'font-family:'.$request->style['font_style'],
             'font-weight:'.$request->style['font_weight'],
@@ -34,12 +22,28 @@ class CertStyleGeneratorController extends Controller
             'right:'.$request->style['right_pos'],
             'left:'.$request->style['left_pos']
         ];
+    }
 
+    public function addStyleToCert(Request $request)
+    {
+        CertStyle::create([
+            'cert_id'   =>  $request->cert_id,
+            'name'      =>  '',
+            'class_name'=>  '',
+            'style'     =>  '',
+            'raw_style' =>  ''
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function updateStyleToCert(Request $request, $styleId)
+    {
         CertStyle::where('id', $styleId)
             ->update([
                 'name'          =>  $request->name,
                 'class_name'    =>  '.'.Str::snake($request->name),
-                'style'         =>  json_encode($stringedStyle),
+                'style'         =>  json_encode($this->toStringedStyle($request)),
                 'raw_style'     =>  json_encode($request->style)
             ]);
 

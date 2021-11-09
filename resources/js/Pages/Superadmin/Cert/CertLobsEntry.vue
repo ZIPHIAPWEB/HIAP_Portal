@@ -45,6 +45,10 @@
                                         <input v-model="selectedParticipant.hours" type="text" class="form-control form-control-sm" placeholder="000">
                                     </div>
                                     <div class="form-group">
+                                        <label for="create_at">Created At</label>
+                                        <input v-model="selectedParticipant.created_at" type="date" name="" id="" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="layout">Layout <i class="text-red">*</i></label>
                                         <select v-model="selectedParticipant.lobster_layout_id" class="form-control form-control-sm" :class="(!errors.hasOwnProperty('lobster_layout_id')) ? '' : 'is-invalid'">
                                             <option selected value="">Select layout</option>
@@ -163,7 +167,8 @@ export default {
                 school: '',
                 course: '',
                 hours: '',
-                lobster_layout_id: ''
+                lobster_layout_id: '',
+                create_at: ''
             },
             search: '',
             form: {
@@ -220,6 +225,7 @@ export default {
             })
         },
         editParticipant(participant) {
+            console.log(participant);
             this.isEdit = true;
             this.selectedParticipant = participant;
         },

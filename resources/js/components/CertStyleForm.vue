@@ -6,6 +6,9 @@
                     Layout
                 </a>
             </h4>
+            <div class="card-tools">
+                
+            </div>
         </div>
         <div :id="`collapsed-${index}`" class="panel-collapse in collapse" style="">
             <div class="card-body">

@@ -16,7 +16,12 @@ class CertLobsterClient extends Model
         'school',
         'course',
         'hours',
-        'lobster_layout_id'
+        'lobster_layout_id',
+        'created_at'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
     ];
 
     public function layout()

@@ -15,7 +15,7 @@ class LobsterLayoutGeneratorController extends Controller
     public function showLobsterLayouts()
     {
         return Inertia::render('Superadmin/CertLobsEditor', [
-            'styles'            =>  CertStyle::get(),
+            'styles'            =>  CertStyle::selectRaw('DISTINCT name')->get(),
             'lobster_layout'    =>  CertLobsterLayout::orderBy('created_at')->paginate(15)
         ]);
     }
