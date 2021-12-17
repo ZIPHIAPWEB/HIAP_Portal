@@ -239,6 +239,8 @@ Route::post('/filterClients', 'ClientController@filterClients');
 Route::post('/filterClientsPayment', 'ClientController@filterClientsPayment');
 Route::post('/setToDefaultPassword', 'ClientController@setUserPasswordToDefault');
 
+Route::post('/updateUserPassword', 'UserController@updateUserPassword');
+
 Route::get('/testing', function() {
     return Hash::make('p@ssw0rd');
 });

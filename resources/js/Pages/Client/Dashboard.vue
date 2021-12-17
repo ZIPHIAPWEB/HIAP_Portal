@@ -8,6 +8,11 @@
                             <img class="avatar" src="/man.png" alt="">
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <button data-toggle="modal" data-target="#modal-change-password" class="btn btn-primary btn-block">Change Password</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9">
                     <personal-profile-component :profile="client" :schools="schools"></personal-profile-component>
@@ -275,6 +280,38 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade show" id="modal-change-password" aria-modal="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Change password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="current_password">Current Password</label>
+                                <input v-model="changePassForm.current" type="password" :class="(errors.current) ? 'is-invalid' : ''" class="form-control form-control-sm">
+                                <i v-if="errors.current" class="text-xs text-danger">{{ errors.current[0] }}</i>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password">New Password</label>
+                                <input v-model="changePassForm.password" type="password" :class="(errors.password) ? 'is-invalid' : ''" class="form-control form-control-sm">
+                                <i v-if="errors.password" class="text-xs text-danger">{{ errors.password[0] }}</i>
+                            </div>
+                            <div class="form-group">
+                                <label for="re_new_password">Retype New Password</label>
+                                <input v-model="changePassForm.password_confirmation" type="password" :class="(errors.password_confirmation) ? 'is-invalid' : ''" class="form-control form-control-sm">
+                                <i v-if="errors.password_confirmation" class="text-xs text-danger">{{ errors.password_confirmation[0] }}</i>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button @click="updatePassword()" type="button" class="btn btn-block btn-sm btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </client-layout>
 </template>
@@ -284,7 +321,7 @@
     import PersonalProfileComponent from '../../components/PersonalProfileComponent.vue';
     import ClientInitialRequirements from '../../components/ClientInitialRequirement.vue';
     export default {
-        props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash', 'schools'],
+        props: ['user', 'client', 'userPrograms', 'onlinePrograms', 'payments', 'flash', 'schools', 'errors'],
         components: {
             ClientLayout,
             ClientInitialRequirements,
@@ -310,6 +347,11 @@
                     course_id: '',
                     file: '',
                     filename: ''
+                },
+                changePassForm: {
+                    current: '',
+                    password: '',
+                    password_confirmation: ''
                 },
                 isUploading: false,
                 isLoading: false
@@ -414,6 +456,19 @@
                         
                     break;
                 }
+            },
+            updatePassword() {
+                this.$inertia.post('/updateUserPassword', this.changePassForm, {
+                    onSuccess: (data) => {
+                        alert('Password Updated!');
+                        this.changePassForm.current = '';
+                        this.changePassForm.password = '';
+                        this.changePassForm.password_confirmation = '';
+                    },
+                    onError: errors => {
+                        console.log(errors);
+                    }
+                })
             }
         }
     }

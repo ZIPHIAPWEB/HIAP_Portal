@@ -43,6 +43,7 @@
         "@inertiajs/inertia": "^0.8.4",
         "@inertiajs/inertia-vue": "^0.5.5",
         "@inertiajs/progress": "^0.2.5",
+        "caniuse-lite": "^1.0.30001287",
         "ckeditor5-image-remove-event-callback-plugin": "^1.1.2",
         "postcss-loader": "3",
         "raw-loader": "3",
