@@ -7100,7 +7100,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.filterName !== '') {
         var formData = new FormData();
-        formData.append('last_name', this.filterName);
+        formData.append('search', this.filterName);
         axios.post('/searchStudentByLastName', formData).then(function (response) {
           _this.clients = response.data;
         });
@@ -25684,108 +25684,6 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header bg-info" }, [
-              _c("h5", [_vm._v("Program Requirements")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body p-0" }, [
-              _c(
-                "table",
-                {
-                  staticClass:
-                    "table table-hovered table-bordered table-striped table-sm"
-                },
-                [
-                  _c("thead", [
-                    _c("tr", [
-                      _c("th", { staticStyle: { width: "50%" } }, [
-                        _vm._v("Requirements")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Value")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm.initials.length > 0
-                    ? _c(
-                        "tbody",
-                        _vm._l(_vm.initials, function(initial) {
-                          return _c("tr", { key: initial.id }, [
-                            _c("td", [_vm._v(_vm._s(initial.name))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              initial.client_initial.status
-                                ? _c("i", {
-                                    staticClass: "fas fa-check text-green"
-                                  })
-                                : _c("i", {
-                                    staticClass: "fas fa-times text-red"
-                                  })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              { staticClass: "text-center" },
-                              [
-                                initial.client_initial.status
-                                  ? [
-                                      initial.type === "file"
-                                        ? _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "btn btn-primary btn-xs",
-                                              attrs: {
-                                                href:
-                                                  initial.client_initial
-                                                    .file_path,
-                                                download: ""
-                                              }
-                                            },
-                                            [_vm._v("Download")]
-                                          )
-                                        : _c("i", [
-                                            _vm._v(
-                                              _vm._s(
-                                                initial.client_initial.file_path
-                                              )
-                                            )
-                                          ])
-                                    ]
-                                  : _c("i", { staticClass: "text-sm" }, [
-                                      _vm._v("Not Applicable")
-                                    ])
-                              ],
-                              2
-                            )
-                          ])
-                        }),
-                        0
-                      )
-                    : _c("tbody", [
-                        _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-center",
-                              attrs: { colspan: "3" }
-                            },
-                            [_vm._v("No Requirements")]
-                          )
-                        ])
-                      ])
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header bg-info" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v("Enrolled Programs")
               ])
@@ -26112,6 +26010,108 @@ var render = function() {
                               attrs: { colspan: "9" }
                             },
                             [_vm._v("No Payment Registered")]
+                          )
+                        ])
+                      ])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header bg-info" }, [
+              _c("h5", [_vm._v("Program Requirements")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body p-0" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table table-hovered table-bordered table-striped table-sm"
+                },
+                [
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", { staticStyle: { width: "50%" } }, [
+                        _vm._v("Requirements")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Status")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Value")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.initials.length > 0
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.initials, function(initial) {
+                          return _c("tr", { key: initial.id }, [
+                            _c("td", [_vm._v(_vm._s(initial.name))]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "text-center" }, [
+                              initial.client_initial.status
+                                ? _c("i", {
+                                    staticClass: "fas fa-check text-green"
+                                  })
+                                : _c("i", {
+                                    staticClass: "fas fa-times text-red"
+                                  })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "text-center" },
+                              [
+                                initial.client_initial.status
+                                  ? [
+                                      initial.type === "file"
+                                        ? _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-primary btn-xs",
+                                              attrs: {
+                                                href:
+                                                  initial.client_initial
+                                                    .file_path,
+                                                download: ""
+                                              }
+                                            },
+                                            [_vm._v("Download")]
+                                          )
+                                        : _c("i", [
+                                            _vm._v(
+                                              _vm._s(
+                                                initial.client_initial.file_path
+                                              )
+                                            )
+                                          ])
+                                    ]
+                                  : _c("i", { staticClass: "text-sm" }, [
+                                      _vm._v("Not Applicable")
+                                    ])
+                              ],
+                              2
+                            )
+                          ])
+                        }),
+                        0
+                      )
+                    : _c("tbody", [
+                        _c("tr", [
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-center",
+                              attrs: { colspan: "3" }
+                            },
+                            [_vm._v("No Requirements")]
                           )
                         ])
                       ])

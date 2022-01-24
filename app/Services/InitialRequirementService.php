@@ -43,6 +43,7 @@ class InitialRequirementService
                             'program_id'    =>  1,
                             'name'          =>  $data['name'],
                             'description'   =>  $data['description'],
+                            'type'          =>  $data['type'],
                             'file_path'     =>  $path
                         ]);
                 }
@@ -54,6 +55,7 @@ class InitialRequirementService
                         'program_id'    =>  1,
                         'name'          =>  $data['name'],
                         'description'   =>  $data['description'],
+                        'type'          =>  $data['type'],
                         'file_path'     =>  $path
                     ]);
             }

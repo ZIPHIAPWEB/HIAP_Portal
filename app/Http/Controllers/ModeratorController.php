@@ -222,15 +222,24 @@ class ModeratorController extends Controller
 
     public function searchStudentByLastName(Request $request)
     {
-        return Client::where('last_name', 'like', '%'. $request->last_name .'%')
-            ->orWhere('first_name', 'like' ,'%'. $request->last_name .'%')
-            ->with('user')
-            ->with('payments')
-            ->with('school')
-            ->with(['userProgram' => function($query) {
-                return $query->with('program');
-            }])
-            ->paginate(50);
+        $clients = UserProgram::query()
+            ->select('clients.*', 'user_programs.*')
+            ->join('clients', 'clients.user_id', '=', 'user_programs.user_id')
+            ->where('clients.last_name', 'like', '%'. $request->search .'%')
+            ->orWhere('clients.first_name', 'like', '%'. $request->search . '%')
+            ->paginate(25); 
+
+        return ModeratorClientListResource::collection($clients);
+
+        // return Client::where('last_name', 'like', '%'. $request->last_name .'%')
+        //     ->orWhere('first_name', 'like' ,'%'. $request->last_name .'%')
+        //     ->with('user')
+        //     ->with('payments')
+        //     ->with('school')
+        //     ->with(['userProgram' => function($query) {
+        //         return $query->with('program');
+        //     }])
+        //     ->paginate(50);
     }
 
     public function showLobsterGrades()

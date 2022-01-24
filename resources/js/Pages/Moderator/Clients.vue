@@ -260,7 +260,7 @@
             searchClientByLastName() {
                 if (this.filterName !== '') {
                     let formData = new FormData();
-                    formData.append('last_name', this.filterName);
+                    formData.append('search', this.filterName);
                     axios.post('/searchStudentByLastName', formData)
                         .then((response) => {
                             this.clients = response.data;
