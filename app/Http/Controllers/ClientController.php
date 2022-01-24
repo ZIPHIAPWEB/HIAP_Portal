@@ -6,6 +6,9 @@ use App\Client;
 use App\ClientInitial;
 use App\Course;
 use App\Grade;
+use App\Http\Requests\SendApplicationRequest;
+use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\ClientDashboardResource;
 use App\Log;
 use App\Mail\NewApplicantNotification;
 use App\OnlineProgram;
@@ -18,7 +21,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use App\Services\ClientApplicationService;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ClientController extends Controller
 {
@@ -27,6 +34,8 @@ class ClientController extends Controller
     public function __construct(ClientApplicationService $clientApplicationService)
     {
         $this->clientApplicationService = $clientApplicationService;
+        
+        $this->middleware('auth');
     }
 
     public function showApplicationForm(Request $request)
@@ -42,40 +51,44 @@ class ClientController extends Controller
 
     public function showDashboard(Request $request)
     {
-        if ($request->user()->isFilled == true) {
-            return Inertia::render('Client/Dashboard', [
-                'client'             =>  Client::where('user_id', $request->user()->id)
-                    ->with('user')
-                    ->with('school')
-                    ->first(),
-                'schools'           =>  School::orderBy('name', 'desc')->get(),
-                'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
-                'payments'          =>  Payment::where('user_id', $request->user()->id)
-                    ->with(['track'])
-                    ->get()
-                    ->map(function($payment) {
-                    return [
-                        'id'            =>  $payment->id,
-                        'purpose'       =>  $payment->purpose,
-                        'mop'           =>  $payment->mop,
-                        'amount_paid'   =>  $payment->amount_paid,
-                        'isVerified'    =>  $payment->isVerified,
-                        'track'         =>  [
-                            'id'    =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->id,
-                            'name'  =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->program->name
-                        ],
-                        'date_paid'     =>  $payment->date_paid,
-                        'created_at'    =>  $payment->created_at->toDayDateTimeString()
-                    ];
-                }),
-                'userPrograms'      =>  UserProgram::where('user_id', $request->user()->id)
-                    ->with('program')
-                    ->with('course')
-                    ->get()
-            ]);
-        } else {
+        $isNotFilled = !$request->user()->isFilled;
+
+        if ($isNotFilled) {
             return redirect()->route('cl.application');
         }
+
+        $client = Client::where('user_id', $request->user()->id)
+            ->with('school')
+            ->with('user')
+            ->first();
+        
+        return Inertia::render('Client/Dashboard', [
+            'client'            =>  new ClientDashboardResource($client),
+            'schools'           =>  School::orderBy('name', 'desc')->get(),
+            'onlinePrograms'    =>  OnlineProgram::orderBy('name', 'desc')->get(),
+            'payments'          =>  Payment::where('user_id', $request->user()->id)
+                ->with(['track'])
+                ->get()
+                ->map(function($payment) {
+                return [
+                    'id'            =>  $payment->id,
+                    'purpose'       =>  $payment->purpose,
+                    'mop'           =>  $payment->mop,
+                    'amount_paid'   =>  $payment->amount_paid,
+                    'isVerified'    =>  $payment->isVerified,
+                    'track'         =>  [
+                        'id'    =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->id,
+                        'name'  =>  ($payment->track == null || $payment->track == '') ? null : $payment->track->program->name
+                    ],
+                    'date_paid'     =>  $payment->date_paid,
+                    'created_at'    =>  $payment->created_at->toDayDateTimeString()
+                ];
+            }),
+            'userPrograms'      =>  UserProgram::where('user_id', $request->user()->id)
+                ->with('program')
+                ->with('course')
+                ->get()
+        ]);
     }
 
     public function showClientRequirements($programId)
@@ -85,15 +98,9 @@ class ClientController extends Controller
         ]);
     }
 
-    public function sendApplication(Request $request)
+    public function sendApplication(SendApplicationRequest $request)
     {
-        $request->validate([
-            'first_name'    =>  'required',
-            'last_name'     =>  'required',
-            'address'       =>  'required',
-            'contact_number'=>  'bail|required|numeric',
-            'school'        =>  'required',
-        ]);  
+        $request->validated();  
 
         if($this->clientApplicationService->createClientApplication($request)) {
             User::find($request->user()->id)->update([
@@ -105,11 +112,13 @@ class ClientController extends Controller
     }
 
     public function getLoggedClientDetails(Request $request)
-    {
-        return Client::where('user_id', $request->user()->id)
-            ->with('user')
-            ->with('course')
-            ->first();
+    {   
+        $loggedClient = Client::where('user_id', $request->user()->id)
+        ->with('user')
+        ->with('course')
+        ->first();
+
+        return response()->json($loggedClient);
     }
 
     public function getAllClientDetails()
@@ -174,8 +183,10 @@ class ClientController extends Controller
         return redirect()->back();
     }
 
-    public function updateClientDetails(Request $request)
+    public function updateClientDetails(UpdateClientRequest $request)
     {
+        $request->validated();
+        
         $this->clientApplicationService->updateDetails($request);
 
         return redirect()

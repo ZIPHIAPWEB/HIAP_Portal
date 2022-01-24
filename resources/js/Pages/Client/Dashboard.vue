@@ -16,10 +16,9 @@
                 </div>
                 <div class="col-md-9">
                     <personal-profile-component :profile="client" :schools="schools"></personal-profile-component>
-                    <!-- <client-initial-requirements></client-initial-requirements> -->
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Learner's Program</h5>
+                            <h5 class="card-title">Learner's Details</h5>
                             <div class="card-tools">
                                 <button class="btn btn-xs btn-primary" data-target="#modal-default" data-toggle="modal">Enroll New Course</button>
                             </div>
@@ -47,7 +46,7 @@
                                         <td class="text-center text-sm">{{ p.hours_needed }}</td>
                                         <td class="text-center">
                                             <button v-if="p.application_status == 'New Learner'" class="btn btn-success btn-xs" @click="selectedCourse(p)">Edit</button>
-                                            <button v-if="p.application_status == 'New Learner'" class="btn btn-danger btn-xs" @click="removeProgram(p.id)">Delete</button>
+                                            <!-- <button v-if="p.application_status == 'New Learner'" class="btn btn-danger btn-xs" @click="removeProgram(p.id)">Delete</button> -->
                                             <i v-else>Not Applicable</i>
                                         </td>
                                     </tr >
@@ -61,7 +60,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">My Payments</h5>
+                            <h5 class="card-title">Learner's Fees</h5>
                             <div class="card-tools">
                                 <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Proof of Payment</button>
                             </div>
@@ -94,14 +93,17 @@
                                 </tbody>
                                 <tbody v-else>
                                     <tr class="text-center">
-                                        <td class="text-sm text-center" colspan="4">No Payment Registered</td>
+                                        <td class="text-sm text-center" colspan="6">No Payment Registered</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <client-initial-requirements></client-initial-requirements>
+
                 </div>
             </div>
+
             <div class="modal fade show" id="modal-default" aria-modal="true">
                 <div class="modal-dialog modal-dialog-centered modal-md">
                     <div class="modal-content">

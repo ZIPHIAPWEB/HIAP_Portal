@@ -10,13 +10,19 @@ class InitialClientRequirementService
 {
     private $directory = 'cinitials';
 
-    public function uploadRequirement($data)
+    public function uploadRequirement($request)
     {
-        $path = Storage::putFile('public/'. $this->directory, $data['file']);
+        if($request->hasFile('file')) {
+            $path = Storage::putFile('public/'. $this->directory, $request->file);
+        }
+
+        if(!$request->hasFile('file')) {
+            $path = $request->file;
+        }
 
         ClientInitial::create([
-            'user_id'   =>  request()->user()->id,
-            'initial_id'=>  $data['initial_id'],
+            'user_id'   =>  $request->user()->id,
+            'initial_id'=>  $request->initial_id,
             'status'    =>  true,
             'file_path' =>  $path
         ]);

@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Carbon\Carbon as CarbonCarbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Client extends Model
 {
@@ -18,12 +21,20 @@ class Client extends Model
         'user_id',
         'fb_link',
         'program_id',
-        'alternate_email'
+        'alternate_email',
+        'expected_graduation'
     ];
     
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
     ];
+
+    // public function getExpectedGraduationAttribute($value) 
+    // {
+    //     $date = new DateTime($value);
+
+    //     return Carbon::instance($date)->format('M Y');
+    // }
 
     public function user()
     {

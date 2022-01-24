@@ -31,22 +31,24 @@
                             <th>Middle Name</th>
                             <th>Last Name</th>
                             <th>Contact Number</th>
-                            <th>School/Organization</th>
-                            <th>Enrolled Course(s)</th>
+                            <!-- <th>School/Organization</th> -->
+                            <th>Enrolled Course</th>
+                            <th>Course Status</th>
                             <th>E-mail Address</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody v-if="clients.data.length > 0">
                         <tr class="text-xs " v-for="client in clients.data" :key="client.id">
-                            <td class="text-left">{{ client.created_at }}</td>
-                            <td>{{ client.first_name }}</td>
-                            <td>{{ client.middle_name}}</td>
-                            <td>{{ client.last_name }}</td>
-                            <td>{{ client.contact_no }}</td>
-                            <td>{{ client.school ? client.school.name : '' }}</td>
-                            <td>{{ (client.user_program.length == 1) ? client.user_program[0]['program'].name : client.user_program.length + ' Courses' }}</td>
-                            <td>{{ client.user.email }}</td>
+                            <td class="text-left">{{ client.client.created_at }}</td>
+                            <td>{{ client.client.first_name }}</td>
+                            <td>{{ client.client.middle_name}}</td>
+                            <td>{{ client.client.last_name }}</td   >
+                            <td>{{ client.client.contact_no }}</td>
+                            <!-- <td>{{ client.school ? client.school.name : '' }}</td> -->
+                            <td>{{ client.program }}</td>
+                            <td class="text-success text-bold">{{ client.application_status }}</td>
+                            <td>{{ client.email }}</td>
                             <td class="text-center">
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>
                             </td>

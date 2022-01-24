@@ -6,6 +6,8 @@ use App\Certificate;
 use App\Client;
 use App\Events\UserLogCreated;
 use App\Http\Requests\ModeratorCreateRequest;
+use App\Http\Resources\ClientDashboardResource;
+use App\Http\Resources\ModeratorClientListResource;
 use App\Initial;
 use App\Moderator;
 use App\OnlineProgram;
@@ -119,15 +121,13 @@ class ModeratorController extends Controller
 
     public function showClients()
     {
+        // UserProgram::orderBy('created_at', 'desc')
+        //         ->with('program')
+        //         ->with('client')
+        //         ->with('user')
+        //         ->paginate(15);
         return Inertia::render('Moderator/Clients', [
-            'clients'   =>  Client::orderBy('created_at', 'desc')
-                ->with('user')
-                ->with('school')
-                ->with('onlineProgram')
-                ->with(['userProgram' => function($query) {
-                    return $query->with('program');
-                }])
-                ->paginate(15),
+            'clients' => ModeratorClientListResource::collection(UserProgram::orderBy('created_at', 'desc')->paginate(15)),
             'schools'   =>  School::orderBy('name')->get()
         ]);
     }
@@ -136,7 +136,7 @@ class ModeratorController extends Controller
     {
         $client = Client::where('user_id', $id)->with('user')->with('school')->first();
         return Inertia::render('Moderator/Client/SelectedClient', [
-            'client'                    =>  $client,
+            'selectedClient'            =>  new ClientDashboardResource($client),
             'initials'                  =>  Initial::orderBy('id', 'asc')
                 ->where('program_id', $client->program_id)
                 ->with(['clientInitial' => function ($query) use ($client) {
@@ -147,12 +147,13 @@ class ModeratorController extends Controller
                     return [
                         'id'                =>  $initial->id,
                         'name'              =>  $initial->name,
+                        'type'              =>  $initial->type,
                         'client_initial'    =>  [
                             'id'        =>  $initial->clientInitial->id,
                             'initial_id'=>  $initial->clientInitial->initial_id,
                             'user_id'   =>  $initial->clientInitial->user_id,
                             'status'    =>  $initial->clientInitial->status,
-                            'file_path' =>  Storage::url($initial->clientInitial->file_path)
+                            'file_path' =>  ($initial->type == 'file') ? Storage::url($initial->clientInitial->file_path) : $initial->clientInitial->file_path
                         ]
                     ];
                 }),

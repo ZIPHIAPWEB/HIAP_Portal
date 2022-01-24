@@ -8,7 +8,10 @@ use App\Actions\RemoveUserProgram;
 use App\Actions\SendMailNotification;
 use App\Actions\UpdateUserProgram;
 use App\Client;
+use App\Exceptions\UserProgramIsAlreadyLinkedException;
 use App\Mail\NewApplicantNotification;
+use App\Payment;
+use App\UserProgram;
 
 class UserProgramService 
 {
@@ -117,7 +120,13 @@ class UserProgramService
 
     public function removeProgram($data, $userProgramId)
     {
-        $this->removeUserProgram->execute($userProgramId);
+        $isUserProgramLinkedToPayment = Payment::where('course_id', $userProgramId)->first();
+        
+        if (!empty($isUserProgramLinkedToPayment)) {
+            throw new UserProgramIsAlreadyLinkedException();
+        }
+
+        UserProgram::where('id', $userProgramId)->delete();
 
         switch($data->user()->role) {
             case 'client':

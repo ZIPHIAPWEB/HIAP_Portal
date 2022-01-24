@@ -13,42 +13,42 @@
                         <div class="card-body">
                             <form @submit.prevent="step++" v-if="step == 1">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">First Name <i class="text-danger">*</i></label>
                                             <input v-model="form.first_name" type="text" name="" id="" :class="hasFirstNameError" placeholder="Jane" required>
                                             <span class="error invalid-feedback" v-if="errors.first_name">{{ $page.errors.first_name }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Middle Name</label>
                                             <input v-model="form.middle_name" type="text" name="" id="" class="form-control" placeholder="Doe">
                                             <span class="error invalid-feedback" v-if="errors.middle_name">{{ $page.errors.middle_name }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Last Name <i class="text-danger">*</i></label>
                                             <input v-model="form.last_name" type="text" name="" id="" :class="hasLastNameError" placeholder="Doe" required>
                                             <span class="error invalid-feedback" v-if="errors.last_name">{{ $page.errors.last_name }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Address <i class="text-danger">*</i></label>
                                             <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx" required>
                                             <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Contact Number <i class="text-danger">*</i></label>
                                             <input v-model="form.contact_number" type="number" name="" id="" :class="hasContactError" placeholder="09123456789" required>
                                             <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Year Level <i class="text-danger">*</i></label>
                                             <select v-model="form.school_year" name="" id="" class="form-control" required>
@@ -61,13 +61,13 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Course <i class="text-danger">*</i></label>
                                             <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <div class="d-flex">
                                                 <label for="">School <i class="text-danger">*</i></label>
@@ -78,13 +78,19 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Expected date of graduation <i class="text-danger">*</i></label>                                            
+                                            <input type="month" v-model="form.expected_graduation" class="form-control form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Facebook Profile Link <i class="text-danger">*</i></label>
                                             <input v-model="form.fb_link" type="text" class="form-control" placeholder="https://facebook.com/jane.doe" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Personal/Alternate Email <i class="text-danger">*</i></label>
                                             <input v-model="form.alternate_email" type="text" class="form-control" placeholder="jane.doe@app.com" required>
@@ -165,6 +171,7 @@
                     program: '',
                     course: '',
                     school_year: '',
+                    expected_graduation: '',
                     course_id: [],
                     hours_needed: '',
                     start_date: '',

@@ -16,6 +16,11 @@ class UserProgram extends Model
         'application_status'
     ];
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
     public function client()
     {
         return $this->hasOne('App\Client', 'user_id', 'user_id');

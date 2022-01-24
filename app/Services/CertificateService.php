@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Actions\CreateCertificate;
 use App\Actions\RemoveCertificate;
 use App\Actions\UpdateCertificate;
+use App\Certificate;
 
 class CertificateService
 {
@@ -79,6 +80,8 @@ class CertificateService
 
     public function remove($id)
     {
-        (new RemoveCertificate)->execute($id);
+        $cert = Certificate::findOrFail($id);
+        
+        $cert->delete();
     }
 }

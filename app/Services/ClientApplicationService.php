@@ -49,9 +49,10 @@ class ClientApplicationService {
             'course'                =>  $request->course,
             'fb_link'               =>  $request->fb_link,
             'program_id'            =>  $request->user()->program_id,
-            'alternate_email'       =>  $request->alternate_email
+            'alternate_email'       =>  $request->alternate_email,
+            'expected_graduation'   =>  $request->expected_graduation
         ]);
-        
+
         foreach($request->course_id as $course) {
             $this->createClientProgram->execute([
                 'user_id'               =>  $request->user()->id,
@@ -96,6 +97,15 @@ class ClientApplicationService {
 
     public function updateDetails($request)
     {
+        $isSuperadmin = $request->user()->role == 'superadministrator';
+
+        if ($isSuperadmin) {
+            User::where('id', $request->user_id)
+            ->update([
+                'email'     =>  $request->user['email']
+            ]);
+        }
+
         $updateClient = $this->updateClient->execute(['user_id' => $request->user_id], [
             'first_name'            =>  $request->first_name,
             'middle_name'           =>  $request->middle_name,
@@ -108,19 +118,23 @@ class ClientApplicationService {
             'course'                =>  $request->course,
             'fb_link'               =>  $request->fb_link,
             'program_id'            =>  $request->program_id,
-            'alternate_email'       =>  $request->alternate_email
+            'alternate_email'       =>  $request->alternate_email,
+            'expected_graduation'   =>  $request->expected_graduation
         ]);
 
-        User::where('id', $request->user_id)
-            ->update([
-                'email'     =>  $request->user['email']
-            ]);
 
         switch($request->user()->role) {
             case 'client':
                 (new CreateLog)->execute([
                     'user_id' => $request->user()->id,
                     'action'  => 'Update personal details'
+                ]);        
+            break;
+            
+            case 'moderator':
+                (new CreateLog)->execute([
+                    'user_id' => $request->user()->id,
+                    'action'  => 'Update\'s client ' . $request->user_id .  ' details.'
                 ]);        
             break;
 
@@ -134,7 +148,7 @@ class ClientApplicationService {
         return $updateClient->with('user')->first();
     }
 
-    public function getClientRecords(string $sortBy = 'desc') : Client
+    public function getClientRecords(string $sortBy = 'desc')
     {
         return Client::orderBy('created_at', $sortBy)->with('programs')->get();
     }

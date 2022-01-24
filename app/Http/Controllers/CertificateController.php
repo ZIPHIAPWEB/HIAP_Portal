@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Certificate;
+use App\Http\Requests\CertificateRequest;
 use App\Services\CertificateService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -39,7 +40,7 @@ class CertificateController extends Controller
                 'cert_details' => $cert
             ]);
         } else {
-            abort(404);
+            abort(404, 'No Record Found');
         }
     }
 
@@ -50,24 +51,15 @@ class CertificateController extends Controller
         ]);
     }
 
-    public function addCertificate(Request $request)
+    public function addCertificate(CertificateRequest $request)
     {
-        $request->validate([
-            'cert_no'       =>  'required',
-            'name'          =>  'required',
-            'school'        =>  'required',
-            'program'       =>  'required',
-            'gold_medal'    =>  'required',
-            'silver_medal'  =>  'required',
-            'bronze_medal'  =>  'required',
-            'total_grade'   =>  'required'
-        ]);
+        $request->validated();
 
         $this->certificate->addSingleCert($request);
 
         return redirect()->back();
     }
-
+    
     public function uploadCertificates(Request $request)
     {
         $request->validate([
@@ -82,21 +74,11 @@ class CertificateController extends Controller
         return redirect()->back();
     }
 
-    public function updateCertificate(Request $request)
+    public function updateCertificate(CertificateRequest $request)
     {
-        $this->certificate->updateCert($request->validate([
-            'id'            =>  '',
-            'cert_no'       =>  'required',
-            'name'          =>  'required',
-            'school'        =>  'required',
-            'program'       =>  'required',
-            'gold_medal'    =>  'required',
-            'silver_medal'  =>  'required',
-            'bronze_medal'  =>  'required',
-            'total_medal'   =>  'required',
-            'total_grade'   =>  'required',
-            'proficiency'   =>  'required'
-        ]));
+        $request->validated();
+
+        $this->certificate->updateCert($request->all());
 
         return redirect()->back();
     }

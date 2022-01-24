@@ -5,15 +5,15 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Course Details</h5>
+                            <h5 class="card-title">Track Details</h5>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Course Name</label>
+                                <label>Name</label>
                                 <input v-model="form.name" type="text" placeholder="Sample Program" class="form-control form-control-sm ">
                             </div>
                             <div class="form-group">
-                                <label>Course Description</label>
+                                <label>Description</label>
                                 <input v-model="form.description" type="text" placeholder="Sample Description" class="form-control form-control-sm ">
                             </div>
                             <div class="form-group">
@@ -33,7 +33,7 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <h6 class="card-title">Programs</h6>
+                            <h6 class="card-title">Tracks</h6>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-sm table-hover table-striped">
@@ -50,7 +50,10 @@
                                     <tr class="text-center text-xs" v-for="program in programs" :key="program.id">
                                         <td class="text-left">{{ program.name }}</td>
                                         <td>{{ program.description }}</td>
-                                        <td>{{ program.online_program }}</td>
+                                        <template>
+                                            <td v-if="program.online_program">{{ program.online_program.display_name }}</td>
+                                            <td v-else><i>No Program</i></td>
+                                        </template>
                                         <td>
                                             <i v-if="program.isActive" class="text-bold text-green">Active</i>
                                             <i v-else class="class text-bold text-red">Inactive</i>

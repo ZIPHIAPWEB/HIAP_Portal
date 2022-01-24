@@ -24,6 +24,7 @@ class CreateCertificatesTable extends Migration
             $table->integer('silver_medal');
             $table->integer('bronze_medal');
             $table->integer('total_medal');
+            $table->double('proficiency');
             $table->timestamps();
         });
     }

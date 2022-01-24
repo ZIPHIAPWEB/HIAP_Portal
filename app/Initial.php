@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Initial extends Model
 {
-    protected $fillable = [
-        'program_id', 'name', 'description', 'file_path'
-    ];
+    protected $guarded = [];
 
     public function clientInitial()
     {

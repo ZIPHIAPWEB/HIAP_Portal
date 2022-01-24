@@ -16,23 +16,17 @@ class InitialRequirementService
 
     public function addRequirement($data, $program_id)
     {
-        if ($data['file'] <> null) {
+        if(!empty($data['file'])) {
             $path = Storage::putFile('public/' . $this->directory, $data['file']);
-
-            Initial::create([
-                'program_id'    =>  $program_id,
-                'name'          =>  $data['name'],
-                'description'   =>  $data['description'],
-                'file_path'     =>  $path
-            ]);
-        } else {
-            Initial::create([
-                'program_id'    =>  $program_id,
-                'name'          =>  $data['name'],
-                'description'   =>  $data['description'],
-                'file_path'     =>  ''
-            ]);
         }
+
+        Initial::create([
+            'program_id'    =>  $program_id,
+            'name'          =>  $data['name'],
+            'description'   =>  $data['description'],
+            'type'          =>  $data['type'],
+            'file_path'     =>  (!empty($data['file'])) ? $path : null
+        ]);
     }
 
     public function updateRequirement($data)

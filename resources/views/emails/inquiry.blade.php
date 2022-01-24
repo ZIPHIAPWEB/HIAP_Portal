@@ -1,9 +1,9 @@
 @component('mail::message')
 # Client Inquiry
 
-Full Name : {{ $fullName }} <br>
+Full Name : {{ $full_name }} <br>
 Email: {{ $email }} <br>
-Mobile Number: {{ $mobileNumber }}
+Mobile Number: {{ $mobile_number }}
 
 Message: <br>
 {{ $message }}

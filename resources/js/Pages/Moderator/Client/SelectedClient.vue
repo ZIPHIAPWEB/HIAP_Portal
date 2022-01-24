@@ -67,6 +67,13 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Expected Graduation</td>
+                                        <td>
+                                            <span v-if="!isEdit" class="text-bold">{{ client.expected_graduation_formatted }}</span>
+                                            <input v-else type="month" v-model="client.expected_graduation" class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Address</td>
                                         <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.address }}</span>
@@ -125,7 +132,7 @@
                                     <tr>
                                         <th style="width: 50%;">Requirements</th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-center">Actions</th>
+                                        <th class="text-center">Value</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="initials.length > 0">
@@ -136,7 +143,10 @@
                                             <i v-else class="fas fa-times text-red"></i>
                                         </td>
                                         <td class="text-center">
-                                            <a v-if="initial.client_initial.status" :href="initial.client_initial.file_path" download="" class="btn btn-primary btn-xs">Download</a>
+                                            <template v-if="initial.client_initial.status">
+                                                <a v-if="initial.type === 'file'" :href="initial.client_initial.file_path" download="" class="btn btn-primary btn-xs">Download</a>
+                                                <i v-else>{{ initial.client_initial.file_path }}</i>
+                                            </template>
                                             <i v-else class="text-sm">Not Applicable</i>
                                         </td>
                                     </tr>
@@ -194,7 +204,7 @@
                                 </tbody>
                                 <tbody v-else>
                                     <tr>
-                                        <td colspan="7" class="text-center text-sm">Not enrolled in any program</td>
+                                        <td colspan="8" class="text-center text-sm">Not enrolled in any program</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -378,7 +388,7 @@
     import ModeratorLayout from '../../../Layouts/ModeratorLayout.vue';
     export default {
         props: [
-            'client',
+            'selectedClient',
             'initials',
             'userPrograms',
             'payments',
@@ -401,6 +411,11 @@
         },
         components: {
             ModeratorLayout
+        },
+        computed: {
+            client () {
+                return {...this.selectedClient};
+            }
         },
         watch: {
             flash: function (value) {

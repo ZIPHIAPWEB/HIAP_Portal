@@ -112,19 +112,19 @@
     <section class="contact-form">
         <div class="container-fluid">
             <h1 class="text-center">For more inquiries, please fill out this form:</h1>
-            <form>
+            <form action="/sendInquiry" method="post">
                 <div class="form-row">
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Name (required):</label><input class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>Name (required):</label><input name="full_name" class="form-control form-control" type="text"></div>
                     </div>
                     <div class="col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Mobile Number (required):</label><input class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>Mobile Number (required):</label><input name="mobile_number" class="form-control form-control" type="text"></div>
                     </div>
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>E-mail (required):</label><input class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>E-mail (required):</label><input name="email" class="form-control form-control" type="text"></div>
                     </div>
                     <div class="col-12">
-                        <div class="form-group"><label>Message (required):</label><textarea class="form-control form-control" rows="10"></textarea></div>
+                        <div class="form-group"><label>Message (required):</label><textarea name="message" class="form-control form-control" rows="10"></textarea></div>
                     </div>
                     <div class="col-12 col-lg-2 col-xl-2"><button class="btn btn-primary btn-block" type="button" style="border: 0;">Send</button></div>
                 </div>

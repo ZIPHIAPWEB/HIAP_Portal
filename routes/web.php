@@ -54,7 +54,7 @@ Route::prefix('staff')->group(function () {
     Route::get('/dashboard', 'StaffController@showDashboard')->name('s.dashboard')->middleware(['verified']);
 });
 
-Route::prefix('client')->group(function () {
+Route::prefix('client')->middleware('is_client')->group(function () {
     Route::get('/application-form', 'ClientController@showApplicationForm')->name('cl.application')->middleware(['verified', 'auth']);
     Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified','auth']);
 
@@ -62,14 +62,14 @@ Route::prefix('client')->group(function () {
     Route::get('/{programId}/requirements', 'ClientController@showClientRequirements');
 });
 
-Route::prefix('ac')->group(function() {
+Route::prefix('ac')->middleware('is_accounting')->group(function() {
     Route::get('/clients', 'AccountingController@showAccountingClients')->name('ac.clients')->middleware('auth');
     Route::get('/client/{id}', 'AccountingController@showAccountingSelectedClient')->name('ac.client');
     Route::post('/verifyPayment', 'AccountingController@paymentVerified')->name('ac.verify');
     Route::get('/dashboard', 'AccountingController@showAccountingDashboard')->name('ac.dashboard');
 });
 
-Route::prefix('sa')->group(function () {
+Route::prefix('sa')->middleware('is_superadmin')->group(function () {
     Route::get('/dashboard', 'SuperadminController@showDashboard')->name('sa.dashboard')->middleware('auth');
 
     Route::get('/clients', 'SuperadminController@showClients')->name('sa.clients');
@@ -101,7 +101,7 @@ Route::prefix('sa')->group(function () {
     Route::get('/blogs/create', 'BlogController@showBlogCreate');
 });
 
-Route::prefix('md')->group(function () {
+Route::prefix('md')->middleware('is_moderator')->group(function () {
     Route::get('/dashboard', 'ModeratorController@showDashboard')->name('md.dashboard')->middleware('auth');
     Route::get('/certs', 'ModeratorController@showLobsterGrades')->name('md.certs')->middleware('auth');
 
@@ -138,7 +138,7 @@ Route::put('/updateInitialRequirement', 'InitialRequirementController@updateInit
 Route::delete('/deleteInitialRequirement/{id}', 'InitialRequirementController@deleteInitialRequirement');
 
 Route::get('/getLoggedClientDetails', 'ClientController@getLoggedClientDetails');
-Route::get('/getAllClientDetails', 'ClientController@getAllClients');
+Route::get('/getAllClientDetails', 'ClientController@getAllClientDetails');
 Route::post('/setApplicationStatus/{id}', 'UserProgramController@setApplicationStatus');
 Route::delete('/deleteClientDetails/{userId}', 'ClientController@deleteClientDetails');
 Route::post('/updateClientDetails', 'ClientController@updateClientDetails');
@@ -201,13 +201,14 @@ Route::get('/certActual/{layoutId}', 'CertificateEditorController@viewActual');
 Route::post('/certChange', 'CertificateEditorController@saveChanges');
 Route::post('/addCertTemplate', 'CertificateEditorController@addCertTemplate');
 
+/** E-CERTS Routes */
 Route::get('/certClients', 'CertificateClientController@clientList');
 Route::get('/certClientActual/{userId}', 'CertificateClientController@viewClientActualCert');
-Route::get('/certDownload', 'CertificateClientController@viewSearchToDownloadCert');
+Route::get('/certDownload', 'CertificateClientController@viewSearchToDownloadCert')->withoutMiddleware('auth');
+Route::get('/viewCertDownloadingPage', 'CertificateClientController@viewCertDownloadingPage')->withoutMiddleware('auth');
+Route::get('/certDownloadActual/{userId}', 'CertificateClientController@downloadClientActualCert');
 Route::post('/getSearchedCertificate', 'CertificateClientController@getSearchedCertificate');
 Route::post('/certClientsAddBulk', 'CertificateClientController@saveBulkClients');
-Route::get('/certDownloadActual/{userId}', 'CertificateClientController@downloadClientActualCert');
-Route::get('/viewCertDownloadingPage', 'CertificateClientController@viewCertDownloadingPage');
 Route::delete('/certDelete/{certId}', 'CertificateClientController@deleteClientCert');
 Route::post('/searchCertificate', 'CertificateClientController@searchCertificate');
 Route::post('/certSaveSingle', 'CertificateClientController@saveSingleClient');

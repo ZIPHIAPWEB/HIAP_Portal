@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\CertificateClient;
 use App\CertificateLayout;
+use App\Client;
+use App\Exceptions\ClientCertficateNotFoundException;
+use App\Http\Requests\ClientCertficateRequest;
 use App\Services\Certificate\WebinarCertificateService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -50,8 +53,13 @@ class CertificateClientController extends Controller
     public function downloadClientActualCert($userId)
     {
         // return view('export.certificate_client')->with('data', CertificateClient::where('id', $userId)->with('layout')->first());
+        $clientCertData = CertificateClient::where('id', $userId)->with('layout')->first();
 
-        $pdf = PDF::loadView('export.certificate_client', ['data' => CertificateClient::where('id', $userId)->with('layout')->first()]);
+        if(empty($clientCertData)) {
+            throw new ClientCertficateNotFoundException();
+        }
+
+        $pdf = PDF::loadView('export.certificate_client', ['data' => $clientCertData ]);
         $pdf->setWarnings(true);            
         $pdf->setPaper('a4', 'landscape');
         $pdf->setEncryption('p@ssw0rd', ['print']);
@@ -71,28 +79,20 @@ class CertificateClientController extends Controller
         return redirect()->back();
     }
 
-    public function saveSingleClient(Request $request)
+    public function saveSingleClient(ClientCertficateRequest $request)
     {
-        (new WebinarCertificateService)->uploadSingle($request->validate([
-            'full_name'         =>  'required',
-            'email'             =>  'required',
-            'school'            =>  'required',
-            'cert_created_at'   =>  'required',
-            'cert_layout_id'    =>  'required'
-        ]));
+        $request->validated();
+
+        (new WebinarCertificateService)->uploadSingle($request->all());
 
         return redirect()->back();
     }
 
-    public function updateClientCert(Request $request)
+    public function updateClientCert(ClientCertficateRequest $request)
     {
-        (new WebinarCertificateService)->updateSingleCertificate($request->id, $request->validate([
-            'full_name'         =>  'required',
-            'email'             =>  'required',
-            'school'            =>  'required',
-            'cert_created_at'   =>  'required',
-            'cert_layout_id'    =>  'required'
-        ]));
+        $request->validated();
+
+        (new WebinarCertificateService)->updateSingleCertificate($request->id, $request->all());
 
         return redirect()->back();
     }

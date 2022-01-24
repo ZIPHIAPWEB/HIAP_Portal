@@ -24,6 +24,7 @@ class InitialRequirementController extends Controller
                         'id'            =>  $initial->id,
                         'name'          =>  $initial->name,
                         'description'   =>  $initial->description,
+                        'type'          =>  $initial->type,
                         'file_path'     =>  ($initial->file_path <> null || $initial->file_path <> '') ? url(Storage::url($initial->file_path)) : '',
                         'created_at'    =>  $initial->created_at->toDateTimeString(),
                     ];
@@ -33,7 +34,9 @@ class InitialRequirementController extends Controller
 
     public function storeInitialRequirement(InitialStoreRequest $request, $programId)
     {   
-        (new InitialRequirementService)->addRequirement($request->validated(), $programId);
+        $request->validated();
+
+        (new InitialRequirementService)->addRequirement($request->all(), $programId);
 
         return redirect()->back();
     }

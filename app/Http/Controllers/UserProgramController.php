@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserProgramRequest;
 use App\Services\UserProgramService;
 use App\UserProgram;
 use Illuminate\Http\Request;
@@ -15,8 +16,10 @@ class UserProgramController extends Controller
         $this->userProgramService = $userProgramService;
     }
 
-    public function addNewProgram(Request $request)
+    public function addNewProgram(UserProgramRequest $request)
     {
+        $request->validated();
+
         $this->userProgramService->saveUserProgram($request);
 
         return redirect()

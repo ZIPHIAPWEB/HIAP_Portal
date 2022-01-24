@@ -25,6 +25,14 @@
                                 <input type="text" v-model="form.description" class="form-control form-control-sm" placeholder="Text Description">
                             </div>
                             <div class="form-group">
+                                <label>Requirement Type</label>
+                                <select v-model="form.type" class="form-control form-control-sm">
+                                    <option value="">Select type</option>
+                                    <option value="file">File</option>
+                                    <option value="text">Text</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <input type="file" ref="doc" @change="fileHandler">
                             </div>
                             <div class="d-flex">
@@ -45,6 +53,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th class="text-center">Description</th>
+                                        <th class="text-center">Type</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -52,6 +61,7 @@
                                     <tr v-for="initial in initials" :key="initial.id">
                                         <td>{{ initial.name }}</td>
                                         <td class="text-center">{{ initial.description }}</td>
+                                        <td class="text-center">{{ initial.type }}</td>
                                         <td class="text-center">
                                             <a target="_blank" v-if="initial.file_path !== ''" :href="initial.file_path" class="btn btn-warning btn-xs">View/Download</a>
                                             <button @click="editDetails(initial)" class="btn btn-success btn-xs">Edit</button>
@@ -80,6 +90,7 @@
                 form: {
                     name: '',
                     description: '',
+                    type: '',
                     file: [],
                 },
                 method: 'create',
@@ -95,6 +106,7 @@
                 formData.append('id', this.form.id);
                 formData.append('name', this.form.name);
                 formData.append('description', this.form.description);
+                formData.append('type', this.form.type)
                 formData.append('file', this.form.file);
 
                 switch(this.method) {

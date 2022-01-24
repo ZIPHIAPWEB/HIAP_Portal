@@ -4,8 +4,8 @@
             <i class="fas fa-2x fa-spinner fa-pulse m-2"></i>
         </div>
         <div class="card-header">
-            <h5 class="m-0 card-title">Initial Requirements</h5>
-            <div class="card-tools">
+            <h5 class="m-0 card-title">Learner's Requirements</h5>
+            <!-- <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
                         <a href="#requirement" class="nav-link active text-sm" data-toggle="tab">Requirement</a>
@@ -14,7 +14,7 @@
                         <a href="#gradebook" class="nav-link text-sm" data-toggle="tab">Gradebook</a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <div class="card-body p-0">
             <div class="tab-content p-0">
@@ -35,13 +35,18 @@
                                     <i v-else class="fas fa-times text-danger"></i>
                                 </td>
                                 <td class="text-center">
-                                <button v-if="requirement.client_initial.status" @click="deleteFile(requirement.client_initial.id)" class="btn btn-danger btn-xs">Delete File</button>
-                                    <div v-else class="d-flex flex-row justify-content-center">
-                                        <div v-if="requirement.file_path">
-                                            <a :href="requirement.file_path" class="mx-1 btn btn-success btn-xs" download>Download {{ requirement.name }}</a>
+                                    <button v-if="requirement.client_initial.status" @click="deleteFile(requirement.client_initial.id)" class="btn btn-danger btn-xs">Delete {{ requirement.name }}</button>
+                                    <template v-else>
+                                        <div v-if="requirement.type === 'file'" class="d-flex flex-row justify-content-center">
+                                            <div v-if="requirement.file_path">
+                                                <a :href="requirement.file_path" class="mx-1 btn btn-success btn-xs" download>Download {{ requirement.name }}</a>
+                                            </div>
+                                            <upload-initial-requirement :initialId="requirement.id" />
                                         </div>
-                                        <upload-initial-requirement :initialId="requirement.id" />
-                                    </div>
+                                        <div v-if="requirement.type === 'text'">
+                                            <input-initial-requirement :initial="requirement" />
+                                        </div>
+                                    </template>
                                 </td>
                             </tr>
                         </tbody>
@@ -75,10 +80,12 @@
 
 <script>
     import UploadInitialRequirement from '../components/UploadInitialRequirement.vue';
+    import InputInitialRequirement from '../components/InputInitialRequirement.vue';
     export default {
         props: ['programId'],
         components: {
-            UploadInitialRequirement
+            UploadInitialRequirement,
+            InputInitialRequirement
         },
         data () {
             return {
@@ -108,7 +115,7 @@
             },
             getClientRequirements() {
                 this.loading = true;
-                axios.get(`/getInitial`)
+                axios.get(`/getInitialRequirementsWithClient`)
                     .then(({data}) => {
                         this.requirements = data;
                         this.loading = false;

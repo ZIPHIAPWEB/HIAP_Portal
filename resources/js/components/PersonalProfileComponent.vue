@@ -19,22 +19,22 @@
                     <tr>
                         <td style="width: 45%">First Name</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.first_name }}</strong>
-                            <input v-model="profile.first_name" v-else type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.first_name }}</strong>
+                            <input v-model="client.first_name" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>
                         <td>Middle Name</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.middle_name}}</strong>
-                            <input v-model="profile.middle_name" v-else type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.middle_name}}</strong>
+                            <input v-model="client.middle_name" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>
                         <td >Last Name</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.last_name }}</strong>
-                            <input v-model="profile.last_name" v-else type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.last_name }}</strong>
+                            <input v-model="client.last_name" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>
@@ -47,8 +47,8 @@
                     <tr>
                         <td>Year Level</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.school_year }}</strong>
-                            <select v-model="profile.school_year" v-else class="form-control form-control sm w-100">
+                            <strong v-if="!isEdit">{{ client.school_year }}</strong>
+                            <select v-model="client.school_year" v-else class="form-control form-control sm w-100">
                                 <option value="">Select</option>
                                 <option value="First Year">First Year</option>
                                 <option value="Second Year">Second Year</option>
@@ -61,45 +61,52 @@
                     <tr>
                         <td>Address</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.address }}</strong>
-                            <input v-model="profile.address" v-else type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.address }}</strong>
+                            <input v-model="client.address" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>
                         <td>Contact Number</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.contact_no }}</strong>
-                            <input v-model="profile.contact_no" v-else type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.contact_no }}</strong>
+                            <input v-model="client.contact_no" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>
                         <td>FB Profile Link</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.fb_link }}</strong>
-                            <input v-model="profile.fb_link" v-else type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.fb_link }}</strong>
+                            <input v-model="client.fb_link" v-else type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                     <tr>
                         <td>School/Organization</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.school.name }}</strong>
-                            <select v-model="profile.school_id" v-else class="form-control form-control sm w-100">
+                            <strong v-if="!isEdit">{{ client.school.name }}</strong>
+                            <select v-model="client.school_id" v-else class="form-control form-control sm w-100">
                                 <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
+                        <td>Expected graduation</td>
+                        <td class="text-left">
+                            <strong v-if="!isEdit">{{ client.expected_graduation_formatted }}</strong>
+                            <input v-model="client.expected_graduation" v-else type="month" class="form-control form-control-sm w-100">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>E-mail Address</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.user.email }}</strong>
-                            <input v-model="profile.user.email" v-else type="text" class="form-control form-control-sm w-100" disabled>
+                            <strong v-if="!isEdit">{{ client.user.email }}</strong>
+                            <input v-model="client.user.email" v-else type="text" class="form-control form-control-sm w-100" disabled>
                         </td>
                     </tr>
                     <tr>
                         <td>Alternate E-mail Address</td>
                         <td class="text-left">
-                            <strong v-if="!isEdit">{{ profile.alternate_email }}</strong>
-                            <input v-else v-model="profile.alternate_email" type="text" class="form-control form-control-sm w-100">
+                            <strong v-if="!isEdit">{{ client.alternate_email }}</strong>
+                            <input v-else v-model="client.alternate_email" type="text" class="form-control form-control-sm w-100">
                         </td>
                     </tr>
                 </tbody>
@@ -108,19 +115,25 @@
     </div>
 </template>
 
-<script>
+<script>import { keys } from "../../../public/adminlte/plugins/fullcalendar/locales-all";
+
     export default {
         props: ['profile', 'schools'],
         data () {
             return {
                 isEdit: false,
-                loading: false
+                loading: false,
+            }
+        },
+        computed: {
+            client () {
+                return {...this.profile}
             }
         },
         methods: {
             updateProfileDetails () {
                 this.loading = true;
-                this.$inertia.post('/updateClientDetails', this.profile, {
+                this.$inertia.post('/updateClientDetails', this.client, {
                     onBefore: () => confirm('Update this details?'),
                     onSuccess: () => {
                         this.isEdit = false;
