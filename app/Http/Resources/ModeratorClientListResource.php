@@ -20,7 +20,7 @@ class ModeratorClientListResource extends JsonResource
             'application_status'    =>  $this->application_status,
             'email'     =>  $this->user->email,
             'program'   =>  $this->program->name,   
-            'client'    =>  $this->client
+            'client'    =>  new ClientResource($this->client)
         ];
     }
 }

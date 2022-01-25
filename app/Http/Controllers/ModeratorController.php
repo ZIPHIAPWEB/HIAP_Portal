@@ -230,16 +230,6 @@ class ModeratorController extends Controller
             ->paginate(25); 
 
         return ModeratorClientListResource::collection($clients);
-
-        // return Client::where('last_name', 'like', '%'. $request->last_name .'%')
-        //     ->orWhere('first_name', 'like' ,'%'. $request->last_name .'%')
-        //     ->with('user')
-        //     ->with('payments')
-        //     ->with('school')
-        //     ->with(['userProgram' => function($query) {
-        //         return $query->with('program');
-        //     }])
-        //     ->paginate(50);
     }
 
     public function showLobsterGrades()
