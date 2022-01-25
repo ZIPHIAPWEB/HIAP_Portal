@@ -35,6 +35,14 @@ class InitialRequirementService
 
         $isFileNullOrEmpty = !$data->hasFile('file');
 
+        $hasFile = $initial->file_path != '';
+
+        $path = Storage::putFile('public/'. $this->directory, $data['file']);
+
+        if($hasFile) {
+            Storage::delete($initial->file_path);
+        }
+
         if ($isFileNullOrEmpty) {
             return [
                 'program_id'    =>  $initial->program_id,
@@ -44,14 +52,6 @@ class InitialRequirementService
                 'file_path'     =>  ''
             ];
         }
-
-        $hasFile = $initial->file_path != '';
-
-        if($hasFile) {
-            Storage::delete($initial->file_path);
-        }
-
-        $path = Storage::putFile('public/'. $this->directory, $data['file']);
 
         return [
             'program_id'    =>  $initial->program_id,
