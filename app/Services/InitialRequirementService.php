@@ -29,38 +29,43 @@ class InitialRequirementService
         ]);
     }
 
+    private function validateExistingRequirements($data) : array
+    {
+        $initial = Initial::where('id', $data['id'])->first();
+
+        $isFileNullOrEmpty = !$data->hasFile('file');
+
+        if ($isFileNullOrEmpty) {
+            return [
+                'program_id'    =>  $initial->program_id,
+                'name'          =>  $data['name'],
+                'description'   =>  $data['description'],
+                'type'          =>  $data['type'],
+                'file_path'     =>  ''
+            ];
+        }
+
+        $hasFile = $initial->file_path != '';
+
+        if($hasFile) {
+            Storage::delete($initial->file_path);
+        }
+
+        $path = Storage::putFile('public/'. $this->directory, $data['file']);
+
+        return [
+            'program_id'    =>  $initial->program_id,
+            'name'          =>  $data['name'],
+            'description'   =>  $data['description'],
+            'type'          =>  $data['type'],
+            'file_path'     =>  $path
+        ];
+    }
+    
     public function updateRequirement($data)
     {
-        if ($data['file'] <> null) {
-            $file = Initial::where('id', $data['id'])->first()->file_path;
-
-            if($file <> '' || $file <> null) {
-                if(Storage::delete($file)) {
-                    $path = Storage::putFile('public/'. $this->directory, $data['file']);
-
-                    Initial::where('id', $data['id'])
-                        ->update([
-                            'program_id'    =>  1,
-                            'name'          =>  $data['name'],
-                            'description'   =>  $data['description'],
-                            'type'          =>  $data['type'],
-                            'file_path'     =>  $path
-                        ]);
-                }
-            } else {
-                $path = Storage::putFile('public/'. $this->directory, $data['file']);
-
-                Initial::where('id', $data['id'])
-                    ->update([
-                        'program_id'    =>  1,
-                        'name'          =>  $data['name'],
-                        'description'   =>  $data['description'],
-                        'type'          =>  $data['type'],
-                        'file_path'     =>  $path
-                    ]);
-            }
-
-        }
+        Initial::where('id', $data['id'])
+            ->update($this->validateExistingRequirements($data));
     }
 
     public function removeRequirement($requirementId)
