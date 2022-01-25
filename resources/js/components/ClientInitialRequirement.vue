@@ -4,7 +4,7 @@
             <i class="fas fa-2x fa-spinner fa-pulse m-2"></i>
         </div>
         <div class="card-header">
-            <h5 class="m-0 card-title">Learner's Requirements</h5>
+            <h5 class="m-0 card-title">Program Requirements</h5>
             <!-- <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">

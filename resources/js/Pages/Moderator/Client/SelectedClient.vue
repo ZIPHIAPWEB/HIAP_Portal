@@ -12,7 +12,7 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-header bg-info d-flex justify-content-between">
-                            <h5 class="m-0 flex-fill">Profile</h5>
+                            <h5 class="m-0 flex-fill">Learner's Profile</h5>
                             <div v-if="!isEdit" >
                                 <button @click="isEdit = true" class="btn btn-primary btn-xs">Edit</button>
                             </div>
@@ -124,14 +124,14 @@
                     </div>
                     <div class="card">
                         <div class="card-header bg-info">
-                            <h5 class="card-title">Enrolled Programs</h5>
+                            <h5 class="card-title">Program Information</h5>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-hovered table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Program</th>
-                                        <th class="text-center">Courses</th>
+                                        <th>Program Type</th>
+                                        <th class="text-center">Program Track</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header bg-info">
-                            <h5 class="card-title">Payment</h5>
+                            <h5 class="card-title">Learner's Fees</h5>
                             <div class="card-tools">
                                 <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Proof of Payment</button>
                             </div>

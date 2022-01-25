@@ -18,7 +18,7 @@
                     <personal-profile-component :profile="client" :schools="schools"></personal-profile-component>
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Learner's Details</h5>
+                            <h5 class="card-title">Program Information</h5>
                             <div class="card-tools">
                                 <button class="btn btn-xs btn-primary" data-target="#modal-default" data-toggle="modal">Enroll New Course</button>
                             </div>
