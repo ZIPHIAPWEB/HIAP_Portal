@@ -136,6 +136,7 @@
                                         <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
+                                        <th class="text-center">Returnee?</th>
                                         <th class="text-center">Enrolled Since</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
@@ -158,6 +159,10 @@
                                         <td class="text-center">{{ p.hours_needed }}</td>
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
+                                        <td class="text-center">
+                                            <i v-if="p.returnee === 1" class="text-success text-bold">Yes</i>
+                                            <i v-if="p.returnee === 0" class="text-danger text-bold">No</i>
+                                        </td>
                                         <td class="text-center text-bold">{{ p.created_at }}</td>
                                         <td class="text-center ">
                                             <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
@@ -272,6 +277,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Is it your first time enrolling in HIAP Program?</label>
+                            <select v-model="selectedProgram.returnee" name="" id="" class="form-control form-control-xs">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="">Program</label>
                             <select v-model="selectedProgram.course_id" name="" id="" class="form-control form-control-xs">

@@ -115,6 +115,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
+                                <label for="">Is it your first time enrolling in HIAP Program?</label>
+                                <select v-model="form.returnee" class="form-control form-control-sm">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Program</label>
                                 <select v-model="form.program_id" class="form-control form-control-sm">
                                     <option selected value="">Select program</option>
@@ -251,6 +258,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
+                                <label for="">Is it your first time enrolling in HIAP Program?</label>
+                                <select v-model="selected.returnee" class="form-control form-control-sm">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Program</label>
                                 <select v-model="selected.course_id" class="form-control form-control-sm">
                                     <option selected value="">Select program</option>
@@ -338,7 +352,8 @@
                     courses: [],
                     hours_needed: 0,
                     start_date: '',
-                    end_date: ''
+                    end_date: '',
+                    returnee: false
                 },
                 payment: {
                     purpose: '',

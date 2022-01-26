@@ -34,6 +34,7 @@
                             <th>Enrolled Course</th>
                             <th>Course Status</th>
                             <th>E-mail Address</th>
+                            <th>Returnee?</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -47,6 +48,10 @@
                             <td>{{ client.program }}</td>
                             <td class="text-success text-bold">{{ client.application_status }}</td>
                             <td>{{ client.email }}</td>
+                            <td>
+                                <i v-if="client.returnee === 1" class="text-green text-bold">Yes</i>
+                                <i v-if="client.returnee === 0" class="text-danger text-bold">No</i>
+                            </td>
                             <td class="text-center">
                                 <button @click="viewClientDetails(client.user_id)" class="btn btn-success btn-xs btn-flat">View</button>
                             </td>

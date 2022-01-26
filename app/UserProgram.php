@@ -6,16 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProgram extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'program_id',
-        'course_id',
-        'start_date',
-        'end_date',
-        'hours_needed',
-        'application_status'
-    ];
-
+    protected $guarded = [];
+    
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');

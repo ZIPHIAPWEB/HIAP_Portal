@@ -19,6 +19,7 @@ class ModeratorClientListResource extends JsonResource
             'user_id'   =>  $this->user_id,
             'application_status'    =>  $this->application_status,
             'email'     =>  $this->user->email,
+            'returnee'  =>  $this->returnee,
             'program'   =>  $this->program->name,   
             'client'    =>  new ClientResource($this->client)
         ];

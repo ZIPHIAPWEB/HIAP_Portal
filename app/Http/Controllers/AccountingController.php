@@ -69,6 +69,19 @@ class AccountingController extends Controller
         ]);
     }
 
+    public function searchStudentByLastName(Request $request)
+    {
+        return Client::where('last_name', 'like', '%'. $request->search .'%')
+            ->orWhere('first_name', 'like' ,'%'. $request->search .'%')
+            ->with('user')
+            ->with('payments')
+            ->with('school')
+            ->with(['userProgram' => function($query) {
+                return $query->with('program');
+            }])
+            ->paginate(50);
+    }
+
     public function paymentVerified(Request $request)
     {
         $this->payment->verify($request->id);

@@ -67,6 +67,8 @@ Route::prefix('ac')->middleware('is_accounting')->group(function() {
     Route::get('/client/{id}', 'AccountingController@showAccountingSelectedClient')->name('ac.client');
     Route::post('/verifyPayment', 'AccountingController@paymentVerified')->name('ac.verify');
     Route::get('/dashboard', 'AccountingController@showAccountingDashboard')->name('ac.dashboard');
+
+    Route::post('/searchStudentByLastName', 'AccountingController@searchStudentByLastName');
 });
 
 Route::prefix('sa')->middleware('is_superadmin')->group(function () {
@@ -163,6 +165,7 @@ Route::post('/moderators/store', 'ModeratorController@storeModerator');
 Route::get('/moderators/edit/{userId}', 'ModeratorController@editModerator');
 Route::put('/moderators/update', 'ModeratorController@updateModerators');
 Route::delete('/moderators/delete/{userId}', 'ModeratorController@deleteModerator');
+
 Route::post('/searchStudentByLastName', 'ModeratorController@searchStudentByLastName');
 
 Route::post('/storeLesson', 'LessonController@storeLesson');

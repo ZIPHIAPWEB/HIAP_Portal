@@ -120,6 +120,15 @@
                                     </div> -->
                                     <div class="col-12">
                                         <div class="form-group">
+                                            <label>Is it your first time enrolling in HIAP Program?</label>
+                                            <select v-model="form.returnee" class="form-control form-control-sm">
+                                                <option value="false">No</option>
+                                                <option value="true">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
                                             <label for="">Program Track (Can select multiple tracks)<i class="text-danger">*</i></label>
                                             <v-select v-model="form.course_id" label="name" multiple :options="filteredCourse"></v-select>
                                             <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span>
@@ -177,7 +186,8 @@
                     start_date: '',
                     end_date: '',
                     fb_link: '',
-                    alternate_email: ''
+                    alternate_email: '',
+                    returnee: false
                 },
                 isOrganization: false,
                 loading: false,

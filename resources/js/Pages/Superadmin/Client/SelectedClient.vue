@@ -172,6 +172,7 @@
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
                                         <th class="text-center">Hours Needed</th>
+                                        <th class="text-center">Returnee?</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -186,6 +187,10 @@
                                         <td class="text-center">{{ p.start_date }}</td>
                                         <td class="text-center">{{ p.end_date }}</td>
                                         <td class="text-center">{{ p.hours_needed }}</td>
+                                        <td class="text-center">
+                                            <i v-if="p.returnee === 1" class="text-success text-bold">Yes</i>
+                                            <i v-if="p.returnee === 0" class="text-danger text-bold">No</i>
+                                        </td>
                                         <td style="width:15%;" class="text-center">
                                             <!-- <inertia-link :href="`/sa/client/${client.user_id}/program/${p.program.id}`" class="btn btn-primary btn-xs">View Records</inertia-link> -->
                                             <button @click="editProgram(p)" class="btn btn-success btn-xs">Edit</button>
@@ -252,6 +257,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
+                            <div class="form-group">
+                                <label for="">Is it your first time enrolling in HIAP Program?</label>
+                                <select v-model="toBeAdded.returnee" class="form-control form-control-sm">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
                             <label for="">Program</label>
                             <select v-model="toBeAdded.program_id" name="" id="" class="form-control form-control-xs">
                                 <option value="">Select</option>
@@ -305,6 +317,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Is it your first time enrolling in HIAP Program?</label>
+                            <select v-model="selectedProgram.returnee" class="form-control form-control-sm">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="">Program</label>
                             <select v-model="selectedProgram.course_id" name="" id="" class="form-control form-control-xs">
@@ -371,7 +390,8 @@
                     application_status: '',
                     start_date: '',
                     end_date: '',
-                    hours_needed: ''
+                    hours_needed: '',
+                    returnee: ''
                 },
                 selectedProgram: [],
                 loadingProgram: false,

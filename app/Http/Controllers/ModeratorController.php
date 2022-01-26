@@ -194,6 +194,7 @@ class ModeratorController extends Controller
                         'end_date'              =>  $userProgram->end_date,
                         'program'               =>  $userProgram->program,
                         'course'                =>  $userProgram->course,
+                        'returnee'              =>  $userProgram->returnee,
                         'created_at'            =>  $userProgram->created_at->diffForHumans()
                     ];
                 })

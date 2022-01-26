@@ -48,7 +48,8 @@ class UserProgramService
                 'start_date'            =>  $data->start_date,
                 'end_date'              =>  $data->end_date,
                 'hours_needed'          =>  $data->hours_needed,
-                'application_status'    =>  'New Learner'
+                'application_status'    =>  'New Learner',
+                'returnee'              =>  $data->returnee
             ]);
 
             $count += 1;
@@ -69,7 +70,8 @@ class UserProgramService
             'start_date'        =>  $data->start_date,
             'end_date'          =>  $data->end_date,
             'hours_needed'      =>  $data->hours_needed,
-            'application_status'=>  $data->application_status
+            'application_status'=>  $data->application_status,
+            'returnee'          =>  $data->returnee
         ]);
 
         $this->createLog->execute([
@@ -87,7 +89,8 @@ class UserProgramService
             'start_date'            => $data->start_date,
             'end_date'              => $data->end_date,
             'hours_needed'          => $data->hours_needed,
-            'application_status'    => $data->application_status
+            'application_status'    => $data->application_status,
+            'returnee'              => $data->returnee
         ]);
 
         switch($data->user()->role) {

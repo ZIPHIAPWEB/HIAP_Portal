@@ -34,7 +34,8 @@ class SendApplicationRequest extends FormRequest
             'fb_link'               =>  ['required'],
             'alternate_email'       =>  ['required'],
             'course'                =>  ['required'],
-            'expected_graduation'   =>  ['required']
+            'expected_graduation'   =>  ['required'],
+            'returnee'              =>  ['required']
         ];
     }
 }

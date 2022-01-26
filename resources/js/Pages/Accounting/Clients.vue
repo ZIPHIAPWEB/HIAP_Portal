@@ -64,7 +64,7 @@
                 <h5 class="m-0 card-title flex-grow-1">Enrollees</h5>
                 <div>
                     <div class="input-group input-group-sm" style="width: 300px">
-                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by last name">
+                    <input type="text" class="form-control" v-model="filterName" placeholder="Search by last name or first name">
                         <span class="input-group-append">
                             <button @click="searchClientByLastName" class="btn btn-info btn-flat">
                                 <span class="fas fa-search"></span>
@@ -180,8 +180,8 @@
             searchClientByLastName() {
                 if (this.filterName !== '') {
                     let formData = new FormData();
-                    formData.append('last_name', this.filterName);
-                    axios.post('/searchStudentByLastName', formData)
+                    formData.append('search', this.filterName);
+                    axios.post('/ac/searchStudentByLastName', formData)
                         .then((response) => {
                             this.clients = response.data;
                         })
