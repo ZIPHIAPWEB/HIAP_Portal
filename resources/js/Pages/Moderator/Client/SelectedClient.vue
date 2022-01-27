@@ -143,8 +143,8 @@
                                 </thead>
                                 <tbody v-if="userPrograms.length > 0">
                                     <tr v-for="p in userPrograms" :key="p.id" class="text-sm">
-                                        <td>{{ p.course.name }}</td>
-                                        <td class="text-center">{{ p.program.name }}</td>
+                                        <td>{{ (p.course) ? p.course.name : '' }}</td>
+                                        <td class="text-center">{{ (p.program) ? p.program.name : '' }}</td>
                                         <td class="text-center">
                                             <select @change="updateStatus" v-model="p.application_status" :dataid="p.id" class="form-control form-control-sm">
                                                 <option value="New Learner">New Learner</option>

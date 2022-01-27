@@ -38,8 +38,8 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="p in userPrograms" :key="p.id">
-                                        <td class="text-sm">{{ p.course.name }}</td>
-                                        <td class="text-center text-sm">{{ p.program.name }}</td>
+                                        <td class="text-sm">{{ (p.course) ? p.course.name : '' }}</td>
+                                        <td class="text-center text-sm">{{ (p.program) ? p.program.name : '' }}</td>
                                         <td class="text-center text-sm text-bold text-green">{{ p.application_status }}</td>
                                         <td class="text-center text-sm">{{ p.start_date }}</td>
                                         <td class="text-center text-sm">{{ p.end_date}}</td>
