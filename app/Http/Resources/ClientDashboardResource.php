@@ -34,7 +34,7 @@ class ClientDashboardResource extends JsonResource
             'alternate_email'       =>  $this->alternate_email,
             'fb_link'               =>  $this->fb_link,
             'expected_graduation' =>    $this->expected_graduation,
-            'expected_graduation_formatted'   =>  ($this->expected_graduaton == '') ? '' : Carbon::instance(new DateTime($this->expected_graduation))->format('M Y'),
+            'expected_graduation_formatted'   =>  ($this->expected_graduation == '') ? '' : Carbon::instance(new DateTime($this->expected_graduation))->format('M Y'),
             'user'                  =>  $this->user()->first(),
             'created_at'            =>  $this->created_at
         ];

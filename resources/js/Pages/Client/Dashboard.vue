@@ -23,7 +23,7 @@
                                 <button class="btn btn-xs btn-primary" data-target="#modal-default" data-toggle="modal">Enroll New Course</button>
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                        <div style="overflow: auto;" class="card-body p-0">
                             <table class="table table-sm table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
@@ -65,7 +65,7 @@
                                 <button class="btn btn-xs btn-primary" data-target="#modal-choices" data-toggle="modal">Upload Proof of Payment</button>
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                        <div style="overflow: auto;" class="card-body p-0">
                             <table class="table table-sm table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>

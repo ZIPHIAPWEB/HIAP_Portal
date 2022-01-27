@@ -16,7 +16,7 @@
                 </ul>
             </div> -->
         </div>
-        <div class="card-body p-0">
+        <div style="overflow: auto;" class="card-body p-0">
             <div class="tab-content p-0">
                 <div class="tab-pane active" id="requirement">
                     <table class="table table-bordered table-striped table-sm">
