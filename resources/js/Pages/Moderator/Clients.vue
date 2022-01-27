@@ -34,7 +34,7 @@
                             <th>Enrolled Course</th>
                             <th>Course Status</th>
                             <th>E-mail Address</th>
-                            <th>Returnee?</th>
+                            <th>New Enrollee?</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
