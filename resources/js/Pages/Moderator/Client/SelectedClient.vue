@@ -136,7 +136,7 @@
                                         <th class="text-center">Hours Needed</th>
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
-                                        <th class="text-center">Returnee?</th>
+                                        <th class="text-center">New Enrollee?</th>
                                         <th class="text-center">Enrolled Since</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
@@ -351,6 +351,34 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="">Payment Method</label>
+                                <select v-model="payment.mop" class="form-control form-control-sm">
+                                    <option selected>Select payment method</option>
+                                    <option value="GCash">GCash</option>
+                                    <option value="Bank Online Transfer">Bank Online Transfer</option>
+                                    <option value="Bank Online Transfer">Bank Deposit</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Date Paid</label>
+                                <input v-model="payment.date_paid" type="date" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Amount Paid</label>
+                                <input v-model="payment.amount_paid" type="text" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Program Fee</label>
+                                <input v-model="payment.program_fee" type="text" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Course to be paid</label>
+                                <select v-model="payment.course_id" class="form-control form-control-sm">
+                                    <option selected>Select payment method</option>
+                                    <option v-for="program in userPrograms" :key="program.id" :value="program.id">{{ program.program.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Proof of Payment</label>
                                 <div class="input-group input-group-sm">
                                     <input @change="fileHandler()" type="file" ref="slip" id="deposit-form" style="display:none">
@@ -415,8 +443,14 @@
                 selectedProgram: [],
                 payment: {
                     purpose: '',
+                    mop: '',
+                    date_paid: '',
+                    amount_paid: '',
+                    program_fee: '',
+                    course_id: '',
                     file: '',
-                    filename: ''
+                    filename: '',
+                    user_id: this.selectedClient.user_id
                 },
                 isUploading: false
             }
@@ -468,11 +502,7 @@
             },
             addDepositSlip () {
                 this.isUploading = true;
-                let formData = new FormData();
-                formData.append('purpose', this.payment.purpose);
-                formData.append('file', this.payment.file);
-                formData.append('client_id', this.client.user_id);
-                this.$inertia.post('/addDepositSlip', formData, {
+                this.$inertia.post('/addDepositSlip', this.payment, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },

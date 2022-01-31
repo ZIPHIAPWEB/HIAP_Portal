@@ -172,7 +172,7 @@
                                         <th class="text-center">Start Date</th>
                                         <th class="text-center">End Date</th>
                                         <th class="text-center">Hours Needed</th>
-                                        <th class="text-center">Returnee?</th>
+                                        <th class="text-center">New Enrollee?</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>

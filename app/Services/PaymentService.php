@@ -42,7 +42,7 @@ class PaymentService
         $data->file->move(public_path('slips'), $filename);
 
         $this->createPayment->execute([
-            'user_id'       =>  ($data->user()->role == 'moderator') ? $data->client_id : $data->user()->id,
+            'user_id'       =>  ($data->user()->role == 'moderator') ? $data->user_id : $data->user()->id,
             'purpose'       =>  $data->purpose,
             'mop'           =>  $data->mop,
             'date_paid'     =>  $data->date_paid,
