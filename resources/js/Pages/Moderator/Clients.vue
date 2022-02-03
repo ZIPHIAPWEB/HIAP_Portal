@@ -65,8 +65,8 @@
                 </table>
             </div>
             <div class="card-footer p-2">
-                <button :disabled="!clients.prev_page_url" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
-                <button :disabled="!clients.next_page_url" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
+                <button :disabled="!clients.links.prev" @click="prevPage()" class="btn btn-primary btn-xs">Prev</button>
+                <button :disabled="!clients.links.next" @click="nextPage()" class="btn btn-primary btn-xs">Next</button>
             </div>
         </div>
         <div class="modal fade show" id="modal-export" aria-modal="true">
@@ -255,10 +255,10 @@
                 this.$inertia.delete(`/deleteClientDetails/${userId}`);
             },
             prevPage() {
-                this.$inertia.visit(this.clients.prev_page_url);
+                this.$inertia.visit(this.clients.links.prev);
             },
             nextPage() {
-                this.$inertia.visit(this.clients.next_page_url);
+                this.$inertia.visit(this.clients.links.next);
             },
             searchClientByLastName() {
                 if (this.filterName !== '') {

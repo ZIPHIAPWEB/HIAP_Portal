@@ -17,8 +17,8 @@
             <div class="card-body p-0">
                 <table class="table table-hover">
                     <thead>
-                        <tr class="text-xs text-center">
-                            <th class="text-left">Cert. ID</th>
+                        <tr class="text-xs text-left">
+                            <th>Cert. ID</th>
                             <th>Name</th>
                             <th>School</th>
                             <th>Program/Track</th>
@@ -31,8 +31,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-xs text-center" v-for="cert in sCerts.data" :key="cert.id">
-                            <td class="text-left">{{ cert.cert_no }}</td>
+                        <tr class="text-xs text-left" v-for="cert in sCerts.data" :key="cert.id">
+                            <td>{{ cert.cert_no }}</td>
                             <td>{{ cert.name }}</td>
                             <td>{{ cert.school }}</td>
                             <td>{{ cert.program }}</td>

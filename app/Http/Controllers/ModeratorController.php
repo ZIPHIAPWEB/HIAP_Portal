@@ -121,13 +121,8 @@ class ModeratorController extends Controller
 
     public function showClients()
     {
-        // UserProgram::orderBy('created_at', 'desc')
-        //         ->with('program')
-        //         ->with('client')
-        //         ->with('user')
-        //         ->paginate(15);
         return Inertia::render('Moderator/Clients', [
-            'clients' => ModeratorClientListResource::collection(UserProgram::orderBy('created_at', 'desc')->paginate(15)),
+            'clients' => ModeratorClientListResource::collection(UserProgram::orderBy('created_at', 'desc')->paginate(25)),
             'schools'   =>  School::orderBy('name')->get()
         ]);
     }
