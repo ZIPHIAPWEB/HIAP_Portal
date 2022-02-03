@@ -376,7 +376,15 @@
         },
         watch: {
             flash: function (value) {
-                toastr.info(value.message);
+                if(value.message) {
+                    toastr.info(value.message);
+                }
+            },
+            errors: function (value) {
+                let error = Object.values(value);
+                error.forEach(e => {
+                    toastr.error(e[0]);
+                })
             }
         },
         computed: {
@@ -425,15 +433,6 @@
             },
             addDepositSlip () {
                 this.isUploading = true;
-                // let formData = new FormData();purpose: '',
-                //     mop: '',
-                //     date_paid: '',
-                //     amount_paid: '',
-                //     program_fee: '',
-                //     course_id: '',
-                // formData.append('mop', this.payment)
-                // formData.append('purpose', this.payment.purpose);
-                // formData.append('file', this.payment.file);
                 this.$inertia.post('/addDepositSlip', this.payment, {
                     headers: {
                         'Content-Type': 'multipart/form-data',

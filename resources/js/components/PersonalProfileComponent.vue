@@ -140,9 +140,7 @@
                         this.loading = false;
                     },
                     onError: () => {
-                        this.isEdit = false;
                         this.loading = false;
-                        toastr.error('An error has occured.');
                     }
                 });  
             }

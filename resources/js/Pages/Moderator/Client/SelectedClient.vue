@@ -434,7 +434,9 @@
             'payments',
             'schools',
             'online_programs',
-            'courses'
+            'courses',
+            'errors',
+            'flash'
         ],
         data () {
             return {
@@ -465,7 +467,15 @@
         },
         watch: {
             flash: function (value) {
-                toastr.info(value.message);
+                if(value.message) {
+                    toastr.info(value.message);
+                }
+            },
+            errors: function (value) {
+                let error = Object.values(value);
+                error.forEach(e => {
+                    toastr.error(e[0]);
+                })
             }
         },
         methods: {
@@ -531,7 +541,6 @@
                     onError: () => {
                         this.isEdit = false;
                         this.loading = false;
-                        toastr.error('An error has occured.');
                     }
                 });  
             },
