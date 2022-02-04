@@ -152,7 +152,7 @@
                 </div>
             </div>
             <div class="modal fade show" id="modal-payment" aria-modal="true">
-                <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
                     <div class="modal-content">
                         <div v-if="isUploading" class="overlay d-flex justify-content-center align-items-center">
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
