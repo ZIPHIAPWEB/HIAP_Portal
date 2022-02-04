@@ -24,7 +24,7 @@ class ClientResource extends JsonResource
             'school_year'           =>  $this->school_year,
             'contact_no'            =>  $this->contact_no,
             'school'                =>  $this->school()->first(),
-            'program'               =>  $this->onlineProgram->name,
+            'program'               =>  ($this->onlineProgram == null) ? '' : $this->onlineProgram->name,
             'alternate_email'       =>  $this->alternate_email,
             'expected_graduation'   =>  $this->expected_graduation,
             'created_at'            =>  $this->created_at->toDateTimeString()
