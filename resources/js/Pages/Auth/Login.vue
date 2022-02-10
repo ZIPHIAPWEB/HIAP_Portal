@@ -34,12 +34,27 @@
                             </div>
 
                             <div class="col-6 text-right">
-                                <inertia-link href="/password/reset" class="text-sm">Forgot Password?</inertia-link>
+                                <!-- <inertia-link href="/password/reset" class="text-sm">Forgot Password?</inertia-link> -->
+                                <a href="javascript:void()" data-target="#forgot" data-toggle="modal" class="text-sm">Forgot Password?</a>
                             </div>
                             <!-- /.col -->
                         </div>
                     </form>
-
+                    <div id="forgot" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Forgot Password?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <i>Please contact  our support team to change your password.</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <!-- <div class="social-auth-links text-center mb-3">
                         <p>- OR -</p>
                         <a href="#" class="btn btn-block btn-primary">
