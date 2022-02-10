@@ -122,8 +122,8 @@
                                         <div class="form-group">
                                             <label>Is it your first time enrolling in HIAP Program?</label>
                                             <select v-model="form.returnee" class="form-control form-control-sm">
-                                                <option value="false">No</option>
-                                                <option value="true">Yes</option>
+                                                <option value="0">No</option>
+                                                <option value="1">Yes</option>
                                             </select>
                                         </div>
                                     </div>
