@@ -48,11 +48,11 @@ class ClientController extends Controller
             'programs'  =>  Program::orderBy('name')->where('isActive', 1)->get(),
             'special_tracks'    =>  Program::orderBy('name')
                 ->where([
-                    ['id'   =>  89],
-                    ['id'   =>  90],
-                    ['id'   =>  91],
-                    ['id'   =>  92],
-                    ['id'   =>  93]
+                    ['id', '=', 89],
+                    ['id', '=', 90],
+                    ['id', '=', 91],
+                    ['id', '=', 92],
+                    ['id', '=', 93]
                 ])
                 ->where('isActive', 1)
                 ->get()
