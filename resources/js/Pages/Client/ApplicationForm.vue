@@ -167,7 +167,7 @@
 
 <script>
     export default {
-        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id'],
+        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id', 'special_tracks'],
         data() {
             return {
                 form: {
@@ -211,6 +211,17 @@
                 return this.errors.program ? 'form-control is-invalid' : 'form-control select2 select2-hidden-accessible';
             },
             filteredCourse () {
+                /* Our Lady of Fatima University - Antipolo */
+                if (this.form.school === 1) return this.special_tracks.filter(e => e.course_id == this.program_id);
+                /* Our Lady of Fatima University - Cabanatuan */
+                if (this.form.school === 2) return this.special_tracks.filter(e => e.course_id == this.program_id);
+                /* Our Lady of Fatima University - Quezon City */
+                if (this.form.school === 3) return this.special_tracks.filter(e => e.course_id == this.program_id);
+                /* Our Lady of Fatima University - Pampanga */
+                if (this.form.school === 4) return this.special_tracks.filter(e => e.course_id == this.program_id);
+                /* Our Lady of Fatima University - Valenzuela */
+                if (this.form.school === 5) return this.special_tracks.filter(e => e.course_id == this.program_id);
+                
                 return this.programs.filter(e => e.course_id == this.program_id);
             }
         },
