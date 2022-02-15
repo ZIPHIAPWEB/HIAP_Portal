@@ -1,5 +1,6 @@
 <?php
 
+use App\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -246,5 +247,5 @@ Route::post('/setToDefaultPassword', 'ClientController@setUserPasswordToDefault'
 Route::post('/updateUserPassword', 'UserController@updateUserPassword');
 
 Route::get('/testing', function() {
-    return Hash::make('p@ssw0rd');
+    // return Program::whereIn('id', [1, 2])->get();
 });
