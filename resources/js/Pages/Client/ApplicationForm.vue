@@ -221,7 +221,9 @@
                 if (this.form.school === 4) return this.special_tracks.filter(e => e.course_id == this.program_id);
                 /* Our Lady of Fatima University - Valenzuela */
                 if (this.form.school === 5) return this.special_tracks.filter(e => e.course_id == this.program_id);
-                
+                /* Our Laday of Fatima Univerisy - Laguna */
+                if (this.form.school === 256) return this.special_tracks.filter(e => e.course == this.program_id);
+
                 return this.programs.filter(e => e.course_id == this.program_id);
             }
         },
@@ -256,5 +258,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media only screen and (max-width: 576px) {
+        .container-fluid {
+            margin-top: 20px;
+            height: 100%;
+            overflow: auto;
+        }   
     }
 </style>
