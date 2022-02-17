@@ -181,7 +181,7 @@
                                     <option selected>Select payment method</option>
                                     <option value="GCash">GCash</option>
                                     <option value="Bank Online Transfer">Bank Online Transfer</option>
-                                    <option value="Bank Online Transfer">Bank Deposit</option>
+                                    <option value="Bank Deposit">Bank Deposit</option>
                                 </select>
                             </div>
                             <div class="form-group">
