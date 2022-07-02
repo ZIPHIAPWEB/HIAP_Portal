@@ -26,7 +26,7 @@ class AddFromFieldToPaymentTable extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->string('paid_from');
+            $table->dropColumn('paid_from');
         });
     }
 }

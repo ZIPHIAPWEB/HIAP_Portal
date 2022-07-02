@@ -26,7 +26,7 @@ class AddEndDateInUserProgramsTable extends Migration
     public function down()
     {
         Schema::table('user_programs', function (Blueprint $table) {
-            $table->string('end_date');
+            $table->dropColumn('end_date');
         });
     }
 }

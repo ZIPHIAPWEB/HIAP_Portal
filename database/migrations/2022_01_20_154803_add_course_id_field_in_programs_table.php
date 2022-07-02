@@ -26,7 +26,7 @@ class AddCourseIdFieldInProgramsTable extends Migration
     public function down()
     {
         Schema::table('programs', function (Blueprint $table) {
-            $table->bigInteger('course_id');
+            $table->dropColumn('course_id');
         });
     }
 }

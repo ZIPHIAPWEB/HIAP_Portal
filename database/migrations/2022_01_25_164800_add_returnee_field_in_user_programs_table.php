@@ -26,7 +26,7 @@ class AddReturneeFieldInUserProgramsTable extends Migration
     public function down()
     {
         Schema::table('user_programs', function (Blueprint $table) {
-            $table->boolean('returnee');
+            $table->dropColumn('returnee');
         });
     }
 }

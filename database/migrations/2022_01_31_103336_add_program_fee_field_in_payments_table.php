@@ -26,7 +26,7 @@ class AddProgramFeeFieldInPaymentsTable extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->string('program_fee');
+            $table->dropColumn('program_fee');
         });
     }
 }

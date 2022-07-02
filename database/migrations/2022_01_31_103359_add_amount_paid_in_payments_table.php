@@ -26,7 +26,7 @@ class AddAmountPaidInPaymentsTable extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->string('amount_paid');
+            $table->dropColumn('amount_paid');
         });
     }
 }

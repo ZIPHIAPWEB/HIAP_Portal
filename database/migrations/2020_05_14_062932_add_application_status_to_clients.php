@@ -26,7 +26,7 @@ class AddApplicationStatusToClients extends Migration
     public function down()
     {
         Schema::table('clients', function (Blueprint $table) {
-            //
+            $table->dropColumn('application_status')
         });
     }
 }
