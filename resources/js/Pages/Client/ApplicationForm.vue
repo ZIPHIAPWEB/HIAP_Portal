@@ -8,7 +8,8 @@
                             <i class="fas fa-spinner fa-2x fa-pulse"></i>
                         </div>
                         <div class="card-header text-center">
-                            <h3>Registration Form</h3>
+                            <h3>REGISTRATION FORM</h3>
+                            <small>Please ensure that all information provided are complete and accurate. Put <strong>N/A</strong> if not applicable.</small>
                         </div>
                         <div class="card-body">
                             <form @submit.prevent="step++" v-if="step == 1">
@@ -48,7 +49,7 @@
                                             <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Year Level <i class="text-danger">*</i></label>
                                             <select v-model="form.school_year" name="" id="" class="form-control" required>
@@ -61,10 +62,16 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Course <i class="text-danger">*</i></label>
                                             <input v-model="form.course" type="text" class="form-control" placeholder="Course" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="">Section <i class="text-danger">*</i></label>
+                                            <input v-model="form.section" type="text" class="form-control" placeholder="Section" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -187,6 +194,7 @@
                     end_date: '',
                     fb_link: '',
                     alternate_email: '',
+                    section: '',
                     returnee: false
                 },
                 isOrganization: false,
