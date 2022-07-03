@@ -67,6 +67,13 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Section</td>
+                                        <td>
+                                            <span v-if="!isEdit" class="text-bold">{{ client.section }}</span>
+                                            <input v-model="client.section" v-else type="text" class="form-control form-control sm w-100">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Expected Graduation</td>
                                         <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.expected_graduation_formatted }}</span>

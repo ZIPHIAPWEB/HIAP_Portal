@@ -26,7 +26,7 @@ class AddHoursNeededInUserProgramsTable extends Migration
     public function down()
     {
         Schema::table('user_programs', function (Blueprint $table) {
-            $table->integer('hours_needed');
+            $table->dropColumn('hours_needed');
         });
     }
 }

@@ -26,7 +26,7 @@ class AddTypeFieldInInitialsTable extends Migration
     public function down()
     {
         Schema::table('initials', function (Blueprint $table) {
-            $table->string('type');
+            $table->dropColumn('type');
         });
     }
 }

@@ -26,7 +26,7 @@ class AddAlternateEmailInClientsTable extends Migration
     public function down()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->string('alternate_email');
+            $table->dropColumn('alternate_email');
         });
     }
 }

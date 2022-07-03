@@ -26,7 +26,7 @@ class AddSchoolIdInClientsTable extends Migration
     public function down()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->integer('school_id');
+            $table->dropColumn('school_id');
         });
     }
 }

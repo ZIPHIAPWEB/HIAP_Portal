@@ -26,7 +26,7 @@ class AddIsActiveFieldInProgramsTable extends Migration
     public function down()
     {
         Schema::table('programs', function (Blueprint $table) {
-            $table->boolean('isActive');
+            $table->dropColumn('isActive');
         });
     }
 }

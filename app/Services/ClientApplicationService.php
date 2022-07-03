@@ -50,6 +50,7 @@ class ClientApplicationService {
             'fb_link'               =>  $request->fb_link,
             'program_id'            =>  $request->user()->program_id,
             'alternate_email'       =>  $request->alternate_email,
+            'section'               =>  $request->section,
             'expected_graduation'   =>  $request->expected_graduation
         ]);
 
@@ -120,6 +121,7 @@ class ClientApplicationService {
             'fb_link'               =>  $request->fb_link,
             'program_id'            =>  $request->program_id,
             'alternate_email'       =>  $request->alternate_email,
+            'section'               =>  $request->section,
             'expected_graduation'   =>  $request->expected_graduation
         ]);
 

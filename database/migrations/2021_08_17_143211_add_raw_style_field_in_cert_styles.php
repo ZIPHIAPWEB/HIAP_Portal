@@ -26,7 +26,7 @@ class AddRawStyleFieldInCertStyles extends Migration
     public function down()
     {
         Schema::table('cert_styles', function (Blueprint $table) {
-            $table->string('raw_style');
+            $table->dropColumn('raw_style');
         });
     }
 }
