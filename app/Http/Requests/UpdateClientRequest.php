@@ -36,6 +36,7 @@ class UpdateClientRequest extends FormRequest
             'fb_link'               =>  ['required'],
             'program_id'            =>  ['required'],
             'alternate_email'       =>  ['required'],
+            'section'               =>  ['required'],
             'expected_graduation'   =>  ['required']
         ];
     }

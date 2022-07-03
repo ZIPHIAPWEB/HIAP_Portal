@@ -70,6 +70,13 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Section</td>
+                                        <td class="text-center">
+                                            <span v-if="!isEdit" class="text-bold">{{ client.section }}</span>
+                                            <input v-model="client.section" v-else type="text" class="form-control form-control sm w-100">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Address</td>
                                         <td class="text-center">
                                             <span v-if="!isEdit" class="text-bold">{{ client.address }}</span>

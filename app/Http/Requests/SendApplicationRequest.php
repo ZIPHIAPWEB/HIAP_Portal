@@ -35,7 +35,8 @@ class SendApplicationRequest extends FormRequest
             'alternate_email'       =>  ['required'],
             'course'                =>  ['required'],
             'expected_graduation'   =>  ['required'],
-            'returnee'              =>  ['required']
+            'returnee'              =>  ['required'],
+            'section'               =>  ['required']
         ];
     }
 }

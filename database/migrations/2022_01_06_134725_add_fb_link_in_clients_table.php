@@ -26,7 +26,7 @@ class AddFbLinkInClientsTable extends Migration
     public function down()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->string('fb_link');
+            $table->dropColumn('fb_link');
         });
     }
 }

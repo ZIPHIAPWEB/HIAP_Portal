@@ -26,7 +26,7 @@ class AddProgramIdInUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('program_id');
+            $table->dropColumn('program_id');
         });
     }
 }

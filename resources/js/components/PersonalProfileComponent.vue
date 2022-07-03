@@ -59,6 +59,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Section</td>
+                        <td class="text-left">
+                            <strong v-if="!isEdit">{{ client.section }}</strong>
+                            <input v-model="client.section" v-else type="text" class="form-control form-control sm w-100">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Address</td>
                         <td class="text-left">
                             <strong v-if="!isEdit">{{ client.address }}</strong>

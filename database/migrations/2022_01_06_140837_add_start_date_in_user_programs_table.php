@@ -26,7 +26,7 @@ class AddStartDateInUserProgramsTable extends Migration
     public function down()
     {
         Schema::table('user_programs', function (Blueprint $table) {
-            $table->string('start_date');
+            $table->dropColumn('start_date');
         });
     }
 }

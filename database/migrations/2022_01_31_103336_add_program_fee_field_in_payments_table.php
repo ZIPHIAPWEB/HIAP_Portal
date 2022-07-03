@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCourseIdFieldInProgramsTable extends Migration
+class AddProgramFeeFieldInPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCourseIdFieldInProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::table('programs', function (Blueprint $table) {
-            $table->bigInteger('course_id')->unsigned()->after('description');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->string('program_fee')->after('date_paid');
         });
     }
 
@@ -25,8 +25,8 @@ class AddCourseIdFieldInProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::table('programs', function (Blueprint $table) {
-            $table->dropColumn('course_id');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->dropColumn('program_fee');
         });
     }
 }

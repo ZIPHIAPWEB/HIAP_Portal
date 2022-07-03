@@ -26,7 +26,7 @@ class AddCourseIdFieldInPaymentsTable extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->bigInteger('course_id')->unsigned();
+            $table->dropColumn('course_id')->unsigned();
         });
     }
 }
