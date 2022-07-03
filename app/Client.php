@@ -9,21 +9,7 @@ use Illuminate\Support\Carbon;
 
 class Client extends Model
 {
-    protected $fillable = [
-        'first_name',
-        'middle_name',
-        'last_name',
-        'address',
-        'course',
-        'school_year',
-        'contact_no',
-        'school_id',
-        'user_id',
-        'fb_link',
-        'program_id',
-        'alternate_email',
-        'expected_graduation'
-    ];
+    protected $guarded = [];
     
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
