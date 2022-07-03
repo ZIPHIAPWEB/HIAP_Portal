@@ -36,6 +36,7 @@ class ClientDashboardResource extends JsonResource
             'expected_graduation' =>    $this->expected_graduation,
             'expected_graduation_formatted'   =>  ($this->expected_graduation == '') ? '' : Carbon::instance(new DateTime($this->expected_graduation))->format('M Y'),
             'user'                  =>  $this->user()->first(),
+            'section'               =>  $this->section,
             'created_at'            =>  $this->created_at
         ];
     }
