@@ -31,6 +31,7 @@
                             <th>Middle Name</th>
                             <th>Last Name</th>
                             <th>School/Organization</th>
+                            <th>Section</th>
                             <th>Enrolled Course</th>
                             <th>Course Status</th>
                             <th>E-mail Address</th>
@@ -43,8 +44,9 @@
                             <td class="text-left">{{ client.client.created_at }}</td>
                             <td>{{ client.client.first_name }}</td>
                             <td>{{ client.client.middle_name}}</td>
-                            <td>{{ client.client.last_name }}</td   >
+                            <td>{{ client.client.last_name }}</td>
                             <td>{{ client.client.school.name }}</td>
+                            <td>{{ client.client.section }}</td>
                             <td>{{ client.program }}</td>
                             <td class="text-success text-bold">{{ client.application_status }}</td>
                             <td>{{ client.email }}</td>
