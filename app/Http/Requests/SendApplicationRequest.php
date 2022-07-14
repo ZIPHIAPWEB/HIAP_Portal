@@ -36,7 +36,10 @@ class SendApplicationRequest extends FormRequest
             'course'                =>  ['required'],
             'expected_graduation'   =>  ['required'],
             'returnee'              =>  ['required'],
-            'section'               =>  ['required']
+            'section'               =>  ['required'],
+            'start_date'            =>  ['required'],
+            'end_date'              =>  ['required'],
+            'hours_needed'          =>  ['required']
         ];
     }
 }
