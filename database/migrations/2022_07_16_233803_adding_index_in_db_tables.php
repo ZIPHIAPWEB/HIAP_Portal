@@ -64,6 +64,7 @@ class AddingIndexInDbTables extends Migration
 
         Schema::table('client_initials', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
+            $table->integer('user_id')->change();
         });
 
         Schema::table('clients', function (Blueprint $table) {
