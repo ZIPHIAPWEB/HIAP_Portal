@@ -57,6 +57,7 @@ Route::prefix('staff')->group(function () {
 
 Route::prefix('client')->middleware('is_client')->group(function () {
     Route::get('/application-form', 'ClientController@showApplicationForm')->name('cl.application')->middleware(['verified', 'auth']);
+    Route::post('/basic-validation', 'RegistrationValidationController@basicDetailsValidation')->middleware(['verified', 'auth']);
     Route::post('/sendApplication', 'ClientController@sendApplication')->middleware(['verified','auth']);
 
     Route::get('/dashboard', 'ClientController@showDashboard')->name('cl.dashboard')->middleware(['verified', 'auth']);

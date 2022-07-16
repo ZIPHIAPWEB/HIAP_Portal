@@ -221,8 +221,10 @@ class ModeratorController extends Controller
         $clients = UserProgram::query()
             ->select('clients.*', 'user_programs.*')
             ->join('clients', 'clients.user_id', '=', 'user_programs.user_id')
+            ->join('users', 'users.id', '=', 'user_programs.user_id')
             ->where('clients.last_name', 'like', '%'. $request->search .'%')
             ->orWhere('clients.first_name', 'like', '%'. $request->search . '%')
+            ->orWhere('users.email', 'like', '%'.$request->search .'%')
             ->paginate(25); 
 
         return ModeratorClientListResource::collection($clients);
