@@ -55,8 +55,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="/e-learning-hub">e-learning hub</a></li>
+                                <li><a href="/global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="/tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -86,18 +85,18 @@
         <div class="container-fluid">
             <div>
                 <h1 class="text-center">about us</h1>
-                <p class="text-center mb-4">Hospitality Institute of America-Philippines Inc. (HIAP Inc.) is a registered corporation under Securities and Exchange Commission (SEC) since 2015. HIAP Inc. is also a&nbsp;trusted partner of various government agencies such as Technical
-                    Educational Skills Development Authority (TESDA), Overseas Workers Welfare Administration (OWWA), Department of Education (DepEd) and a trusted provider of various educational institutions in the Philippines. <br></p>
+                <p class="text-center mb-4">Hospitality Institute of America-Philippines Inc. (HIAP Inc.) is a registered corporation under Securities and Exchange Commission (SEC) since 2015. HIAP Inc. is also a trusted partner of various government agencies such as Technical Educational Skills Development Authority (TESDA), Overseas Workers Welfare Administration (OWWA), Department of Education (DepEd) and a trusted provider of various educational institutions in the Philippines.<br></p>
+                <p class="text-center mb-4">HIAP Inc. is committed to the growth of people who are committed to excellence and to their dreams. HIAP Inc. provides an environment that is conducive to learning, hard work and results.<br></p>
                 <p class="text-center mb-4">HIAP Inc. aims to:<br></p>
                 <div class="row">
                     <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column justify-content-center align-items-center about-item"><img src="assets/img/global.png">
-                        <p class="text-center" style="margin: 0;">supplement additional training based on acceptable global standards<br></p>
+                        <p class="text-center" style="margin: 0;">supplement training based on acceptable global standards<br></p>
                     </div>
                     <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column justify-content-center align-items-center about-item"><img src="assets/img/global-user.png">
-                        <p class="text-center" style="margin: 0;">provide programs that promote employability in a global settings<br></p>
+                        <p class="text-center" style="margin: 0;">provide programs that promote employability in a global setting<br></p>
                     </div>
                     <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column justify-content-center align-items-center about-item"><img src="assets/img/business.png">
-                        <p class="text-center" style="margin: 0;">prepare the Filipino workforce for a challenging career in various industries, and.<br></p>
+                        <p class="text-center" style="margin: 0;">prepare the Filipino workforce for the challenges they may face in various industries and careers, and<br></p>
                     </div>
                     <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column justify-content-center align-items-center about-item"><img src="assets/img/search.png">
                         <p class="text-center" style="margin: 0;">&nbsp; &nbsp; &nbsp; &nbsp;provide e-learning programs and hands-on training that helps enhance skills and competency<br></p>
@@ -131,13 +130,13 @@
                 <div class="col">
                     <div class="d-flex flex-column justify-content-center align-items-center choose-item"><img src="assets/img/Learning.png">
                         <h5 class="text-center">Get the Best Learning Experience</h5>
-                        <p class="text-center">We are committed to making sure that the clients get the best learning experience from the programs we offer.<br></p>
+                        <p class="text-center">We are committed to making sure that our students get the best learning experience from the programs we offer.<br></p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex flex-column justify-content-center align-items-center choose-item"><img src="assets/img/hotel-about.png">
                         <h5 class="text-center">Experience State-of-the-Art Facilities</h5>
-                        <p class="text-center">We have built state-of-the-art learning facilities and equipment to support client needs.</p>
+                        <p class="text-center">We have built state-of-the-art learning facilities and equipment to support student needs.</p>
                     </div>
                 </div>
                 <div class="col">
@@ -149,7 +148,7 @@
                 <div class="col">
                     <div class="d-flex flex-column justify-content-center align-items-center choose-item"><img src="assets/img/A-global.png">
                         <h5 class="text-center"><strong>Internationally-recognized&nbsp;and Accredited Courses</strong></h5>
-                        <p class="text-center">We offer courses that are accredited and developed based on the global hospitality standards.&nbsp;<br></p>
+                        <p class="text-center">We offer courses that are accredited and developed based on the global hospitality standards. &nbsp;<br></p>
                     </div>
                 </div>
             </div>

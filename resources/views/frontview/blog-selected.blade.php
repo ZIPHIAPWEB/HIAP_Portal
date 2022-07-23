@@ -119,8 +119,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="/e-learning-hub">e-learning hub</a></li>
+                                <li><a href="/global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="/tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>

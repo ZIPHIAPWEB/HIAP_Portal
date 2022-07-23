@@ -55,8 +55,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="e-learning-hub">e-learning hub</a></li>
+                                <li><a href="global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -87,7 +86,7 @@
                 <div class="d-flex justify-content-center align-items-center header-content"><img src="assets/img/HEADER%201_A.jpg">
                     <div class="header-title">
                         <h1 class="text-center">online learning experience</h1>
-                        <h2 class="text-center">giving you an innovative way to learn and excel.</h2>
+                        <h2 class="text-center">LEARN AND EXCEL FROM THE COMFORTS OF HOME</h2>
                     </div>
                 </div>
             </div>
@@ -95,7 +94,7 @@
                 <div class="header-content"><img src="assets/img/HEADER%203_A.jpg">
                     <div class="header-title">
                         <h1>hands-on training experience</h1>
-                        <h2 class="text-center">Maximizing training efficiency through hands-on practices.&nbsp;<br></h2>
+                        <h2 class="text-center">EFFICIENT TRAINING THROUGH HANDS-ON EXPERIENCE AND PRACTICES&nbsp;<br></h2>
                     </div>
                 </div>
             </div>
@@ -103,7 +102,7 @@
                 <div class="header-content"><img src="assets/img/HEADER%205_A.jpg">
                     <div class="header-title">
                         <h1>INTERNATIONAL STANDARDS-BASED METHODS<br></h1>
-                        <h2 class="text-center">Providing modern learning tools and techniques.<br></h2>
+                        <h2 class="text-center">LEARNING TOOLS AND TECHNIQUES THAT ARE GLOBALLY ACCEPTED<br></h2>
                     </div>
                 </div>
             </div>
@@ -111,7 +110,7 @@
                 <div class="header-content"><img src="assets/img/HEADER%204_A.jpg">
                     <div class="header-title">
                         <h1>INDUSTRY-EXPERIENCED PROFESSIONALS<br></h1>
-                        <h2 class="text-center">Offering quality training programs with certified trainers.<br></h2>
+                        <h2 class="text-center">QUALITY TRAINING PROGRAMS WITH CERTIFIED TRAINERS AND EXPERTS<br></h2>
                     </div>
                 </div>
             </div>
@@ -119,7 +118,7 @@
                 <div class="header-content"><img src="assets/img/HEADER%202_A.jpg">
                     <div class="header-title">
                         <h1><strong>Countless Career Opportunities</strong><br></h1>
-                        <h2 class="text-center">Helping you become globally competitive.<br></h2>
+                        <h2 class="text-center">BECOME INTERNATIONAL-READY WITH VISA PROGRAMS AND OPPORTUNITIES ABROA<br></h2>
                     </div>
                 </div>
             </div>
@@ -138,8 +137,7 @@
         <div class="container-fluid">
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1>ABOUT US</h1>
-                <p class="text-center">Hospitality Institute of America-Philippines Inc. (HIAP Inc.) was established in October 2015 as the first international training center along the University Belt. We provide hybrid programs, short course training, seminars, and workshops
-                    for senior high students, college students, and professionals.&nbsp;<br></p><a href="/about-us">Learn more about us</a></div>
+                <p class="text-center">Hospitality Institute of America-Philippines Inc. (HIAP Inc.) was established in October 2015 as the first international training center along the University Belt. HIAP provides hybrid programs, short course training, seminars, and workshops for senior high students, college students, and professionals with the help of industry leaders and career experts.&nbsp;<br></p><a href="/about-us">Find out more</a></div>
         </div>
     </section>
     <section class="home-services" style="background-image: url(&quot;assets/img/SERVICES%20-%20HOME%20PAGE.jpg&quot;);">

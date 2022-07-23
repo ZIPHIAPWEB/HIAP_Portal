@@ -55,8 +55,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="e-learning-hub">e-learning hub</a></li>
+                                <li><a href="global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -86,21 +85,20 @@
         <div class="container-fluid">
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1>Our facilities</h1>
-                <p class="text-center">We are considered the best within the University Belt area in terms of training and learning facilities and equipment. As we aim to provide best service and make sure the clients get the best learning experience, we've incorporated state-of-the-art
-                    learning facilities and equipment.&nbsp;<br></p>
+                <p class="text-center">A professionally managed and high-end educational institution in the Philippines that offers programs designed to meet the changing needs and requirements of the hospitality industry. Hospitality Institute of America-Philippines, more commonly known as HIAP, is a trusted name and considered the best within the University Belt Area offering premium training and learning. The goal of HIAP is to provide the best service and to hone the best learners with the best learning experience with state-of-the-art learning facilities and equipment.&nbsp;<br></p>
             </div>
         </div>
     </section>
     <section class="training-facilities" style="background-image: url(&quot;assets/img/FACILITIES%20-%20TRAINING.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container-fluid">
             <h1 class="text-center">Training and assessment facilities</h1>
-            <p class="text-center">Our facilities are based on global standards. Our training facilities aid in the development of the skills and competencies of the clients through intensive hands-on training and seminars needed by various industries. <br></p>
+            <p class="text-center">The Hospitality Institute of America-Philippines offers training facilities, assessment opportunities, and learning services that are of world-reknowned quality and global standards. Our training facilities aid in the development of the skills and competencies of the clients through intensive hands-on training and seminars. <br></p>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-5 justify-content-center">
                 <div class="col">
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/INFORMATION%20AREA.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
                         data-toggle="modal" data-target="#info-gallery-modal">
                         <div class="item-overlay">
-                            <p>We've adopted modern features in our information areas. It is built to accommodate clients using high-tech equipment and ensure their safety and security. <br></p>
+                            <p>The Institute's mission is to educate and train people in various aspects of the hospitality industry through a holistic training program set in a holistic environment that is conducive to learning. Our classrooms are designed to help you. We have adopted modern features in our information areas. It is built to accommodate clients using high-tech equipment and ensure their safety and security. <br></p>
                         </div>
                         <div class="item-name"><span>information areas</span></div>
                     </div>
@@ -109,7 +107,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/HOUSEKEEPING_A.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
                         data-toggle="modal" data-target="#hkp-gallery-modal">
                         <div class="item-overlay">
-                            <p>A 20 sq. m. fully-furnished twin guestroom as a venue for housekeeping training. This also includes a linen room and laundry facilities.<br></p>
+                            <p>Dedicated to the training of future hoteliers, the Institute offers a 20 sq. m. fully- equipped twin guestroom as a venue for housekeeping training. This also includes a linen room and laundry facilities. This simulated twin guestroom has been set up to allow and equip our students with training on proper bed making and housekeeping basics.<br></p>
                         </div>
                         <div class="item-name"><span>HOUSEKEEPING area</span></div>
                     </div>
@@ -118,8 +116,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/KITCHEN.JPG&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
                         data-toggle="modal" data-target="#ktc-gallery-modal">
                         <div class="item-overlay">
-                            <p>Modern kitchen laboratories with a large working area and can accommodate 20+ students. These laboratories are used for Cookery NC II and Bread and Pastry Production NC II. The kitchen operations observe ServSafe procedures
-                                to ensure international culinary standards.<br></p>
+                            <p>Your investment in the Hospitality Institute of America ® Philippines is further enhanced by our assurance that, in addition to highly-skilled and Professional educators, you will be learning in a new state-of-the-art kitchen laboratory. Our Modern kitchen laboratories with a large working area and can accommodate 20+ students. These laboratories are used for Cookery NC II and Bread and Pastry Production NC II. The kitchen operations observe ServSafe procedures to ensure international culinary standards.<br></p>
                         </div>
                         <div class="item-name"><span>kitchen areas</span></div>
                     </div>
@@ -128,7 +125,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/FBS.JPG&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
                         data-toggle="modal" data-target="#fbs-gallery-modal">
                         <div class="item-overlay">
-                            <p>FBS Area is equipped with facilities needed for Food and Beverage Services-related training like linen, glassware, crockery, and silverware. This area is also open to serve customers.&nbsp;<br></p>
+                            <p>Open to the public, our FBS Area is also a training area for our students. This facility equips our trainees with skills that they can use as soon as they graduate from our culinary and housekeeping programs. The Food and Beverage Services (FBS) training area is used to familiarize students about the different restaurant settings, thereby, developing their familiarity in relation to the kind of operation, staff uniforms and the flow of service. This Food and Beverage Services Training Area prepares students to meet industry standards by providing high-quality and first-hand learning.&nbsp;<br></p>
                         </div>
                         <div class="item-name"><span>bar &amp; cafe</span></div>
                     </div>
@@ -137,7 +134,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/clr.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
                         data-toggle="modal" data-target="#clr-gallery-modal">
                         <div class="item-overlay">
-                            <p>Our training room is equipped with audio-visual facilities and instructional materials to make sure that the students learn effectively.&nbsp;<br></p>
+                            <p>The Hospitality Institute of the Philippines is committed to educating industry professionals who are competent and capable of meeting the demands of the hospitality industry. We have equipped our training room with audio visual facilities and instructional materials to make sure that the students will effectively learn everything they need in order to pursue their career upon graduation.&nbsp;<br></p>
                         </div>
                         <div class="item-name"><span>training/classrooms</span></div>
                     </div>
@@ -148,14 +145,15 @@
     <section class="learning-center">
         <div class="container-fluid text-center">
             <h1>studyzone / learning center</h1>
-            <p>A peaceful and quiet place for study and work. Learning Center Facilities include meeting and conference spaces, showcase kitchen and restaurant, event space,&nbsp;&nbsp;and co-working spaces. Board games, lounge chairs, resting areas, and
-                unlimited freebies (ice cream, coffee, juice, and wifi-up to 100 Mbps) are also available.</p>
+            <p>Our Learning Center Facilities will make you feel at home. This calm and quiet place for study and work is situated at the Institute itself.</p>
+            <p>HIAP offers Learning Center Facilities that includes meeting and conference spaces, a showcase kitchen and restaurant modeled after the Gray Kunz experience at L'atelier de Joel Robuchon, an event space that can accommodate up to 150 persons, and co-working spaces. With more time to socialize than to study, you can also enjoy various board games with your friends, lounge chairs to watch tv or sleep in, resting areas, and unlimited freebies (ice cream, coffee, juice, and wifi-up to 100 Mbps), while staying with us.</p>
+            <p>Our facilities enhance your learning and working experience. The campus offers a flexible space for students and professionals to interact, network and learn together.</p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-5 justify-content-center">
                 <div class="col">
                     <div class="d-flex flex-column justify-content-end align-items-center center-item" style="background-image: url(&quot;assets/img/HOTDESK.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
                         data-target="#hd-gallery-modal">
                         <div class="item-overlay">
-                            <p>Hot Desks are spaces for work and study located in the common area. These spaces are perfect for those who prefer to study in big groups and those who are comfortable studying in a common space. <br></p>
+                            <p>Looking for a place to study or work on group projects? The Hot Desks is the perfect space to bring your books and laptops, allowing you to have one on one discussions with your peers. These common areas offer additional spaces for studying and socializing. You can feel free to come over any time of the day with your friends and study or hangout after class! Enjoy the space, flexibility and perks that come with a Hot Desk.<br></p>
                         </div>
                         <div class="item-name"><span>Hot desks</span></div>
                     </div>
@@ -164,7 +162,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center center-item" style="background-image: url(&quot;assets/img/PRIVATE%20SUITE.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
                         data-target="#ps-gallery-modal">
                         <div class="item-overlay">
-                            <p>Private Suites are air-conditioned rooms designed for two people. This space is good for pairs who’d like to study privately.<br></p>
+                            <p>Do you have a study partner? Or are you a student looking for a private area to study? The Hospitality Institute of America-Philippines has rooms designed to help you focus and commune well with your study partners. Private Suites are air-conditioned rooms designed for two people. This space is good for pairs who’d like to study privately and comfortably -- or maybe even for those who want to be on solo to deep dive and concentrate.<br></p>
                         </div>
                         <div class="item-name"><span>private suites</span></div>
                     </div>
@@ -173,7 +171,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center center-item" style="background-image: url(&quot;assets/img/CONFERENCE.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;" data-toggle="modal"
                         data-target="#cr-gallery-modal">
                         <div class="item-overlay">
-                            <p>Conference rooms are meeting rooms provided for a group of 8. This space is suitable for those who’d like to study in groups or conduct a meeting with colleagues. Audio and video conferences are also available. <br></p>
+                            <p>Assemble your group in one of our spacious and well ventilated meeting rooms. The Conference Room is ideal for a small-sized assembly, with seating up to 8 persons comfortably. With its furnished table, this room is also well-suited for working in groups or conducting meetings. This space is also equipped with audiovisual tools that will help you conduct a productive gathering. <br></p>
                         </div>
                         <div class="item-name"><span>conference room</span></div>
                     </div>
@@ -192,7 +190,7 @@
     </section>
     <section class="facilities-tagline" style="background-image: url(&quot;assets/img/LEARNING%20CENTER%20-%20FOOTER%202.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container">
-            <h1 class="text-center">Best place to study and learn.</h1>
+            <h1 class="text-center">There’s nowhere you’d choose to learn but here. Conducive and fun. Excellent and competent.</h1>
         </div>
     </section>
     <footer class="footer-wrapper">
