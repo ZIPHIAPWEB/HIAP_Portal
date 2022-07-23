@@ -17,7 +17,7 @@ class InquiryController extends Controller
             'message'       =>  'required'
         ]);
 
-        Mail::to('info@hospitalityinstituteofamerica.com.ph')->send(new SendInquiry($request->all()));
+        Mail::to('info@hospitalityinstituteofamerica.com.ph')->send(new SendInquiry($request->only('full_name', 'mobile_number', 'email', 'message')));
 
         return redirect()->back();
     }

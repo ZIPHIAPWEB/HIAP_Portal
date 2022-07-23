@@ -55,8 +55,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="/e-learning-hub">e-learning hub</a></li>
+                                <li><a href="/global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="/tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -85,10 +84,10 @@
     <section class="page-description">
         <div class="container-fluid">
             <div>
-                <h1 class="text-center">World-class Training Programs</h1>
-                <p class="text-center mb-4">These are world-class training programs developed based on the global standards and requirements. These training programs are used by the top hotel brands such and Marriott and Hilton and developed by the leading experts and industries such as Ecolab and CIA.</p>
+                <h1 class="text-center">World-Class Industry Training Programs</h1>
+                <p class="text-center mb-4">Looking for a world-class industry training program that produces world class quality? We are the answer to your needs. We are a Philippines based training institute approved and accredited by Ecolab and Hospitality Institute of America. The programs we offer are designed after years of consultation with world class hotel brands such as Marriott and Hilton. Our sessions are built around the newest trends in multimedia production and instructional design.</p>
                 <p
-                    class="text-center mb-4">We have the right platform and content drive for job-blended learning with innovative instructional design techniques and the latest trends in multimedia production and methodology.It makes learning more effective, efficient, engaging and drive performance. </p>
+                    class="text-center mb-4">We provide learning that is relevant to the needs of your industry, your job and driven by the latest technology. Hospitality Institute of America-Philippines Inc. provides world-class industry training programs that are global standards in the hospitality industry.</p>
             </div>
         </div>
     </section>
@@ -137,7 +136,7 @@
     <section class="courses-offered">
         <div class="container-fluid">
             <h1 class="text-center" style="color: #961a32;">certificate courses</h1>
-            <p class="text-center mb-4">These are curated course collections based on the curriculum and in-demand courses from the industry. These courses are developed to provide you with the foundations and get you started in your chosen field.<br></p>
+            <p class="text-center mb-4">Introduce yourself to the world of Hospitality! These curated course collections teach the fundamentals, and provide a step-by-step guide to getting you started. All the courses have been designed with expert instructors and are taught by industry professionals. Have a browse through the different course collections now, and start making your dream of entering the hospitality or travel and tourism industry come alive! <br></p>
             <div class="row no-gutters row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="background-image: url(&quot;assets/img/H-FBS.jpg&quot;);background-position: top;background-size: cover;background-repeat: no-repeat;height: 250px;" data-toggle="modal"
@@ -199,8 +198,8 @@
     <section class="courses-offered" style="background-image: url(&quot;assets/img/GLOBAL%20PIC%202.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container-fluid">
             <h1 class="text-center">professional certificate programs</h1>
-            <p class="text-center text-white mb-4">Gain extensive knowledge and skills in your desired subject matter from the globally known industry experts and brands. These certificate programs are designed to develop your core competencies,&nbsp;become an ultimate service industry professional,
-                and empower you to deliver exceptional service.<br></p>
+            <p class="text-center text-white mb-4">Choose from a number of certificate programs that allow you to expand your hospitality knowledge and expertise. Be more informed about current issues, trends and challenges in the hospitality industry. These certificate programs are designed to develop your core competencies, become an ultimate service industry professional, and empower you to deliver exceptional service.<br></p>
+            <p class="text-center text-white mb-4">Our programs will prepare you with the knowledge and skills needed to meet customer expectations and deliver exceptional service in any business industry. Our instructors are globally known experts and brands, fueling your passion for hospitality and redefining hospitality.<br></p>
             <div class="row no-gutters row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex justify-content-center align-items-end course-item" style="height: 250px;background: url(assets/img/PC-F&B.jpg) top / cover no-repeat;" data-toggle="modal" data-target="#food-and-beverage-service-management-modal">
@@ -279,7 +278,7 @@
         <div class="container-fluid">
             <div>
                 <h1 class="text-center" style="color: #961a32;">flexible industry practicum</h1>
-                <p class="text-center mb-4">Training programs that provide job-relevant learning and credentials aligned with global industry requirements and standards. Prepare you to become a well-rounded hospitality professional, <br> fill the skills gap,and spread opportunity widely.</p>
+                <p class="text-center mb-4">Hospitality Institute of America-Philippines Inc. offers reliable training programs that provide job-relevant learning and credentials aligned with global industry requirements and standards. Through its training programs, this school equips individuals with the skills and knowledge necessary to become well-rounded hospitality professionals. From course modules designed to ensure key competencies are mastered in each module, to customizing course schedules and providing internship opportunities for students to gain real world professional experience, this school also immerses students in the latest industry trends.</p>
             </div>
             <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col">
@@ -305,7 +304,7 @@
     </section>
     <section class="about-vision-mission" style="background-image: url(&quot;assets/img/GLOBAL%20PIC%203.jpg&quot;);background-repeat: no-repeat;background-size: cover;border-bottom: 5px solid white;background-position: center;">
         <div class="container-fluid">
-            <h1 class="text-center mb-5" style="font-family: 'Bebas Kai Regular';font-size: 60px;font-weight: normal;font-style: normal;">why avail of our World-class Training Programs?</h1>
+            <h1 class="text-center mb-5" style="font-family: 'Bebas Kai Regular';font-size: 60px;font-weight: normal;font-style: normal;">why avail of our World-class Industry Training Programs?</h1>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col d-flex flex-column justify-content-center align-items-center my-2"><img src="assets/img/W-certificate%20(1).png" style="width: 90px;margin: 0 35px;">
                     <div class="about-item">
@@ -339,7 +338,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">
