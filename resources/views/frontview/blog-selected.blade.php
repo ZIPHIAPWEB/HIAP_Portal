@@ -119,8 +119,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="/e-learning-hub">e-learning hub</a></li>
+                                <li><a href="/global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="/tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -152,7 +151,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

@@ -55,8 +55,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="e-learning-hub">e-learning hub</a></li>
+                                <li><a href="global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -93,8 +92,7 @@
     <section class="government-programs" style="background-image: url(&quot;assets/img/GOV%20PROGRAMS%20-%20SERVICE%20MAIN%20PAGE.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container-fluid">
             <h1 class="text-center">Government training and assessment programs</h1>
-            <p class="text-center">The TESDA Training and Assessment Program seeks to prepare the clients in achieving<span style="text-decoration: line-through;"> </span>global workplace standards and to determine whether the assessee can perform to the workplace-based standards
-                set by TESDA.&nbsp;<br></p>
+            <p class="text-center">We aim to equip you to achieve global workplace standards as we guide you in achieving your full potential with rigorous classroom training, simulation, and hands-on experience. With this are the TESDA Training and Assessment Programs (TAPs) which are developed to prepare the clients in achieving global workplace standards. The main purpose of TAP is to measure the skills, knowledge, and abilities of an individual based on pre-determined criteria. The assessment is used to determine whether the assessee can perform to the workplace-based standards set by TESDA.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col d-flex justify-content-start align-items-center justify-content-xl-end align-items-xl-center">
                     <div class="d-flex flex-column justify-content-center align-items-center gov-item" onclick="document.getElementById(&#39;training&#39;).click();"><img src="assets/img/class.png"><span class="text-center">TESDA Training Programs</span><a id="training" href="tesda-training" target="_blank">Link</a></div>
@@ -108,7 +106,7 @@
     <section class="scholarship-programs">
         <div class="container-fluid">
             <h1 class="text-center">Scholarship programs</h1>
-            <p class="text-center">HIAP Inc., in coordination with its partners, offers training programs with scholarship benefits. Those who qualify will be entitled to a free training and/or assessment. <br></p>
+            <p class="text-center">Looking for a way to advance your career? Interested in learning the industry trends? Open your door to the world of opportunity with the hospitality industry! HIAP Inc., in coordination with its partners, offers training programs with scholarship benefits. Those who qualify will be entitled to a free training and/ or assessment. <br></p>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex flex-column justify-content-center align-items-center scholarship-items" onclick="document.getElementById(&#39;twsp&#39;).click();"><img src="assets/img/Academic.png"><span class="text-center">TWSP - TESDA Scholarship Programs<br><small>(Training for Work Scholarship)</small><br></span><a id="twsp" href="twsp" target="_blank">Link</a></div>
@@ -125,7 +123,7 @@
     <section class="customized-programs" style="background-image: url(&quot;assets/img/CUSTOMIZED%20-%20SERVICE%20MAIN%20PAGE.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container-fluid">
             <h1 class="text-center">Customized training programs</h1>
-            <p class="text-center">These programs are designed based on the needs of the clients. These programs include different courses in different areas such as hospitality, leadership, marketing, English, and other related courses.&nbsp;<br></p>
+            <p class="text-center">The Hospitality Institute of America-Philippines Inc. comprises a consortium of top Philippine hotel management schools and provides practical hands on training for students. Courses are designed based on the needs of the clients such as hospitality, marketing, leadership, English, etc. Training is available not only to students but also to professionals who want to break into the tourism industry or upgrade their skills.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-25&#39;).click();"><img src="assets/img/Learning.png"><span class="text-center">Senior High<br>(25 Hours)</span><a id="shs-25" href="customized-senior-25" target="_blank">Link</a></div>
@@ -146,7 +144,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

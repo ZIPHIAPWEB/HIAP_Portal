@@ -55,8 +55,7 @@
                         </li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
                             <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">World-class Training Programs</a></li>
-                                <li><a href="/e-learning-hub">e-learning hub</a></li>
+                                <li><a href="/global-e-learning">World-class Industry Training Programs</a></li>
                                 <li><a href="/tesda-online">Tesda online programs</a></li>
                             </ul>
                         </li>
@@ -86,10 +85,11 @@
         <div class="container">
             <div>
                 <h1 class="text-center">hospitality institute of america-philippines inc.</h1>
+                <p class="text-center" style="font-size: 25px;"><strong>BE OUR LEARNER TODAY. GET IN TOUCH WITH US.</strong></p>
                 <ul class="list-unstyled text-center text-lg-left text-xl-left contact-list">
                     <li><i class="fa fa-clock-o"></i><span>Monday to Friday | 8:00 AM - 5:00 PM</span></li>
                     <li><i class="fa fa-map-o"></i><span>2/F University Center Bldg., 1985 C.M. Recto Avenue Zone 041 Brgy. 395 Sampaloc Manila</span></li>
-                    <li><i class="fa fa-phone"></i><span>(02) 88064355 | 09175228213 | 09228768213 | 09178988213 | 09084698962</span></li>
+                    <li><i class="fa fa-phone"></i><span>09175228213 | 09228768213 | 09178988213 | 09084698962</span></li>
                     <li><i class="fa fa-envelope-o"></i><span>info@hospitalityinstituteofamerica.com.ph</span></li>
                     <li><i class="fa fa-facebook-official"></i><span>Hospitality Insitute of America - Philippines Inc.</span></li>
                 </ul>
@@ -111,37 +111,50 @@
   })();</script><a href="https://embedgooglemap.1map.com">1 Map</a></div></section>
     <section class="contact-form">
         <div class="container-fluid">
-            <h1 class="text-center">For more inquiries, please fill out this form:</h1>
-            <form action="/sendInquiry" method="post">
+            <h1 class="text-center">For inquiries, reach us through this form:</h1>
+            <form id="contact-form">
                 <div class="form-row">
+                    @csrf()
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Name (required):</label><input name="full_name" class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>Name (required):</label><input id="full-name" name="full_name" class="form-control form-control" type="text" required></div>
                     </div>
                     <div class="col-lg-4 col-xl-4">
-                        <div class="form-group"><label>Mobile Number (required):</label><input name="mobile_number" class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>Mobile Number (required):</label><input id="mobile-number" name="mobile_number" class="form-control form-control" type="text" required></div>
                     </div>
                     <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="form-group"><label>E-mail (required):</label><input name="email" class="form-control form-control" type="text"></div>
+                        <div class="form-group"><label>E-mail (required):</label><input id="email" name="email" class="form-control form-control" type="text" required></div>
                     </div>
                     <div class="col-12">
-                        <div class="form-group"><label>Message (required):</label><textarea name="message" class="form-control form-control" rows="10"></textarea></div>
+                        <div class="form-group"><label>Message (required):</label><textarea id="message" name="message" class="form-control form-control" rows="10" required></textarea></div>
                     </div>
-                    <div class="col-12 col-lg-2 col-xl-2"><button class="btn btn-primary btn-block" type="button" style="border: 0;">Send</button></div>
+                    <div class="col-12 col-lg-2 col-xl-2">
+                        <button class="btn btn-primary btn-block" type="submit" style="border: 0;">
+                            Send
+                            <br>
+                            <small style="display: none;" id="button-message"><i>We’ll get to you as soon as we can</i></small>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
     </section>
     <section class="tagline" style="background-image: url(&quot;assets/img/footer_image.jpg&quot;);background-position: center;background-size: cover;">
         <div class="container-fluid d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center h-100">
-            <h1 class="text-center d-none d-sm-none d-md-block d-lg-block d-xl-block">Study today, excel tomorrow.</h1>
-            <h1 class="text-center d-block d-sm-block d-md-none d-lg-none d-xl-none">Study today,<br>excel tomorrow.</h1>
+            <h1 class="text-center d-none d-sm-none d-md-block d-lg-block d-xl-block">
+                Study today, excel tomorrow. <br>
+                Do it the HIAP way.
+            </h1>
+            <h1 class="text-center d-block d-sm-block d-md-none d-lg-none d-xl-none">
+                Study today,<br>excel tomorrow. <br>
+                Do it the HIAP way.
+            </h1>
         </div>
     </section>
     <footer class="footer-wrapper">
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">
@@ -186,6 +199,29 @@ theme_color="#031430">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/script.min.js"></script>
-</body>
+    <script>
+        $('#contact-form').submit(function (e) {
+            e.preventDefault();
+            var data = new FormData();
+        
+            let csrfs = document.querySelectorAll('input[name=_token]');
+            data.append(csrfs[0].name, csrfs[0].value);
 
+            data.append('full_name', $('#full-name').val())
+            data.append('mobile_number', $('#mobile-number').val())
+            data.append('email', $('#email').val())
+            data.append('message', $('#message').val())
+            
+            fetch('/sendInquiry', { method: 'post', body: data})
+                .then(function (response) {
+                    // The API call was successful!
+                    alert('Thank you for your  inquiry. We’ll get to you as soon as we can.');
+                    console.log('success!', response);
+                }).catch(function (err) {
+                    // There was an error
+                    console.warn('Something went wrong.', err);
+                });
+        });
+    </script>
+</body>
 </html>
