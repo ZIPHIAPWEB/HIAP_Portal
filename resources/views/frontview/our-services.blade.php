@@ -123,7 +123,7 @@
     <section class="customized-programs" style="background-image: url(&quot;assets/img/CUSTOMIZED%20-%20SERVICE%20MAIN%20PAGE.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container-fluid">
             <h1 class="text-center">Customized training programs</h1>
-            <p class="text-center">The Hospitality Institute of America Philippines Inc. comprises a consortium of top Philippine hotel management schools and provides practical hands on training for students. Courses are designed based on the needs of the clients such as hospitality, marketing, leadership, English, etc. Training is available not only to students but also to professionals who want to break into the tourism industry or upgrade their skills.&nbsp;<br></p>
+            <p class="text-center">The Hospitality Institute of America-Philippines Inc. comprises a consortium of top Philippine hotel management schools and provides practical hands on training for students. Courses are designed based on the needs of the clients such as hospitality, marketing, leadership, English, etc. Training is available not only to students but also to professionals who want to break into the tourism industry or upgrade their skills.&nbsp;<br></p>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 <div class="col">
                     <div class="d-flex flex-column justify-content-center align-items-center customized-item" onclick="document.getElementById(&#39;shs-25&#39;).click();"><img src="assets/img/Learning.png"><span class="text-center">Senior High<br>(25 Hours)</span><a id="shs-25" href="customized-senior-25" target="_blank">Link</a></div>
@@ -144,7 +144,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

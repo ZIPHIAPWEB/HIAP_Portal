@@ -118,7 +118,7 @@
                 <div class="header-content"><img src="assets/img/HEADER%202_A.jpg">
                     <div class="header-title">
                         <h1><strong>Countless Career Opportunities</strong><br></h1>
-                        <h2 class="text-center">BECOME INTERNATIONAL-READY WITH VISA PROGRAMS AND OPPORTUNITIES ABROA<br></h2>
+                        <h2 class="text-center">BECOME INTERNATIONAL-READY WITH VISA PROGRAMS AND OPPORTUNITIES ABROAD<br></h2>
                     </div>
                 </div>
             </div>
@@ -212,7 +212,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

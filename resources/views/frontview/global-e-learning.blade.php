@@ -84,10 +84,10 @@
     <section class="page-description">
         <div class="container-fluid">
             <div>
-                <h1 class="text-center">World Class Industry Training Programs</h1>
-                <p class="text-center mb-4">Looking for a world-class industry  training program that produces world class quality? We are the answer to your needs. We are a Philippines based training institute approved and accredited by Ecolab and Hospitality Institute of America. The programs we offer are designed after years of consultation with world class hotel brands such as Marriott and Hilton. Our sessions are built around the newest trends in multimedia production and instructional design.</p>
+                <h1 class="text-center">World-Class Industry Training Programs</h1>
+                <p class="text-center mb-4">Looking for a world-class industry training program that produces world class quality? We are the answer to your needs. We are a Philippines based training institute approved and accredited by Ecolab and Hospitality Institute of America. The programs we offer are designed after years of consultation with world class hotel brands such as Marriott and Hilton. Our sessions are built around the newest trends in multimedia production and instructional design.</p>
                 <p
-                    class="text-center mb-4">We provide learning that is relevant to the needs of your industry, your job and driven by the latest technology. Hospitality Institute of America-Philippines (HIA-Phil) provides world class industry training programs that are global standards in the hospitality industry. </p>
+                    class="text-center mb-4">We provide learning that is relevant to the needs of your industry, your job and driven by the latest technology. Hospitality Institute of America-Philippines Inc. provides world-class industry training programs that are global standards in the hospitality industry.</p>
             </div>
         </div>
     </section>
@@ -278,7 +278,7 @@
         <div class="container-fluid">
             <div>
                 <h1 class="text-center" style="color: #961a32;">flexible industry practicum</h1>
-                <p class="text-center mb-4">Hospitality Institute of America-Philippines offers reliable training programs that provide job-relevant learning and credentials aligned with global industry requirements and standards. Through its training programs, this school equips individuals with the skills and knowledge necessary to become well-rounded hospitality professionals. From course modules designed to ensure key competencies are mastered in each module, to customizing course schedules and providing internship opportunities for students to gain real world professional experience, this school also immerses students in the latest industry trends.</p>
+                <p class="text-center mb-4">Hospitality Institute of America-Philippines Inc. offers reliable training programs that provide job-relevant learning and credentials aligned with global industry requirements and standards. Through its training programs, this school equips individuals with the skills and knowledge necessary to become well-rounded hospitality professionals. From course modules designed to ensure key competencies are mastered in each module, to customizing course schedules and providing internship opportunities for students to gain real world professional experience, this school also immerses students in the latest industry trends.</p>
             </div>
             <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 justify-content-center">
                 <div class="col">
@@ -338,7 +338,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

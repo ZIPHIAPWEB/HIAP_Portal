@@ -85,14 +85,14 @@
         <div class="container-fluid">
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1>Our facilities</h1>
-                <p class="text-center">A professionally managed and high-end educational institution in the Philippines that offers programs designed to meet the changing needs and requirements of the hospitality industry. Hospitality Institute of America-Philippines, more commonly known as HIAP, is a trusted name and considered the best within the University Belt Area offering premium training and learning. The goal of HIAP is to provide the best service and to hone the best learners with the best learning experience with state-of-the-art learning facilities and equipment.&nbsp;<br></p>
+                <p class="text-center">A professionally managed and high-end educational institution in the Philippines that offers programs designed to meet the changing needs and requirements of the hospitality industry. Hospitality Institute of America-Philippines Inc., more commonly known as HIAP, is a trusted name and considered the best within the University Belt Area offering premium training and learning. The goal of HIAP is to provide the best service and to hone the best learners with the best learning experience with state-of-the-art learning facilities and equipment.&nbsp;<br></p>
             </div>
         </div>
     </section>
     <section class="training-facilities" style="background-image: url(&quot;assets/img/FACILITIES%20-%20TRAINING.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
         <div class="container-fluid">
             <h1 class="text-center">Training and assessment facilities</h1>
-            <p class="text-center">The Hospitality Institute of America-Philippines offers training facilities, assessment opportunities, and learning services that are of world-reknowned quality and global standards. Our training facilities aid in the development of the skills and competencies of the clients through intensive hands-on training and seminars. <br></p>
+            <p class="text-center">The Hospitality Institute of America-Philippines Inc. offers training facilities, assessment opportunities, and learning services that are of world-reknowned quality and global standards. Our training facilities aid in the development of the skills and competencies of the clients through intensive hands-on training and seminars. <br></p>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-5 justify-content-center">
                 <div class="col">
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/INFORMATION%20AREA.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
@@ -134,7 +134,7 @@
                     <div class="d-flex flex-column justify-content-end align-items-center justify-content-xl-end training-item" style="background-image: url(&quot;assets/img/clr.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;"
                         data-toggle="modal" data-target="#clr-gallery-modal">
                         <div class="item-overlay">
-                            <p>The Hospitality Institute of the Philippines is committed to educating industry professionals who are competent and capable of meeting the demands of the hospitality industry. We have equipped our training room with audio visual facilities and instructional materials to make sure that the students will effectively learn everything they need in order to pursue their career upon graduation.&nbsp;<br></p>
+                            <p>The Hospitality Institute of the Philippines Inc. is committed to educating industry professionals who are competent and capable of meeting the demands of the hospitality industry. We have equipped our training room with audio visual facilities and instructional materials to make sure that the students will effectively learn everything they need in order to pursue their career upon graduation.&nbsp;<br></p>
                         </div>
                         <div class="item-name"><span>training/classrooms</span></div>
                     </div>
@@ -189,15 +189,15 @@
         </div>
     </section>
     <section class="facilities-tagline" style="background-image: url(&quot;assets/img/LEARNING%20CENTER%20-%20FOOTER%202.jpg&quot;);background-position: center;background-size: cover;background-repeat: no-repeat;">
-        <div class="container">
-            <h1 class="text-center">There’s nowhere you’d choose to learn but here. Conducive and fun. Excellent and competent.</h1>
+        <div class="container-fluid">
+            <h1 class="text-center">There’s nowhere you’d choose to learn but here. <br> Conducive and fun. Excellent and competent.</h1>
         </div>
     </section>
     <footer class="footer-wrapper">
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">

@@ -96,10 +96,10 @@
                         <p class="text-center" style="margin: 0;">provide programs that promote employability in a global setting<br></p>
                     </div>
                     <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column justify-content-center align-items-center about-item"><img src="assets/img/business.png">
-                        <p class="text-center" style="margin: 0;">prepare the Filipino workforce for the challenges they may face in various industries and careers, and<br></p>
+                        <p class="text-center" style="margin: 0;">prepare the Filipino workforce for the challenges they may face in various industries and careers<br></p>
                     </div>
                     <div class="col-12 col-lg-3 col-xl-3 d-flex flex-column justify-content-center align-items-center about-item"><img src="assets/img/search.png">
-                        <p class="text-center" style="margin: 0;">&nbsp; &nbsp; &nbsp; &nbsp;provide e-learning programs and hands-on training that helps enhance skills and competency<br></p>
+                        <p class="text-center" style="margin: 0;">&nbsp; &nbsp; &nbsp; &nbsp;<br>provide e-learning programs and hands-on training that helps enhance skills and competency<br></p>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>(02) 88064355 | 09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
+                    <p class="text-center m-0 p-3">2F University Center Building, 1985 C.M. Recto Avenue Sampaloc, Manila, 1008<br>09175228213 | 09228768213 |&nbsp;09175228213 | 09178988213 | 09084698962</p>
                 </div>
             </div>
             <div class="row no-gutters justify-content-center mb-3">
