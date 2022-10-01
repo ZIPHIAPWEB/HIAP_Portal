@@ -247,6 +247,8 @@ Route::post('/setToDefaultPassword', 'ClientController@setUserPasswordToDefault'
 
 Route::post('/updateUserPassword', 'UserController@updateUserPassword');
 
+Route::post('/filter-cert-by-school', 'ModeratorController@filterCertificateBySchool');
+
 Route::get('/testing', function() {
     // return Program::whereIn('id', [1, 2])->get();
 });
