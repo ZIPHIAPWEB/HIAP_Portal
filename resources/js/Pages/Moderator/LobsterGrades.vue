@@ -144,6 +144,7 @@
                 $('#modal-export').modal('show');
             },
             filterBySchool() {
+                this.isExportLoading = true;
                 let formData = new FormData();
                 formData.append('school', this.selectedSchool);
                 axios.post('/filter-cert-by-school', formData)
