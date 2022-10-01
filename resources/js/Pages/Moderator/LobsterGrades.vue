@@ -150,6 +150,7 @@
                 axios.post('/filter-cert-by-school', formData)
                     .then((response) => {
                         this.selectedCerts = response.data
+                        this.isExportLoading = false;
                     })
             }
         }
