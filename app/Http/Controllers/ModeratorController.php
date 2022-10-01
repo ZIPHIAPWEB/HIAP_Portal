@@ -233,7 +233,21 @@ class ModeratorController extends Controller
     public function showLobsterGrades()
     {
         return Inertia::render('Moderator/LobsterGrades', [
-            'certs' =>  Certificate::orderBy('created_at', 'desc')->paginate(14)
+            'certs' =>  Certificate::orderBy('created_at', 'desc')->paginate(14),
+            'schools'   =>  Certificate::select('school')->distinct()->get()
         ]);
+    }
+
+    public function filterCertificateBySchool(Request $request)
+    {
+        $request->validate([
+            'school'    =>  'required'
+        ]);
+
+        $certificates = $request->input('school') == 'all' 
+            ? Certificate::orderBy('created_at', 'ASC')->get()
+            : Certificate::where('school', $request->input('school'))->get();
+
+        return response()->json($certificates, 200);
     }
 }
