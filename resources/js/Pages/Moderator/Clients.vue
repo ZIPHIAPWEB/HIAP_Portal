@@ -260,13 +260,13 @@
                 this.$inertia.delete(`/deleteClientDetails/${userId}`);
             },
             prevPage() {
-                axios.get(this.pageClients.links.prev)
+                axios.post(this.pageClients.links.prev)
                     .then((response) => {
                         this.pageClients = response.data;
                     })
             },
             nextPage() {
-                axios.get(this.pageClients.links.next)
+                axios.post(this.pageClients.links.next)
                     .then((response) => {
                         this.pageClients = response.data;
                     })
