@@ -40,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody v-if="clients.data.length > 0">
-                        <tr class="text-xs " v-for="client in clients.data" :key="client.id">
+                        <tr class="text-xs " v-for="client in pageClients.data" :key="client.id">
                             <td class="text-left">{{ client.client.created_at }}</td>
                             <td>{{ client.client.first_name }}</td>
                             <td>{{ client.client.middle_name}}</td>
