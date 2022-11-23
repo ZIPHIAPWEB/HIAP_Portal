@@ -177,6 +177,7 @@
         },
         data () {
             return {
+                pageClients: this.clients,
                 form: {
                     from: '',
                     to: '',
@@ -259,15 +260,15 @@
                 this.$inertia.delete(`/deleteClientDetails/${userId}`);
             },
             prevPage() {
-                axios.get(this.clients.link.prev)
+                axios.get(this.pageClients.links.prev)
                     .then((response) => {
-                        this.clients = response.data;
+                        this.pageClients = response.data;
                     })
             },
             nextPage() {
-                axios.get(this.clients.link.next)
+                axios.get(this.pageClients.links.next)
                     .then((response) => {
-                        this.clients = response.data;
+                        this.pageClients = response.data;
                     })
             },
             searchClientByLastName() {
@@ -276,7 +277,7 @@
                     formData.append('search', this.filterName);
                     axios.post('/searchStudentByLastName', formData)
                         .then((response) => {
-                            this.clients = response.data;
+                            this.pageClients = response.data;
                         })
                 } else {
                     toastr.error('Cannot search empty field.');
