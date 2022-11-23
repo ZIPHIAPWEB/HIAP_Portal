@@ -385,7 +385,10 @@ export default {
         },
         prevPage() {
             if (this.isSearchedList) {
-                axios.post(this.pageClients.links.prev, this.filterName).then(response => {
+                let formData = new FormData();
+                formData.append("search", this.filterName);
+
+                axios.post(this.pageClients.links.prev, formData).then(response => {
                     this.pageClients = response.data;
                 });
             } else {
@@ -394,7 +397,10 @@ export default {
         },
         nextPage() {
             if (this.isSearchedList) {
-                axios.post(this.pageClients.links.next, this.filterName).then(response => {
+                let formData = new FormData();
+                formData.append("search", this.filterName);
+
+                axios.post(this.pageClients.links.next, formData).then(response => {
                     this.pageClients = response.data;
                 });
             } else {
