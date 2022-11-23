@@ -259,10 +259,16 @@
                 this.$inertia.delete(`/deleteClientDetails/${userId}`);
             },
             prevPage() {
-                this.$inertia.visit(this.clients.links.prev);
+                axios.get(this.clients.link.prev)
+                    .then((response) => {
+                        this.clients = response.data;
+                    })
             },
             nextPage() {
-                this.$inertia.visit(this.clients.links.next);
+                axios.get(this.clients.link.next)
+                    .then((response) => {
+                        this.clients = response.data;
+                    })
             },
             searchClientByLastName() {
                 if (this.filterName !== '') {
