@@ -101,7 +101,7 @@
                                 </button>
                                 <button 
                                     @click="resetToDefaultPassword(client.user_id)" 
-                                    class="btn btn-success btn-xs btn-flat"
+                                    class="btn btn-primary btn-xs btn-flat"
                                 >
                                     Reset password
                                 </button>
