@@ -99,12 +99,18 @@
                                 >
                                     View
                                 </button>
+                                <button 
+                                    @click="resetToDefaultPassword(client.user_id)" 
+                                    class="btn btn-success btn-xs btn-flat"
+                                >
+                                    Reset password
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                     <tbody v-else>
                         <tr class="text-xs text-center">
-                            <td colspan="8">No Client Registered</td>
+                            <td colspan="11">No Client Registered</td>
                         </tr>
                     </tbody>
                 </table>
@@ -442,6 +448,14 @@ export default {
                     this.forExportPayment = response.data;
                     this.isExportLoading = false;
                 });
+        },
+        resetToDefaultPassword (id) {
+            this.$inertia.post('/setToDefaultPassword', { user_id: id}, {
+                onBefore: () => confirm('Set password to default?'),
+                onSuccess: () => {
+                    toastr.info('Password set to p@ssw0rd');
+                }
+            })
         }
     }
 };
