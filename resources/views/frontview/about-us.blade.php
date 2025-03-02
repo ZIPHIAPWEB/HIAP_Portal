@@ -20,67 +20,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-lg bg-white">
-        <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
-            <button
-                data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse text-center" id="navcol-1">
-                    <ul class="nav navbar-nav mx-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/">HOME</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link active text-center text-lg-center text-xl-center" href="/about-us">ABOUT US</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-services">services</a>
-                            <ul class="list-unstyled nav-content">
-                                <li><a href="#">gov't training &amp; assessment</a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="/assessment">tesda assessment programS</a></li>
-                                        <li><a href="/tesda-training">Tesda training programS</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">scholarship Programs</a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="/twsp">twsp - tesda programs</a></li>
-                                        <li><a href="/owwa">sesp - owwa programs</a></li>
-                                        <li><a href="/senior-scholarship">SHS Scholarship programs</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">customized programs</a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="/customized-senior-25">senior high (25 hours)</a></li>
-                                        <li><a href="/customized-senior">senior high (whole day)</a></li>
-                                        <li><a href="/customized-college">College (whole day)</a></li>
-                                        <li><a href="/customized-prof">young professionals</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">Online programs</a>
-                            <ul class="list-unstyled nav-content">
-                                <li><a href="/global-e-learning">World-class Industry Training Programs</a></li>
-                                <li><a href="/tesda-online">Tesda online programs</a></li>
-                            </ul>
-                        </li>
-                    </ul><a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
-                    <ul
-                        class="nav navbar-nav d-xl-flex mx-auto">
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/global-e-learning">Global e-learning</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/e-learning-hub">E-learning hub</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/tesda-online">Tesda online programs</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/our-facilities">facilities</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/blog">blog</a></li>
-                        <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="/social-stream">social streams</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center d-none d-sm-none d-md-none d-lg-block d-xl-block" href="#">learn more</a>
-                            <ul class="list-unstyled nav-content">
-                                <!-- <li><a href="/blog">blog</a></li> -->
-                                <li><a href="/social-stream">social streams</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link px-4" href="/login" style="background: #961a32;color: white !important;border-radius: 10px;">{{ Auth::check() ? 'Go To Profile' : 'Enroll Now' }}</a></li>
-                        </ul>
-                </div>
-        </div>
-    </nav>
-    <section class="page-header"><img src="assets/img/HEADER%20-%20ABOUT.jpg"></section>
+    @include('partials._navbar')
+    <section class="page-header"><img src="{{ asset('assets/images_v2/ABOUT_US_1.png') }}"></section>
     <section class="page-description">
         <div class="container-fluid">
             <div>
@@ -105,19 +46,23 @@
             </div>
         </div>
     </section>
-    <section class="about-vision-mission" style="background-image: url(&quot;assets/img/ABOUT%20-%20VISION%20MISSION.jpg&quot;);">
+    <section class="about-vision-mission" style="background-image: url({{ asset('assets/images_v2/ABOUT_US_2.png')}});">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-6 col-xl-6">
                     <div class="about-item">
                         <h1 class="text-center">Vision</h1>
-                        <p class="text-center"><br>We envision an internationally recognized center of excellence for Hotel, Culinary and Tourism training and skills assessments services.<br><br></p>
+                        <p class="text-center"><br>
+                        We aspire to be a globally recognized center of excellence, setting the benchmark for professional training. Our goal is to develop individuals who excel in their chosen fields and contribute significantly to industry advancement and innovation locally and internationally. Let HIAP be your partner in building a brighter, more successful future!
+                        <br><br></p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-xl-6">
                     <div class="about-item">
                         <h1 class="text-center">Mission</h1>
-                        <p class="text-center"><br>We prepare well-rounded graduates for employment opportunities, both locally and internationally, in various positions by providing them globally known educational services and facilities.<br></p>
+                        <p class="text-center"><br>
+                        We are catalysts for success, empowering students and professionals through world-class training programs. By fostering excellence in local and global job markets, we inspire individuals to make impactful contributions to an ever-evolving employment landscape.
+                        <br></p>
                     </div>
                 </div>
             </div>
