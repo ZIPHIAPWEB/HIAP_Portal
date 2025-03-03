@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="">Facebook Profile Link <i class="text-danger">*</i></label>
+                                            <label for="">Social media accounts <i class="text-danger">*</i></label>
                                             <input v-model="form.fb_link" type="text" :class="hasFBLinkError" placeholder="https://facebook.com/jane.doe">
                                             <!-- <span class="error invalid-feedback" v-if="errors.fb_link">{{ $page.errors.fb_link }}</span> -->
                                         </div>

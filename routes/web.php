@@ -29,7 +29,13 @@ Route::view('/customized-senior', 'frontview.customized-senior');
 Route::view('/e-learning', 'frontview.e-learning');
 Route::view('/enroll-now', 'frontview.enroll-now');
 Route::view('/faqs', 'frontview.faqs');
+
 Route::view('/our-services', 'frontview.our-services');
+Route::view('/our-services/international-certification', 'frontview.our-services-international-certificate-program');
+Route::view('/our-services/specialized-industry-programs', 'frontview.our-services-specialized-industry-program');
+Route::view('/our-services/micro-credential-certificate', 'frontview.our-services-micro-credentials-programs');
+Route::view('/our-services/tvet-programs', 'frontview.our-services-tvet-programs');
+
 Route::view('/our-facilities', 'frontview.our-facilities');
 Route::view('/owwa', 'frontview.owwa');
 Route::view('/senior-scholarship', 'frontview.senior-scholarship');
