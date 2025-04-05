@@ -20,13 +20,15 @@
         </div>
     </section>
     <section class="page-description" style="color: white !important; background-image: url(&quot;{{ asset('assets/img/ONLINE%20PIC%201.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
-        <div class="container-fluid">
-            <div>
-                <h1 class="text-center" style="color: white !important;">LUXURY SERVICE STANDARDS</h1>
-                <p class="text-center mb-4">
-                    This program covers 80% of the luxury service benchmarks set by LQA, AAA, and Forbes Travel Guide, <br>ensuring thorough training across all major rating authorities.
+        <div class="container-fluid row">
+            <div class="col-12 col-md-6">
+                <h1 class="text-right" style="color: white !important;">LUXURY SERVICE STANDARDS</h1>
+                <p class="text-right mb-4">
+                    This program covers 80% of the luxury service benchmarks set by LQA, AAA, and Forbes Travel Guide, ensuring thorough training across all major rating authorities.
                 </p>
-                <ul class="text-center" style="list-style: none;">
+            </div>
+            <div class="col-12 col-md-6">
+                <ul class="text-left" style="list-style: none;">
                     <li>&bull; Essential management skills and knowledge</li>
                     <li>&bull; Insights and practical experiences shared by industry experts</li>
                     <li>&bull; Cost-saving strategies</li>
@@ -36,15 +38,16 @@
         </div>
     </section>
     <section class="page-description">
-        <div class="container-fluid">
-            <div>
-                <h1 class="text-center">JOB-ROLE TRAINING</h1>
-                <p class="text-center mb-4">
+        <div class="container-fluid row">
+            <div class="col-12 col-md-6">
+                <h1 class="text-right">JOB-ROLE TRAINING</h1>
+                <p class="text-right mb-4">
                     A comprehensive training solution for every department and role in the hotel, designed to onboard, upskill
-                    <br>
                     and inspired associates, while driving performance throughout your operation.
                 </p>
-                <ul class="text-center" style="list-style: none;">
+            </div>
+            <div class="col-12 col-md-6">
+                <ul class="text-left" style="list-style: none;">
                     <li>&bull; High Standards of Excellence</li>
                     <li>&bull; Guest-Centric Approach</li>
                     <li>&bull; Emotional Intelligence and Soft Skills</li>
@@ -57,21 +60,19 @@
         </div>
     </section>
     <section class="page-description" style="color: white !important; background-image: url(&quot;{{ asset('assets/img/ONLINE%20PIC%201.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
-        <div class="container-fluid">
-        <div>
-                <h1 class="text-center" style="color: white !important">PROCHEF AND PLANT-FORWARD KITCHEN</h1>
-                <p class="text-center">
+        <div class="container-fluid row">
+            <div class="col-12 col-md-6">
+                <h1 class="text-right" style="color: white !important">PROCHEF AND PLANT-FORWARD KITCHEN</h1>
+                <p class="text-right">
                     This program is joint effort between our organization and Culinary Institute of America (CIA) aimed
-                    <br>
                     at enhancing culinary skills and expertise among aspiring chefs.
-                    <br><br>
                     Focus on innovative techniques to create delicious plant-based dishes, which aligns with the current
-                    <br>
                     trend of plant-forward dining. Receive a comprehensive learning experience to enable chefs to excel in
-                    <br>
                     the culinary field.
-                </p>
-                <ul class="text-center" style="list-style: none;">
+                </p>    
+            </div>
+            <div class="col-12 col-md-6">
+                <ul class="text-left" style="list-style: none;">
                     <li>&bull; Expert Instruction/Chef-Driven Curriculum</li>
                     <li>&bull; Interactive Learning Experience</li>
                     <li>&bull; Emphasis on Plant-Based Cuisine</li>

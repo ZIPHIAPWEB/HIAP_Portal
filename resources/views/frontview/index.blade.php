@@ -12,7 +12,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_1.png') }}">
                     <div class="header-title">
                         <h1 class="text-center">INTERNATIONALLY RECOGNIZED PROGRAMS AND CERTIFICATION</h1>
-                        <h2 class="text-center" style="font-size: 27px; padding-top: 3px;">Globally recognized certifications that enhance employability and credibility in the hospitality industry.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">GLOBALLY RECOGNIZED CERTIFICATIONS THAT ENHANCE EMPLOYABILITY AND CREDIBILITY IN THE HOSPITALITY INDUSTRY</h2>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_2.png') }}">
                     <div class="header-title">
                         <h1>CUSTOMIZED TRAINING PROGRAMS</h1>
-                        <h2 class="text-center" style="font-size: 27px; padding-top: 3px;">Curated programs designed to meet specific needs and improve employee performance and guest satisfaction, in line with academic and industry standards.<br></h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">CURATED PROGRAMS DESIGNED TO MEET SPECIFIC NEEDS AND IMPROVE EMPLOYEE PERFORMANCE AND GUEST SATISFACTION, IN LINE WITH ACADEMIC AND INDUSTRY STANDARDS.<br></h2>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_3.png') }}">
                     <div class="header-title">
                         <h1>COST-EFFECTIVE AND ACCESSIBLE</h1>
-                        <h2 class="text-center" style="font-size: 27px; padding-top: 3px;">Affordable fees make programs accessible to students, working professionals, and career switchers, offering excellent value for high-quality training.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">AFFORDABLE FEES MAKE PROGRAMS ACCESSIBLE TO STUDENTS, WORKING PROFESSIONALS, AND CAREER SWITCHERS, OFFERING EXCELLENT VALUE FOR HIGH-QUALITY TRAINING.</h2>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_4.png') }}">
                     <div class="header-title">
                         <h1>INDUSTRY-RELEVANT AND EXPERT-LED TRAINING</h1>
-                        <h2 class="text-center" style="font-size: 27px; padding-top: 3px;">Programs designed to meet the demands of the global hospitality industry, delivered by certified trainers and experienced professionals.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">PROGRAMS DESIGNED TO MEET THE DEMANDS OF THE GLOBAL HOSPITALITY INDUSTRY, DELIVERED BY CERTIFIED TRAINERS AND EXPERIENCED PROFESSIONAL.</h2>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_5.png') }}">
                     <div class="header-title">
                         <h1><strong>FLEXIBLE LEARNING OPTIONS</strong><br></h1>
-                        <h2 class="text-center" style="font-size: 27px; padding-top: 3px;">Offering face-to-face, blended, and online delivery to accommodate diverse schedules, meet credit requirements, and support learners' goals.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">OFFERING FACE-TO-FACE, BLENDED, AND ONLINE DELIVERY TO ACCOMODATE DIVERSE SCHEDULES, MEET CREDIT REQUIREMENTS, AND SUPPORT LEARNER'S GOALS.</h2>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_6.png') }}">
                     <div class="header-title">
                         <h1><strong>CAREER LINKAGES AND OPPORTUNITIES</strong><br></h1>
-                        <h2 class="text-center" style="font-size: 27px; padding-top: 3px;">Empowering learners by connecting them to valuable industry partnerships and exciting global career pathways.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">EMPOWERING LEARNERS BY CONNECTING THEM TO VALUABLE INDUSTRY PARTNERSHIP AND EXCITING GLOBAL CAREER PATHWAYS.</h2>
                     </div>
                 </div>
             </div>
@@ -82,25 +82,19 @@
     </section>
     <section class="home-services" style="background-image: url(&quot;assets/img/SERVICES%20-%20HOME%20PAGE.jpg&quot;);">
         <div class="container-fluid">
-            <h1 class="text-center">services</h1>
+            <h1 class="text-center">OUR PROGRAMS</h1>
             <div class="row">
                 <div class="col-12 col-lg-12 col-xl-6 d-flex justify-content-center align-items-center justify-content-xl-end">
-                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/feedback.png"><span class="text-center text-lg-left text-xl-left">TESDA Assessment Programs</span></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/feedback.png"><span class="text-center text-lg-left text-xl-left">International Certification</span></div>
                 </div>
                 <div class="col-12 col-lg-12 col-xl-6 d-flex justify-content-center align-items-center justify-content-xl-start">
-                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/academic%20-%202.png"><span class="text-center text-lg-left text-xl-left">TWSP - TESDA Scholarship Programs<br><small>(Training for Work Scholarship Program)</small></span></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/academic%20-%202.png"><span class="text-center text-lg-left text-xl-left">Specialized-Industry Programs</span></div>
                 </div>
                 <div class="col-12 col-lg-12 col-xl-6 d-flex justify-content-center align-items-center justify-content-xl-end">
-                    <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/class.png"><span class="text-center text-lg-left text-xl-left">TESDA Training Programs</span></div>
+                    <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/class.png"><span class="text-center text-lg-left text-xl-left">Micro-Credential Certificate</span></div>
                 </div>
                 <div class="col-12 col-lg-12 col-xl-6 d-flex justify-content-center align-items-center justify-content-xl-start">
-                    <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/graduation-cap.png"><span class="text-center text-lg-left text-xl-left">SESP - OWWA Scholarship Programs<br><small>(Skills for Employment Scholarship Program)</small></span></div>
-                </div>
-                <div class="col-12 col-lg-12 col-xl-6 d-flex justify-content-center align-items-center justify-content-xl-end">
-                    <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/customer%20(3).png"><span class="text-center text-lg-left text-xl-left">Customized Programs</span></div>
-                </div>
-                <div class="col-12 col-lg-12 col-xl-6 d-flex justify-content-center align-items-center justify-content-xl-start">
-                    <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/graduation-diploma.png"><span class="text-center text-lg-left text-xl-left">Senior High Scholarship Programs</span></div>
+                    <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row flex-xl-row justify-content-xl-start service-item"><img src="assets/img/graduation-cap.png"><span class="text-center text-lg-left text-xl-left">TVET Programs</span></div>
                 </div>
             </div>
         </div>
