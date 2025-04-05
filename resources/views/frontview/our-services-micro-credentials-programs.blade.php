@@ -7,7 +7,7 @@
     @include('partials._navbar')
     <section class="page-header"><img src="{{ asset('assets/images_v2/MICRO_CREDENTIAL.png') }}" style="background-image: url(&quot;assets/img/ELEARNING%20-%20HEADER.jpg&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;"></section>
     <section class="page-description">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center">MICRO-CREDENTIALS PROGRAMS</h1>
                 <p class="text-center mb-4">

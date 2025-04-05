@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light navbar-expand-lg bg-white">
-    <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+    <div class="container-fluid"><a class="navbar-brand d-block d-lg-none d-xl-none" href="/" style="background-image: url({{ asset('assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png') }});width: 60px;height: 60px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
         <button
             data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-center" id="navcol-1">
@@ -16,7 +16,7 @@
                     </li>
                     <li class="nav-item" role="presentation"><a class="{{ Route::current()->uri() == 'our-facilities' ? 'active' : '' }} nav-link text-center text-lg-center text-xl-center" href="/our-facilities">FACILITIES</a></li>
                 </ul>
-                <a class="navbar-brand d-none d-lg-block d-xl-block" href="#" style="background-image: url(&quot;assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png&quot;);width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
+                <a class="navbar-brand d-none d-lg-block d-xl-block" href="/" style="background-image: url({{ asset('assets/img/HIAPh_INC%20LOGO%20HIGHRES-01.png') }});width: 100px;height: 100px;background-position: center;background-size: contain;background-repeat: no-repeat;margin: 0;"></a>
                 <ul class="nav navbar-nav d-xl-flex mx-auto">
                     <li class="nav-item" role="presentation"><a class="{{ Route::current()->uri() == 'contact-us' ? 'active' : '' }} nav-link text-center text-lg-center text-xl-center" href="/contact-us">CONTACT US</a></li>
                     <li class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none" role="presentation"><a class="nav-link text-center text-lg-center text-xl-center" href="blog">blog</a></li>

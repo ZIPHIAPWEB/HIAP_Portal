@@ -7,7 +7,7 @@
     @include('partials._navbar')
     <section class="page-header"><img src="{{ asset('assets/images_v2/TVET.png') }}" style="background-image: url(&quot;assets/img/ELEARNING%20-%20HEADER.jpg&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;"></section>
     <section class="page-description">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center">TVET PROGRAMS</h1>
                 <p class="text-center mb-4">
@@ -19,7 +19,7 @@ The Technical-Vocational Education and Training (TVET) and Higher Education Trai
         </div>
     </section>
     <section class="page-description" style="color: white !important; background-image: url(&quot;{{ asset('assets/img/ONLINE%20PIC%201.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center" style="color: white !important;">BREAD AND PASTRY PRODUCTION NC II</h1>
                 <p class="text-center mb-4">
@@ -61,7 +61,7 @@ The Technical-Vocational Education and Training (TVET) and Higher Education Trai
         </div>
     </section>
     <section class="page-description">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center">COOKERY NC II</h1>
                 <p class="text-center mb-4">
@@ -120,7 +120,7 @@ The Technical-Vocational Education and Training (TVET) and Higher Education Trai
         </div>
     </section>
     <section class="page-description" style="color: white !important; background-image: url(&quot;{{ asset('assets/img/ONLINE%20PIC%201.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center" style="color: white !important;">FOOD AND BEVERAGE SERVICE NC II</h1>
                 <p class="text-center mb-4">
@@ -176,7 +176,7 @@ The Technical-Vocational Education and Training (TVET) and Higher Education Trai
         </div>
     </section>
     <section class="page-description">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center">TVET PROGRAM QUALIFICATIONS:</h1>
                 <ul class="text-center mb-4" style="list-style: none;">

@@ -5,7 +5,7 @@
 
 <body>
     @include('partials._navbar')
-    <section class="page-header"><img src="{{ asset('assets/images_v2/INTERNATIONAL_CERTIFICATION.png') }}" style="background-image: url(&quot;assets/img/ELEARNING%20-%20HEADER.jpg&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;"></section>
+    <section class="page-header"><img src="{{ asset('assets/images_v2/INTERNATIONAL_CERTIFICATION.png') }}" style="background-image: url(&quot;{{ asset('assets/img/ELEARNING%20-%20HEADER.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;"></section>
     <section class="page-description">
         <div class="container-fluid">
             <div>
@@ -18,7 +18,7 @@
         </div>
     </section>
     <section class="page-description" style="color: white !important; background-image: url(&quot;{{ asset('assets/img/ONLINE%20PIC%201.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center" style="color: white !important;">ABOUT SERVSAFE</h1>
                 <p class="text-center mb-4">
@@ -30,7 +30,7 @@ The certification shows a professional's expertise in food safety. It is necessa
         </div>
     </section>
     <section class="page-description">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center">SERVSAFE FOOD HANDLER CERTIFICATION</h1>
                 <p class="text-center mb-4">
@@ -41,14 +41,13 @@ This certification proves you have the knowledge and skills to handle food safel
         </div>
     </section>
     <section class="page-description" style="color: white !important; background-image: url(&quot;{{ asset('assets/img/ONLINE%20PIC%201.jpg') }}&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;">
-        <div class="container-fluid">
-            <div>
-                <h1 class="text-center" style="color: white !important;">PROGRAM FEATURES: </h1>
-                <p class="text-center mb-4">
-                    
-                </p>
+        <div class="container-fluid row">
+            <div class="col-12 col-md-6">
+                <h1 class="text-right" style="color: white !important;">PROGRAM FEATURES: </h1>
+            </div>
+            <div class="col-12 col-md-6">
                 <div class="d-flex flex-col justify-content-center">
-                    <ul class="text-center" style="list-style: none;">
+                    <ul class="text-left" style="list-style: none;">
                         <li>&bull; Comprehensive food safety training</li>
                         <li>&bull; Multi-language support</li>
                         <li>&bull; Updated with the latest food safety standards</li>
@@ -63,7 +62,7 @@ This certification proves you have the knowledge and skills to handle food safel
         </div>
     </section>
     <section class="page-description">
-        <div class="container-fluid">
+        <div class="container">
             <div>
                 <h1 class="text-center">DURATION</h1>
                 <p class="text-center">
@@ -99,9 +98,9 @@ This certification proves you have the knowledge and skills to handle food safel
   page_id="733393866846945"
 theme_color="#031430">
 </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.min.js') }}"></script>
 </body>
 
 </html>

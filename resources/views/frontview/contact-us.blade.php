@@ -14,9 +14,12 @@
                 <ul class="list-unstyled text-center text-lg-left text-xl-left contact-list">
                     <li><i class="fa fa-clock-o"></i><span>Monday to Friday | 8:00 AM - 5:00 PM</span></li>
                     <li><i class="fa fa-map-o"></i><span>2/F University Center Bldg., 1985 C.M. Recto Avenue Zone 041 Brgy. 395 Sampaloc Manila</span></li>
-                    <li><i class="fa fa-phone"></i><span>09175228213 | 09228768213 | 09178988213 | 09084698962</span></li>
+                    <li><i class="fa fa-phone"></i><span>02 83679392 | 0939 201 9198 | 0917 522 8213</span></li>
                     <li><i class="fa fa-envelope-o"></i><span>info@hospitalityinstituteofamerica.com.ph</span></li>
                     <li><i class="fa fa-facebook-official"></i><span>Hospitality Insitute of America - Philippines Inc.</span></li>
+                    <li><i class="fa fa-instagram"></i><span>Hiap Inc.</span></li>
+                    <li><i class="fa fa-linkedin"></i><span>Hospitality Institute of America-Philippines Inc.</span></li>
+
                 </ul>
             </div>
         </div>
