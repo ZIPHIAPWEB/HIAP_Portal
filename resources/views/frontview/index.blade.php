@@ -12,7 +12,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_1.png') }}">
                     <div class="header-title">
                         <h1 class="text-center">INTERNATIONALLY RECOGNIZED PROGRAMS AND CERTIFICATION</h1>
-                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">GLOBALLY RECOGNIZED CERTIFICATIONS THAT ENHANCE EMPLOYABILITY AND CREDIBILITY IN THE HOSPITALITY INDUSTRY</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat'; padding-bottom: 0;">GLOBALLY RECOGNIZED CERTIFICATIONS THAT ENHANCE EMPLOYABILITY AND CREDIBILITY IN THE HOSPITALITY INDUSTRY</h2>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_2.png') }}">
                     <div class="header-title">
                         <h1>CUSTOMIZED TRAINING PROGRAMS</h1>
-                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">CURATED PROGRAMS DESIGNED TO MEET SPECIFIC NEEDS AND IMPROVE EMPLOYEE PERFORMANCE AND GUEST SATISFACTION, IN LINE WITH ACADEMIC AND INDUSTRY STANDARDS.<br></h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat'; padding-bottom: 0;">CURATED PROGRAMS DESIGNED TO MEET SPECIFIC NEEDS AND IMPROVE EMPLOYEE PERFORMANCE AND GUEST SATISFACTION, IN LINE WITH ACADEMIC AND INDUSTRY STANDARDS.<br></h2>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_3.png') }}">
                     <div class="header-title">
                         <h1>COST-EFFECTIVE AND ACCESSIBLE</h1>
-                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">AFFORDABLE FEES MAKE PROGRAMS ACCESSIBLE TO STUDENTS, WORKING PROFESSIONALS, AND CAREER SWITCHERS, OFFERING EXCELLENT VALUE FOR HIGH-QUALITY TRAINING.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat'; padding-bottom: 0;">AFFORDABLE FEES MAKE PROGRAMS ACCESSIBLE TO STUDENTS, WORKING PROFESSIONALS, AND CAREER SWITCHERS, OFFERING EXCELLENT VALUE FOR HIGH-QUALITY TRAINING.</h2>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_4.png') }}">
                     <div class="header-title">
                         <h1>INDUSTRY-RELEVANT AND EXPERT-LED TRAINING</h1>
-                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">PROGRAMS DESIGNED TO MEET THE DEMANDS OF THE GLOBAL HOSPITALITY INDUSTRY, DELIVERED BY CERTIFIED TRAINERS AND EXPERIENCED PROFESSIONAL.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat'; padding-bottom: 0;">PROGRAMS DESIGNED TO MEET THE DEMANDS OF THE GLOBAL HOSPITALITY INDUSTRY, DELIVERED BY CERTIFIED TRAINERS AND EXPERIENCED PROFESSIONAL.</h2>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_5.png') }}">
                     <div class="header-title">
                         <h1><strong>FLEXIBLE LEARNING OPTIONS</strong><br></h1>
-                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">OFFERING FACE-TO-FACE, BLENDED, AND ONLINE DELIVERY TO ACCOMODATE DIVERSE SCHEDULES, MEET CREDIT REQUIREMENTS, AND SUPPORT LEARNER'S GOALS.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat'; padding-bottom: 0;">OFFERING FACE-TO-FACE, BLENDED, AND ONLINE DELIVERY TO ACCOMODATE DIVERSE SCHEDULES, MEET CREDIT REQUIREMENTS, AND SUPPORT LEARNER'S GOALS.</h2>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <img src="{{ asset('assets/images_v2/HEADER_6.png') }}">
                     <div class="header-title">
                         <h1><strong>CAREER LINKAGES AND OPPORTUNITIES</strong><br></h1>
-                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat';">EMPOWERING LEARNERS BY CONNECTING THEM TO VALUABLE INDUSTRY PARTNERSHIP AND EXCITING GLOBAL CAREER PATHWAYS.</h2>
+                        <h2 class="text-center" style="font-size: 1rem; padding-top: 3px; font-family: 'Montserrat'; padding-bottom: 0;">EMPOWERING LEARNERS BY CONNECTING THEM TO VALUABLE INDUSTRY PARTNERSHIP AND EXCITING GLOBAL CAREER PATHWAYS.</h2>
                     </div>
                 </div>
             </div>
