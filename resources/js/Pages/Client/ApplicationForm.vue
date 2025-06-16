@@ -38,9 +38,9 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="">Address <i class="text-danger">*</i></label>
-                                            <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx">
-                                            <!-- <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span> -->
+                                            <label for="">Date of Birth <i class="text-danger">*</i></label>
+                                            <input v-model="form.contact_number" type="date" :class="hasDateOfBirthError">
+                                            <!-- <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span> -->
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -48,6 +48,13 @@
                                             <label for="">Contact Number <i class="text-danger">*</i></label>
                                             <input v-model="form.contact_number" type="number" name="" id="" :class="hasContactError" placeholder="09123456789">
                                             <!-- <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">Address <i class="text-danger">*</i></label>
+                                            <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx">
+                                            <!-- <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span> -->
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
@@ -80,25 +87,6 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <div class="d-flex">
-                                                <label for="">School <i class="text-danger">*</i></label>
-                                            </div>
-                                            <select v-model="form.school" type="text" :class="hasSectionError" placeholder="School/Organization">
-                                                <option value="">Select School</option>
-                                                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.display_name }}</option>
-                                                <!-- <span class="error invalid-feedback" v-if="errors.school">{{ $page.errors.school }}</span> -->
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Expected date of graduation <i class="text-danger">*</i></label>                                            
-                                            <input type="month" v-model="form.expected_graduation" :class="hasExpectedGraduationError">
-                                            <!-- <span class="error invalid-feedback" v-if="errors.expected_graduation">{{ $page.errors.expected_graduation }}</span> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
                                             <label for="">Social media accounts <i class="text-danger">*</i></label>
                                             <input v-model="form.fb_link" type="text" :class="hasFBLinkError" placeholder="https://facebook.com/jane.doe">
                                             <!-- <span class="error invalid-feedback" v-if="errors.fb_link">{{ $page.errors.fb_link }}</span> -->
@@ -110,6 +98,17 @@
                                             <input v-model="form.alternate_email" type="text" :class="hasAlternateEmailError" placeholder="jane.doe@app.com">
                                             <input @change="setCurrentEmail" type="checkbox"><i class="text-sm mx-1">Use current email</i>
                                             <!-- <span class="error invalid-feedback" v-if="errors.alternate_email">{{ $page.errors.alternate_email }}</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Affiliation/Classification</label>
+                                            <select name="affiliation" id="affiliation">
+                                                <option value="">Select Affiliation</option>
+                                                <option value="Student">Student</option>
+                                                <option value="Professional">Professional/Employee</option>
+                                                <option value="Entrepreneur">Entrepreneur</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -196,13 +195,12 @@
                     first_name: '',
                     middle_name: '',
                     last_name: '',
+                    date_of_birth: '',
                     address: '',
                     contact_number: '',
                     school: '',
                     program: '',
                     course: '',
-                    school_year: '',
-                    expected_graduation: '',
                     course_id: [],
                     hours_needed: '',
                     start_date: '',

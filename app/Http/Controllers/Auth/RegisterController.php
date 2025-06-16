@@ -80,7 +80,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return Inertia::render('Auth/Register', [
-            'online_programs'   =>  OnlineProgram::orderBy('id')->get()
+            'online_programs'   =>  OnlineProgram::where('is_active', true)->orderBy('id')->get()
         ]);
     }
 
