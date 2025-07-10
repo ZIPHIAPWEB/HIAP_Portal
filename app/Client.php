@@ -22,6 +22,11 @@ class Client extends Model
     //     return Carbon::instance($date)->format('M Y');
     // }
 
+    public function industry()
+    {
+        return $this->hasOne(Industry::class, 'industry_id', 'id');
+    }
+
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');

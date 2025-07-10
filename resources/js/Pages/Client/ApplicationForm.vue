@@ -57,7 +57,34 @@
                                             <!-- <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label>Affiliation/Classification</label>
+                                            <select v-model="form.affiliation" name="affiliation" class="form-control" id="affiliation">
+                                                <option value="">Select Affiliation</option>
+                                                <option v-for="affiliation in affiliations" :value="affiliation.value">
+                                                    {{ affiliation.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="form.affiliation != 'student'" class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="industry">Industry</label>
+                                            <select v-model="form.industry_id" name="industry-select" id="industry-select" :class="hasIndustryError">
+                                                <option v-for="industry in industries" :value="industry.id">
+                                                    {{ industry.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="company">Company Name</label>
+                                            <input v-model="form.company" type="text" name="company" id="company" :class="hasCompanyError" placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Year Level <i class="text-danger">*</i></label>
                                             <select v-model="form.school_year" name="" id="" :class="hasYearLevelError">
@@ -71,18 +98,24 @@
                                         </div>
                                         <!-- <span class="error invalid-feedback" v-if="errors.school_year">{{ $page.errors.school_year }}</span> -->
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Course <i class="text-danger">*</i></label>
                                             <input v-model="form.course" type="text" :class="hasCourseError" placeholder="Course">
                                             <!-- <span class="error invalid-feedback" v-if="errors.course">{{ $page.errors.course }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Section <i class="text-danger">*</i></label>
                                             <input v-model="form.section" type="text" :class="hasSectionError" placeholder="Section">
                                             <!-- <span class="error invalid-feedback" v-if="errors.section">{{ $page.errors.section }}</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="date_of_grad">Date of Graduation</label>
+                                            <input v-model="form.expected_graduation" type="date" name="date_of_grad" id="date_of_grad" :class="hasExpectedGraduationError">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -98,17 +131,6 @@
                                             <input v-model="form.alternate_email" type="text" :class="hasAlternateEmailError" placeholder="jane.doe@app.com">
                                             <input @change="setCurrentEmail" type="checkbox"><i class="text-sm mx-1">Use current email</i>
                                             <!-- <span class="error invalid-feedback" v-if="errors.alternate_email">{{ $page.errors.alternate_email }}</span> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Affiliation/Classification</label>
-                                            <select name="affiliation" id="affiliation">
-                                                <option value="">Select Affiliation</option>
-                                                <option value="Student">Student</option>
-                                                <option value="Professional">Professional/Employee</option>
-                                                <option value="Entrepreneur">Entrepreneur</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -174,6 +196,13 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="checkbox-inline">
+                                                <input v-model="form.is_client_agree" type="checkbox"> 
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <button class="btn btn-primary btn-block">Submit</button>
                                     </div>
                                 </div>
@@ -187,10 +216,19 @@
 </template>
 
 <script>
+
+import { watch } from 'vue';
+
     export default {
-        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id', 'special_tracks'],
+        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id', 'special_tracks', 'industries'],
         data() {
             return {
+                storageKey: 'application-form',
+                affiliations: [
+                    { value: 'student', name: 'Student' },
+                    { value: 'professional', name: 'Professional/Employee' },
+                    { value: 'entrepreneur', name: 'Entrepreneur' }
+                ],
                 form: {
                     first_name: '',
                     middle_name: '',
@@ -208,11 +246,38 @@
                     fb_link: '',
                     alternate_email: '',
                     section: '',
-                    returnee: ''
+                    returnee: '',
+                    affiliation: '',
+                    is_client_agree: false,
+                    industry_id: '',
+                    affiliation: '',
+                    company: ''
                 },
+                showAttestationMessage: false,
                 isOrganization: false,
                 loading: false,
                 step: 1,
+            }
+        },
+        created() {
+            const savedForm = localStorage.getItem(this.storageKey);
+
+            if (savedForm) {
+                try {
+                    const parsed = JSON.parse(saved)
+                    this.form = { ...this.form, ...parsed }
+                } catch (e) {
+                    console.warn('Failed to parse saved form data:', e)
+                }
+            }
+        },
+        watch: {
+            form: {
+                handler(newForm) {
+                    console.log(newForm);
+                    localStorage.setItem(this.storageKey, JSON.stringify(newForm));
+                },
+                deep: true
             }
         },
         computed: {
@@ -221,6 +286,12 @@
             },
             hasLastNameError () {
                 return this.errors.last_name ? 'form-control is-invalid' : 'form-control';
+            },
+            hasDateOfBirthError () {
+                return this.errors.date_of_birth ? 'form-control is-invalid' : 'form-control';
+            },
+            hasIndustryError () {
+                return this.errors.industry ? 'form-control is-invalid' : 'form-control';
             },
             hasAddressError () {
                 return this.errors.address ? 'form-control is-invalid' : 'form-control';
@@ -267,6 +338,9 @@
             hasEndDateError () {
                 return this.errors.end_date ? 'form-control is-invalid' : 'form-control';
             },
+            hasCompanyError () {
+                return this.errors.company ? 'form-control is-invalid' : 'form-control';
+            },
             filteredCourse () {
                 if (this.form.school === 1) return this.special_tracks.filter(e => e.course_id == this.program_id);
                 if (this.form.school === 2) return this.special_tracks.filter(e => e.course_id == this.program_id);
@@ -280,6 +354,13 @@
         },
         methods: {
             submitApplication () {
+                if (!this.form.is_client_agree) {
+
+                    alert('Attestion message here...');
+                    // this.showAttestationMessage = true;
+                    return;
+                }
+
                 this.loading = true;
                 this.$inertia.post('/client/sendApplication', this.form, {
                     onSuccess: () => {

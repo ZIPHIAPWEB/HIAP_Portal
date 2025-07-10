@@ -13,6 +13,7 @@ use App\Notifications\NewApplicantRegistered;
 use App\OnlineProgram;
 use App\School;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 
 class ClientApplicationService {
@@ -34,62 +35,76 @@ class ClientApplicationService {
         $this->createLog = $createLog;
     }
 
-    public function createClientApplication(object $request) : bool
+    public function createClientApplication($request) : bool
     {
-        $client = $this->createClient->execute([
-            'user_id'               =>  $request->user()->id,
-            'first_name'            =>  $request->first_name,
-            'middle_name'           =>  $request->middle_name,
-            'last_name'             =>  $request->last_name,
-            'address'               =>  $request->address,
-            'course'                =>  $request->course,
-            'school_year'           =>  $request->school_year,
-            'contact_no'            =>  $request->contact_number,
-            'school_id'             =>  $request->school,
-            'course'                =>  $request->course,
-            'fb_link'               =>  $request->fb_link,
-            'program_id'            =>  $request->user()->program_id,
-            'alternate_email'       =>  $request->alternate_email,
-            'section'               =>  $request->section,
-            'expected_graduation'   =>  $request->expected_graduation
-        ]);
-
-        foreach($request->course_id as $course) {
-            $this->createClientProgram->execute([
+        return DB::transaction(function() use ($request) {
+            $formData = [
                 'user_id'               =>  $request->user()->id,
-                'program_id'            =>  $course['id'],
-                'course_id'             =>  $request->user()->program_id,
-                'start_date'            =>  $request->start_date,
-                'end_date'              =>  $request->end_date,
-                'hours_needed'          =>  $request->hours_needed,
-                'returnee'              =>  $request->returnee,
-                'application_status'    =>  'New Learner'
-            ]);
-        }
+                'first_name'            =>  $request->first_name,
+                'middle_name'           =>  $request->middle_name,
+                'last_name'             =>  $request->last_name,
+                'address'               =>  $request->address,
+                'contact_no'            =>  $request->contact_number,
+                'fb_link'               =>  $request->fb_link,
+                'program_id'            =>  $request->user()->program_id,
+                'alternate_email'       =>  $request->alternate_email,
+                'affiliation'           =>  $request->affiliation,
+            ];
 
-        Notification::route('mail', 'hiapinstitute.enrollment@gmail.com')
-            ->notify(new NewApplicantRegistered([
-                'first_name'    =>  $client->first_name,
-                'middle_name'   =>  $client->middle_name,
-                'last_name'     =>  $client->last_name,
-                'contact_no'    =>  $client->contact_no,
-                'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
-                'school'        =>  School::where('id', $client->school_id)->first()->name
-            ]));
-        // (new SendMailNotification)->execute('info@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
-        //     'first_name'    =>  $client->first_name,
-        //     'middle_name'   =>  $client->middle_name,
-        //     'last_name'     =>  $client->last_name,
-        //     'contact_no'    =>  $client->contact_no,
-        //     'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
-        //     'school'        =>  School::where('id', $client->school_id)->first()->name
-        // ]));
+            if ($request->affiliation == 'student') {
+                array_merge($formData, [
+                    'school_id'             =>  $request->school,
+                    'course'                =>  $request->course,
+                    'school_year'           =>  $request->school_year,
+                    'section'               =>  $request->section,
+                    'expected_graduation'   =>  $request->expected_graduation
+                ]);
+            } else {
+                array_merge($formData, [
+                    'company' => $request->company
+                ]);
+            }
+            
+            $client = $this->createClient->execute($formData);
 
-        if(isset($client)) {
-            return true;
-        } else {
+            foreach($request->course_id as $course) {
+                $this->createClientProgram->execute([
+                    'user_id'               =>  $request->user()->id,
+                    'program_id'            =>  $course['id'],
+                    'course_id'             =>  $request->user()->program_id,
+                    'start_date'            =>  $request->start_date,
+                    'end_date'              =>  $request->end_date,
+                    'hours_needed'          =>  $request->hours_needed,
+                    'returnee'              =>  $request->returnee,
+                    'application_status'    =>  'New Learner'
+                ]);
+            }
+
+            Notification::route('mail', 'hiapinstitute.enrollment@gmail.com')
+                ->notify(new NewApplicantRegistered([
+                    'first_name'    =>  $client->first_name,
+                    'middle_name'   =>  $client->middle_name,
+                    'last_name'     =>  $client->last_name,
+                    'contact_no'    =>  $client->contact_no,
+                    'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
+                    'school'        =>  School::where('id', $client->school_id)->first()->name
+                ]));
+            // (new SendMailNotification)->execute('info@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
+            //     'first_name'    =>  $client->first_name,
+            //     'middle_name'   =>  $client->middle_name,
+            //     'last_name'     =>  $client->last_name,
+            //     'contact_no'    =>  $client->contact_no,
+            //     'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
+            //     'school'        =>  School::where('id', $client->school_id)->first()->name
+            // ]));
+
+            if(isset($client)) {
+                
+                return true;
+            } 
+
             return false;
-        }
+        });
     }
 
     public function updateApplicationStatus(string $status, int $userId) : void
