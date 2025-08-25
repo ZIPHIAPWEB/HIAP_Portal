@@ -43,8 +43,9 @@ class ClientApplicationService {
                 'first_name'            =>  $request->first_name,
                 'middle_name'           =>  $request->middle_name,
                 'last_name'             =>  $request->last_name,
-                'address'               =>  $request->address,
+                'date_of_birth'         =>  $request->date_of_birth,
                 'contact_no'            =>  $request->contact_number,
+                'address'               =>  $request->address,
                 'fb_link'               =>  $request->fb_link,
                 'program_id'            =>  $request->user()->program_id,
                 'alternate_email'       =>  $request->alternate_email,
@@ -52,7 +53,7 @@ class ClientApplicationService {
             ];
 
             if ($request->affiliation == 'student') {
-                array_merge($formData, [
+                $formData = array_merge($formData, [
                     'school_id'             =>  $request->school,
                     'course'                =>  $request->course,
                     'school_year'           =>  $request->school_year,
@@ -60,7 +61,8 @@ class ClientApplicationService {
                     'expected_graduation'   =>  $request->expected_graduation
                 ]);
             } else {
-                array_merge($formData, [
+                $formData = array_merge($formData, [
+                    'industry_id' =>  $request->industry,
                     'company' => $request->company
                 ]);
             }
@@ -80,23 +82,34 @@ class ClientApplicationService {
                 ]);
             }
 
-            Notification::route('mail', 'hiapinstitute.enrollment@gmail.com')
-                ->notify(new NewApplicantRegistered([
+            if (config('settings.enable_new_applicant_notification')) {
+                $notificationBaseDetails = [
                     'first_name'    =>  $client->first_name,
                     'middle_name'   =>  $client->middle_name,
                     'last_name'     =>  $client->last_name,
                     'contact_no'    =>  $client->contact_no,
                     'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
-                    'school'        =>  School::where('id', $client->school_id)->first()->name
-                ]));
-            // (new SendMailNotification)->execute('info@hospitalityinstituteofamerica.com.ph', new NewApplicantNotification([
-            //     'first_name'    =>  $client->first_name,
-            //     'middle_name'   =>  $client->middle_name,
-            //     'last_name'     =>  $client->last_name,
-            //     'contact_no'    =>  $client->contact_no,
-            //     'program'       =>  OnlineProgram::where('id', $request->user()->program_id)->first()->name,
-            //     'school'        =>  School::where('id', $client->school_id)->first()->name
-            // ]));
+                    'affiliation'   =>  $client->affiliation
+                ];
+
+                if ($request->affiliation == 'student') {
+                    $notificationBaseDetails = array_merge($notificationBaseDetails, [
+                        'school'        =>  School::where('id', $client->school_id)->first()->name
+                    ]);
+                } else {
+                    $notificationBaseDetails = array_merge($notificationBaseDetails, [
+                        'industry'     =>  $client->industry->name,
+                        'company'      =>  $client->company
+                    ]);
+                }
+                
+                Notification::route(
+                        'mail', 
+                        'hiapinstitute.enrollment@gmail.com'
+                    )->notify(
+                        new NewApplicantRegistered($notificationBaseDetails)
+                    );
+            }
 
             if(isset($client)) {
                 

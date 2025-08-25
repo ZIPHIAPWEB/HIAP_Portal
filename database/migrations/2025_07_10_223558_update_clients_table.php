@@ -14,9 +14,10 @@ class UpdateClientsTable extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->string('industry_id');
-            $table->string('affiliation');
-            $table->string('company');
+            $table->string('industry_id')->nullable();
+            $table->string('affiliation')->nullable();
+            $table->string('company')->nullable();
+            $table->string('date_of_birth')->nullable();
         });
     }
 
@@ -31,6 +32,7 @@ class UpdateClientsTable extends Migration
             $table->dropColumn('industry_id');
             $table->dropColumn('affiliation');
             $table->dropColumn('company');
+            $table->dropColumn('date_of_birth');
         });
     }
 }

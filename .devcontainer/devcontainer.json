@@ -1,0 +1,20 @@
+{
+  "name": "PHP 8.0 with MySQL 5.7",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "php.validate.executablePath": "/usr/local/bin/php"
+  },
+  "extensions": [
+    "bmewburn.vscode-intelephense-client",
+    "xdebug.php-debug"
+  ],
+  "forwardPorts": [
+    8080,
+    3306
+  ],
+  "postCreateCommand": "composer update --ignore-platform-reqs || true",
+  "remoteUser": "vscode"
+}

@@ -1,5 +1,32 @@
 <template>
     <div class="application-form">
+        <div v-if="showAttestationMessage" class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0, 0, 0, 0.5);">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Terms and Conditions</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-indent: 40px;">
+                            Do you consent to the collection, use, and storage of your personal information by the Hospitality Institute of America-Philippines, Inc. in compliance with Republic Act No. 10173 (Data Privacy Act of 2012)? This information will be used solely for purposes related to your enrollment, academic transactions, and other legitimate educational activities.
+                        </p>
+                        <p style="text-indent: 40px;">By providing your consent, you also agree that your personal information may be shared with third-party service providers, partners, or organizations authorized by the Hospitality Institute of America-Philippines, Inc. This includes, but is not limited to, entities providing student-related services such as learning management systems, accreditation agencies, scholarship organizations, or any government-mandated reporting.</p>
+                        <p style="text-indent: 40px;">Rest assured that your personal information will be handled with the utmost confidentiality and will not be used beyond the stated purposes without prior notice or your explicit consent, except as required by law.
+</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" @click="agreeToTerms()">
+                            <i class="fa fa-check mr-1"></i>    
+                            I agree
+                        </button>
+                        <button type="button" class="btn btn-danger" @click="logout()">
+                            <i class="fa fa-times"></i>
+                            Disagree and logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-xs-12 col-md-3 col-lg-3 col-xl-6">
@@ -39,7 +66,7 @@
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Date of Birth <i class="text-danger">*</i></label>
-                                            <input v-model="form.contact_number" type="date" :class="hasDateOfBirthError">
+                                            <input v-model="form.date_of_birth" type="date" :class="hasDateOfBirthError">
                                             <!-- <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span> -->
                                         </div>
                                     </div>
@@ -68,7 +95,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div v-if="form.affiliation != 'student'" class="col-12 col-md-6">
+                                    <div v-if="form.affiliation != 'student' && form.affiliation" class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="industry">Industry</label>
                                             <select v-model="form.industry_id" name="industry-select" id="industry-select" :class="hasIndustryError">
@@ -78,7 +105,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div v-if="form.affiliation != 'student' && form.affiliation" class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="company">Company Name</label>
                                             <input v-model="form.company" type="text" name="company" id="company" :class="hasCompanyError" placeholder="Company Name">
@@ -112,7 +139,19 @@
                                             <!-- <span class="error invalid-feedback" v-if="errors.section">{{ $page.errors.section }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-12">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">School <i class="text-danger">*</i></label>
+                                            <select v-model="form.school" name="" id="" :class="hasSchoolError">
+                                                <option value="">Select School</option>
+                                                <option v-for="school in schools" :value="school.id">
+                                                    {{ school.name }}
+                                                </option>
+                                            </select>
+                                            <!-- <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span> -->
+                                        </div>
+                                    </div>
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="date_of_grad">Date of Graduation</label>
                                             <input v-model="form.expected_graduation" type="date" name="date_of_grad" id="date_of_grad" :class="hasExpectedGraduationError">
@@ -196,13 +235,6 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="checkbox-inline">
-                                                <input v-model="form.is_client_agree" type="checkbox"> 
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
                                         <button class="btn btn-primary btn-block">Submit</button>
                                     </div>
                                 </div>
@@ -261,6 +293,7 @@ import { watch } from 'vue';
         },
         created() {
             const savedForm = localStorage.getItem(this.storageKey);
+            this.showAttestationMessage = true;
 
             if (savedForm) {
                 try {
@@ -274,7 +307,6 @@ import { watch } from 'vue';
         watch: {
             form: {
                 handler(newForm) {
-                    console.log(newForm);
                     localStorage.setItem(this.storageKey, JSON.stringify(newForm));
                 },
                 deep: true
@@ -303,13 +335,16 @@ import { watch } from 'vue';
                 return this.errors.program ? 'form-control is-invalid' : 'form-control select2 select2-hidden-accessible';
             },
             hasYearLevelError () {
-                return this.errors.contact_number ? 'form-control is-invalid' : 'form-control';
+                return this.errors.school_year ? 'form-control is-invalid' : 'form-control';
             },
             hasCourseError () {
                 return this.errors.course ? 'form-control is-invalid' : 'form-control';
             },
             hasSectionError () {
                 return this.errors.section ? 'form-control is-invalid' : 'form-control';
+            },
+            hasSchoolError() {
+                return this.errors.school ? 'form-control is-invalid' : 'form-control';
             },
             hasSchoolYearError () {
                 return this.errors.school_year ? 'form-control is-invalid' : 'form-control';
@@ -353,14 +388,17 @@ import { watch } from 'vue';
             }
         },
         methods: {
+            logout() {
+                axios.post('/logout')
+                    .then((response) => {
+                        window.location.replace('/');
+                    })
+            },
+            agreeToTerms() {
+                this.showAttestationMessage = false;
+                this.form.is_client_agree = true;
+            },
             submitApplication () {
-                if (!this.form.is_client_agree) {
-
-                    alert('Attestion message here...');
-                    // this.showAttestationMessage = true;
-                    return;
-                }
-
                 this.loading = true;
                 this.$inertia.post('/client/sendApplication', this.form, {
                     onSuccess: () => {
@@ -395,6 +433,12 @@ import { watch } from 'vue';
 </script>
 
 <style lang="scss" scoped>
+    .vs__selected-options .form-control {
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+
     .application-form {
         width: 100%;
         height: 100vh;

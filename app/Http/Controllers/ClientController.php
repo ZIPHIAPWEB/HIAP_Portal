@@ -47,7 +47,7 @@ class ClientController extends Controller
             'schools'   =>  School::orderBy('name')->get(),
             'courses'   =>  Course::orderBy('id')->get(),
             'programs'  =>  Program::orderBy('name')->where('isActive', 1)->get(),
-            'industries' => Industry::where('is_active')->orderBy('name', 'ASC'),
+            'industries' => Industry::where('is_active', 1)->orderBy('name', 'ASC')->get(),
             'special_tracks'    =>  Program::orderBy('name')
                 ->whereIn('id', [89, 90, 91, 92, 93])
                 ->where('isActive', 1)

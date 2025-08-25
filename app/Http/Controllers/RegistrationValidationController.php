@@ -13,12 +13,19 @@ class RegistrationValidationController extends Controller
             'last_name'     =>  'required',
             'address'       =>  'required',
             'contact_number'=>  'required',
-            'school_year'   =>  'required',
-            'course'        =>  'required',
-            'section'       =>  'required',
-            'expected_graduation'   =>  'required',
             'fb_link'           =>  'required',
-            'alternate_email'   =>  'required'
+            'alternate_email'   =>  'required',
+            'affiliation'       =>  'required',
+            'date_of_birth'     =>  'required',
+
+            'school'    =>  'required_if:affiliation,student',
+            'school_year'   =>  'required_if:affiliation,student',
+            'course'        =>  'required_if:affiliation,student',
+            'section'       =>  'required_if:affiliation,student',
+            'expected_graduation'   =>  'required_if:affiliation,student',
+
+            'industry_id' =>  'required_if:affiliation,!=,employee',
+            'company'   =>  'required_if:affiliation,!=,employee'
         ]);
 
         return back();

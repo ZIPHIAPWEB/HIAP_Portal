@@ -2,6 +2,7 @@
 
 use App\OnlineProgram;
 use App\User;
+use Database\Seeders\AddUpdateOnCourseTableSeeder;
 use Database\Seeders\IndustrySeeder;
 use Database\Seeders\SchoolSeeder;
 use Illuminate\Database\Seeder;
@@ -16,19 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'email'     =>  'superadmin@hiap.com',
-        //     'password'  =>  Hash::make('hiaprocks5000!'),
-        //     'isFilled'  =>  true,
-        //     'role'      =>  'superadministrator'
-        // ]);
-
-        // OnlineProgram::create([
-        //     'name'          => 'Flex IP',
-        //     'display_name'  => 'Flex IP'
-        // ]);
-
         $this->call([
+            AddUpdateOnCourseTableSeeder::class,
             SchoolSeeder::class,
             IndustrySeeder::class
         ]);
