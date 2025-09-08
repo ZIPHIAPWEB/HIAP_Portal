@@ -1,5 +1,27 @@
 <template>
     <div class="application-form">
+        <div v-if="showAttestationMessage" class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0, 0, 0, 0.5);">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Terms and Conditions</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-indent: 40px;">
+                            Do you consent to the collection, use, and storage of your personal information by the Hospitality Institute of America-Philippines, Inc. in compliance with Republic Act No. 10173 (Data Privacy Act of 2012)? This information will be used solely for purposes related to your enrollment, academic transactions, and other legitimate educational activities.
+                        </p>
+                        <p style="text-indent: 40px;">By providing your consent, you also agree that your personal information may be shared with third-party service providers, partners, or organizations authorized by the Hospitality Institute of America-Philippines, Inc. This includes, but is not limited to, entities providing student-related services such as learning management systems, accreditation agencies, scholarship organizations, or any government-mandated reporting.</p>
+                        <p style="text-indent: 40px;">Rest assured that your personal information will be handled with the utmost confidentiality and will not be used beyond the stated purposes without prior notice or your explicit consent, except as required by law.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" @click="agreeToTerms()">
+                            <i class="fa fa-check mr-1"></i>    
+                            I agree
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-xs-12 col-md-3 col-lg-3 col-xl-6">
@@ -38,9 +60,9 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="">Address <i class="text-danger">*</i></label>
-                                            <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx">
-                                            <!-- <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span> -->
+                                            <label for="">Date of Birth <i class="text-danger">*</i></label>
+                                            <input v-model="form.date_of_birth" type="date" :class="hasDateOfBirthError">
+                                            <!-- <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span> -->
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -50,7 +72,41 @@
                                             <!-- <span class="error invalid-feedback" v-if="errors.contact_number">{{ $page.errors.contact_number }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="">Address <i class="text-danger">*</i></label>
+                                            <input v-model="form.address" type="text" name="" id="" :class="hasAddressError" placeholder="xxxx xxxx xxx">
+                                            <!-- <span class="error invalid-feedback" v-if="errors.address">{{ $page.errors.address }}</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label>Affiliation/Classification</label>
+                                            <select v-model="form.affiliation" name="affiliation" class="form-control" id="affiliation">
+                                                <option value="">Select Affiliation</option>
+                                                <option v-for="affiliation in affiliations" :value="affiliation.value">
+                                                    {{ affiliation.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="form.affiliation != 'student' && form.affiliation" class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="industry">Industry</label>
+                                            <select v-model="form.industry_id" name="industry-select" id="industry-select" :class="hasIndustryError">
+                                                <option v-for="industry in industries" :value="industry.id">
+                                                    {{ industry.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="form.affiliation != 'student' && form.affiliation" class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="company">Company Name</label>
+                                            <input v-model="form.company" type="text" name="company" id="company" :class="hasCompanyError" placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Year Level <i class="text-danger">*</i></label>
                                             <select v-model="form.school_year" name="" id="" :class="hasYearLevelError">
@@ -64,37 +120,36 @@
                                         </div>
                                         <!-- <span class="error invalid-feedback" v-if="errors.school_year">{{ $page.errors.school_year }}</span> -->
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Course <i class="text-danger">*</i></label>
                                             <input v-model="form.course" type="text" :class="hasCourseError" placeholder="Course">
                                             <!-- <span class="error invalid-feedback" v-if="errors.course">{{ $page.errors.course }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="">Section <i class="text-danger">*</i></label>
                                             <input v-model="form.section" type="text" :class="hasSectionError" placeholder="Section">
                                             <!-- <span class="error invalid-feedback" v-if="errors.section">{{ $page.errors.section }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <div class="d-flex">
-                                                <label for="">School <i class="text-danger">*</i></label>
-                                            </div>
-                                            <select v-model="form.school" type="text" :class="hasSectionError" placeholder="School/Organization">
+                                            <label for="">School <i class="text-danger">*</i></label>
+                                            <select v-model="form.school" name="" id="" :class="hasSchoolError">
                                                 <option value="">Select School</option>
-                                                <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.display_name }}</option>
-                                                <!-- <span class="error invalid-feedback" v-if="errors.school">{{ $page.errors.school }}</span> -->
+                                                <option v-for="school in schools" :value="school.id">
+                                                    {{ school.name }}
+                                                </option>
                                             </select>
+                                            <!-- <span class="error invalid-feedback" v-if="errors.program">{{ $page.errors.program }}</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div v-if="form.affiliation == 'student'" class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="">Expected date of graduation <i class="text-danger">*</i></label>                                            
-                                            <input type="month" v-model="form.expected_graduation" :class="hasExpectedGraduationError">
-                                            <!-- <span class="error invalid-feedback" v-if="errors.expected_graduation">{{ $page.errors.expected_graduation }}</span> -->
+                                            <label for="date_of_grad">Date of Graduation</label>
+                                            <input v-model="form.expected_graduation" type="date" name="date_of_grad" id="date_of_grad" :class="hasExpectedGraduationError">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -188,21 +243,29 @@
 </template>
 
 <script>
+
+import { watch } from 'vue';
+
     export default {
-        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id', 'special_tracks'],
+        props: ['auth', 'errors', 'schools', 'courses', 'programs', 'program_id', 'special_tracks', 'industries'],
         data() {
             return {
+                storageKey: 'application-form',
+                affiliations: [
+                    { value: 'student', name: 'Student' },
+                    { value: 'professional', name: 'Professional/Employee' },
+                    { value: 'entrepreneur', name: 'Entrepreneur' }
+                ],
                 form: {
                     first_name: '',
                     middle_name: '',
                     last_name: '',
+                    date_of_birth: '',
                     address: '',
                     contact_number: '',
                     school: '',
                     program: '',
                     course: '',
-                    school_year: '',
-                    expected_graduation: '',
                     course_id: [],
                     hours_needed: '',
                     start_date: '',
@@ -210,11 +273,38 @@
                     fb_link: '',
                     alternate_email: '',
                     section: '',
-                    returnee: ''
+                    returnee: '',
+                    affiliation: '',
+                    is_client_agree: false,
+                    industry_id: '',
+                    affiliation: '',
+                    company: ''
                 },
+                showAttestationMessage: false,
                 isOrganization: false,
                 loading: false,
                 step: 1,
+            }
+        },
+        created() {
+            const savedForm = localStorage.getItem(this.storageKey);
+            this.showAttestationMessage = true;
+
+            if (savedForm) {
+                try {
+                    const parsed = JSON.parse(saved)
+                    this.form = { ...this.form, ...parsed }
+                } catch (e) {
+                    console.warn('Failed to parse saved form data:', e)
+                }
+            }
+        },
+        watch: {
+            form: {
+                handler(newForm) {
+                    localStorage.setItem(this.storageKey, JSON.stringify(newForm));
+                },
+                deep: true
             }
         },
         computed: {
@@ -223,6 +313,12 @@
             },
             hasLastNameError () {
                 return this.errors.last_name ? 'form-control is-invalid' : 'form-control';
+            },
+            hasDateOfBirthError () {
+                return this.errors.date_of_birth ? 'form-control is-invalid' : 'form-control';
+            },
+            hasIndustryError () {
+                return this.errors.industry ? 'form-control is-invalid' : 'form-control';
             },
             hasAddressError () {
                 return this.errors.address ? 'form-control is-invalid' : 'form-control';
@@ -234,13 +330,16 @@
                 return this.errors.program ? 'form-control is-invalid' : 'form-control select2 select2-hidden-accessible';
             },
             hasYearLevelError () {
-                return this.errors.contact_number ? 'form-control is-invalid' : 'form-control';
+                return this.errors.school_year ? 'form-control is-invalid' : 'form-control';
             },
             hasCourseError () {
                 return this.errors.course ? 'form-control is-invalid' : 'form-control';
             },
             hasSectionError () {
                 return this.errors.section ? 'form-control is-invalid' : 'form-control';
+            },
+            hasSchoolError() {
+                return this.errors.school ? 'form-control is-invalid' : 'form-control';
             },
             hasSchoolYearError () {
                 return this.errors.school_year ? 'form-control is-invalid' : 'form-control';
@@ -269,6 +368,9 @@
             hasEndDateError () {
                 return this.errors.end_date ? 'form-control is-invalid' : 'form-control';
             },
+            hasCompanyError () {
+                return this.errors.company ? 'form-control is-invalid' : 'form-control';
+            },
             filteredCourse () {
                 if (this.form.school === 1) return this.special_tracks.filter(e => e.course_id == this.program_id);
                 if (this.form.school === 2) return this.special_tracks.filter(e => e.course_id == this.program_id);
@@ -277,10 +379,20 @@
                 if (this.form.school === 5) return this.special_tracks.filter(e => e.course_id == this.program_id);
                 if (this.form.school === 256) return this.special_tracks.filter(e => e.course_id == this.program_id);
 
-                return this.programs.filter(e => e.course_id == this.program_id);
+                return this.programs;
             }
         },
         methods: {
+            logout() {
+                axios.post('/logout')
+                    .then((response) => {
+                        window.location.replace('/');
+                    })
+            },
+            agreeToTerms() {
+                this.showAttestationMessage = false;
+                this.form.is_client_agree = true;
+            },
             submitApplication () {
                 this.loading = true;
                 this.$inertia.post('/client/sendApplication', this.form, {
@@ -316,6 +428,12 @@
 </script>
 
 <style lang="scss" scoped>
+    .vs__selected-options .form-control {
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+
     .application-form {
         width: 100%;
         height: 100vh;

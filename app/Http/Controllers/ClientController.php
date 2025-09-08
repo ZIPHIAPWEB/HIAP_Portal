@@ -9,6 +9,7 @@ use App\Grade;
 use App\Http\Requests\SendApplicationRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Resources\ClientDashboardResource;
+use App\Industry;
 use App\Log;
 use App\Mail\NewApplicantNotification;
 use App\OnlineProgram;
@@ -45,7 +46,17 @@ class ClientController extends Controller
             'program_id'=>  $request->user()->program_id,
             'schools'   =>  School::orderBy('name')->get(),
             'courses'   =>  Course::orderBy('id')->get(),
-            'programs'  =>  Program::orderBy('name')->where('isActive', 1)->get(),
+            'programs'  =>  Program::orderBy('name')
+                ->where('isActive', 1)
+                ->orderBy('course_id', 'ASC')
+                ->get()
+                ->map(function($program) {
+                    return [
+                        'id'    =>  $program->id,
+                        'name'  =>  $program->name . ' (' . $program->course->name . ')'
+                    ];
+                }),
+            'industries' => Industry::where('is_active', 1)->orderBy('name', 'ASC')->get(),
             'special_tracks'    =>  Program::orderBy('name')
                 ->whereIn('id', [89, 90, 91, 92, 93])
                 ->where('isActive', 1)

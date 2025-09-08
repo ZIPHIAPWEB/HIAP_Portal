@@ -28,12 +28,12 @@
             <input v-model="form.password_confirmation" name="password_confirmation" type="password" :class="hasPasswordConfirmationError" placeholder="Retype password">
             <span class="error invalid-feedback">{{ errors.password_confirmation }}</span>
           </div>
-          <div class="form-group-mb-3">
+          <!-- <div class="form-group-mb-3">
             <select name="" id="" class="form-control mb-3" v-model="form.program">
               <option value="">Select Online Program</option>
               <option v-for="program in online_programs" :key="program.id" :value="program.id">{{ program.name }}</option>
             </select>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-8">
               <!-- <div class="icheck-primary">
@@ -91,7 +91,7 @@
                     email: '',
                     password: '',
                     password_confirmation: '',
-                    program: ''
+                    // program: ''
                 },
                 loading: false
             }

@@ -1,0 +1,21 @@
+{
+  "name": "HIAP Portal Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "php.validate.executablePath": "/usr/local/bin/php"
+  },
+  "extensions": [
+  "bmewburn.vscode-intelephense-client",
+  "xdebug.php-debug",
+  "Vue.volar"
+  ],
+  "forwardPorts": [
+    8080,
+    3306
+  ],
+  "postCreateCommand": "composer update --ignore-platform-reqs || true",
+  "remoteUser": "vscode"
+}

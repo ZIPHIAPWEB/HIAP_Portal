@@ -55,8 +55,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'email' => ['bail', 'required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
             'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
-            'password_confirmation' =>  ['required'],
-            'program'   =>  ['required']
+            'password_confirmation' =>  ['required']
         ]);
     }
 
@@ -72,15 +71,14 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role'  =>  'client',
-            'isFilled'  =>  false,
-            'program_id'   =>  $data['program']
+            'isFilled'  =>  false
         ]);
     }
 
     public function showRegistrationForm()
     {
         return Inertia::render('Auth/Register', [
-            'online_programs'   =>  OnlineProgram::orderBy('id')->get()
+            'online_programs'   =>  OnlineProgram::where('is_active', true)->orderBy('id')->get()
         ]);
     }
 

@@ -28,7 +28,11 @@ class ClientResource extends JsonResource
             'program'               =>  ($this->onlineProgram == null) ? '' : $this->onlineProgram->name,
             'alternate_email'       =>  $this->alternate_email,
             'expected_graduation'   =>  $this->expected_graduation,
-            'created_at'            =>  $this->created_at->toDateTimeString()
+            'created_at'            =>  $this->created_at->toDateTimeString(),
+            'affiliation'          =>  ($this->affiliation == null) ? '' : $this->affiliation,
+            'industry'              =>  ($this->industry == null) ? '' : $this->industry->name,
+            'company'              =>  ($this->company == null) ? '' : $this->company,
+            'date_of_birth'         =>  $this->date_of_birth
         ];
     }
 }

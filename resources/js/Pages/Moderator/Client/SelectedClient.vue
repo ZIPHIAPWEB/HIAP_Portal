@@ -46,6 +46,12 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Date of Birth</td>
+                                        <td>
+                                            <span class="text-bold">{{ client.date_of_birth }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Course</td>
                                         <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.course }}</span>
@@ -94,7 +100,7 @@
                                             <input v-else type="text" v-model="client.contact_no" class="form-control form-control-sm">
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr v-if="client.affiliation == 'student'">
                                         <td>School/Organization</td>
                                         <td>
                                             <span v-if="!isEdit" class="text-bold">{{ client.school ? client.school.name : '' }}</span>
@@ -102,6 +108,20 @@
                                                 <option value="">Select School</option>
                                                 <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
                                             </select>
+                                        </td>
+                                    </tr>
+                                    <tr v-if="client.affiliation !='student'">
+                                        <td>Company</td>
+                                        <td>
+                                            <span v-if="!isEdit" class="text-bold">{{ client.company }}</span>
+                                            <input v-else type="text" v-model="client.company" class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr v-if="client.affiliation != 'student'">
+                                        <td>Industry</td>
+                                        <td>
+                                            <span v-if="!isEdit" class="text-bold">{{ client.industry }}</span>
+                                            <input v-else type="text" v-model="client.industry_id" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>

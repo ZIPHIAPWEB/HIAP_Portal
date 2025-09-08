@@ -14,9 +14,13 @@ class OnlineProgramSeeder extends Seeder
      */
     public function run()
     {
-        OnlineProgram::create([
-            'name'          => 'Testing',
-            'display_name'  => 'Testing'
-        ]);
+        $programs = [
+            'name'          => 'Flex IP',
+            'display_name'  => 'Flex IP'
+        ];
+
+        foreach ($programs as $program) {
+            OnlineProgram::create($program);
+        }
     }
 }
