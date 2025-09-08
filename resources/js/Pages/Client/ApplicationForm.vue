@@ -11,17 +11,12 @@
                             Do you consent to the collection, use, and storage of your personal information by the Hospitality Institute of America-Philippines, Inc. in compliance with Republic Act No. 10173 (Data Privacy Act of 2012)? This information will be used solely for purposes related to your enrollment, academic transactions, and other legitimate educational activities.
                         </p>
                         <p style="text-indent: 40px;">By providing your consent, you also agree that your personal information may be shared with third-party service providers, partners, or organizations authorized by the Hospitality Institute of America-Philippines, Inc. This includes, but is not limited to, entities providing student-related services such as learning management systems, accreditation agencies, scholarship organizations, or any government-mandated reporting.</p>
-                        <p style="text-indent: 40px;">Rest assured that your personal information will be handled with the utmost confidentiality and will not be used beyond the stated purposes without prior notice or your explicit consent, except as required by law.
-</p>
+                        <p style="text-indent: 40px;">Rest assured that your personal information will be handled with the utmost confidentiality and will not be used beyond the stated purposes without prior notice or your explicit consent, except as required by law.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" @click="agreeToTerms()">
                             <i class="fa fa-check mr-1"></i>    
                             I agree
-                        </button>
-                        <button type="button" class="btn btn-danger" @click="logout()">
-                            <i class="fa fa-times"></i>
-                            Disagree and logout
                         </button>
                     </div>
                 </div>
@@ -384,7 +379,7 @@ import { watch } from 'vue';
                 if (this.form.school === 5) return this.special_tracks.filter(e => e.course_id == this.program_id);
                 if (this.form.school === 256) return this.special_tracks.filter(e => e.course_id == this.program_id);
 
-                return this.programs.filter(e => e.course_id == this.program_id);
+                return this.programs;
             }
         },
         methods: {

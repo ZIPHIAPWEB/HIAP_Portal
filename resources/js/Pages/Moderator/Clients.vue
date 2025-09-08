@@ -49,11 +49,14 @@
                     <thead>
                         <tr class="text-xs ">
                             <th>Date Registered</th>
+                            <th>Affiliation</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
+                            <th>Date of Birth</th>
                             <th>School/Organization</th>
                             <th>Section</th>
+                            <th>Industry</th>
                             <th>Enrolled Course</th>
                             <th>Course Status</th>
                             <th>E-mail Address</th>
@@ -70,11 +73,14 @@
                             <td class="text-left">
                                 {{ client.client.created_at }}
                             </td>
+                            <td>{{ client.client.affiliation }}</td>
                             <td>{{ client.client.first_name }}</td>
                             <td>{{ client.client.middle_name }}</td>
                             <td>{{ client.client.last_name }}</td>
-                            <td>{{ client.client.school.name }}</td>
-                            <td>{{ client.client.section }}</td>
+                            <td>{{ client.client.date_of_birth }}</td>
+                            <td>{{ client.client.affiliation == 'student' ? client.client.school.name : client.client.company}}</td>
+                            <td>{{ client.client.affiliation == 'student' ? client.client.section : 'Not Applicable' }}</td>
+                            <td>{{ client.client.affiliation != 'student' ? client.client.industry : 'Not Applicable' }}</td>
                             <td>{{ client.program }}</td>
                             <td class="text-success text-bold">
                                 {{ client.application_status }}

@@ -150,7 +150,11 @@ class ClientApplicationService {
             'program_id'            =>  $request->program_id,
             'alternate_email'       =>  $request->alternate_email,
             'section'               =>  $request->section,
-            'expected_graduation'   =>  $request->expected_graduation
+            'expected_graduation'   =>  $request->expected_graduation,
+            'affiliation'           =>  $request->affiliation,
+            'industry_id'           =>  $request->industry_id,
+            'company'               =>  $request->company,
+            'date_of_birth'         =>  $request->date_of_birth
         ]);
 
 

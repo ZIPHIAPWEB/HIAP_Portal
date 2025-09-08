@@ -33,11 +33,16 @@ class ClientDashboardResource extends JsonResource
             'school'                =>  $this->school()->first(),
             'alternate_email'       =>  $this->alternate_email,
             'fb_link'               =>  $this->fb_link,
-            'expected_graduation' =>    $this->expected_graduation,
+            'expected_graduation'   =>    $this->expected_graduation,
             'expected_graduation_formatted'   =>  ($this->expected_graduation == '') ? '' : Carbon::instance(new DateTime($this->expected_graduation))->format('M Y'),
             'user'                  =>  $this->user()->first(),
             'section'               =>  $this->section,
-            'created_at'            =>  $this->created_at
+            'created_at'            =>  $this->created_at,
+            'industry_id'           =>  $this->industry_id,
+            'industry'              =>  ($this->industry == null) ? '' : $this->industry->name,
+            'company'               =>  ($this->company == null) ? '' : $this->company,
+            'affiliation'           =>  ($this->affiliation == null) ? '' : $this->affiliation,
+            'date_of_birth'         =>  $this->date_of_birth
         ];
     }
 }

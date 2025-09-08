@@ -1,5 +1,5 @@
 {
-  "name": "PHP 8.0 with MySQL 5.7",
+  "name": "HIAP Portal Dev Container",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
@@ -8,8 +8,9 @@
     "php.validate.executablePath": "/usr/local/bin/php"
   },
   "extensions": [
-    "bmewburn.vscode-intelephense-client",
-    "xdebug.php-debug"
+  "bmewburn.vscode-intelephense-client",
+  "xdebug.php-debug",
+  "Vue.volar"
   ],
   "forwardPorts": [
     8080,
