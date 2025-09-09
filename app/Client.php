@@ -24,7 +24,7 @@ class Client extends Model
 
     public function industry()
     {
-        return $this->hasOne(Industry::class, 'industry_id', 'id');
+        return $this->hasOne(Industry::class, 'id', 'industry_id');
     }
 
     public function user()
